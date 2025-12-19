@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 750,
+  "experience": 0.15,
+  "group": "pyrope",
+  "ingredient": "moreores:deepslate_pyrope_ore",
+  "result": {
+    "id": "moreores:pyrope"
+  }
+}

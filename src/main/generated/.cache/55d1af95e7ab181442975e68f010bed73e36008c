@@ -1,0 +1,26 @@
+// 1.21.11	-999999999-01-01T00:00:00	MoreOres+/Tags for minecraft:item
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/item/arcshapers.json
+17947bebd9d386cb24cb93eab6b663ecde9e3cbe data/minecraft/tags/item/axes.json
+5ac33adb7474a2dbaf76f865b718a17f7f2e49dd data/minecraft/tags/item/chest_armor.json
+2af47e97b266b5aeec607e213925f5d59827bad2 data/minecraft/tags/item/creeper_drop_music_discs.json
+f5d08e943908e6c8154f01f7791f917c4f3811b6 data/minecraft/tags/item/foot_armor.json
+06739c317563b8006fa213c360c4679332ef64ef data/minecraft/tags/item/head_armor.json
+a168d15710bf31a29a4d37e766a9eeea1be711bc data/minecraft/tags/item/hoes.json
+5d2a820931b96c79629532fb07209e7016eceb85 data/minecraft/tags/item/is_metal.json
+16f9788d6b83d0bac6d69b2142b29e0a7d968446 data/minecraft/tags/item/jukebox_playable_discs.json
+718eb2a3ff4141555e41ff09279aaad14e7ca512 data/minecraft/tags/item/leg_armor.json
+de87c258d413acb88b421a9361da4e69f5628a2a data/minecraft/tags/item/pickaxes.json
+4d302d2a20eba0ee828a37511b9016c36aef31a5 data/minecraft/tags/item/radiant_tool_materials.json
+9f5389ac488cf984705027a273e3df44bf8116d3 data/minecraft/tags/item/rare/rare.json
+4d302d2a20eba0ee828a37511b9016c36aef31a5 data/minecraft/tags/item/repairs_radiant_armor.json
+0cd1c5407fc97fbb30184927ce8513d2d612100b data/minecraft/tags/item/repairs_ruby_armor.json
+bc0ad363d6d6c898d6e5649d6bb9d0d142c28fd9 data/minecraft/tags/item/repairs_sapphire_armor.json
+0cd1c5407fc97fbb30184927ce8513d2d612100b data/minecraft/tags/item/ruby_tool_materials.json
+bc0ad363d6d6c898d6e5649d6bb9d0d142c28fd9 data/minecraft/tags/item/sapphire_tool_materials.json
+966828e8ee905acb69f09e745a37d68bd883c31b data/minecraft/tags/item/shovels.json
+9a513dcbeb45c9b180682cab7d878c990ee5a933 data/minecraft/tags/item/swords.json
+3f070f2014886d68e4bbcf7289029201ce371b75 data/minecraft/tags/item/trim_materials.json
+858bbc53af65857180e536d3528a61df9920440f data/minecraft/tags/item/trimmable_armor.json
+c1fed1231b9ba55bc3e16b4fe3b1ee78ee0115a7 data/minecraft/tags/item/villager_plantable_seeds.json
+9413174accfcf1b480370b8c43f68e9d3258f5bc data/moreores/tags/item/rare/gemstone.json
+4e44273e1c41366a859ffc3c73f8a079e50cddb6 data/moreores/tags/item/rare/raw_gemstone.json

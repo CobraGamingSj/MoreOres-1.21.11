@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_white_topaz": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:raw_white_topaz"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:white_topaz_from_blasting_raw_white_topaz"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_white_topaz"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:white_topaz_from_blasting_raw_white_topaz"
+    ]
+  }
+}

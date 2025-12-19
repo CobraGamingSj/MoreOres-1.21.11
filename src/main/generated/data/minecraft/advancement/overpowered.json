@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:is_that_a_gem",
+  "criteria": {
+    "radiant_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:radiant_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "moreores:textures/gui/advancements/backgrounds/gems.png",
+    "description": {
+      "translate": "advancement.moreores.radiant_sword.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "moreores:radiant_sword"
+    },
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancement.moreores.radiant_sword"
+    }
+  },
+  "requirements": [
+    [
+      "radiant_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

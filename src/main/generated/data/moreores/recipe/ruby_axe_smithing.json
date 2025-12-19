@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:ruby_tool_materials",
+  "base": "minecraft:netherite_axe",
+  "result": {
+    "id": "moreores:ruby_axe"
+  },
+  "template": "moreores:ruby_upgrade_smithing_template"
+}

@@ -1,0 +1,89 @@
+{
+  "block.energy_block.break": {
+    "subtitle": "sound.energy_block.break",
+    "sounds": [
+         "moreores:energy_block_break"
+    ]
+  },
+  "music_disc.aria_math": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:aria_math",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.dreiton": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:dreiton",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.taswell": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:taswell",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.biome_fest": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:biome_fest",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.endless": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:endless",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.featherfall": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:featherfall",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.deeper": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:deeper",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.infinite_amethyst": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:infinite_amethyst",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.watcher": {
+    "category": "minecraft:record",
+    "sounds": [
+      {
+        "name": "moreores:watcher",
+        "stream": true
+      }
+    ]
+  }
+}

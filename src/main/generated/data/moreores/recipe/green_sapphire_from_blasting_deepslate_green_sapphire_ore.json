@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 750,
+  "experience": 0.15,
+  "group": "green_sapphire",
+  "ingredient": "moreores:deepslate_green_sapphire_ore",
+  "result": {
+    "id": "moreores:green_sapphire"
+  }
+}

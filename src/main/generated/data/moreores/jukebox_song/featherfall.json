@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "jukebox_song.moreores.featherfall"
+  },
+  "length_in_seconds": 344.0,
+  "sound_event": "moreores:music_disc.featherfall"
+}

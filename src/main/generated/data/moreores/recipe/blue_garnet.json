@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "moreores:blue_garnet_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "moreores:blue_garnet"
+  }
+}

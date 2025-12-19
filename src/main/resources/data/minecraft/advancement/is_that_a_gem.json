@@ -1,0 +1,154 @@
+{
+  "criteria": {
+    "blue_garnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:blue_garnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "green_garnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:green_garnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "green_sapphire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:green_sapphire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "jade": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:jade"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "peridot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:peridot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pink_garnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:pink_garnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pyrope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:pyrope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "radiant": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:radiant"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ruby": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:ruby"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:sapphire"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "topaz": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:topaz"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "white_topaz": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:white_topaz"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "moreores:textures/gui/advancements/backgrounds/gems.png",
+    "description": {
+      "translate": "advancement.moreores.gems.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "moreores:ruby"
+    },
+    "title": {
+      "translate": "advancement.moreores.gems"
+    }
+  },
+  "requirements": [
+    [
+      "ruby",
+      "sapphire",
+      "green_sapphire",
+      "blue_garnet",
+      "pink_garnet",
+      "green_garnet",
+      "topaz",
+      "white_topaz",
+      "jade",
+      "pyrope",
+      "peridot",
+      "radiant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

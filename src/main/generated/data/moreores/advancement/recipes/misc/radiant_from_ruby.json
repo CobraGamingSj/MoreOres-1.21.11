@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:diamond"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ruby_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:ruby_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:radiant_from_ruby"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ruby_block",
+      "has_diamond"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:radiant_from_ruby"
+    ]
+  }
+}

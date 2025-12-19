@@ -1,0 +1,1 @@
+tell @a "DataPack loaded successfully! #00ff00"

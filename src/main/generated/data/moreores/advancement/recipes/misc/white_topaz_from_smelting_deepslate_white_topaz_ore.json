@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_white_topaz_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:deepslate_white_topaz_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:white_topaz_from_smelting_deepslate_white_topaz_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deepslate_white_topaz_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:white_topaz_from_smelting_deepslate_white_topaz_ore"
+    ]
+  }
+}

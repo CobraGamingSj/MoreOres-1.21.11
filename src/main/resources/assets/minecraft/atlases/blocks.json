@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "trims/items/helmet_trim",
+        "trims/items/chestplate_trim",
+        "trims/items/leggings_trim",
+        "trims/items/boots_trim"
+      ],
+      "palette_key": "trims/color_palettes/trim_palette",
+      "permutations": {
+        "ruby": "moreores:trims/color_palettes/ruby",
+        "radiant": "moreores:trims/color_palettes/radiant",
+        "sapphire": "moreores:trims/color_palettes/sapphire",
+        "green_sapphire": "moreores:trims/color_palettes/green_sapphire",
+        "blue_garnet": "moreores:trims/color_palettes/blue_garnet",
+        "pink_garnet": "moreores:trims/color_palettes/pink_garnet",
+        "green_garnet": "moreores:trims/color_palettes/green_garnet",
+        "topaz": "moreores:trims/color_palettes/topaz",
+        "white_topaz": "moreores:trims/color_palettes/white_topaz",
+        "peridot": "moreores:trims/color_palettes/peridot",
+        "jade": "moreores:trims/color_palettes/jade",
+        "pyrope": "moreores:trims/color_palettes/pyrope"
+      }
+    }
+  ]
+}

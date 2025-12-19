@@ -1,0 +1,17 @@
+// 1.21.11	-999999999-01-01T00:00:00	MoreOres+/Tags for minecraft:block
+b5c322d9ee925e086380c1639f88fea13f03e869 data/minecraft/tags/block/green_sapphire_ores.json
+516af5cd231237b6ce6cdf83ee58149710cd044f data/minecraft/tags/block/incorrect_for_gold_tool.json
+516af5cd231237b6ce6cdf83ee58149710cd044f data/minecraft/tags/block/incorrect_for_iron_tool.json
+82462230bc2d464f5a21771a96f1439a08b761ec data/minecraft/tags/block/incorrect_for_stone_tool.json
+1011c9f23b6f9f1fc21cde2f816c468ba8def18b data/minecraft/tags/block/incorrect_for_wooden_tool.json
+f07a972a58c2069a6d0d92b9196bec059c3c1e2a data/minecraft/tags/block/mineable/pickaxe.json
+5febfd3201c74c09f87f52848b24f2a31bb829a9 data/minecraft/tags/block/mod_ores.json
+516af5cd231237b6ce6cdf83ee58149710cd044f data/minecraft/tags/block/needs_diamond_tool.json
+94413f9637e5ffae3bbb46bc14d273eb11dd5aa7 data/minecraft/tags/block/ruby_ores.json
+1c6da8af2aa1513ec5ef00182d0ed0d3c0f55bd7 data/minecraft/tags/block/sapphire_ores.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/moreores/tags/block/incorrect_for_radiant_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/moreores/tags/block/incorrect_for_ruby_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/moreores/tags/block/incorrect_for_sapphire_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/moreores/tags/block/needs_radiant_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/moreores/tags/block/needs_ruby_tool.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/moreores/tags/block/needs_sapphire_tool.json

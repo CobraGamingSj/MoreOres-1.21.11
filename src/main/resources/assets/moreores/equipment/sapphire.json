@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moreores:sapphire"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moreores:sapphire"
+      }
+    ]
+  }
+}

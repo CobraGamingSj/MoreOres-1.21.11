@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_blue_garnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:raw_blue_garnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:blue_garnet_polishing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_blue_garnet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:blue_garnet_polishing"
+    ]
+  }
+}

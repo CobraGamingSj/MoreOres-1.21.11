@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": "minecraft:stick",
+    "I": "moreores:radiant"
+  },
+  "pattern": [
+    " I ",
+    " I ",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "moreores:radiant_sword"
+  }
+}

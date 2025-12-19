@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 750,
+  "experience": 0.15,
+  "group": "pink_garnet",
+  "ingredient": "moreores:raw_pink_garnet",
+  "result": {
+    "id": "moreores:pink_garnet"
+  }
+}

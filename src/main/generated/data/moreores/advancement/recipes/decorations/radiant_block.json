@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_radiant": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:radiant"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:radiant_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_radiant"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:radiant_block"
+    ]
+  }
+}

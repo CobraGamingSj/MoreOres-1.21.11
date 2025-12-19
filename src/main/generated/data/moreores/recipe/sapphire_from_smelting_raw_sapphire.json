@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 1500,
+  "experience": 0.15,
+  "group": "sapphire",
+  "ingredient": "moreores:raw_sapphire",
+  "result": {
+    "id": "moreores:sapphire"
+  }
+}

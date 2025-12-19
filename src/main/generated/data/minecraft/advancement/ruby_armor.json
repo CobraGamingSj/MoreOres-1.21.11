@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:is_that_a_gem",
+  "criteria": {
+    "ruby_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:ruby_helmet"
+          },
+          {
+            "items": "moreores:ruby_chestplate"
+          },
+          {
+            "items": "moreores:ruby_leggings"
+          },
+          {
+            "items": "moreores:ruby_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:moreores",
+    "description": {
+      "translate": "advancement.moreores.ruby_armor.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "moreores:ruby_chestplate"
+    },
+    "title": {
+      "color": "dark_aqua",
+      "translate": "advancement.moreores.ruby_armor"
+    }
+  },
+  "requirements": [
+    [
+      "ruby_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

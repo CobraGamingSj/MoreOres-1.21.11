@@ -1,0 +1,73 @@
+{
+  "variants": {
+    "facing=north,redstone_powered=false,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block",
+      "y": 180
+    },
+    "facing=north,redstone_powered=false,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_energy",
+      "y": 180
+    },
+    "facing=north,redstone_powered=true,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block_rp",
+      "y": 180
+    },
+    "facing=north,redstone_powered=true,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_rp_energy",
+      "y": 180
+    },
+
+
+
+    "facing=south,redstone_powered=false,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block"
+    },
+    "facing=south,redstone_powered=false,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_energy"
+    },
+    "facing=south,redstone_powered=true,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block_rp"
+    },
+    "facing=south,redstone_powered=true,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_rp_energy"
+    },
+
+
+
+    "facing=east,redstone_powered=false,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block",
+      "y": 270
+    },
+    "facing=east,redstone_powered=false,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_energy",
+      "y": 270
+    },
+    "facing=east,redstone_powered=true,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block_rp",
+      "y": 270
+    },
+    "facing=east,redstone_powered=true,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_rp_energy",
+      "y": 270
+    },
+
+
+
+    "facing=west,redstone_powered=false,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block",
+      "y": 90
+    },
+    "facing=west,redstone_powered=false,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_energy",
+      "y": 90
+    },
+    "facing=west,redstone_powered=true,has_energy=false": {
+      "model": "moreores:block/gem_purifier_block_rp",
+      "y": 90
+    },
+    "facing=west,redstone_powered=true,has_energy=true": {
+      "model": "moreores:block/gem_purifier_block_rp_energy",
+      "y": 90
+    }
+  }
+}
