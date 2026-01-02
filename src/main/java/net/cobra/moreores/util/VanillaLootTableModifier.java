@@ -25,8 +25,6 @@ public class VanillaLootTableModifier {
 
     public static void modifyVanillaLoot() {
 
-        MoreOresModInitializer.LOGGER.info("Modifying VanillaLootTables for " + MoreOresModInitializer.MOD_ID + " mod.");
-
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (JUNGLE_PYRAMID_KEY.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
@@ -131,6 +129,7 @@ public class VanillaLootTableModifier {
 //                tableBuilder.pool(poolBuilder);
 //            }
         });
-    }
 
+        MoreOresModInitializer.LOGGER.info("Modifying VanillaLootTables for " + MoreOresModInitializer.MOD_ID + " mod.");
+    }
 }

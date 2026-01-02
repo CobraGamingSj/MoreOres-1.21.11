@@ -10,8 +10,7 @@ import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.networking.ModC2SNetworks;
 import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
-import net.cobra.moreores.recipe.ModRecipeSerializer;
-import net.cobra.moreores.recipe.ModRecipeType;
+import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.screen.ModScreenHandlerType;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
@@ -89,155 +88,159 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		// Gemstones & Ingots Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(items -> {
-			items.addAfter(Items.RAW_GOLD, ModItems.RAW_RUBY);
-			items.addAfter(ModItems.RAW_RUBY, ModItems.RAW_SAPPHIRE);
-			items.addAfter(ModItems.RAW_SAPPHIRE, ModItems.RAW_GREEN_SAPPHIRE);
-			items.addAfter(ModItems.RAW_GREEN_SAPPHIRE, ModItems.RAW_BLUE_GARNET);
-			items.addAfter(ModItems.RAW_BLUE_GARNET, ModItems.RAW_PINK_GARNET);
-			items.addAfter(ModItems.RAW_PINK_GARNET, ModItems.RAW_GREEN_GARNET);
-			items.addAfter(ModItems.RAW_GREEN_GARNET, ModItems.RAW_TOPAZ);
-			items.addAfter(ModItems.RAW_TOPAZ, ModItems.RAW_WHITE_TOPAZ);
-			items.addAfter(ModItems.RAW_WHITE_TOPAZ, ModItems.RAW_PERIDOT);
-			items.addAfter(ModItems.RAW_PERIDOT, ModItems.RAW_PYROPE);
-			items.addAfter(ModItems.RAW_PYROPE, ModItems.RAW_JADE);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ingredientsEventEntries -> {
+			ingredientsEventEntries.addAfter(Items.RAW_GOLD, ModItems.RAW_RUBY);
+			ingredientsEventEntries.addAfter(ModItems.RAW_RUBY, ModItems.RAW_SAPPHIRE);
+			ingredientsEventEntries.addAfter(ModItems.RAW_SAPPHIRE, ModItems.RAW_GREEN_SAPPHIRE);
+			ingredientsEventEntries.addAfter(ModItems.RAW_GREEN_SAPPHIRE, ModItems.RAW_BLUE_GARNET);
+			ingredientsEventEntries.addAfter(ModItems.RAW_BLUE_GARNET, ModItems.RAW_PINK_GARNET);
+			ingredientsEventEntries.addAfter(ModItems.RAW_PINK_GARNET, ModItems.RAW_GREEN_GARNET);
+			ingredientsEventEntries.addAfter(ModItems.RAW_GREEN_GARNET, ModItems.RAW_TOPAZ);
+			ingredientsEventEntries.addAfter(ModItems.RAW_TOPAZ, ModItems.RAW_WHITE_TOPAZ);
+			ingredientsEventEntries.addAfter(ModItems.RAW_WHITE_TOPAZ, ModItems.RAW_PERIDOT);
+			ingredientsEventEntries.addAfter(ModItems.RAW_PERIDOT, ModItems.RAW_PYROPE);
+			ingredientsEventEntries.addAfter(ModItems.RAW_PYROPE, ModItems.RAW_JADE);
 
-			items.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE);
-			items.addAfter(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
-			items.addBefore(Items.NETHERITE_INGOT, ModItems.ENERGY_INGOT);
-			items.addBefore(Items.COAL, ModItems.WOOD_PELLET);
-			items.addAfter(Items.NETHERITE_INGOT, ModItems.RADIANT);
-			items.addAfter(ModItems.RADIANT, ModItems.RUBY);
-			items.addAfter(ModItems.RUBY, ModItems.SAPPHIRE);
-			items.addAfter(ModItems.SAPPHIRE, ModItems.GREEN_SAPPHIRE);
-			items.addAfter(ModItems.GREEN_SAPPHIRE, ModItems.BLUE_GARNET);
-			items.addAfter(ModItems.BLUE_GARNET, ModItems.PINK_GARNET);
-			items.addAfter(ModItems.PINK_GARNET, ModItems.GREEN_GARNET);
-			items.addAfter(ModItems.GREEN_GARNET, ModItems.TOPAZ);
-			items.addAfter(ModItems.TOPAZ, ModItems.WHITE_TOPAZ);
-			items.addAfter(ModItems.WHITE_TOPAZ, ModItems.PERIDOT);
-			items.addAfter(ModItems.PERIDOT, ModItems.PYROPE);
-			items.addAfter(ModItems.PYROPE, ModItems.JADE);
+			ingredientsEventEntries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE);
+			ingredientsEventEntries.addAfter(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
+			ingredientsEventEntries.addBefore(Items.NETHERITE_INGOT, ModItems.ENERGY_INGOT);
+			ingredientsEventEntries.addBefore(Items.COAL, ModItems.WOOD_PELLET);
+			ingredientsEventEntries.addAfter(Items.NETHERITE_INGOT, ModItems.RADIANT);
+			ingredientsEventEntries.addAfter(ModItems.RADIANT, ModItems.RUBY);
+			ingredientsEventEntries.addAfter(ModItems.RUBY, ModItems.SAPPHIRE);
+			ingredientsEventEntries.addAfter(ModItems.SAPPHIRE, ModItems.GREEN_SAPPHIRE);
+			ingredientsEventEntries.addAfter(ModItems.GREEN_SAPPHIRE, ModItems.BLUE_GARNET);
+			ingredientsEventEntries.addAfter(ModItems.BLUE_GARNET, ModItems.PINK_GARNET);
+			ingredientsEventEntries.addAfter(ModItems.PINK_GARNET, ModItems.GREEN_GARNET);
+			ingredientsEventEntries.addAfter(ModItems.GREEN_GARNET, ModItems.TOPAZ);
+			ingredientsEventEntries.addAfter(ModItems.TOPAZ, ModItems.WHITE_TOPAZ);
+			ingredientsEventEntries.addAfter(ModItems.WHITE_TOPAZ, ModItems.PERIDOT);
+			ingredientsEventEntries.addAfter(ModItems.PERIDOT, ModItems.PYROPE);
+			ingredientsEventEntries.addAfter(ModItems.PYROPE, ModItems.JADE);
 		});
 
 
 		// Tools & Music Discs Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(tools -> {
-			tools.addAfter(Items.MUSIC_DISC_OTHERSIDE, ModItems.MUSIC_DISC_ARIA_MATH);
-			tools.addAfter(ModItems.MUSIC_DISC_ARIA_MATH, ModItems.MUSIC_DISC_BIOME_FEST);
-			tools.addAfter(ModItems.MUSIC_DISC_BIOME_FEST, ModItems.MUSIC_DISC_DREITON);
-			tools.addAfter(ModItems.MUSIC_DISC_DREITON, ModItems.MUSIC_DISC_ENDLESS);
-			tools.addAfter(ModItems.MUSIC_DISC_ENDLESS, ModItems.MUSIC_DISC_FEATHERFALL);
-			tools.addAfter(ModItems.MUSIC_DISC_FEATHERFALL, ModItems.MUSIC_DISC_INFINITE_AMETHYST);
-			tools.addAfter(ModItems.MUSIC_DISC_INFINITE_AMETHYST, ModItems.MUSIC_DISC_TASWELL);
-			tools.addAfter(ModItems.MUSIC_DISC_TASWELL, ModItems.MUSIC_DISC_DEEPER);
-			tools.addAfter(ModItems.MUSIC_DISC_DEEPER, ModItems.MUSIC_DISC_WATCHER);
-			tools.addAfter(Items.NETHERITE_HOE, ModItems.RUBY_SHOVEL);
-			tools.addAfter(ModItems.RUBY_SHOVEL, ModItems.RUBY_PICKAXE);
-			tools.addAfter(ModItems.RUBY_PICKAXE, ModItems.RUBY_AXE);
-			tools.addAfter(ModItems.RUBY_AXE, ModItems.RUBY_HOE);
-			tools.addAfter(ModItems.RUBY_HOE, ModItems.SAPPHIRE_SHOVEL);
-			tools.addAfter(ModItems.SAPPHIRE_SHOVEL, ModItems.SAPPHIRE_PICKAXE);
-			tools.addAfter(ModItems.SAPPHIRE_PICKAXE, ModItems.SAPPHIRE_AXE);
-			tools.addAfter(ModItems.SAPPHIRE_AXE, ModItems.SAPPHIRE_HOE);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(toolEventEntries -> {
+			toolEventEntries.addAfter(Items.MUSIC_DISC_OTHERSIDE, ModItems.MUSIC_DISC_ARIA_MATH);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_ARIA_MATH, ModItems.MUSIC_DISC_BIOME_FEST);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_BIOME_FEST, ModItems.MUSIC_DISC_DREITON);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_DREITON, ModItems.MUSIC_DISC_ENDLESS);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_ENDLESS, ModItems.MUSIC_DISC_FEATHERFALL);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_FEATHERFALL, ModItems.MUSIC_DISC_INFINITE_AMETHYST);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_INFINITE_AMETHYST, ModItems.MUSIC_DISC_TASWELL);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_TASWELL, ModItems.MUSIC_DISC_DEEPER);
+			toolEventEntries.addAfter(ModItems.MUSIC_DISC_DEEPER, ModItems.MUSIC_DISC_WATCHER);
+			toolEventEntries.addAfter(Items.NETHERITE_HOE, ModItems.RUBY_SHOVEL);
+			toolEventEntries.addAfter(ModItems.RUBY_SHOVEL, ModItems.RUBY_PICKAXE);
+			toolEventEntries.addAfter(ModItems.RUBY_PICKAXE, ModItems.RUBY_AXE);
+			toolEventEntries.addAfter(ModItems.RUBY_AXE, ModItems.RUBY_HOE);
+			toolEventEntries.addAfter(ModItems.RUBY_HOE, ModItems.SAPPHIRE_SHOVEL);
+			toolEventEntries.addAfter(ModItems.SAPPHIRE_SHOVEL, ModItems.SAPPHIRE_PICKAXE);
+			toolEventEntries.addAfter(ModItems.SAPPHIRE_PICKAXE, ModItems.SAPPHIRE_AXE);
+			toolEventEntries.addAfter(ModItems.SAPPHIRE_AXE, ModItems.SAPPHIRE_HOE);
 		});
 
 
 		// Weapons & Armors Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(combat -> {
-			combat.addAfter(Items.NETHERITE_SWORD, ModItems.RUBY_SWORD);
-			combat.addAfter(Items.NETHERITE_AXE, ModItems.RUBY_AXE);
-			combat.addAfter(ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE);
-			combat.addAfter(ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD);
-			combat.addAfter(ModItems.SAPPHIRE_SWORD, ModItems.RADIANT_SWORD);
-			combat.addAfter(Items.NETHERITE_BOOTS, ModItems.RUBY_HELMET);
-			combat.addAfter(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE);
-			combat.addAfter(ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS);
-			combat.addAfter(ModItems.RUBY_LEGGINGS, ModItems.RUBY_BOOTS);
-			combat.addAfter(ModItems.RUBY_BOOTS, ModItems.SAPPHIRE_HELMET);
-			combat.addAfter(ModItems.SAPPHIRE_HELMET, ModItems.SAPPHIRE_CHESTPLATE);
-			combat.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
-			combat.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(combatEventEntries -> {
+			combatEventEntries.addAfter(Items.NETHERITE_SWORD, ModItems.RUBY_SWORD);
+			combatEventEntries.addAfter(Items.NETHERITE_AXE, ModItems.RUBY_AXE);
+			combatEventEntries.addAfter(ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE);
+			combatEventEntries.addAfter(ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD);
+			combatEventEntries.addAfter(ModItems.SAPPHIRE_SWORD, ModItems.RADIANT_SWORD);
+			combatEventEntries.addAfter(Items.NETHERITE_BOOTS, ModItems.RUBY_HELMET);
+			combatEventEntries.addAfter(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE);
+			combatEventEntries.addAfter(ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS);
+			combatEventEntries.addAfter(ModItems.RUBY_LEGGINGS, ModItems.RUBY_BOOTS);
+			combatEventEntries.addAfter(ModItems.RUBY_BOOTS, ModItems.SAPPHIRE_HELMET);
+			combatEventEntries.addAfter(ModItems.SAPPHIRE_HELMET, ModItems.SAPPHIRE_CHESTPLATE);
+			combatEventEntries.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
+			combatEventEntries.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
+            combatEventEntries.addAfter(Items.NETHERITE_SPEAR, ModItems.RUBY_SPEAR);
+            combatEventEntries.addAfter(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR);
+            combatEventEntries.addAfter(Items.NETHERITE_NAUTILUS_ARMOR, ModItems.RUBY_NAUTILUS_ARMOR);
+            combatEventEntries.addAfter(ModItems.RUBY_NAUTILUS_ARMOR, ModItems.SAPPHIRE_NAUTILUS_ARMOR);
 		});
 
 
 		// Natural Stuff Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(naturals -> {
-			naturals.addAfter(Blocks.RAW_GOLD_BLOCK, ModBlocks.RAW_RUBY_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_RUBY_BLOCK, ModBlocks.RAW_SAPPHIRE_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_SAPPHIRE_BLOCK, ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK, ModBlocks.RAW_BLUE_GARNET_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_BLUE_GARNET_BLOCK, ModBlocks.RAW_PINK_GARNET_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_PINK_GARNET_BLOCK, ModBlocks.RAW_GREEN_GARNET_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_GREEN_GARNET_BLOCK, ModBlocks.RAW_TOPAZ_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_TOPAZ_BLOCK, ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_WHITE_TOPAZ_BLOCK, ModBlocks.RAW_PERIDOT_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_PERIDOT_BLOCK, ModBlocks.RAW_PYROPE_BLOCK);
-			naturals.addAfter(ModBlocks.RAW_PYROPE_BLOCK, ModBlocks.RAW_JADE_BLOCK);
-			naturals.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
-			naturals.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
-			naturals.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
-			naturals.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);
-			naturals.addAfter(ModBlocks.SAPPHIRE_ORE, ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModBlocks.GREEN_SAPPHIRE_ORE);
-			naturals.addAfter(ModBlocks.GREEN_SAPPHIRE_ORE, ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE, ModBlocks.BLUE_GARNET_ORE);
-			naturals.addAfter(ModBlocks.BLUE_GARNET_ORE, ModBlocks.DEEPSLATE_BLUE_GARNET_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE, ModBlocks.PINK_GARNET_ORE);
-			naturals.addAfter(ModBlocks.PINK_GARNET_ORE, ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_PINK_GARNET_ORE, ModBlocks.GREEN_GARNET_ORE);
-			naturals.addAfter(ModBlocks.GREEN_GARNET_ORE, ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModBlocks.TOPAZ_ORE);
-			naturals.addAfter(ModBlocks.TOPAZ_ORE, ModBlocks.DEEPSLATE_TOPAZ_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_TOPAZ_ORE, ModBlocks.WHITE_TOPAZ_ORE);
-			naturals.addAfter(ModBlocks.WHITE_TOPAZ_ORE, ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE, ModBlocks.PERIDOT_ORE);
-			naturals.addAfter(ModBlocks.PERIDOT_ORE, ModBlocks.DEEPSLATE_PERIDOT_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_PERIDOT_ORE, ModBlocks.JADE_ORE);
-			naturals.addAfter(ModBlocks.JADE_ORE, ModBlocks.DEEPSLATE_JADE_ORE);
-			naturals.addAfter(ModBlocks.DEEPSLATE_JADE_ORE, ModBlocks.PYROPE_ORE);
-			naturals.addAfter(ModBlocks.PYROPE_ORE, ModBlocks.DEEPSLATE_PYROPE_ORE);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(naturalEventEntries -> {
+			naturalEventEntries.addAfter(Blocks.RAW_GOLD_BLOCK, ModBlocks.RAW_RUBY_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_RUBY_BLOCK, ModBlocks.RAW_SAPPHIRE_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_SAPPHIRE_BLOCK, ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK, ModBlocks.RAW_BLUE_GARNET_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_BLUE_GARNET_BLOCK, ModBlocks.RAW_PINK_GARNET_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_PINK_GARNET_BLOCK, ModBlocks.RAW_GREEN_GARNET_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_GREEN_GARNET_BLOCK, ModBlocks.RAW_TOPAZ_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_TOPAZ_BLOCK, ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_WHITE_TOPAZ_BLOCK, ModBlocks.RAW_PERIDOT_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_PERIDOT_BLOCK, ModBlocks.RAW_PYROPE_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_PYROPE_BLOCK, ModBlocks.RAW_JADE_BLOCK);
+			naturalEventEntries.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
+			naturalEventEntries.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
+			naturalEventEntries.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
+			naturalEventEntries.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.SAPPHIRE_ORE, ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModBlocks.GREEN_SAPPHIRE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.GREEN_SAPPHIRE_ORE, ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE, ModBlocks.BLUE_GARNET_ORE);
+			naturalEventEntries.addAfter(ModBlocks.BLUE_GARNET_ORE, ModBlocks.DEEPSLATE_BLUE_GARNET_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE, ModBlocks.PINK_GARNET_ORE);
+			naturalEventEntries.addAfter(ModBlocks.PINK_GARNET_ORE, ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_PINK_GARNET_ORE, ModBlocks.GREEN_GARNET_ORE);
+			naturalEventEntries.addAfter(ModBlocks.GREEN_GARNET_ORE, ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModBlocks.TOPAZ_ORE);
+			naturalEventEntries.addAfter(ModBlocks.TOPAZ_ORE, ModBlocks.DEEPSLATE_TOPAZ_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_TOPAZ_ORE, ModBlocks.WHITE_TOPAZ_ORE);
+			naturalEventEntries.addAfter(ModBlocks.WHITE_TOPAZ_ORE, ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE, ModBlocks.PERIDOT_ORE);
+			naturalEventEntries.addAfter(ModBlocks.PERIDOT_ORE, ModBlocks.DEEPSLATE_PERIDOT_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_PERIDOT_ORE, ModBlocks.JADE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.JADE_ORE, ModBlocks.DEEPSLATE_JADE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_JADE_ORE, ModBlocks.PYROPE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.PYROPE_ORE, ModBlocks.DEEPSLATE_PYROPE_ORE);
 		});
 
 
 		// Functional Block Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(FunctionalBlocks -> {
-			FunctionalBlocks.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
-			FunctionalBlocks.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
-			FunctionalBlocks.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(functionalEventEntries -> {
+			functionalEventEntries.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
+			functionalEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
+			functionalEventEntries.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
 		});
 
 
 		// Redstone Block Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(redstone -> {
-			redstone.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(redstoneEEventEntries -> {
+			redstoneEEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 		});
 
 
 		// Food Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(Foods -> {
-			Foods.addAfter(Items.ENCHANTED_GOLDEN_APPLE, ModItems.DIAMOND_APPLE);
-			Foods.addAfter(Items.POTATO, ModItems.PINEAPPLE);
-			Foods.addAfter(ModItems.PINEAPPLE, ModItems.TOMATO);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(foodEventEntries -> {
+			foodEventEntries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, ModItems.DIAMOND_APPLE);
+			foodEventEntries.addAfter(Items.POTATO, ModItems.PINEAPPLE);
+			foodEventEntries.addAfter(ModItems.PINEAPPLE, ModItems.TOMATO);
 		});
 
 
 		// Gemstone Blocks Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(blocks -> {
-			blocks.addBefore(Blocks.NETHERITE_BLOCK, ModBlocks.ENERGY_BLOCK);
-			blocks.addAfter(Blocks.NETHERITE_BLOCK, ModBlocks.RUBY_BLOCK);
-			blocks.addAfter(ModBlocks.RUBY_BLOCK, ModBlocks.RADIANT_BLOCK);
-			blocks.addAfter(ModBlocks.RADIANT_BLOCK, ModBlocks.SAPPHIRE_BLOCK);
-			blocks.addAfter(ModBlocks.SAPPHIRE_BLOCK, ModBlocks.GREEN_SAPPHIRE_BLOCK);
-			blocks.addAfter(ModBlocks.GREEN_SAPPHIRE_BLOCK, ModBlocks.BLUE_GARNET_BLOCK);
-			blocks.addAfter(ModBlocks.BLUE_GARNET_BLOCK, ModBlocks.PINK_GARNET_BLOCK);
-			blocks.addAfter(ModBlocks.PINK_GARNET_BLOCK, ModBlocks.GREEN_GARNET_BLOCK);
-			blocks.addAfter(ModBlocks.GREEN_GARNET_BLOCK, ModBlocks.TOPAZ_BLOCK);
-			blocks.addAfter(ModBlocks.TOPAZ_BLOCK, ModBlocks.WHITE_TOPAZ_BLOCK);
-			blocks.addAfter(ModBlocks.WHITE_TOPAZ_BLOCK, ModBlocks.PERIDOT_BLOCK);
-			blocks.addAfter(ModBlocks.PERIDOT_BLOCK, ModBlocks.PYROPE_BLOCK);
-			blocks.addAfter(ModBlocks.PYROPE_BLOCK, ModBlocks.JADE_BLOCK);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(buildingBlockEventEntries -> {
+			buildingBlockEventEntries.addBefore(Blocks.NETHERITE_BLOCK, ModBlocks.ENERGY_BLOCK);
+			buildingBlockEventEntries.addAfter(Blocks.NETHERITE_BLOCK, ModBlocks.RUBY_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.RUBY_BLOCK, ModBlocks.RADIANT_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.RADIANT_BLOCK, ModBlocks.SAPPHIRE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.SAPPHIRE_BLOCK, ModBlocks.GREEN_SAPPHIRE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.GREEN_SAPPHIRE_BLOCK, ModBlocks.BLUE_GARNET_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.BLUE_GARNET_BLOCK, ModBlocks.PINK_GARNET_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.PINK_GARNET_BLOCK, ModBlocks.GREEN_GARNET_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.GREEN_GARNET_BLOCK, ModBlocks.TOPAZ_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.TOPAZ_BLOCK, ModBlocks.WHITE_TOPAZ_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.WHITE_TOPAZ_BLOCK, ModBlocks.PERIDOT_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.PERIDOT_BLOCK, ModBlocks.PYROPE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.PYROPE_BLOCK, ModBlocks.JADE_BLOCK);
 		});
 
 
@@ -272,7 +275,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModBlockEntityType Registry
 		ModBlockEntityType.register();
-		LOGGER.info("Registering Buttons for GemPurifier");
 
 
 		//ModScreenHandlers Registry
@@ -280,8 +282,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		//ModRecipes Registry
-		ModRecipeType.register();
-		ModRecipeSerializer.register();
+        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Type.ID), GemPurifierRecipe.Type.GEM_POLISHING);
+        LOGGER.info("Loading ModRecipeType for " + MOD_ID + " mod.");
+        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Serializer.ID), GemPurifierRecipe.Serializer.GEM_POLISHING);
+        LOGGER.info("Loading ModRecipeSerializer for" + MOD_ID + " mod.");
 
 
 		//Networking Registry

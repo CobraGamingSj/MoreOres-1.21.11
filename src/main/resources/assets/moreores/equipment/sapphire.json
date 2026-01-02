@@ -9,6 +9,11 @@
       {
         "texture": "moreores:sapphire"
       }
+    ],
+    "nautilus_body": [
+      {
+        "texture": "moreores:sapphire"
+      }
     ]
   }
 }

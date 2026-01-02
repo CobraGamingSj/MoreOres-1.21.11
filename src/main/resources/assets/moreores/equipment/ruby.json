@@ -9,6 +9,11 @@
       {
         "texture": "moreores:ruby"
       }
+    ],
+    "nautilus_body": [
+      {
+        "texture": "moreores:ruby"
+      }
     ]
   }
 }

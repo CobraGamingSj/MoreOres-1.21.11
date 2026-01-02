@@ -46,23 +46,23 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         this.addSlot(new Slot(inventory, 0, 83, 13)); // Input
         this.addSlot(new Slot(inventory, 1, 83, 61)); // Result
         this.addSlot(new Slot(inventory, 2, 39, 36)); // Energy Input
-//        this.addSlot(new Slot(inventory, 3, 150, 16));
-//        this.addSlot(new Slot(inventory, 4, 150, 34));
-//        this.addSlot(new Slot(inventory, 5, 150, 52));
-//        this.addSlot(new Slot(inventory, 6, 150, 70));
-//        this.addSlot(new Slot(inventory, 7, 132, 16));
-//        this.addSlot(new Slot(inventory, 8, 132, 34));
-//        this.addSlot(new Slot(inventory, 9, 132, 52));
-//        this.addSlot(new Slot(inventory, 10, 132, 70));
-//        this.addSlot(new Slot(inventory, 11, 114, 16));
-//        this.addSlot(new Slot(inventory, 12, 114, 34));
-//        this.addSlot(new Slot(inventory, 13, 114, 52));
-//        this.addSlot(new Slot(inventory, 14, 114, 70));
+        this.addSlot(new Slot(inventory, 3, 150, 16));
+        this.addSlot(new Slot(inventory, 4, 150, 34));
+        this.addSlot(new Slot(inventory, 5, 150, 52));
+        this.addSlot(new Slot(inventory, 6, 150, 70));
+        this.addSlot(new Slot(inventory, 7, 132, 16));
+        this.addSlot(new Slot(inventory, 8, 132, 34));
+        this.addSlot(new Slot(inventory, 9, 132, 52));
+        this.addSlot(new Slot(inventory, 10, 132, 70));
+        this.addSlot(new Slot(inventory, 11, 114, 16));
+        this.addSlot(new Slot(inventory, 12, 114, 34));
+        this.addSlot(new Slot(inventory, 13, 114, 52));
+        this.addSlot(new Slot(inventory, 14, 114, 70));
 
         addPlayerGenericInventory(playerInventory);
         addPlayerHotbarInventory(playerInventory);
 
-        addAdditionalSlots(inventory);
+//        addAdditionalSlots(inventory);
 
         addProperties(propertyDelegate);
     }
@@ -136,19 +136,19 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         return canUse(this.context, player, ModBlocks.GEM_PURIFIER_BLOCK);
     }
 
-    private void addAdditionalSlots(Inventory inv) {
-        int startIndex = 3;
-        int startX = 150;
-        int startY = 8;
-        for (int row = 0; row < 4; row++) {
-            for (int column = 0; column < 3; column++) {
-                int index = startIndex + row + column * 3;
-                int x = startX - column * 18;
-                int y = startY + row * 18;
-                this.addSlot(new Slot(inv, index, x, y));
-            }
-        }
-    }
+//    private void addAdditionalSlots(Inventory inv) {
+//        int startIndex = 3;
+//        int startX = 150;
+//        int startY = 8;
+//        for (int row = 0; row < 4; ++row) {
+//            for (int column = 0; column < 3; ++column) {
+//                int index = startIndex + row + column * 3;
+//                int x = startX - column * 18;
+//                int y = startY + row * 18;
+//                this.addSlot(new Slot(inv, index, x, y));
+//            }
+//        }
+//    }
 
     @Override
     public void addPlayerGenericInventory(PlayerInventory playerInventory) {

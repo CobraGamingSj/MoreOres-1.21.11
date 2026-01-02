@@ -236,26 +236,26 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             }
 
             // Under testing
-            EnergyStorage energyItem = EnergyStorage.ITEM.find(getStack(ENERGY_SOURCE_SLOT), null);
-            if(energyItem != null) {
-                if(getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT)) {
-                    try (Transaction transaction = Transaction.openOuter()) {
-                        EnergyStorageUtil.move(energyItem, energyStorage, 32, transaction);
-                        if(this.world.isReceivingRedstonePower(this.pos)) {
-                            EnergyStorageUtil.move(energyItem, energyStorage, 1024, transaction);
-                        }
-                        transaction.commit();
-                    }
-                } else if (getStack(ENERGY_SOURCE_SLOT).isOf(ModBlocks.ENERGY_BLOCK.asItem())) {
-                    try(Transaction transaction = Transaction.openOuter()) {
-                        EnergyStorageUtil.move(energyItem, energyStorage, 48, transaction);
-                        if(this.world.isReceivingRedstonePower(this.pos)) {
-                            EnergyStorageUtil.move(energyItem, energyStorage, 1192, transaction);
-                        }
-                        transaction.commit();
-                    }
-                }
-            }
+//            EnergyStorage energyItem = EnergyStorage.ITEM.find(getStack(ENERGY_SOURCE_SLOT), null);
+//            if(energyItem != null) {
+//                if(getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT)) {
+//                    try (Transaction transaction = Transaction.openOuter()) {
+//                        EnergyStorageUtil.move(energyItem, energyStorage, 32, transaction);
+//                        if(this.world.isReceivingRedstonePower(this.pos)) {
+//                            EnergyStorageUtil.move(energyItem, energyStorage, 1024, transaction);
+//                        }
+//                        transaction.commit();
+//                    }
+//                } else if (getStack(ENERGY_SOURCE_SLOT).isOf(ModBlocks.ENERGY_BLOCK.asItem())) {
+//                    try(Transaction transaction = Transaction.openOuter()) {
+//                        EnergyStorageUtil.move(energyItem, energyStorage, 48, transaction);
+//                        if(this.world.isReceivingRedstonePower(this.pos)) {
+//                            EnergyStorageUtil.move(energyItem, energyStorage, 1192, transaction);
+//                        }
+//                        transaction.commit();
+//                    }
+//                }
+//            }
         }
     }
 

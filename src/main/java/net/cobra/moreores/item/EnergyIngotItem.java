@@ -1,9 +1,10 @@
 package net.cobra.moreores.item;
 
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.type.TooltipDisplayComponent;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,22 +12,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.UseAction;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import team.reborn.energy.api.EnergyStorage;
-import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.function.Consumer;
 
 public class EnergyIngotItem extends Item {
-    public static final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(250000, 1024, 512);
+//    public static final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(250000, 1024, 512);
 
     public EnergyIngotItem(Settings settings) {
         super(settings);
@@ -37,26 +33,26 @@ public class EnergyIngotItem extends Item {
         return true;
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
-        if(entity instanceof PlayerEntity player) {
-            if(player.getMainHandStack() == stack) {
-                EnergyStorage storage = EnergyStorage.ITEM.find(stack, null);
-                if (world.isDay()) {
-                    try (Transaction transaction = Transaction.openOuter()) {
-                        energyStorage.insert(96, transaction);
-                        transaction.commit();
-                    }
-                } else {
-                    try (Transaction transaction = Transaction.openOuter()) {
-                        energyStorage.insert(64, transaction);
-                        transaction.commit();
-                    }
-                }
-            }
-        }
-        super.inventoryTick(stack, world, entity, slot);
-    }
+//    @Override
+//    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
+//        if(entity instanceof PlayerEntity player) {
+//            if(player.getMainHandStack() == stack) {
+//                EnergyStorage storage = EnergyStorage.ITEM.find(stack, null);
+//                if (world.isDay()) {
+//                    try (Transaction transaction = Transaction.openOuter()) {
+//                        energyStorage.insert(96, transaction);
+//                        transaction.commit();
+//                    }
+//                } else {
+//                    try (Transaction transaction = Transaction.openOuter()) {
+//                        energyStorage.insert(64, transaction);
+//                        transaction.commit();
+//                    }
+//                }
+//            }
+//        }
+//        super.inventoryTick(stack, world, entity, slot);
+//    }
 
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
@@ -121,7 +117,7 @@ public class EnergyIngotItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-        textConsumer.accept(Text.literal(energyStorage.getAmount() + " J").formatted(Formatting.DARK_AQUA));
+//        textConsumer.accept(Text.literal(energyStorage.getAmount() + " J").formatted(Formatting.DARK_AQUA));
         super.appendTooltip(stack, context, displayComponent, textConsumer, type);
     }
 }

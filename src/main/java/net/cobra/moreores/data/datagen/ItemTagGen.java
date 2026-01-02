@@ -29,6 +29,10 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.MUSIC_DISC_FEATHERFALL)
                 .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST);
 
+        valueLookupBuilder(ItemTags.SPEARS)
+                .add(ModItems.RUBY_SPEAR)
+                .add(ModItems.SAPPHIRE_SPEAR);
+
         valueLookupBuilder(ItemTags.TRIM_MATERIALS)
                 .add(ModItems.RUBY)
                 .add(ModItems.RADIANT)

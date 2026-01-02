@@ -158,6 +158,24 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_HOE) + "_smithing");
 
+                SmithingTransformRecipeJsonBuilder.create(
+                                Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
+                                Ingredient.ofItem(Items.NETHERITE_SPEAR),
+                                this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
+                                RecipeCategory.COMBAT, ModItems.RUBY_SPEAR
+                        )
+                        .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
+                        .offerTo(exporter, getItemPath(ModItems.RUBY_SPEAR) + "_smithing");
+
+                SmithingTransformRecipeJsonBuilder.create(
+                                Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
+                                Ingredient.ofItem(Items.NETHERITE_NAUTILUS_ARMOR),
+                                this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
+                                RecipeCategory.COMBAT, ModItems.RUBY_NAUTILUS_ARMOR
+                        )
+                        .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
+                        .offerTo(exporter, getItemPath(ModItems.RUBY_NAUTILUS_ARMOR) + "_smithing");
+
                 offerSmithingTrimRecipe(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE,
                         ModArmorTrimPatterns.GUARDIAN, RegistryKey.of(RegistryKeys.RECIPE, Identifier.ofVanilla(getItemPath(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE) + "_smithing_trim")));
 
@@ -443,6 +461,26 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
+
+                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SPEAR, 1)
+                        .pattern("bbb")
+                        .pattern("bab")
+                        .pattern("bbb")
+                        .input('a', ModItems.RUBY_SPEAR)
+                        .input('b', ModItems.SAPPHIRE)
+                        .criterion(hasItem(ModItems.RUBY_SPEAR), conditionsFromItem(ModItems.RUBY_SPEAR))
+                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
+                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_SPEAR))));
+
+                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_NAUTILUS_ARMOR, 1)
+                        .pattern("bbb")
+                        .pattern("bab")
+                        .pattern("bbb")
+                        .input('a', ModItems.RUBY_NAUTILUS_ARMOR)
+                        .input('b', ModItems.SAPPHIRE)
+                        .criterion(hasItem(ModItems.RUBY_NAUTILUS_ARMOR), conditionsFromItem(ModItems.RUBY_NAUTILUS_ARMOR))
+                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
+                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_NAUTILUS_ARMOR))));
             }
         };
     }

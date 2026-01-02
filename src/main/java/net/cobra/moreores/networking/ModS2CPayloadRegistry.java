@@ -22,6 +22,6 @@ public class ModS2CPayloadRegistry {
     }
 
     public static void registerS2CPackets() {
-        LOGGER.info("Loading ModNetworkingPackets for " + MoreOresModInitializer.MOD_ID + " mod.");
+        LOGGER.info("Loading ModS2CPackets for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
 }

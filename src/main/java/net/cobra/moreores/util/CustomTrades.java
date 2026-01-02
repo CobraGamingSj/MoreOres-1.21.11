@@ -13,8 +13,6 @@ public class CustomTrades {
 
     public static void register() {
 
-        MoreOresModInitializer.LOGGER.info("Loading CustomTrades for " + MoreOresModInitializer.MOD_ID + " mod.");
-
         TradeOfferHelper.registerWanderingTraderOffers(factories -> {
             factories.addAll(MoreOresModInitializer.getId("emerald_for_tomato_seeds"), (world, entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 3),
@@ -204,6 +202,7 @@ public class CustomTrades {
                     6, 5, 0.5f
             ));
         });
-    }
 
+        MoreOresModInitializer.LOGGER.info("Loading CustomTrades for " + MoreOresModInitializer.MOD_ID + " mod.");
+    }
 }

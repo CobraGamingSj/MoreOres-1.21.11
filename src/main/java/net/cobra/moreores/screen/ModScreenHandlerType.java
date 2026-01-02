@@ -22,6 +22,6 @@ public class ModScreenHandlerType {
     }
 
     public static void register() {
-
+        MoreOresModInitializer.LOGGER.info("Loading ModScreenHandlerType for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
 }

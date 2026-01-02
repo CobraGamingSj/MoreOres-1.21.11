@@ -32,6 +32,6 @@ public class ModC2SNetworks {
     }
 
     public static void register() {
-        LOGGER.info("Loading ModC2SNetworks for" + MoreOresModInitializer.MOD_ID + " mod.");
+        LOGGER.info("Loading ModServerC2SNetworks for" + MoreOresModInitializer.MOD_ID + " mod.");
     }
 }

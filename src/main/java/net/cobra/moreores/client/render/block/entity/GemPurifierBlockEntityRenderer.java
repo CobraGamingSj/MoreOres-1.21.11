@@ -15,7 +15,6 @@ import net.minecraft.client.render.item.ItemRenderState;
 import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemDisplayContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.math.BlockPos;
@@ -31,16 +30,14 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
     private final BlockEntityRendererFactory.Context context;
     private final ItemModelManager itemModelManager;
 
-    public GemPurifierBlockEntityRenderer(
-
-            BlockEntityRendererFactory.Context context) {
+    public GemPurifierBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
         this.context = context;
         this.itemModelManager = context.itemModelManager();
     }
 
-
     private void renderItem(ItemRenderState state, MatrixStack matrices,
-                            OrderedRenderCommandQueue queue, float x, float z, float rotationAngle, int light) {
+                            OrderedRenderCommandQueue queue,
+                            float x, float z, float rotationAngle, int light) {
             matrices.push();
 
             matrices.translate(0.5, 0, 0.5);
@@ -89,21 +86,19 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
         return LightmapTextureManager.pack(bLight, sLight);
     }
 
-    private void renderEnergyAmountText(GemPurifierBlockEntityRenderState state, GemPurifierBlockEntity be, MatrixStack matrices, OrderedRenderCommandQueue queue, int light) {
-        if (be.getWorld() == null || !be.getWorld().isClient()) return;
+    private void renderEnergyAmountText(GemPurifierBlockEntity blockEntity, MatrixStack matrices, OrderedRenderCommandQueue queue, int light) {
+        if (blockEntity.getWorld() == null || !blockEntity.getWorld().isClient()) return;
 
-        long energy = be.energyStorage.amount;
-        Vec3d vec = new Vec3d(0.25, 1.5, 0.25);
+        long energy = blockEntity.energyStorage.amount;
         Text text = Text.literal(energy + " ⚡");
 
         matrices.push();
-        matrices.translate(vec.x, vec.y, vec.z);
+        matrices.translate(0.25F, 1.5F, 0.25F);
         matrices.multiply(MinecraftClient.getInstance().gameRenderer.getCamera().getRotation());
         matrices.scale(0.025f, -0.025f, 0.025f);
 
         int backgroundOpacity = (int) (MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F) * 255.0F) << 24;
-
-        queue.submitText(matrices, 2, 0, text.asOrderedText(), false, TextRenderer.TextLayerType.SEE_THROUGH, light, Colors.CYAN, backgroundOpacity, 0);
+        queue.submitText(matrices, 2, 0, text.asOrderedText(), false, TextRenderer.TextLayerType.NORMAL, light, Colors.CYAN, backgroundOpacity, 0);
 
         matrices.pop();
     }
@@ -125,7 +120,7 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
         renderItem(state.energyItemRenderState, matrices, queue, 0.25f, 0.25f, rotationAngles, light);
         renderItem(state.resultItemRenderState, matrices, queue, 0.5f, 0.685f, rotationAngles, light);
 
-        renderEnergyAmountText(state, entity, matrices, queue, LightmapTextureManager.applyEmission(light,2));
+        renderEnergyAmountText(entity, matrices, queue, LightmapTextureManager.applyEmission(light, 16));
     }
 
     public BlockEntityRendererFactory.Context context() {

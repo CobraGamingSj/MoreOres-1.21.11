@@ -137,19 +137,23 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RUBY_AXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_HOE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_SHOVEL, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.RUBY_SPEAR, Models.GENERATED);
         itemModelGenerator.register(ModItems.SAPPHIRE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_AXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_HOE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_SHOVEL, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.SAPPHIRE_SPEAR, Models.GENERATED);
 
         itemModelGenerator.registerArmor(ModItems.RUBY_HELMET, ModEquipmentAssetKeys.RUBY,  ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RUBY_CHESTPLATE, ModEquipmentAssetKeys.RUBY, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RUBY_LEGGINGS, ModEquipmentAssetKeys.RUBY,  ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RUBY_BOOTS, ModEquipmentAssetKeys.RUBY, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        itemModelGenerator.register(ModItems.RUBY_NAUTILUS_ARMOR, Models.GENERATED);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_HELMET, ModEquipmentAssetKeys.SAPPHIRE, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_CHESTPLATE,  ModEquipmentAssetKeys.SAPPHIRE, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_LEGGINGS,  ModEquipmentAssetKeys.SAPPHIRE, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_BOOTS, ModEquipmentAssetKeys.SAPPHIRE,  ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        itemModelGenerator.register(ModItems.SAPPHIRE_NAUTILUS_ARMOR, Models.GENERATED);
     }
 }
