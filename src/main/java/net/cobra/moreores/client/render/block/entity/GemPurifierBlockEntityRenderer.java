@@ -98,7 +98,7 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
         matrices.scale(0.025f, -0.025f, 0.025f);
 
         int backgroundOpacity = (int) (MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F) * 255.0F) << 24;
-        queue.submitText(matrices, 2, 0, text.asOrderedText(), false, TextRenderer.TextLayerType.NORMAL, light, Colors.CYAN, backgroundOpacity, 0);
+        queue.submitText(matrices, 2, 0, text.asOrderedText(), false, TextRenderer.TextLayerType.NORMAL, LightmapTextureManager.applyEmission(light, 30), Colors.CYAN, backgroundOpacity, 0);
 
         matrices.pop();
     }

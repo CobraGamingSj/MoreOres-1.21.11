@@ -146,7 +146,19 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
-        return this.isValid(slot, stack);
+        if (side == Direction.DOWN) {
+            return false;
+        }
+
+        if (slot == INGREDIENT_SLOT) {
+            return true;  //
+        }
+
+        if (slot == ENERGY_SOURCE_SLOT) {
+            return side == Direction.UP;  //
+        }
+
+        return false;
     }
 
 
@@ -170,7 +182,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction side) {
-        return slot == RESULT_SLOT;
+        return side == Direction.DOWN && slot == RESULT_SLOT;
     }
 
     @Override
@@ -184,19 +196,13 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-
-        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
-        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
-        }
+        changeStateAtEnergyAmount();
 
         insertEnergy();
 
         checkForEnoughEnergyAndRemoveItem();
 
         if(firstPolishingState == PolishingState.RUNNING) {
-
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
                 this.extractEnergy();
@@ -210,6 +216,14 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
                 this.firstPolishingState = PolishingState.IDLE;
                 markDirty(world, pos, state);
             }
+        }
+    }
+
+    private void changeStateAtEnergyAmount() {
+        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
+            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
+        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
+            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
         }
     }
 
