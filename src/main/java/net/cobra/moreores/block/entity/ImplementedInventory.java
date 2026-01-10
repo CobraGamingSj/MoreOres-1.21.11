@@ -159,6 +159,18 @@ public interface ImplementedInventory extends SidedInventory{
         return getItems().get(slot);
     }
 
+    default ItemStack ingredientStack() {
+        return getStack(0);
+    }
+
+    default ItemStack resultStack() {
+        return getStack(1);
+    }
+
+    default ItemStack energyStack() {
+        return getStack(2);
+    }
+
     /**
      * Takes a inputStack of the size from the slot.
      *

@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.render.block.entity;
 
 import net.cobra.moreores.block.GemPurifierBlock;
-import net.cobra.moreores.block.entity.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.item.ItemModelManager;
@@ -98,7 +98,7 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
         matrices.scale(0.025f, -0.025f, 0.025f);
 
         int backgroundOpacity = (int) (MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F) * 255.0F) << 24;
-        queue.submitText(matrices, 2, 0, text.asOrderedText(), false, TextRenderer.TextLayerType.NORMAL, LightmapTextureManager.applyEmission(light, 30), Colors.CYAN, backgroundOpacity, 0);
+        queue.submitText(matrices, 2, 0, text.asOrderedText(), false, TextRenderer.TextLayerType.SEE_THROUGH, LightmapTextureManager.applyEmission(light, 50), Colors.CYAN, backgroundOpacity, 0);
 
         matrices.pop();
     }

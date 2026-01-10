@@ -1,8 +1,11 @@
-package net.cobra.moreores.block.entity;
+package net.cobra.moreores.block.entity.gem_polisher;
 
 import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierData;
+import net.cobra.moreores.block.entity.ImplementedInventory;
+import net.cobra.moreores.block.entity.ModBlockEntityType;
+import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
@@ -39,17 +42,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import team.reborn.energy.api.EnergyStorage;
-import team.reborn.energy.api.EnergyStorageUtil;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.Optional;
 
 public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPurifierData>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15, ItemStack.EMPTY);
-    private PolishingState firstPolishingState = PolishingState.IDLE;
+    private PolishingState polishingState = PolishingState.IDLE;
+    private EnergyState energyState = EnergyState.IDLE;
 
-    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1_000_000, 64,128) {
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000,640000) {
         @Override
         public void onFinalCommit() {
             super.onFinalCommit();
@@ -61,6 +63,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             }
         }
     };
+    private final long energyAmount = energyStorage.amount;
 
     public static final int INGREDIENT_SLOT = 0;
     public static final int RESULT_SLOT = 1;
@@ -121,7 +124,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         Inventories.writeData(view, inventory);
         view.putInt("gem_purifier.progress", firstIngredientInitialProgress);
         view.putLong("gem_purifier.energy", energyStorage.amount);
-        view.putNullable("PolishingState", PolishingState.CODEC, firstPolishingState);
+        view.putNullable("PolishingState", PolishingState.CODEC, polishingState);
+        view.putNullable("EnergyState", EnergyState.CODEC, energyState);
     }
 
     @Override
@@ -130,7 +134,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         Inventories.readData(view, inventory);
         firstIngredientInitialProgress = view.getInt("gem_purifier.progress", 0);
         energyStorage.amount = view.getLong("gem_purifier.energy", 0);
-        firstPolishingState = (PolishingState) view.read("PolishingState", PolishingState.CODEC).orElse(PolishingState.IDLE);
+        polishingState = view.read("PolishingState", PolishingState.CODEC).orElse(PolishingState.IDLE);
+        energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
     }
 
     @Override
@@ -164,7 +169,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public GemPurifierData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPurifierData(this.energyStorage.amount, this.pos);
+        return new GemPurifierData(energyAmount, this.pos);
     }
 
     @Override
@@ -198,11 +203,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
         changeStateAtEnergyAmount();
 
-        insertEnergy();
-
-        checkForEnoughEnergyAndRemoveItem();
-
-        if(firstPolishingState == PolishingState.RUNNING) {
+        if(polishingState == PolishingState.RUNNING) {
+            energyState = EnergyState.EXTRACTING;
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
                 this.extractEnergy();
@@ -213,10 +215,23 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
                 markDirty(world, pos, state);
             } else {
                 this.resetProgress();
-                this.firstPolishingState = PolishingState.IDLE;
+                this.polishingState = PolishingState.IDLE;
                 markDirty(world, pos, state);
             }
+        } else if (polishingState.isPaused()) {
+            energyState = EnergyState.INSERTING;
+            insertEnergy();
+        } else {
+            if(energyAmount < 10_000_000 && hasEnergySourceProviderItem()) {
+                energyState = EnergyState.INSERTING;
+                insertEnergy();
+            } else {
+                energyState = EnergyState.IDLE;
+            }
         }
+
+        checkForEnoughEnergyAndRemoveItem();
+        markDirty(world, pos, state);
     }
 
     private void changeStateAtEnergyAmount() {
@@ -228,55 +243,33 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void insertEnergy() {
-        if (hasEnergySourceProviderItem()) {
-            if(getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT)) {
-                try (Transaction transaction = Transaction.openOuter()) {
-                    this.energyStorage.insert(32, transaction);
-
-                    if (this.world.isReceivingRedstonePower(this.pos)) {
-                        this.energyStorage.insert(1024, transaction);
-                    }
-                    transaction.commit();
-                }
-            } else {
-                try (Transaction transaction = Transaction.openOuter()) {
-                    this.energyStorage.insert(48, transaction);
-
-                    if (this.world.isReceivingRedstonePower(this.pos)) {
-                        this.energyStorage.insert(1192, transaction);
-                    }
-                    transaction.commit();
-                }
-            }
-
-            // Under testing
-//            EnergyStorage energyItem = EnergyStorage.ITEM.find(getStack(ENERGY_SOURCE_SLOT), null);
-//            if(energyItem != null) {
-//                if(getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT)) {
-//                    try (Transaction transaction = Transaction.openOuter()) {
-//                        EnergyStorageUtil.move(energyItem, energyStorage, 32, transaction);
-//                        if(this.world.isReceivingRedstonePower(this.pos)) {
-//                            EnergyStorageUtil.move(energyItem, energyStorage, 1024, transaction);
-//                        }
-//                        transaction.commit();
-//                    }
-//                } else if (getStack(ENERGY_SOURCE_SLOT).isOf(ModBlocks.ENERGY_BLOCK.asItem())) {
-//                    try(Transaction transaction = Transaction.openOuter()) {
-//                        EnergyStorageUtil.move(energyItem, energyStorage, 48, transaction);
-//                        if(this.world.isReceivingRedstonePower(this.pos)) {
-//                            EnergyStorageUtil.move(energyItem, energyStorage, 1192, transaction);
-//                        }
-//                        transaction.commit();
-//                    }
-//                }
-//            }
+        if(!hasEnergySourceProviderItem() || energyAmount >= 10_000_000) {
+            energyState = EnergyState.IDLE;
+            return;
         }
+        long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 1024 : 1536;
+        if(world.isReceivingRedstonePower(pos)) amount *= 5;
+        try(Transaction transaction = Transaction.openOuter()) {
+            long inserted = energyStorage.insert(amount, transaction);
+            transaction.commit();
+            if(inserted > 0) energyState = EnergyState.INSERTING;
+            else energyState = EnergyState.IDLE;
+        }
+    }
+
+    private void extractEnergy() {
+        long amount = world.isReceivingRedstonePower(pos) ? 640 : 128;
+        try(Transaction transaction = Transaction.openOuter()) {
+            energyStorage.extract(amount, transaction);
+            transaction.commit();
+        }
+        energyState = EnergyState.EXTRACTING;
     }
 
     private void checkForEnoughEnergyAndRemoveItem() {
         long energy = this.energyStorage.amount;
 
-        long [] milestones = {250000, 500000, 750000, 1000000};
+        long [] milestones = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 8000000, 10000000};
 
         for(long milestone : milestones) {
             if(energy >= milestone && lastRemovedEnergyMilestone < milestone) {
@@ -287,15 +280,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         }
     }
 
-    private void extractEnergy() {
-        try(Transaction transaction = Transaction.openOuter()) {
-            this.energyStorage.extract(16, transaction);
-            transaction.commit();
-        }
-    }
-
     private boolean hasEnoughEnergy() {
-        return this.energyStorage.amount >= 16;
+        return this.energyStorage.amount >= 128;
     }
 
     private void resetProgress() {
@@ -308,7 +294,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         this.removeStack(INGREDIENT_SLOT, 1);
 
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
-                getStack(RESULT_SLOT).getCount() + recipe.value().getResult().getCount()));
+                this.resultStack().getCount() + recipe.value().getResult().getCount()));
     }
 
     private boolean hasPolishingFinished() {
@@ -319,7 +305,6 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         if(this.world.isReceivingRedstonePower(this.pos)) {
             firstIngredientInitialProgress += 5;
         } else {
-
             firstIngredientInitialProgress++;
         }
     }
@@ -332,48 +317,48 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private boolean hasEnergySourceProviderItem() {
-        return this.getStack(ENERGY_SOURCE_SLOT).isOf(ModItems.ENERGY_INGOT) || this.getStack(ENERGY_SOURCE_SLOT).isOf(ModBlocks.ENERGY_BLOCK.asItem());
+        return this.energyStack().isOf(ModItems.ENERGY_INGOT) || this.energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem());
     }
 
     private Optional<RecipeEntry<GemPurifierRecipe>> currentRecipe() {
         ServerWorld serverWorld = (ServerWorld) world;
-        return this.matchGetter.getFirstMatch(new GemPurifyingRecipeInput(this.getStack(INGREDIENT_SLOT)), serverWorld);
+        return this.matchGetter.getFirstMatch(new GemPurifyingRecipeInput(this.ingredientStack()), serverWorld);
     }
 
     private boolean canInsertItemIntoResultSlot(Item item) {
-        return this.getStack(RESULT_SLOT).getItem() == item || this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).isIn(ModItemTags.GEMSTONE) || this.getStack(RESULT_SLOT).isIn(ModItemTags.RAW_GEMSTONE);
+        return this.resultStack().getItem() == item || this.resultStack().isEmpty() || this.resultStack().isIn(ModItemTags.GEMSTONE)
+                || this.resultStack().isIn(ModItemTags.RAW_GEMSTONE);
     }
 
     private boolean canInsertCountIntoResultSlot(ItemStack result) {
-        return this.getStack(RESULT_SLOT).getCount() + result.getCount() <= getStack(RESULT_SLOT).getMaxCount();
+        return this.resultStack().getCount() + result.getCount() <= this.resultStack().getMaxCount();
     }
 
     private boolean isResultSlotEmptyOrReceivable() {
-        return this.getStack(RESULT_SLOT).isEmpty() || this.getStack(RESULT_SLOT).getCount() < this.getStack(RESULT_SLOT).getMaxCount();
+        return this.resultStack().isEmpty() || this.resultStack().getCount() < this.resultStack().getMaxCount();
     }
 
     public void startPolish() {
-        if(firstPolishingState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
-            firstPolishingState = PolishingState.RUNNING;
+        if(polishingState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+            polishingState = PolishingState.RUNNING;
         }
     }
 
     public void pausePolish() {
-        if(firstPolishingState.isRunning()) {
-            firstPolishingState = PolishingState.PAUSED;
+        if(polishingState.isRunning()) {
+            polishingState = PolishingState.PAUSED;
         }
     }
 
     public void resumePolish() {
-        if(firstPolishingState.isPaused()) {
-            firstPolishingState = PolishingState.RUNNING;
+        if(polishingState.isPaused() && hasRecipe() && hasEnoughEnergy()) {
+            polishingState = PolishingState.RUNNING;
         }
     }
 
     public void stopPolish() {
-        if (!firstPolishingState.isIdle()) {
-            firstPolishingState = PolishingState.IDLE;
-            resetProgress();
-        }
+        polishingState = PolishingState.IDLE;
+        resetProgress();
+
     }
 }

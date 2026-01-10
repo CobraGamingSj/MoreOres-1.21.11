@@ -1,7 +1,7 @@
 package net.cobra.moreores.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.world.ClientWorld;

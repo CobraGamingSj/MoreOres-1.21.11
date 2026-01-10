@@ -19,19 +19,6 @@ public class ModSoundEvents {
     public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_DEEPER = ModSoundEvents.registerReference("music_disc.deeper");
     public static final RegistryEntry.Reference<SoundEvent> MUSIC_DISC_WATCHER = ModSoundEvents.registerReference("music_disc.watcher");
 
-    private static RegistryEntry<SoundEvent> register(Identifier id, Identifier soundId, float distanceToTravel) {
-        return Registry.registerReference(Registries.SOUND_EVENT, id, SoundEvent.of(soundId, distanceToTravel));
-    }
-
-    private static SoundEvent register(String id) {
-        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
-        return ModSoundEvents.register(ID);
-    }
-
-    private static SoundEvent register(Identifier id) {
-        return ModSoundEvents.register(id, id);
-    }
-
     private static RegistryEntry.Reference<SoundEvent> registerReference(String id) {
         Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
         return ModSoundEvents.registerReference(ID);
@@ -41,14 +28,9 @@ public class ModSoundEvents {
         return ModSoundEvents.registerReference(id, id);
     }
 
-    private static SoundEvent register(Identifier id, Identifier soundId) {
-        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(soundId));
-    }
-
     private static RegistryEntry.Reference<SoundEvent> registerReference(Identifier id, Identifier soundId) {
         return Registry.registerReference(Registries.SOUND_EVENT, id, SoundEvent.of(soundId));
     }
-
 
     public static void register() {
 

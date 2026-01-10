@@ -2,6 +2,7 @@ package net.cobra.moreores.block.entity;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

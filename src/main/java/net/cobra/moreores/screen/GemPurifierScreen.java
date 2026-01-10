@@ -12,8 +12,10 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.input.KeyInput;
+import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -95,8 +97,8 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
 
     private void renderEnergyStorageHandler(DrawContext context, int x, int y) {
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 66);
-        int gradientStart = 0XFF0000FF;
-        int gradientEnd = 0XFF800080;
+        int gradientStart = Colors.BLUE;
+        int gradientEnd = Colors.GREEN;
         context.fillGradient(x + 10, y + 20 + 66 - energyBarSize, x + 10 + 20, y + 20 + 66, gradientStart, gradientEnd);
     }
 

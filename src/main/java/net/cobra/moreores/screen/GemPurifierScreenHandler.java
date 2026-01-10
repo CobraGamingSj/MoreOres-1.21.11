@@ -2,7 +2,7 @@ package net.cobra.moreores.screen;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierData;
-import net.cobra.moreores.block.entity.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.BlockState;
