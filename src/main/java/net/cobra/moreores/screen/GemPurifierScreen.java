@@ -12,7 +12,6 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.input.KeyInput;
-import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
