@@ -1,8 +1,0 @@
-{
-  "type": "moreores:gem_polishing",
-  "ingredientGem": "moreores:raw_blue_garnet",
-  "resultGem": {
-    "count": 1,
-    "id": "moreores:blue_garnet"
-  }
-}

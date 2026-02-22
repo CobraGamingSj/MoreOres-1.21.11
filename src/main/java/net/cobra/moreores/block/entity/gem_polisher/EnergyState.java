@@ -16,16 +16,6 @@ public enum EnergyState implements StringIdentifiable {
 
     public static final Codec<EnergyState> CODEC = StringIdentifiable.createCodec(EnergyState::values);
 
-    public boolean isIdle () {
-        return this == IDLE;
-    }
-    public boolean isInserting () {
-        return this == INSERTING;
-    }
-    public boolean isExtracting () {
-        return this == EXTRACTING;
-    }
-
     @Override
     public String asString() {
         return this.name;

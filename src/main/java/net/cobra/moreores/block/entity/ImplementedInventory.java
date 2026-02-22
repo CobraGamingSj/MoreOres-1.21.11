@@ -5,8 +5,8 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
@@ -17,14 +17,14 @@ import java.util.List;
  * A simple {@code SidedInventory} implementation with only default methods + an item list getter.
  *
  * <h2>Reading and writing to tags</h2>
- * Use {@link Inventories#writeNbt(NbtCompound, DefaultedList, RegistryWrapper.WrapperLookup)} (NbtCompound, DefaultedList)} and {@link Inventories#readNbt(NbtCompound, DefaultedList, RegistryWrapper.WrapperLookup)}
+ * Use {@link Inventories#writeData(WriteView, DefaultedList)} (NbtCompound, DefaultedList)} and {@link Inventories#readData(ReadView, DefaultedList)} (NbtCompound, DefaultedList, RegistryWrapper.WrapperLookup)}
  * on {@linkplain #getItems() the item list}.
  *
  * License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>
  * @author Juuz
  */
 @FunctionalInterface
-public interface ImplementedInventory extends SidedInventory{
+public interface ImplementedInventory extends SidedInventory {
     /**
      * Gets the item list of this inventory.
      * Must return the same instance every time it's called.
@@ -74,14 +74,14 @@ public interface ImplementedInventory extends SidedInventory{
     }
 
     /**
-     * Returns true if the inputStack can be inserted in the slot at the side.
+     * Returns true if the firstInputStack can be inserted in the slot at the side.
      *
      * <p>The default implementation returns true.
      *
      * @param slot the slot
-     * @param stack the inputStack
+     * @param stack the firstInputStack
      * @param side the side
-     * @return true if the inputStack can be inserted
+     * @return true if the firstInputStack can be inserted
      */
     @Override
     default boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
@@ -89,14 +89,14 @@ public interface ImplementedInventory extends SidedInventory{
     }
 
     /**
-     * Returns true if the inputStack can be extracted from the slot at the side.
+     * Returns true if the firstInputStack can be extracted from the slot at the side.
      *
      * <p>The default implementation returns true.
      *
      * @param slot the slot
-     * @param stack the inputStack
+     * @param stack the firstInputStack
      * @param side the side
-     * @return true if the inputStack can be extracted
+     * @return true if the firstInputStack can be extracted
      */
     @Override
     default boolean canExtract(int slot, ItemStack stack, Direction side) {
@@ -133,7 +133,7 @@ public interface ImplementedInventory extends SidedInventory{
     }
 
     /**
-    * @return true is this inventory has full inputStack, false otherwise
+    * @return true is this inventory has full firstInputStack, false otherwise
      */
 
     default boolean isFull() {
@@ -163,8 +163,16 @@ public interface ImplementedInventory extends SidedInventory{
         return getStack(0);
     }
 
+    default ItemStack secondIngredientStack() {
+        return getStack(15);
+    }
+
     default ItemStack resultStack() {
         return getStack(1);
+    }
+
+    default ItemStack secondResultStack() {
+        return getStack(16);
     }
 
     default ItemStack energyStack() {
@@ -172,14 +180,14 @@ public interface ImplementedInventory extends SidedInventory{
     }
 
     /**
-     * Takes a inputStack of the size from the slot.
+     * Takes a firstInputStack of the size from the slot.
      *
      * <p>(default implementation) If there are less items in the slot than what are requested,
      * takes all items in that slot.
      *
      * @param slot the slot
      * @param count the item count
-     * @return a inputStack
+     * @return a firstInputStack
      */
     @Override
     default ItemStack removeStack(int slot, int count) {
@@ -192,12 +200,12 @@ public interface ImplementedInventory extends SidedInventory{
     }
 
     /**
-     * Removes the current inputStack in the {@code slot} and returns it.
+     * Removes the current firstInputStack in the {@code slot} and returns it.
      *
      * <p>The default implementation uses {@link Inventories#removeStack(List, int)}
      *
      * @param slot the slot
-     * @return the removed inputStack
+     * @return the removed firstInputStack
      */
     @Override
     default ItemStack removeStack(int slot) {
@@ -205,13 +213,13 @@ public interface ImplementedInventory extends SidedInventory{
     }
 
     /**
-     * Replaces the current inputStack in the {@code slot} with the provided inputStack.
+     * Replaces the current firstInputStack in the {@code slot} with the provided firstInputStack.
      *
-     * <p>If the inputStack is too big for this inventory ({@link Inventory#getMaxCountPerStack()}),
+     * <p>If the firstInputStack is too big for this inventory ({@link Inventory#getMaxCountPerStack()}),
      * it gets resized to this inventory's maximum amount.
      *
      * @param slot the slot
-     * @param stack the inputStack
+     * @param stack the firstInputStack
      */
     @Override
     default void setStack(int slot, ItemStack stack) {

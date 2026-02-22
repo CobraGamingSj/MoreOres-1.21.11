@@ -1,5 +1,6 @@
 package net.cobra.moreores.client.recipe;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
@@ -12,6 +13,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -37,7 +39,8 @@ public class GemPolishingRecipeJsonBuilder {
         return this;
     }
 
-    public void offerTo(RecipeExporter exporter, RegistryKey<Recipe<?>> recipeId) {
+    public void offerTo(RecipeExporter exporter, String name) {
+        RegistryKey<Recipe<?>> recipeId = RegistryKey.of(RegistryKeys.RECIPE, MoreOresModInitializer.getId(name + "_polishing"));
         this.validate(recipeId);
         Advancement.Builder builder = exporter.getAdvancementBuilder()
                 .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId))

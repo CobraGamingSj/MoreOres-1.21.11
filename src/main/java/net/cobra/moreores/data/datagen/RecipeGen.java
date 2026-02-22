@@ -231,67 +231,67 @@ public class RecipeGen extends FabricRecipeProvider {
                                 Ingredient.ofItem(ModItems.RAW_RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_RUBY), conditionsFromItem(ModItems.RAW_RUBY))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.RUBY));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_SAPPHIRE), new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_SAPPHIRE), conditionsFromItem(ModItems.RAW_SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.SAPPHIRE));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_GREEN_SAPPHIRE), new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_GREEN_SAPPHIRE), conditionsFromItem(ModItems.RAW_GREEN_SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.GREEN_SAPPHIRE) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.GREEN_SAPPHIRE));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_BLUE_GARNET), new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_BLUE_GARNET), conditionsFromItem(ModItems.RAW_BLUE_GARNET))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.BLUE_GARNET) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.BLUE_GARNET));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_PINK_GARNET), new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PINK_GARNET), conditionsFromItem(ModItems.RAW_PINK_GARNET))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.PINK_GARNET) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.PINK_GARNET));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_GREEN_GARNET), new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_GREEN_GARNET), conditionsFromItem(ModItems.RAW_GREEN_GARNET))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.GREEN_GARNET) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.GREEN_GARNET));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_TOPAZ), conditionsFromItem(ModItems.RAW_TOPAZ))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.TOPAZ) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.TOPAZ));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_WHITE_TOPAZ), new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_WHITE_TOPAZ), conditionsFromItem(ModItems.RAW_WHITE_TOPAZ))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.WHITE_TOPAZ) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.WHITE_TOPAZ));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_PERIDOT), new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PERIDOT), conditionsFromItem(ModItems.RAW_PERIDOT))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.PERIDOT) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.PERIDOT));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_JADE), new ItemStack(ModItems.JADE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_JADE), conditionsFromItem(ModItems.RAW_JADE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.JADE) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.JADE));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_PYROPE), new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PYROPE), conditionsFromItem(ModItems.RAW_PYROPE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.PYROPE) + "_polishing")));
+                        .offerTo(exporter, getRecipeName(ModItems.PYROPE));
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                         .pattern("aaa")

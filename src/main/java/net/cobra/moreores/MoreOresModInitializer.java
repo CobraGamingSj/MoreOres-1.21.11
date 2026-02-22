@@ -12,7 +12,8 @@ import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
-import net.cobra.moreores.screen.ModScreenHandlerType;
+import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
+import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
 import net.cobra.moreores.sound.ModSoundEvents;
 import net.cobra.moreores.util.CustomTrades;
@@ -302,6 +303,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModRecipeBookCategories Registry
 		ModRecipeBookCategories.register();
+        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.getId("gem_polishing"), GemPolishingRecipeDisplay.SERIALIZER);
 
 
 		//EnchantmentEffects Registry

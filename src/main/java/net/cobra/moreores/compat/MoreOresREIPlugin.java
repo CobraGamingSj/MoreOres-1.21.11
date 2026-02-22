@@ -8,7 +8,7 @@ package net.cobra.moreores.compat;//package net.cobra.moreores.compat;
 //import me.shedaniel.rei.api.common.util.EntryStacks;
 //import net.cobra.moreores.block.ModBlocks;
 //import net.cobra.moreores.recipe.GemPurifierRecipe;
-//import net.cobra.moreores.screen.GemPurifierScreen;
+//import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
 //
 //public class MoreOresREIPlugin implements REIClientPlugin {
 //

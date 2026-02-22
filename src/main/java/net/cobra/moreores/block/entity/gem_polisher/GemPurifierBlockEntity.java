@@ -10,7 +10,7 @@ import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
 import net.cobra.moreores.registry.ModItemTags;
-import net.cobra.moreores.screen.GemPurifierScreenHandler;
+import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -63,7 +63,6 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             }
         }
     };
-    private final long energyAmount = energyStorage.amount;
 
     public static final int INGREDIENT_SLOT = 0;
     public static final int RESULT_SLOT = 1;
@@ -105,6 +104,10 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
     public void setEnergyLevel(long energyLevel) {
         this.energyStorage.amount = energyLevel;
+    }
+
+    public long energyAmount() {
+        return this.energyStorage.amount;
     }
 
     @Nullable
@@ -156,11 +159,11 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         }
 
         if (slot == INGREDIENT_SLOT) {
-            return true;  //
+            return ingredientStack().isIn(ModItemTags.RAW_GEMSTONE);
         }
 
         if (slot == ENERGY_SOURCE_SLOT) {
-            return side == Direction.UP;  //
+            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem()));  //
         }
 
         return false;
@@ -169,17 +172,17 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public GemPurifierData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPurifierData(energyAmount, this.pos);
+        return new GemPurifierData(energyAmount(), this.pos);
     }
 
     @Override
     public boolean isValid(int slot, ItemStack stack) {
         return switch (slot) {
-            case INGREDIENT_SLOT ->
+            case INGREDIENT_SLOT->
                     stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE);
             case ENERGY_SOURCE_SLOT ->
                     stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
-            case RESULT_SLOT ->
+            case RESULT_SLOT->
                     stack.isIn(ModItemTags.GEMSTONE);
             default -> false;
         };
@@ -187,7 +190,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction side) {
-        return side == Direction.DOWN && slot == RESULT_SLOT;
+        return side == Direction.DOWN && (slot == RESULT_SLOT);
     }
 
     @Override
@@ -222,7 +225,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             energyState = EnergyState.INSERTING;
             insertEnergy();
         } else {
-            if(energyAmount < 10_000_000 && hasEnergySourceProviderItem()) {
+            if(energyAmount() < 10_000_000 && hasEnergySourceProviderItem()) {
                 energyState = EnergyState.INSERTING;
                 insertEnergy();
             } else {
@@ -234,6 +237,17 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         markDirty(world, pos, state);
     }
 
+//    private float getEnergyMultiplier() {
+//        long time = world.getTimeOfDay() % 24000;
+//        float dayProgress = (float) ((time + 6000) % 24000) / 24000.0f * 360.0f;
+//        float multiplier = (float) (Math.sin(Math.toRadians(dayProgress)) + 1.0f) / 2.0f;
+//        if (time < 13000) {
+//            return Math.max(multiplier * 1.2f, 0.8f);
+//        } else {
+//            return multiplier * 0.6f;
+//        }
+//    }
+
     private void changeStateAtEnergyAmount() {
         if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
             world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
@@ -243,11 +257,13 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void insertEnergy() {
-        if(!hasEnergySourceProviderItem() || energyAmount >= 10_000_000) {
+        if(!hasEnergySourceProviderItem() || energyAmount() >= 10_000_000) {
             energyState = EnergyState.IDLE;
             return;
         }
+//        float time = getEnergyMultiplier();
         long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 1024 : 1536;
+//        long finalAmount = (long) (amount * time);
         if(world.isReceivingRedstonePower(pos)) amount *= 5;
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = energyStorage.insert(amount, transaction);
@@ -296,7 +312,6 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));
     }
-
     private boolean hasPolishingFinished() {
         return firstIngredientInitialProgress >= firstSlotMaxProgressTick;
     }
@@ -351,14 +366,15 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     public void resumePolish() {
-        if(polishingState.isPaused() && hasRecipe() && hasEnoughEnergy()) {
+        if(polishingState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
             polishingState = PolishingState.RUNNING;
         }
     }
 
     public void stopPolish() {
-        polishingState = PolishingState.IDLE;
-        resetProgress();
-
+        if(!polishingState.isIdle()) {
+            polishingState = PolishingState.IDLE;
+            resetProgress();
+        }
     }
 }

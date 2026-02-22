@@ -1,5 +1,6 @@
 package net.cobra.moreores.item;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.EntityType;
@@ -17,12 +18,13 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class EnergyIngotItem extends Item {
-//    public static final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(250000, 1024, 512);
 
     public EnergyIngotItem(Settings settings) {
         super(settings);
@@ -32,27 +34,6 @@ public class EnergyIngotItem extends Item {
     public boolean hasGlint(ItemStack stack) {
         return true;
     }
-
-//    @Override
-//    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
-//        if(entity instanceof PlayerEntity player) {
-//            if(player.getMainHandStack() == stack) {
-//                EnergyStorage storage = EnergyStorage.ITEM.find(stack, null);
-//                if (world.isDay()) {
-//                    try (Transaction transaction = Transaction.openOuter()) {
-//                        energyStorage.insert(96, transaction);
-//                        transaction.commit();
-//                    }
-//                } else {
-//                    try (Transaction transaction = Transaction.openOuter()) {
-//                        energyStorage.insert(64, transaction);
-//                        transaction.commit();
-//                    }
-//                }
-//            }
-//        }
-//        super.inventoryTick(stack, world, entity, slot);
-//    }
 
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
