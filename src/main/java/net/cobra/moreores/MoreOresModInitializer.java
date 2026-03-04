@@ -4,6 +4,7 @@ import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierButtonClick;
 import net.cobra.moreores.block.data.PolishingStateData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
+import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
@@ -12,7 +13,6 @@ import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
-import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
 import net.cobra.moreores.sound.ModSoundEvents;
@@ -49,7 +49,6 @@ public class MoreOresModInitializer implements ModInitializer {
 	public static RegistryKey<Item> setRegistryKey(String registryKey) {
 		return RegistryKey.of(RegistryKeys.ITEM, getId(registryKey));
 	}
-
 
 
 	// Gemstones Item Group

@@ -51,7 +51,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     private PolishingState polishingState = PolishingState.IDLE;
     private EnergyState energyState = EnergyState.IDLE;
 
-    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000,640000) {
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000, 640000) {
         @Override
         public void onFinalCommit() {
             super.onFinalCommit();

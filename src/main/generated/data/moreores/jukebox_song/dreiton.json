@@ -1,0 +1,8 @@
+{
+  "comparator_output": 2,
+  "description": {
+    "translate": "jukebox_song.moreores.dreiton"
+  },
+  "length_in_seconds": 497.0,
+  "sound_event": "moreores:music_disc.dreiton"
+}

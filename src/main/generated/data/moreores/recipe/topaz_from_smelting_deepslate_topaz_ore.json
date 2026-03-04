@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 1500,
+  "experience": 0.15,
+  "group": "topaz",
+  "ingredient": "moreores:deepslate_topaz_ore",
+  "result": {
+    "id": "moreores:topaz"
+  }
+}

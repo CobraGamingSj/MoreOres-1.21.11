@@ -1,0 +1,8 @@
+{
+  "comparator_output": 8,
+  "description": {
+    "translate": "jukebox_song.moreores.watcher"
+  },
+  "length_in_seconds": 333.0,
+  "sound_event": "moreores:music_disc.watcher"
+}
