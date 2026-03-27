@@ -91,8 +91,8 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
 //    private void renderEnergyAmountText(GemPurifierBlockEntity blockEntity, MatrixStack matrices, OrderedRenderCommandQueue queue, int light) {
 //        if (blockEntity.getWorld() == null || !blockEntity.getWorld().isClient()) return;
 //
-//        long energy = blockEntity.energyStorage.amount;
-//        Text text = Text.literal(energy + " J").formatted(Formatting.BOLD);
+//        long fluid = blockEntity.energyStorage.amount;
+//        Text text = Text.literal(fluid + " J").formatted(Formatting.BOLD);
 //
 //        matrices.push();
 //        matrices.translate(0.25F, 1.5F, 0.25F);

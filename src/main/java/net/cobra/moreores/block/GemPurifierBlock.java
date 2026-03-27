@@ -14,6 +14,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -101,22 +102,39 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+
         if(MinecraftClient.getInstance().isAltPressed()) {
+
             ItemStack heldStack = player.getStackInHand(Hand.MAIN_HAND);
+
             if(!heldStack.isEmpty() && world.getBlockEntity(pos) instanceof GemPurifierBlockEntity be) {
                 ItemStack energyStack = be.getStack(GemPurifierBlockEntity.ENERGY_SOURCE_SLOT);
+                ItemStack fluidStack = be.getStack(GemPurifierBlockEntity.WATER_SOURCE_SLOT);
                 ItemStack inputStack = be.getStack(GemPurifierBlockEntity.INGREDIENT_SLOT);
+
                 if(!world.isClient()) {
                     if((heldStack.getItem() == ModItems.ENERGY_INGOT || heldStack.getItem() == ModBlocks.ENERGY_BLOCK.asItem())) {
                         if(energyStack.isEmpty()) {
-                            be.setStack(GemPurifierBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(1));
-                            heldStack.decrement(1);
+                            be.setStack(GemPurifierBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
+                            heldStack.decrement(heldStack.getCount());
                         } else if (ItemStack.areItemsEqual(energyStack, heldStack) && energyStack.getCount() < energyStack.getMaxCount()) {
-                            energyStack.increment(1);
-                            heldStack.decrement(1);
+                            energyStack.increment(heldStack.getCount());
+                            heldStack.decrement(heldStack.getCount());
                             be.markDirty();
                         }
                     }
+
+                    if(heldStack.isOf(Items.WATER_BUCKET)) {
+                        if(fluidStack.isEmpty()) {
+                            be.setStack(GemPurifierBlockEntity.WATER_SOURCE_SLOT, heldStack.copy());
+                            heldStack.decrement(1);
+                        } else if (ItemStack.areItemsEqual(fluidStack, heldStack)) {
+                            fluidStack.increment(heldStack.getCount());
+                            heldStack.decrement(heldStack.getCount());
+                            be.markDirty();
+                        }
+                    }
+
                     if(heldStack.isIn(ModItemTags.RAW_GEMSTONE)) {
                         if(inputStack.isEmpty()) {
                             be.setStack(GemPurifierBlockEntity.INGREDIENT_SLOT, heldStack.copyWithCount(heldStack.getCount()));

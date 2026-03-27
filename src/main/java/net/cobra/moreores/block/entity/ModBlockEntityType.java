@@ -4,6 +4,7 @@ import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -23,6 +24,7 @@ public class    ModBlockEntityType {
         public static void register() {
 
         EnergyStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.energyStorage, GEM_PURIFIER_BLOCK_ENTITY);
+        FluidStorage.SIDED.registerForBlockEntity(((blockEntity, direction) -> blockEntity.fluidStorage), GEM_PURIFIER_BLOCK_ENTITY);
         MoreOresModInitializer.LOGGER.info("Loading ModBlockEntityTypes for " + MoreOresModInitializer.MOD_ID + " mod.");
         }
     }

@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.data.GemPurifierData;
+import net.cobra.moreores.block.data.GemPurifierEnergyData;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -14,7 +14,7 @@ import net.minecraft.screen.ScreenHandlerType;
 public class ModScreenHandlerType {
 
     public static final ScreenHandlerType<GemPurifierScreenHandler> GEM_PURIFYING_SCREEN_HANDLER =
-            register("gem_purifier", GemPurifierScreenHandler::new, GemPurifierData.PACKET_CODEC
+            register("gem_purifier", GemPurifierScreenHandler::new, GemPurifierEnergyData.PACKET_CODEC
             );
 
     private static <S extends ScreenHandler, D extends CustomPayload> ExtendedScreenHandlerType<S, D> register(String id, ExtendedScreenHandlerType.ExtendedFactory<S, D> factory, PacketCodec<? super RegistryByteBuf, D> packetCodec) {

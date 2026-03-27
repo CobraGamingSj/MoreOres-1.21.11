@@ -163,20 +163,16 @@ public interface ImplementedInventory extends SidedInventory {
         return getStack(0);
     }
 
-    default ItemStack secondIngredientStack() {
-        return getStack(15);
-    }
-
     default ItemStack resultStack() {
         return getStack(1);
     }
 
-    default ItemStack secondResultStack() {
-        return getStack(16);
-    }
-
     default ItemStack energyStack() {
         return getStack(2);
+    }
+
+    default ItemStack fluidStack() {
+        return getStack(3);
     }
 
     /**

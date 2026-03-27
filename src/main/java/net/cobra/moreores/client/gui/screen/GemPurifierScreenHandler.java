@@ -1,18 +1,22 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPurifierData;
+import net.cobra.moreores.block.data.GemPurifierEnergyData;
 import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.cobra.moreores.screen.EnergySlot;
 import net.cobra.moreores.screen.GemPurifierInputSlot;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -30,7 +34,7 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
     public final GemPurifierBlockEntity blockEntity;
 
     // Client Side Constructor
-    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierData data) {
+    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierEnergyData data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(2));
     }
@@ -38,7 +42,7 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
     // Main Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, syncId);
-        checkSize((Inventory) blockEntity, 15);
+        checkSize((Inventory) blockEntity, 16);
 
         this.inventory = ((Inventory) blockEntity);
         this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
@@ -47,7 +51,8 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
 
         this.addSlot(new GemPurifierInputSlot(inventory, 0, 79, 11)); // Input
         this.addSlot(new Slot(inventory, 1, 79, 61)); // Result
-        this.addSlot(new EnergySlot(inventory, 2, 39, 36)); // Energy Input
+        this.addSlot(new EnergySlot(inventory, 2, 40, 20)); // Energy Input
+        this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source
 
         addFirstAdditionalInventory(inventory);
         addSecondAdditionalInventory(inventory);
@@ -121,6 +126,10 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
     }
 
+    private boolean isWaterBucket(ItemStack stack) {
+        return stack.isOf(Items.WATER_BUCKET);
+    }
+
     @Override
     public boolean canUse(PlayerEntity player) {
         return canUse(this.context, player, ModBlocks.GEM_PURIFIER_BLOCK);
@@ -144,13 +153,13 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
 
     public void addFirstAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 8; ++i) {
-            this.addSlot(new Slot(playerInventory, 3 + i, 26 + i * 18, 95));
+            this.addSlot(new Slot(playerInventory, 4 + i, 26 + i * 18, 95));
         }
     }
 
     public void addSecondAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 4; ++i) {
-            this.addSlot(new Slot(playerInventory, 11 +  i, 179, 115 + i * 18));
+            this.addSlot(new Slot(playerInventory, 12 +  i, 179, 115 + i * 18));
         }
     }
 
@@ -167,10 +176,28 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         return this.blockEntity.energyStorage.getCapacity();
     }
 
+    public long getWater() {
+        return this.blockEntity.waterAmount();
+    }
+
+    public long getWaterCap() {
+        return this.blockEntity.fluidStorage.getCapacity();
+    }
+
     public float getEnergyPercent() {
         SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage;
         long energy = energyStorage.getAmount();
         long maxEnergy = energyStorage.getCapacity();
+        if (maxEnergy == 0 || energy == 0)
+            return 0.0F;
+
+        return MathHelper.clamp((float) energy / (float) maxEnergy, 0.0F, 1.0F);
+    }
+
+    public float getWaterPercent() {
+        SingleVariantStorage<FluidVariant> fluidStorage = this.blockEntity.fluidStorage;
+        long energy = fluidStorage.getAmount();
+        long maxEnergy = fluidStorage.getCapacity();
         if (maxEnergy == 0 || energy == 0)
             return 0.0F;
 

@@ -13,6 +13,7 @@
     "issues": "https://github.com/CobraGamingSj/MoreOres-Fabric-1.21.1/issues",
     "email": "cobragamingsj@gmail.com"
   },
+  "accessWidener": "moreores.accesswidener",
   "license": "MIT",
   "icon": "assets/moreores/mod_icon.png",
   "environment": "*",
