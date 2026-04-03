@@ -13,9 +13,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Rarity;
-import team.reborn.energy.api.EnergyStorage;
 
 import static net.cobra.moreores.MoreOresModInitializer.getId;
+import static net.cobra.moreores.MoreOresModInitializer.setRegistryKey;
 
 public class ModItems {
 
@@ -108,7 +108,7 @@ public class ModItems {
     );
 
 
-    // Sapphire Armor
+//    Sapphire Armor
     public static final Item SAPPHIRE_HELMET = register(
             "sapphire_helmet",
             new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.HELMET).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_helmet"))))
@@ -131,7 +131,26 @@ public class ModItems {
     );
 
 
-    //    Sapphire Tools & Weapons
+//     Radiant Armor
+    public static final Item RADIANT_HELMET = register(
+      "radiant_helmet",
+      new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof().registryKey(setRegistryKey("radiant_helmet")))
+    );
+    public static final Item RADIANT_CHESTPLATE = register(
+            "radiant_chestplate",
+            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof().registryKey(setRegistryKey("radiant_chestplate")))
+    );
+    public static final Item RADIANT_LEGGINGS = register(
+            "radiant_leggings",
+            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof().registryKey(setRegistryKey("radiant_leggings")))
+    );
+    public static final Item RADIANT_BOOTS = register(
+            "radiant_boots",
+            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof().registryKey(setRegistryKey("radiant_boots")))
+    );
+
+
+    //Sapphire Tools & Weapons
     public static final Item SAPPHIRE_SWORD = register("sapphire_sword", new Item(new Item.Settings().sword(ModToolMaterials.SAPPHIRE,  8, -2.0f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_sword")))));
     public static final Item SAPPHIRE_PICKAXE = register("sapphire_pickaxe", new Item(new Item.Settings().pickaxe(ModToolMaterials.SAPPHIRE,  4, -3.0f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_pickaxe")))));
     public static final Item SAPPHIRE_AXE = register("sapphire_axe", new AxeItem(ModToolMaterials.SAPPHIRE,  8, -2.0f, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_axe")))));
@@ -142,14 +161,21 @@ public class ModItems {
 
 
     //    Radiant Tools & Weapons
-    public static final Item RADIANT_SWORD = register("radiant_sword", new Item(new Item.Settings().sword(ModToolMaterials.RADIANT,  32, -1.0f).rarity(Rarity.EPIC).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("radiant_sword")))));
+    public static final Item RADIANT_SWORD = register(
+            "radiant_sword",
+            new Item(new Item.Settings().sword(ModToolMaterials.RADIANT,  32, -1.0f).rarity(Rarity.EPIC).fireproof().registryKey(setRegistryKey("radiant_sword")))
+    );
+    public static final Item RADIANT_PICKAXE = register(
+            "radiant_pickaxe",
+            new Item(new Item.Settings().pickaxe(ModToolMaterials.RADIANT, 20, -1.5F).rarity(Rarity.EPIC).fireproof().registryKey(setRegistryKey("radiant_pickaxe")))
+    );
 
 
     //    Smithing Templates
     public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = register("ruby_upgrade_smithing_template", ModSmithingTemplateItem.createRubyUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_upgrade_smithing_template")))));
     public static final Item RADIANT_UPGRADE_SMITHING_TEMPLATE = register("radiant_upgrade_smithing_template", ModSmithingTemplateItem.createRadiantUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("radiant_upgrade_smithing_template")))));
     public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = register("guardian_armor_trim_smithing_template",
-            SmithingTemplateItem.of(new Item.Settings().rarity(Rarity.RARE).registryKey(MoreOresModInitializer.setRegistryKey("guardian_armor_trim_smithing_template"))));
+            SmithingTemplateItem.of(new Item.Settings().rarity(Rarity.RARE).registryKey(setRegistryKey("guardian_armor_trim_smithing_template"))));
 
     public static Item register(String id, Item item) {
         return Registry.register(Registries.ITEM, getId(id), item);
