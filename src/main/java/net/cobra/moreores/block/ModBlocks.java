@@ -39,6 +39,7 @@ public class ModBlocks {
         return 30;
     })));
     public static final Block RUBY_LAMP = register("ruby_lamp", new RubyLampBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "ruby_lamp"))).hardness(0.1f).sounds(BlockSoundGroup.GLASS).luminance(state -> state.get(RubyLampBlock.LIT) ? 15:0)));
+
     public static final Block RUBY_BLOCK = register("ruby_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "ruby_block"))).mapColor(MapColor.DARK_RED).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
     public static final Block RADIANT_BLOCK = register("radiant_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "radiant_block"))).mapColor(MapColor.BRIGHT_RED).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
     public static final Block SAPPHIRE_BLOCK = register("sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "sapphire_block"))).mapColor(MapColor.BLUE).requiresTool().strength(4.0f, 4.0f).strength(4.0f)));
@@ -51,6 +52,7 @@ public class ModBlocks {
     public static final Block PERIDOT_BLOCK = register("peridot_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "peridot_block"))).mapColor(MapColor.GREEN).requiresTool().strength(8.0f, 8.0f).strength(9.0f).sounds(BlockSoundGroup.METAL)));
     public static final Block JADE_BLOCK = register("jade_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "jade_block"))).requiresTool().strength(6.0f, 6.5f).strength(7.0f)));
     public static final Block PYROPE_BLOCK = register("pyrope_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "pyrope_block"))).requiresTool().strength(6.0f, 6.5f).strength(7.0f)));
+
     public static final Block GEM_PURIFIER_BLOCK = register("gem_purifier_block", new GemPurifierBlock(AbstractBlock.Settings.create()
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_purifier_block"))).strength(5f).strength(2.75f, 3f)
             .luminance(state -> state.get(GemPurifierBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
