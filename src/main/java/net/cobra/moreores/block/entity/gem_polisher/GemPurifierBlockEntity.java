@@ -53,7 +53,7 @@ import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.Optional;
 
-public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory, TickableBlockEntity {
+public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPurifierEnergyData>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(16, ItemStack.EMPTY);
     private PolishingState polishingState = PolishingState.IDLE;
     private EnergyState energyState = EnergyState.IDLE;

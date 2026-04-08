@@ -176,28 +176,10 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         return this.blockEntity.energyStorage.getCapacity();
     }
 
-    public long getWater() {
-        return this.blockEntity.waterAmount();
-    }
-
-    public long getWaterCap() {
-        return this.blockEntity.fluidStorage.getCapacity();
-    }
-
     public float getEnergyPercent() {
         SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage;
         long energy = energyStorage.getAmount();
         long maxEnergy = energyStorage.getCapacity();
-        if (maxEnergy == 0 || energy == 0)
-            return 0.0F;
-
-        return MathHelper.clamp((float) energy / (float) maxEnergy, 0.0F, 1.0F);
-    }
-
-    public float getWaterPercent() {
-        SingleVariantStorage<FluidVariant> fluidStorage = this.blockEntity.fluidStorage;
-        long energy = fluidStorage.getAmount();
-        long maxEnergy = fluidStorage.getCapacity();
         if (maxEnergy == 0 || energy == 0)
             return 0.0F;
 

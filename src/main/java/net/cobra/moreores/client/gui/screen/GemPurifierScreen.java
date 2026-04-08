@@ -9,21 +9,17 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ingame.CyclingSlotIcon;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.input.KeyInput;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.glfw.GLFW;
-
-import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
@@ -48,6 +44,8 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
         playerInventoryTitleY = 1000;
 
         addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).build());
+
+//        addDrawable(new FluidWidget(this.handler.blockEntity.fluidStorage, this.x + 10, this.y + 42, 20, 44, handler.blockEntity::getPos));
 
         ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 112, y + 8, START_BUTTON, Text.literal("Start Polishing"));
 
@@ -107,13 +105,6 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
         context.fillGradient(x + 40, y + 42 + 44 - energyBarSize, x + 40 + 16, y + 42 + 44, gradientStart, gradientEnd);
     }
 
-//    private void renderFluidStorageHandler(DrawContext context, int x, int y) {
-//        int waterBarSize = MathHelper.ceil(this.handler.getWaterPercent() * 44);
-//        int gradientStart = Colors.BLUE;
-//        int gradientEnd = Colors.GREEN;
-//        context.fillGradient(x + 10, y + 42 + 44 - waterBarSize, x + 10 + 20, y + 42 + 44, gradientStart, gradientEnd);
-//    }
-
     @Override
     public void drawForeground(DrawContext context, int mouseX, int mouseY) {
         String name = this.handler.blockEntity.getDisplayName().getString();
@@ -131,7 +122,6 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
 
         renderProgressArrow(context, i, j);
         renderEnergyStorageHandler(context, i, j);
-//        renderFluidStorageHandler(context, i, j);
 
     }
 
@@ -141,12 +131,8 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
-//        int waterBarSize = MathHelper.ceil(this.handler.getWaterPercent() * 44);
         if (isPointWithinBounds(40, 42 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
         }
-//        if (isPointWithinBounds(10, 42 + 44 - waterBarSize, 25, waterBarSize, mouseX, mouseY)) {
-//            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getWater() + " / " + this.handler.getWaterCap() + " mB").formatted(Formatting.BLUE), mouseX, mouseY);
-//        }
     }
 }

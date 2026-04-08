@@ -14,6 +14,7 @@ import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
+import net.cobra.moreores.registry.BirthdayRewardState;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
 import net.cobra.moreores.sound.ModSoundEvents;
 import net.cobra.moreores.util.CustomTrades;
@@ -23,6 +24,7 @@ import net.cobra.moreores.world.gen.WorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.block.Blocks;
@@ -31,7 +33,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,6 +79,12 @@ public class MoreOresModInitializer implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
+		ServerMessageEvents.CHAT_MESSAGE.register((msg, sender, params) -> {
+			String mesg = msg.getSignedContent().toLowerCase();
+			if(mesg.contains("happy birthday cobra") || mesg.contains("happy birthday") || mesg.contains("happy bday") || mesg.contains("happy bday cobra")) {
+				giveBirthdayRewards(sender);
+			}
+		});
 
 
 		// Gemstones Item Group Registry
@@ -307,5 +319,31 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//EnchantmentEffects Registry
 		EnchantmentEffects.register();
+	}
+
+
+	private static void giveBirthdayRewards(ServerPlayerEntity serverPlayer) {
+		ServerWorld world = serverPlayer.getEntityWorld();
+		BirthdayRewardState state = BirthdayRewardState.get(world);
+
+		if(state.hasClaimed(serverPlayer.getUuid())) {
+			serverPlayer.sendMessage(Text.literal("⚠️ You can claim the reward only once!").formatted(Formatting.RED));
+			return;
+		}
+
+		serverPlayer.giveItemStack(new ItemStack(ModItems.RUBY, 32));
+		serverPlayer.giveItemStack(new ItemStack(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, 9));
+		serverPlayer.giveItemStack(new ItemStack(ModItems.DIAMOND_APPLE, 5));
+		serverPlayer.sendMessage(
+				Text.literal("🎉 [MoreOres+] ")
+						.formatted(Formatting.GOLD)
+						.append(Text.literal("Secret unlocked! ")
+								.formatted(Formatting.YELLOW))
+						.append(Text.literal("Happy Birthday CobraGamingSJ ❤️")
+								.formatted(Formatting.LIGHT_PURPLE)),
+				false
+		);
+
+		state.setClaimed(serverPlayer.getUuid());
 	}
 }
