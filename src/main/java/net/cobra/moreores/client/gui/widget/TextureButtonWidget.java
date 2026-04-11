@@ -29,12 +29,26 @@ public class TextureButtonWidget extends ButtonWidget {
         ClientPlayNetworking.send(new GemPurifierButtonClick(buttonId, handler.blockEntity.getPos()));
     }
 
-    @Override
-    protected void drawIcon(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
+    public void renderIcon(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         context.drawTexture(RenderPipelines.GUI_TEXTURED, texture, getX(), getY(), 0, 0, this.getWidth(), this.getHeight(), 32, 32);
         context.drawStrokedRectangle(getX(), getY(), 32, 32, Colors.DARK_GRAY);
-        if(isHovered()) {
+        if (isHovered()) {
             context.drawStrokedRectangle(getX(), getY(), 32, 32, Colors.BLACK);
         }
     }
+
+    //? if minecraft: >= 1.21.11 {
+
+    @Override
+    public void drawIcon(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
+        renderIcon(context, mouseX, mouseY, deltaTicks);
+    }
+    //?} else if minecraft: >=1.21.9 && minecraft: <= 1.21.10 {
+
+    /*@Override
+    protected void renderWidget(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
+        renderIcon(context, mouseX, mouseY, deltaTicks);
+        super.renderWidget(context, mouseX, mouseY, deltaTicks);
+    }
+    *///?}
 }

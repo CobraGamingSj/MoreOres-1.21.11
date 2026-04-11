@@ -1,14 +1,10 @@
 package net.cobra.moreores.screen;
 
-import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.item.ModItems;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.Identifier;
-import org.jspecify.annotations.Nullable;
 
 public class EnergySlot extends Slot {
 

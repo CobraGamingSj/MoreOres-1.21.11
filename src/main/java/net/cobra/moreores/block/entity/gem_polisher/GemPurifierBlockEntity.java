@@ -7,11 +7,11 @@ import net.cobra.moreores.block.data.GemPurifierFluidData;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
+import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
 import net.cobra.moreores.registry.ModItemTags;
-import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.cobra.moreores.util.FluidStack;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -327,11 +327,11 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void fillWater() {
-        if(!hasWaterBucket() || waterAmount() >= 10_000_000) {
+        if(!hasWaterBucket() || waterAmount() >= 810000) {
             waterState = WaterFluidState.IDLE;
             return;
         }
-        long amount = 1024;
+        long amount = 1620;
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = fluidStorage.insert(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();
@@ -350,7 +350,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void consumeWater() {
-        long amount = 256;
+        long amount = 810;
         try(Transaction transaction = Transaction.openOuter()) {
             fluidStorage.extract(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();

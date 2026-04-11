@@ -2,6 +2,15 @@
   "values": [
     "#minecraft:ruby_ores",
     "#minecraft:sapphire_ores",
-    "#minecraft:green_sapphire_ores"
+    "#minecraft:green_sapphire_ores",
+    "#minecraft:blue_garnet_ores",
+    "#minecraft:pink_garnet_ores",
+    "#minecraft:green_garnet_ores",
+    "#minecraft:kyawthuite_ores",
+    "#minecraft:topaz_ores",
+    "#minecraft:white_topaz_ores",
+    "#minecraft:peridot_ores",
+    "#minecraft:jade_ores",
+    "#minecraft:pyrope_ores"
   ]
 }

@@ -2,8 +2,8 @@ package net.cobra.moreores.block;
 
 import com.mojang.serialization.MapCodec;
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
+import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.*;

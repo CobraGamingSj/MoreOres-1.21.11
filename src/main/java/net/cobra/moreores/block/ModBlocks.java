@@ -17,6 +17,8 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
+import java.util.function.Function;
+
 public class ModBlocks {
 
     public static final Block TOMATO_CROP = Registry.register(Registries.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "tomato_crop"),
@@ -47,6 +49,7 @@ public class ModBlocks {
     public static final Block BLUE_GARNET_BLOCK = register("blue_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "blue_garnet_block"))).mapColor(MapColor.BLUE).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
     public static final Block PINK_GARNET_BLOCK = register("pink_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "pink_garnet_block"))).mapColor(MapColor.PINK).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
     public static final Block GREEN_GARNET_BLOCK = register("green_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "green_garnet_block"))).mapColor(MapColor.PINK).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
+    public static final Block KYAWTHUITE_BLOCK = registerSolidBlock("kyawthuite_block", s -> new Block(s.requiresTool().mapColor(MapColor.ORANGE)), 5.5f, 6f);
     public static final Block TOPAZ_BLOCK = register("topaz_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "topaz_block"))).mapColor(MapColor.ORANGE).requiresTool().strength(8.0f, 8.0f).strength(9.0f)));
     public static final Block WHITE_TOPAZ_BLOCK = register("white_topaz_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "white_topaz_block"))).requiresTool().strength(6.0f, 6.5f).strength(7.0f)));
     public static final Block PERIDOT_BLOCK = register("peridot_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "peridot_block"))).mapColor(MapColor.GREEN).requiresTool().strength(8.0f, 8.0f).strength(9.0f).sounds(BlockSoundGroup.METAL)));
@@ -63,6 +66,7 @@ public class ModBlocks {
     public static final Block RAW_BLUE_GARNET_BLOCK = register("raw_blue_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_blue_garnet_block"))).mapColor(MapColor.BLUE).requiresTool().strength(7.0f, 7.5f).strength(8.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
     public static final Block RAW_PINK_GARNET_BLOCK = register("raw_pink_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_pink_garnet_block"))).mapColor(MapColor.PINK).requiresTool().strength(7.0f, 7.5f).strength(8.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
     public static final Block RAW_GREEN_GARNET_BLOCK = register("raw_green_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_green_garnet_block"))).mapColor(MapColor.PINK).requiresTool().strength(7.0f, 7.5f).strength(8.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
+    public static final Block RAW_KYAWTHUITE_BLOCK = register("raw_kyawthuite_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_kyawthuite_block"))).mapColor(MapColor.ORANGE).requiresTool().strength(9.5f, 10.0f).strength(10.0f)));
     public static final Block RAW_TOPAZ_BLOCK = register("raw_topaz_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_topaz_block"))).mapColor(MapColor.ORANGE).requiresTool().strength(9.0f, 9.0f).strength(10.0f)));
     public static final Block RAW_WHITE_TOPAZ_BLOCK = register("raw_white_topaz_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_white_topaz_block"))).requiresTool().strength(7.0f, 7.5f).strength(8.0f)));
     public static final Block RAW_PERIDOT_BLOCK = register("raw_peridot_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_peridot_block"))).mapColor(MapColor.GREEN).requiresTool().strength(9.0f, 9.0f).strength(10.0f).sounds(BlockSoundGroup.METAL)));
@@ -81,6 +85,8 @@ public class ModBlocks {
     public static final Block DEEPSLATE_PINK_GARNET_ORE = register("deepslate_pink_garnet_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2, 3), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "deepslate_pink_garnet_ore"))).requiresTool().strength(7.5f, 8.0f).strength(8.5f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block GREEN_GARNET_ORE = register("green_garnet_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2, 3), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "green_garnet_ore"))).requiresTool().strength(7.0f, 7.5f).strength(8.0f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block DEEPSLATE_GREEN_GARNET_ORE = register("deepslate_green_garnet_ore", new ExperienceDroppingBlock(UniformIntProvider.create(2, 3), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "deepslate_green_garnet_ore"))).requiresTool().strength(7.5f, 8.0f).strength(8.5f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
+    public static final Block KYAWTHUITE_ORE = registerSolidBlock("kyawthuite_ore", s -> new ExperienceDroppingBlock(UniformIntProvider.create(1, 2), s.requiresTool().mapColor(MapColor.ORANGE)), 7.5f, 8f);
+    public static final Block DEEPSLATE_KYAWTHUITE_ORE = registerSolidBlock("deepslate_kyawthuite_ore", s -> new ExperienceDroppingBlock(UniformIntProvider.create(1, 2), s.requiresTool().mapColor(MapColor.ORANGE)), 8f, 8.5f);
     public static final Block TOPAZ_ORE = register("topaz_ore", new ExperienceDroppingBlock(UniformIntProvider.create(1, 3), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "topaz_ore"))).requiresTool().strength(9.0f, 9.0f).strength(10.0f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block DEEPSLATE_TOPAZ_ORE = register("deepslate_topaz_ore", new ExperienceDroppingBlock(UniformIntProvider.create(1, 3), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "deepslate_topaz_ore"))).requiresTool().strength(9.5f, 9.5f).strength(10.5f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block WHITE_TOPAZ_ORE = register("white_topaz_ore", new ExperienceDroppingBlock(UniformIntProvider.create(3, 5), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "white_topaz_ore"))).requiresTool().strength(9.5f, 9.5f).strength(10.5f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
@@ -97,6 +103,15 @@ public class ModBlocks {
         Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
 
         return Registry.register(Registries.BLOCK, ID, block);
+    }
+
+    public static Block registerSolidBlock(String id, Function<AbstractBlock.Settings, Block> blockFunction, float strength, float resistance) {
+        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
+        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.setBlockKey(id)).strength(strength, resistance);
+        Block block = Registry.register(Registries.BLOCK, ID, blockFunction.apply(settings));
+        Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(MoreOresModInitializer.setRegistryKey(id)).useBlockPrefixedTranslationKey()));
+
+        return block;
     }
 
     public static void registerBlockItem(String id, Block block) {

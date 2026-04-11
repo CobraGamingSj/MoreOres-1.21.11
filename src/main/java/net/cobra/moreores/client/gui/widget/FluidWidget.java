@@ -19,7 +19,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -60,10 +59,10 @@ public class FluidWidget implements Drawable, Widget {
         if(world == null) return;
         Sprite sprite = handler.getFluidSprites(world, blockPos, fluidState)[1];
         int tintColor = handler.getFluidColor(world, blockPos, fluidState);
-//        float red = (tintColor >> 16 & 0xFF) /255F;
-//        float green = (tintColor >> 8 & 0xFF) /255F;
-//        float blue = (tintColor & 0xFF) /255F;
-        ScreenUtils.renderTiledSprite(context, sprite, this.x, this.y + this.height - fluidHeight, this.width, fluidHeight, -1);
+        float red = (tintColor >> 16 & 0xFF) /255F;
+        float green = (tintColor >> 8 & 0xFF) /255F;
+        float blue = (tintColor & 0xFF) /255F;
+        ScreenUtils.renderTiledSprite(context, sprite, this.x, this.y + this.height - fluidHeight, this.width, fluidHeight, 1F, red, green, blue);
 
         if(isPointWithinBounds(this.x, this.y, this.width, this.height, mouseX, mouseY)) {
             drawTooltip(context, mouseX, mouseY);

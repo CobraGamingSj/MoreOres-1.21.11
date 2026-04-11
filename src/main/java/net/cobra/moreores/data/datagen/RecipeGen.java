@@ -43,6 +43,7 @@ public class RecipeGen extends FabricRecipeProvider {
                 List<ItemConvertible> BLUE_GARNET_SMELTABLES = List.of(ModBlocks.BLUE_GARNET_ORE, ModBlocks.DEEPSLATE_BLUE_GARNET_ORE, ModItems.RAW_BLUE_GARNET);
                 List<ItemConvertible> PINK_GARNET_SMELTABLES = List.of(ModBlocks.PINK_GARNET_ORE, ModBlocks.DEEPSLATE_PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET);
                 List<ItemConvertible> GREEN_GARNET_SMELTABLES = List.of(ModBlocks.GREEN_GARNET_ORE, ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModItems.RAW_GREEN_GARNET);
+                List<ItemConvertible> KYAWTHUITE_SMELTABLES = List.of(ModBlocks.KYAWTHUITE_ORE, ModBlocks.DEEPSLATE_KYAWTHUITE_ORE, ModItems.RAW_KYAWTHUITE);
                 List<ItemConvertible> TOPAZ_SMELTABLES = List.of(ModBlocks.TOPAZ_ORE, ModBlocks.DEEPSLATE_TOPAZ_ORE, ModItems.RAW_TOPAZ);
                 List<ItemConvertible> WHITE_TOPAZ_SMELTABLES = List.of(ModBlocks.WHITE_TOPAZ_ORE, ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE, ModItems.RAW_WHITE_TOPAZ);
                 List<ItemConvertible> PERIDOT_SMELTABLES = List.of(ModBlocks.PERIDOT_ORE, ModBlocks.DEEPSLATE_PERIDOT_ORE, ModItems.RAW_PERIDOT);
@@ -55,6 +56,7 @@ public class RecipeGen extends FabricRecipeProvider {
                 offerSmelting(BLUE_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.BLUE_GARNET, 0.15f, defaultSmeltingTime, "blue_garnet");
                 offerSmelting(PINK_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.PINK_GARNET, 0.15f, defaultSmeltingTime, "pink_garnet");
                 offerSmelting(GREEN_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.GREEN_GARNET, 0.15f, defaultSmeltingTime, "green_garnet");
+                offerSmelting(KYAWTHUITE_SMELTABLES, RecipeCategory.MISC, ModItems.KYAWTHUITE, 0.15f, defaultSmeltingTime, "kyawthuite");
                 offerSmelting(TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.TOPAZ, 0.15f, defaultSmeltingTime, "topaz");
                 offerSmelting(WHITE_TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.WHITE_TOPAZ, 0.15f, defaultSmeltingTime, "white_topaz");
                 offerSmelting(PERIDOT_SMELTABLES, RecipeCategory.MISC, ModItems.PERIDOT, 0.15f, defaultSmeltingTime, "peridot");
@@ -67,6 +69,7 @@ public class RecipeGen extends FabricRecipeProvider {
                 offerBlasting(BLUE_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.BLUE_GARNET, 0.15f, defaultBlastingTime, "blue_garnet");
                 offerBlasting(PINK_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.PINK_GARNET, 0.15f, defaultBlastingTime, "pink_garnet");
                 offerBlasting(GREEN_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.GREEN_GARNET, 0.15f, defaultBlastingTime, "green_garnet");
+                offerBlasting(KYAWTHUITE_SMELTABLES, RecipeCategory.MISC, ModItems.KYAWTHUITE, 0.15f, defaultBlastingTime, "kyawthuite");
                 offerBlasting(TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.TOPAZ, 0.15f, defaultBlastingTime, "topaz");
                 offerBlasting(WHITE_TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.WHITE_TOPAZ, 0.15f, defaultBlastingTime, "white_topaz");
                 offerBlasting(PERIDOT_SMELTABLES, RecipeCategory.MISC, ModItems.PERIDOT, 0.15f, defaultBlastingTime, "peridot");
@@ -158,6 +161,8 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_HOE) + "_smithing");
 
+                //? if minecraft: >= 1.21.11 {
+
                 SmithingTransformRecipeJsonBuilder.create(
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_SPEAR),
@@ -176,6 +181,9 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_NAUTILUS_ARMOR) + "_smithing");
 
+                //?} else {
+                //?}
+
                 offerSmithingTrimRecipe(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE,
                         ModArmorTrimPatterns.GUARDIAN, RegistryKey.of(RegistryKeys.RECIPE, Identifier.ofVanilla(getItemPath(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE) + "_smithing_trim")));
 
@@ -193,6 +201,8 @@ public class RecipeGen extends FabricRecipeProvider {
                         ModBlocks.PINK_GARNET_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.GREEN_GARNET, RecipeCategory.DECORATIONS,
                         ModBlocks.GREEN_GARNET_BLOCK);
+                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.KYAWTHUITE, RecipeCategory.DECORATIONS,
+                        ModBlocks.KYAWTHUITE_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.TOPAZ, RecipeCategory.DECORATIONS,
                         ModBlocks.TOPAZ_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.WHITE_TOPAZ, RecipeCategory.DECORATIONS,
@@ -218,6 +228,8 @@ public class RecipeGen extends FabricRecipeProvider {
                         ModBlocks.RAW_GREEN_GARNET_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_TOPAZ, RecipeCategory.DECORATIONS,
                         ModBlocks.RAW_TOPAZ_BLOCK);
+                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_KYAWTHUITE, RecipeCategory.DECORATIONS,
+                        ModBlocks.RAW_KYAWTHUITE_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_WHITE_TOPAZ, RecipeCategory.DECORATIONS,
                         ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_PERIDOT, RecipeCategory.DECORATIONS,
@@ -262,6 +274,12 @@ public class RecipeGen extends FabricRecipeProvider {
                         )
                         .criterion(hasItem(ModItems.RAW_GREEN_GARNET), conditionsFromItem(ModItems.RAW_GREEN_GARNET))
                         .offerTo(exporter, getRecipeName(ModItems.GREEN_GARNET));
+
+                createGemPolishing(
+                        Ingredient.ofItems(ModItems.RAW_KYAWTHUITE), new ItemStack(ModItems.KYAWTHUITE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.RAW_KYAWTHUITE), conditionsFromItem(ModItems.RAW_KYAWTHUITE))
+                        .offerTo(exporter, getRecipeName(ModItems.KYAWTHUITE));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
@@ -462,6 +480,7 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
 
+                //? if minecraft: >= 1.21.11 {
                 createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SPEAR, 1)
                         .pattern("bbb")
                         .pattern("bab")
@@ -481,6 +500,7 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY_NAUTILUS_ARMOR), conditionsFromItem(ModItems.RUBY_NAUTILUS_ARMOR))
                         .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_NAUTILUS_ARMOR))));
+                //?}
             }
         };
     }

@@ -27,6 +27,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -35,7 +36,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -69,6 +69,7 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModItems.BLUE_GARNET);
 				entries.add(ModItems.PINK_GARNET);
 				entries.add(ModItems.GREEN_GARNET);
+				entries.add(ModItems.KYAWTHUITE);
 				entries.add(ModItems.TOPAZ);
 				entries.add(ModItems.WHITE_TOPAZ);
 				entries.add(ModItems.PERIDOT);
@@ -76,7 +77,11 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModItems.JADE);
 			}).build();
 
-	@Override
+    public static RegistryKey<Block> setBlockKey(String id) {
+		return RegistryKey.of(RegistryKeys.BLOCK, getId(id));
+    }
+
+    @Override
 	public void onInitialize() {
 
 		ServerMessageEvents.CHAT_MESSAGE.register((msg, sender, params) -> {
@@ -107,7 +112,8 @@ public class MoreOresModInitializer implements ModInitializer {
 			ingredientsEventEntries.addAfter(ModItems.RAW_GREEN_SAPPHIRE, ModItems.RAW_BLUE_GARNET);
 			ingredientsEventEntries.addAfter(ModItems.RAW_BLUE_GARNET, ModItems.RAW_PINK_GARNET);
 			ingredientsEventEntries.addAfter(ModItems.RAW_PINK_GARNET, ModItems.RAW_GREEN_GARNET);
-			ingredientsEventEntries.addAfter(ModItems.RAW_GREEN_GARNET, ModItems.RAW_TOPAZ);
+			ingredientsEventEntries.addAfter(ModItems.RAW_GREEN_GARNET, ModItems.RAW_KYAWTHUITE);
+			ingredientsEventEntries.addAfter(ModItems.RAW_KYAWTHUITE, ModItems.RAW_TOPAZ);
 			ingredientsEventEntries.addAfter(ModItems.RAW_TOPAZ, ModItems.RAW_WHITE_TOPAZ);
 			ingredientsEventEntries.addAfter(ModItems.RAW_WHITE_TOPAZ, ModItems.RAW_PERIDOT);
 			ingredientsEventEntries.addAfter(ModItems.RAW_PERIDOT, ModItems.RAW_PYROPE);
@@ -124,7 +130,8 @@ public class MoreOresModInitializer implements ModInitializer {
 			ingredientsEventEntries.addAfter(ModItems.GREEN_SAPPHIRE, ModItems.BLUE_GARNET);
 			ingredientsEventEntries.addAfter(ModItems.BLUE_GARNET, ModItems.PINK_GARNET);
 			ingredientsEventEntries.addAfter(ModItems.PINK_GARNET, ModItems.GREEN_GARNET);
-			ingredientsEventEntries.addAfter(ModItems.GREEN_GARNET, ModItems.TOPAZ);
+			ingredientsEventEntries.addAfter(ModItems.GREEN_GARNET, ModItems.KYAWTHUITE);
+			ingredientsEventEntries.addAfter(ModItems.KYAWTHUITE, ModItems.TOPAZ);
 			ingredientsEventEntries.addAfter(ModItems.TOPAZ, ModItems.WHITE_TOPAZ);
 			ingredientsEventEntries.addAfter(ModItems.WHITE_TOPAZ, ModItems.PERIDOT);
 			ingredientsEventEntries.addAfter(ModItems.PERIDOT, ModItems.PYROPE);
@@ -169,10 +176,11 @@ public class MoreOresModInitializer implements ModInitializer {
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_HELMET, ModItems.SAPPHIRE_CHESTPLATE);
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
-            combatEventEntries.addAfter(Items.NETHERITE_SPEAR, ModItems.RUBY_SPEAR);
-            combatEventEntries.addAfter(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR);
-            combatEventEntries.addAfter(Items.NETHERITE_NAUTILUS_ARMOR, ModItems.RUBY_NAUTILUS_ARMOR);
-            combatEventEntries.addAfter(ModItems.RUBY_NAUTILUS_ARMOR, ModItems.SAPPHIRE_NAUTILUS_ARMOR);
+			//? if minecraft: >= 1.21.11 {
+			combatEventEntries.addAfter(Items.NETHERITE_SPEAR, ModItems.RUBY_SPEAR);
+			combatEventEntries.addAfter(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR);
+			//?} else {
+			//?}
 		});
 
 
@@ -184,7 +192,8 @@ public class MoreOresModInitializer implements ModInitializer {
 			naturalEventEntries.addAfter(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK, ModBlocks.RAW_BLUE_GARNET_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_BLUE_GARNET_BLOCK, ModBlocks.RAW_PINK_GARNET_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_PINK_GARNET_BLOCK, ModBlocks.RAW_GREEN_GARNET_BLOCK);
-			naturalEventEntries.addAfter(ModBlocks.RAW_GREEN_GARNET_BLOCK, ModBlocks.RAW_TOPAZ_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_GREEN_GARNET_BLOCK, ModBlocks.RAW_KYAWTHUITE_BLOCK);
+			naturalEventEntries.addAfter(ModBlocks.RAW_KYAWTHUITE_BLOCK, ModBlocks.RAW_TOPAZ_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_TOPAZ_BLOCK, ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_WHITE_TOPAZ_BLOCK, ModBlocks.RAW_PERIDOT_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_PERIDOT_BLOCK, ModBlocks.RAW_PYROPE_BLOCK);
@@ -203,7 +212,9 @@ public class MoreOresModInitializer implements ModInitializer {
 			naturalEventEntries.addAfter(ModBlocks.PINK_GARNET_ORE, ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
 			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_PINK_GARNET_ORE, ModBlocks.GREEN_GARNET_ORE);
 			naturalEventEntries.addAfter(ModBlocks.GREEN_GARNET_ORE, ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
-			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModBlocks.TOPAZ_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModBlocks.KYAWTHUITE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.KYAWTHUITE_ORE, ModBlocks.DEEPSLATE_KYAWTHUITE_ORE);
+			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE, ModBlocks.TOPAZ_ORE);
 			naturalEventEntries.addAfter(ModBlocks.TOPAZ_ORE, ModBlocks.DEEPSLATE_TOPAZ_ORE);
 			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_TOPAZ_ORE, ModBlocks.WHITE_TOPAZ_ORE);
 			naturalEventEntries.addAfter(ModBlocks.WHITE_TOPAZ_ORE, ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
@@ -248,7 +259,8 @@ public class MoreOresModInitializer implements ModInitializer {
 			buildingBlockEventEntries.addAfter(ModBlocks.GREEN_SAPPHIRE_BLOCK, ModBlocks.BLUE_GARNET_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.BLUE_GARNET_BLOCK, ModBlocks.PINK_GARNET_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.PINK_GARNET_BLOCK, ModBlocks.GREEN_GARNET_BLOCK);
-			buildingBlockEventEntries.addAfter(ModBlocks.GREEN_GARNET_BLOCK, ModBlocks.TOPAZ_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.GREEN_GARNET_BLOCK, ModBlocks.KYAWTHUITE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.KYAWTHUITE_BLOCK, ModBlocks.TOPAZ_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.TOPAZ_BLOCK, ModBlocks.WHITE_TOPAZ_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.WHITE_TOPAZ_BLOCK, ModBlocks.PERIDOT_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.PERIDOT_BLOCK, ModBlocks.PYROPE_BLOCK);

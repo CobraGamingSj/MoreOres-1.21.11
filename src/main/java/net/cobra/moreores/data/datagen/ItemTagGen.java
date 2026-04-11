@@ -1,5 +1,6 @@
 package net.cobra.moreores.data.datagen;
 
+import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -29,9 +30,14 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.MUSIC_DISC_FEATHERFALL)
                 .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST);
 
+        //? if minecraft: >= 1.21.11 {
         valueLookupBuilder(ItemTags.SPEARS)
                 .add(ModItems.RUBY_SPEAR)
                 .add(ModItems.SAPPHIRE_SPEAR);
+        //?} else {
+        //?}
+
+
 
         valueLookupBuilder(ItemTags.TRIM_MATERIALS)
                 .add(ModItems.RUBY)
@@ -41,6 +47,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.BLUE_GARNET)
                 .add(ModItems.PINK_GARNET)
                 .add(ModItems.GREEN_GARNET)
+                .add(ModItems.KYAWTHUITE)
                 .add(ModItems.TOPAZ)
                 .add(ModItems.WHITE_TOPAZ)
                 .add(ModItems.PERIDOT)
@@ -108,6 +115,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.BLUE_GARNET)
                 .add(ModItems.PINK_GARNET)
                 .add(ModItems.GREEN_GARNET)
+                .add(ModItems.KYAWTHUITE)
                 .add(ModItems.TOPAZ)
                 .add(ModItems.WHITE_TOPAZ)
                 .add(ModItems.PERIDOT)
@@ -117,6 +125,20 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(Items.QUARTZ)
                 .add(Items.DIAMOND);
 
+        valueLookupBuilder(ModItemTags.GEMSTONE_BLOCKS)
+                .add(ModBlocks.RUBY_BLOCK.asItem(),
+                        ModBlocks.SAPPHIRE_BLOCK.asItem(),
+                        ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem(),
+                        ModBlocks.BLUE_GARNET_BLOCK.asItem(),
+                        ModBlocks.PINK_GARNET_BLOCK.asItem(),
+                        ModBlocks.GREEN_GARNET_BLOCK.asItem(),
+                        ModBlocks.KYAWTHUITE_BLOCK.asItem(),
+                        ModBlocks.TOPAZ_BLOCK.asItem(),
+                        ModBlocks.WHITE_TOPAZ_BLOCK.asItem(),
+                        ModBlocks.PERIDOT_BLOCK.asItem(),
+                        ModBlocks.JADE_BLOCK.asItem(),
+                        ModBlocks.PYROPE_BLOCK.asItem());
+
         valueLookupBuilder(ModItemTags.RAW_GEMSTONE)
                 .add(ModItems.RAW_RUBY)
                 .add(ModItems.RAW_SAPPHIRE)
@@ -124,6 +146,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.RAW_BLUE_GARNET)
                 .add(ModItems.RAW_PINK_GARNET)
                 .add(ModItems.RAW_GREEN_GARNET)
+                .add(ModItems.RAW_KYAWTHUITE)
                 .add(ModItems.RAW_TOPAZ)
                 .add(ModItems.RAW_WHITE_TOPAZ)
                 .add(ModItems.RAW_PERIDOT)

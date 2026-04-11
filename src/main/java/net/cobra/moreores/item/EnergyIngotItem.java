@@ -1,6 +1,5 @@
 package net.cobra.moreores.item;
 
-import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.EntityType;
@@ -18,10 +17,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class EnergyIngotItem extends Item {

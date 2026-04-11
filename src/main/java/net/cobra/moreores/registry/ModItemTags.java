@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 public class ModItemTags {
 
     public static final TagKey<Item> GEMSTONE = of("rare/gemstone");
+    public static final TagKey<Item> GEMSTONE_BLOCKS = of("gemstone_blocks");
     public static final TagKey<Item> RAW_GEMSTONE = of("rare/raw_gemstone");
     public static final TagKey<Item> METAL = ofVanilla("is_metal");
     public static final TagKey<Item> RARE = ofVanilla("rare/rare");
