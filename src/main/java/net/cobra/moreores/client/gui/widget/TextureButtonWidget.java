@@ -47,8 +47,8 @@ public class TextureButtonWidget extends ButtonWidget {
 
     /*@Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-        renderIcon(context, mouseX, mouseY, deltaTicks);
         super.renderWidget(context, mouseX, mouseY, deltaTicks);
+        renderIcon(context, mouseX, mouseY, deltaTicks);
     }
     *///?}
 }
