@@ -24,6 +24,7 @@ public class ModItems {
 
     public static final Item GEM_DETECTOR = register("gem_detector", GemDetector::new);
 
+
     //Seeds
     public static final Item TOMATO_SEEDS = register("tomato_seeds", new AliasedBlockItem("tomato_seeds", ModBlocks.TOMATO_CROP));
     public static final Item PINEAPPLE_SEEDS = register("pineapple_seeds", new AliasedBlockItem("pineapple_seeds", ModBlocks.PINEAPPLE_CROP));
@@ -87,10 +88,10 @@ public class ModItems {
     public static final Item RUBY_AXE = register("ruby_axe", new AxeItem(ModToolMaterials.RUBY,  6.0F, -2.1F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_axe")))));
     public static final Item RUBY_HOE = register("ruby_hoe", new HoeItem(ModToolMaterials.RUBY,  -5.0F, 0.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_hoe")))));
     //? if minecraft: >= 1.21.11 {
-    public static final Item RUBY_SPEAR = register("ruby_spear", new Item(new Item.Settings().spear(ModToolMaterials.RUBY,  1.2F, 1.3F, 0.35F,
+    /*public static final Item RUBY_SPEAR = register("ruby_spear", new Item(new Item.Settings().spear(ModToolMaterials.RUBY,  1.2F, 1.3F, 0.35F,
                     2.0F, 6.5F, 5.0F, 5.1F, 8.0F, 4.6F)
             .fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_spear")))));
-    //?}
+    *///?}
 
 
     //Ruby Armor
@@ -111,11 +112,11 @@ public class ModItems {
             new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.BOOTS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_boots"))))
     );
     //? if minecraft: >= 1.21.11 {
-    public static final Item RUBY_NAUTILUS_ARMOR = register(
+    /*public static final Item RUBY_NAUTILUS_ARMOR = register(
             "ruby_nautilus_armor",
             new Item(new Item.Settings().nautilusArmor(ModArmorMaterials.RUBY).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_nautilus_armor"))))
     );
-    //?}
+    *///?}
 
 
 //    Sapphire Armor
@@ -136,11 +137,11 @@ public class ModItems {
             new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.BOOTS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_boots"))))
     );
     //? if minecraft: >= 1.21.11 {
-    public static final Item SAPPHIRE_NAUTILUS_ARMOR = register(
+    /*public static final Item SAPPHIRE_NAUTILUS_ARMOR = register(
             "sapphire_nautilus_armor",
             new Item(new Item.Settings().nautilusArmor(ModArmorMaterials.SAPPHIRE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_nautilus_armor"))))
     );
-    //?}
+    *///?}
 
 
 //     Radiant Armor
@@ -169,9 +170,9 @@ public class ModItems {
     public static final Item SAPPHIRE_HOE = register("sapphire_hoe", new HoeItem(ModToolMaterials.SAPPHIRE,  4, -3.0f, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_hoe")))));
     public static final Item SAPPHIRE_SHOVEL = register("sapphire_shovel", new ShovelItem(ModToolMaterials.SAPPHIRE,  3.5F, -3.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_shovel")))));
     //? if minecraft: >= 1.21.11 {
-    public static final Item SAPPHIRE_SPEAR = register("sapphire_spear", new Item(new Item.Settings().spear(ModToolMaterials.SAPPHIRE, 1.25F, 1.4F,
+    /*public static final Item SAPPHIRE_SPEAR = register("sapphire_spear", new Item(new Item.Settings().spear(ModToolMaterials.SAPPHIRE, 1.25F, 1.4F,
             0.3F, 1.5F, 6.0F, 4.5F, 5.1F, 7.65F, 4.6F).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_spear")))));
-    //?} else {
+    *///?} else {
     //?}
 
 

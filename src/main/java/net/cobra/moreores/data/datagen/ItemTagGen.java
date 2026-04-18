@@ -31,10 +31,10 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST);
 
         //? if minecraft: >= 1.21.11 {
-        valueLookupBuilder(ItemTags.SPEARS)
+        /*valueLookupBuilder(ItemTags.SPEARS)
                 .add(ModItems.RUBY_SPEAR)
                 .add(ModItems.SAPPHIRE_SPEAR);
-        //?} else {
+        *///?} else {
         //?}
 
 

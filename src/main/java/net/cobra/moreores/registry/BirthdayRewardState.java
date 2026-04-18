@@ -31,7 +31,7 @@ public class BirthdayRewardState extends PersistentState {
                     "moreores_birthday_rewards",
                     BirthdayRewardState::new,
                     CODEC,
-                    null // no DataFixTypes needed
+                    null
             );
 
     public boolean hasClaimed(UUID uuid) {
