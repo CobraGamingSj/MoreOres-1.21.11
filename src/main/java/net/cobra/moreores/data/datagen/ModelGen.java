@@ -28,6 +28,7 @@ public class ModelGen extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GREEN_GARNET_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.KYAWTHUITE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TOPAZ_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WHITE_TOPAZ_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PYROPE_BLOCK);
@@ -40,6 +41,7 @@ public class ModelGen extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GREEN_GARNET_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.KYAWTHUITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TOPAZ_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WHITE_TOPAZ_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PYROPE_ORE);
@@ -52,6 +54,7 @@ public class ModelGen extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_TOPAZ_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PYROPE_ORE);
@@ -77,6 +80,7 @@ public class ModelGen extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PINK_GARNET_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_GREEN_GARNET_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_TOPAZ_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_KYAWTHUITE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PERIDOT_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PYROPE_BLOCK);
@@ -102,6 +106,7 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BLUE_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.GREEN_GARNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.KYAWTHUITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.WHITE_TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.PERIDOT, Models.GENERATED);
@@ -114,6 +119,7 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_BLUE_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_GREEN_GARNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_KYAWTHUITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_WHITE_TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PERIDOT, Models.GENERATED);
@@ -126,6 +132,8 @@ public class ModelGen extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.ENERGY_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.WOOD_PELLET, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.GEM_DETECTOR, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.PINEAPPLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TOMATO, Models.GENERATED);

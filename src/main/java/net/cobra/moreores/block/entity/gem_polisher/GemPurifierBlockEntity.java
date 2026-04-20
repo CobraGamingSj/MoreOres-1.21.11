@@ -4,6 +4,7 @@ import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierEnergyData;
 import net.cobra.moreores.block.data.GemPurifierFluidData;
+import net.cobra.moreores.block.data.GemPurifierSynchronizer;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
@@ -53,7 +54,7 @@ import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.Optional;
 
-public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPurifierEnergyData>, ImplementedInventory, TickableBlockEntity {
+public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPurifierSynchronizer>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(16, ItemStack.EMPTY);
     private PolishingState polishingState = PolishingState.IDLE;
     private EnergyState energyState = EnergyState.IDLE;
@@ -67,7 +68,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             markDirty();
 
             for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierEnergyData(this.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPurifierSynchronizer(this.amount, fluidStorage.variant, fluidStorage.amount, getPos()));
             }
         }
     };
@@ -86,7 +87,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         protected void onFinalCommit() {
             markDirty();
             for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierFluidData(this.variant, this.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPurifierSynchronizer(this.amount, fluidStorage.variant, fluidStorage.amount, getPos()));
             }
         }
     };
@@ -102,7 +103,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     protected final PropertyDelegate propertyDelegate;
     private int initialProgress = 0;
     private int maxProgressTick = 384;
-    private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.GEM_POLISHING);
+    private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.INSTANCE);
 
     public GemPurifierBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, pos, state);
@@ -219,8 +220,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
 
     @Override
-    public GemPurifierEnergyData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPurifierEnergyData(energyAmount(), this.pos);
+    public GemPurifierSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return new GemPurifierSynchronizer(energyAmount(), fluidStorage.variant, fluidStorage.amount, this.pos);
     }
 
     @Override
@@ -257,7 +258,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        changeStateAtEnergyAmount();
+        changeState();
 
         if(polishingState == PolishingState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
@@ -290,12 +291,6 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
                 energyState = EnergyState.IDLE;
                 waterState= WaterFluidState.IDLE;
             }
-//            if(waterAmount() < 810000 && hasWaterBucket()) {
-//                waterState = WaterFluidState.FILLING;
-//                fillWater();
-//            } else {
-//                waterState= WaterFluidState.IDLE;
-//            }
         }
 
         checkForEnoughEnergyAndRemoveItem();
@@ -303,7 +298,13 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         markDirty(world, pos, state);
     }
 
-    private void changeStateAtEnergyAmount() {
+    private void changeState() {
+        if(propertyDelegate.get(0) > 0) {
+            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, true), Block.NOTIFY_ALL);
+        } else {
+            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, false), Block.NOTIFY_ALL);
+        }
+
         if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
             world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
         } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
@@ -327,11 +328,11 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void fillWater() {
-        if(!hasWaterBucket() || waterAmount() >= 10_000_000) {
+        if(!hasWaterBucket() || waterAmount() >= 810000) {
             waterState = WaterFluidState.IDLE;
             return;
         }
-        long amount = 1024;
+        long amount = 1620;
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = fluidStorage.insert(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();
@@ -350,7 +351,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void consumeWater() {
-        long amount = 256;
+        long amount = 810;
         try(Transaction transaction = Transaction.openOuter()) {
             fluidStorage.extract(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();

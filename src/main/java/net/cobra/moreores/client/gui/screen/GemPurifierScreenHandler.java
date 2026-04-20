@@ -2,11 +2,13 @@ package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierEnergyData;
+import net.cobra.moreores.block.data.GemPurifierSynchronizer;
 import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.cobra.moreores.screen.EnergySlot;
 import net.cobra.moreores.screen.GemPurifierInputSlot;
+import net.cobra.moreores.screen.GemPurifierResultSlot;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
@@ -34,7 +36,7 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
     public final GemPurifierBlockEntity blockEntity;
 
     // Client Side Constructor
-    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierEnergyData data) {
+    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(2));
     }
@@ -50,7 +52,7 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         this.blockEntity = (GemPurifierBlockEntity) blockEntity;
 
         this.addSlot(new GemPurifierInputSlot(inventory, 0, 79, 11)); // Input
-        this.addSlot(new Slot(inventory, 1, 79, 61)); // Result
+        this.addSlot(new GemPurifierResultSlot(inventory, 1, 79, 61)); // Result
         this.addSlot(new EnergySlot(inventory, 2, 40, 20)); // Energy Input
         this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source
 

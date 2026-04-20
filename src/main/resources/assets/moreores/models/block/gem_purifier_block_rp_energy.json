@@ -1,10 +1,12 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
 		"1": "moreores:block/gem_purifier/body_rp_energy",
 		"3": "moreores:block/gem_purifier/legs",
 		"4": "moreores:block/gem_purifier/tray",
+		"5": "moreores:block/gem_purifier/ot_tray",
 		"particle": "moreores:block/gem_purifier/gem_purifier_break"
 	},
 	"elements": [
@@ -191,62 +193,6 @@
 			}
 		},
 		{
-			"name": "tray_2",
-			"from": [6, 14, 9],
-			"to": [10, 15, 9],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 15, 10]},
-			"faces": {
-				"north": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"east": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"south": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"west": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"up": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"down": {"uv": [0, 0, 4, 1], "texture": "#4"}
-			}
-		},
-		{
-			"name": "tray_2",
-			"from": [6, 14, 13],
-			"to": [10, 15, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 15, 15]},
-			"faces": {
-				"north": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"east": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"south": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"west": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"up": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"down": {"uv": [0, 0, 4, 1], "texture": "#4"}
-			}
-		},
-		{
-			"name": "tray_2",
-			"from": [6, 14, 9],
-			"to": [6, 15, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 15, 11]},
-			"faces": {
-				"north": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"east": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"south": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"west": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"up": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"down": {"uv": [0, 0, 4, 1], "texture": "#4"}
-			}
-		},
-		{
-			"name": "tray_2",
-			"from": [10, 14, 9],
-			"to": [10, 15, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [10, 15, 11]},
-			"faces": {
-				"north": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"east": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"south": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"west": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"up": {"uv": [0, 0, 4, 1], "texture": "#4"},
-				"down": {"uv": [0, 0, 4, 1], "texture": "#4"}
-			}
-		},
-		{
 			"name": "tray_3",
 			"from": [10, 14, 2],
 			"to": [14, 15, 2],
@@ -301,6 +247,62 @@
 				"up": {"uv": [0, 0, 4, 1], "texture": "#4"},
 				"down": {"uv": [0, 0, 4, 1], "texture": "#4"}
 			}
+		},
+		{
+			"name": "tray_2",
+			"from": [5.25, 14, 8.25],
+			"to": [10.75, 14.75, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 15, 8.75]},
+			"faces": {
+				"north": {"uv": [0, 0, 5.5, 1], "texture": "#5"},
+				"east": {"uv": [2, 8, 3, 9], "texture": "#5"},
+				"south": {"uv": [0, 1, 5.5, 2], "texture": "#5"},
+				"west": {"uv": [3, 8, 4, 9], "texture": "#5"},
+				"up": {"uv": [5.5, 3, 0, 2], "texture": "#5"},
+				"down": {"uv": [5.5, 3, 0, 4], "texture": "#5"}
+			}
+		},
+		{
+			"name": "tray_2",
+			"from": [5.25, 14, 13],
+			"to": [10.75, 14.75, 13.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 15, 13.5]},
+			"faces": {
+				"north": {"uv": [0, 4, 5.5, 5], "texture": "#5"},
+				"east": {"uv": [4, 8, 5, 9], "texture": "#5"},
+				"south": {"uv": [0, 5, 5.5, 6], "texture": "#5"},
+				"west": {"uv": [8, 4, 9, 5], "texture": "#5"},
+				"up": {"uv": [5.5, 7, 0, 6], "texture": "#5"},
+				"down": {"uv": [11.5, 0, 6, 1], "texture": "#5"}
+			}
+		},
+		{
+			"name": "tray_2",
+			"from": [5.25, 14, 9],
+			"to": [6, 14.75, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 15, 11]},
+			"faces": {
+				"north": {"uv": [6, 7, 7, 8], "texture": "#5"},
+				"east": {"uv": [6, 1, 10, 2], "texture": "#5"},
+				"south": {"uv": [1, 8, 2, 9], "texture": "#5"},
+				"west": {"uv": [6, 2, 10, 3], "texture": "#5"},
+				"up": {"uv": [7, 7, 6, 3], "texture": "#5"},
+				"down": {"uv": [1, 7, 0, 11], "texture": "#5"}
+			}
+		},
+		{
+			"name": "tray_2",
+			"from": [10, 14, 9],
+			"to": [10.75, 14.75, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 15, 11]},
+			"faces": {
+				"north": {"uv": [8, 5, 9, 6], "texture": "#5"},
+				"east": {"uv": [1, 7, 5, 8], "texture": "#5"},
+				"south": {"uv": [6, 8, 7, 9], "texture": "#5"},
+				"west": {"uv": [7, 3, 11, 4], "texture": "#5"},
+				"up": {"uv": [8, 8, 7, 4], "texture": "#5"},
+				"down": {"uv": [6, 7, 5, 11], "texture": "#5"}
+			}
 		}
 	],
 	"display": {
@@ -338,21 +340,25 @@
 		{
 			"name": "VoxelShape",
 			"origin": [8, 0, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "BlockBench",
 					"origin": [8, 0, 8],
+					"scope": 0,
 					"color": 0,
 					"children": [
 						{
 							"name": "body",
 							"origin": [8, 0, 8],
+							"scope": 0,
 							"color": 0,
 							"children": [
 								{
 									"name": "legs",
 									"origin": [8, 0, 8],
+									"scope": 0,
 									"color": 0,
 									"children": [
 										0,
@@ -362,6 +368,7 @@
 										{
 											"name": "rubber",
 											"origin": [8, 0, 8],
+											"scope": 0,
 											"color": 0,
 											"children": [4, 5, 6, 7]
 										}
@@ -370,14 +377,32 @@
 								{
 									"name": "body",
 									"origin": [8, 0, 8],
+									"scope": 0,
 									"color": 0,
 									"children": [
 										8,
 										{
 											"name": "tray",
 											"origin": [8, 0, 8],
+											"scope": 0,
 											"color": 0,
-											"children": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+											"children": [
+												9,
+												10,
+												11,
+												12,
+												13,
+												14,
+												15,
+												16,
+												{
+													"name": "output_tray",
+													"origin": [8, 0, 8],
+													"scope": 0,
+													"color": 0,
+													"children": [17, 18, 19, 20]
+												}
+											]
 										}
 									]
 								}

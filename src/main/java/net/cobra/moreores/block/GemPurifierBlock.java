@@ -37,6 +37,7 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
     public static final BooleanProperty HAS_ENERGY = BooleanProperty.of("has_energy");
+    public static final BooleanProperty IS_POLISHING = BooleanProperty.of("is_polishing");
     public static final MapCodec<GemPurifierBlock> CODEC = GemPurifierBlock.createCodec(GemPurifierBlock::new);
 
     @Override
@@ -46,13 +47,13 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
 
     protected GemPurifierBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false));
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false).with(HAS_ENERGY, false).with(IS_POLISHING, false));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(HAS_ENERGY, false);
+                .with(HAS_ENERGY, false).with(IS_POLISHING, false);
     }
 
     @Override
@@ -182,5 +183,6 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
         builder.add(FACING);
         builder.add(REDSTONE_POWERED);
         builder.add(HAS_ENERGY);
+        builder.add(IS_POLISHING);
     }
 }

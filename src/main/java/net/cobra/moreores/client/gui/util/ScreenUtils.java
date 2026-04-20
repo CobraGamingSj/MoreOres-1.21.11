@@ -4,10 +4,11 @@ import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 
 public class ScreenUtils {
-    public static void renderTiledSprite(DrawContext context, Sprite sprite, int x, int y, int width, int height, int color) {
+    public static void renderTiledSprite(DrawContext context, Sprite sprite, int x, int y, int width, int height, float a, float r, float g, float b) {
         int spriteWidth = sprite.getContents().getWidth();
         int spriteHeight = sprite.getContents().getHeight();
 
@@ -29,7 +30,7 @@ public class ScreenUtils {
                 float maxU = sprite.getMaxU();
                 float maxV = sprite.getMaxV();
 
-                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, color);
+                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, ColorHelper.fromFloats(a, r, g, b));
             }
 
             if(yRemainder > 0) {
@@ -40,7 +41,7 @@ public class ScreenUtils {
                 float maxU = sprite.getMaxU();
                 float maxV = minV + (sprite.getMaxV() - minV) * ((float) yRemainder / spriteHeight);
 
-                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, color);
+                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, ColorHelper.fromFloats(a, r, g, b));
             }
         }
 
@@ -54,7 +55,7 @@ public class ScreenUtils {
                 float maxU = minU + (sprite.getMaxU() - minU) * ((float) xRemainder / spriteWidth);
                 float maxV = sprite.getMaxV();
 
-                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, color);
+                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, ColorHelper.fromFloats(a, r, g, b));
             }
 
             if(yRemainder > 0) {
@@ -65,7 +66,7 @@ public class ScreenUtils {
                 float maxU = minU + (sprite.getMaxU() - minU) * ((float) xRemainder / spriteWidth);
                 float maxV = minV + (sprite.getMaxV() - minV) * ((float) yRemainder / spriteHeight);
 
-                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, color);
+                context.drawTexturedQuad(RenderPipelines.GUI_TEXTURED, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, ColorHelper.fromFloats(a, r, g, b));
             }
         }
 

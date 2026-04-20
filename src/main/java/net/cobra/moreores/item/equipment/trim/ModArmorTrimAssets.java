@@ -13,6 +13,7 @@ public class ModArmorTrimAssets {
     public static final ArmorTrimAssets BLUE_GARNET = of("blue_garnet");
     public static final ArmorTrimAssets PINK_GARNET = of("pink_garnet");
     public static final ArmorTrimAssets GREEN_GARNET = of("green_garnet");
+    public static final ArmorTrimAssets KYAWTHUITE = of("kyawthuite");
     public static final ArmorTrimAssets TOPAZ = of("topaz");
     public static final ArmorTrimAssets WHITE_TOPAZ = of("white_topaz");
     public static final ArmorTrimAssets PERIDOT = of("peridot");
