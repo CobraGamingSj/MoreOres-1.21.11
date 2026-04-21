@@ -3,9 +3,10 @@ package net.cobra.moreores.client;
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
+import net.cobra.moreores.block.entity.gem_polisher.util.GemColorUtils;
 import net.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
+import net.cobra.moreores.client.render.item.tint.GemTintSource;
 import net.cobra.moreores.networking.ModS2CNetworks;
-import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,12 +14,14 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.client.render.item.tint.TintSourceTypes;
 
 public class MoreOresClientModInitializer implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        GemColorUtils.register();
+        TintSourceTypes.ID_MAPPER.put(MoreOresModInitializer.getId("tint"), GemTintSource.CODEC);
+
         ModS2CNetworks.registerClientS2C();
 
         BlockRenderLayerMap.putBlock(ModBlocks.TOMATO_CROP, BlockRenderLayer.CUTOUT);

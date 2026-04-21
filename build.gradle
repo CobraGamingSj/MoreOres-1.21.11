@@ -72,10 +72,9 @@ java {
 }
 
 jar {
-	inputs.property "archivesName", base.archivesName
-
+	archiveFileName = archives_base_name + "v" + project.mod_version
 	from("LICENSE") {
-		rename { "${it}_${inputs.properties.archivesName}"}
+		rename { "${it}_${project.base.archivesName.get()}" }
 	}
 }
 

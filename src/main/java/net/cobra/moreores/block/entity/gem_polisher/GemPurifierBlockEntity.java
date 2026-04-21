@@ -1,5 +1,6 @@
 package net.cobra.moreores.block.entity.gem_polisher;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierEnergyData;
@@ -8,6 +9,7 @@ import net.cobra.moreores.block.data.GemPurifierSynchronizer;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
+import net.cobra.moreores.block.entity.gem_polisher.util.GemType;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
@@ -59,6 +61,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     private PolishingState polishingState = PolishingState.IDLE;
     private EnergyState energyState = EnergyState.IDLE;
     private WaterFluidState waterState = WaterFluidState.IDLE;
+    private GemType gemType;
 
     public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000, 640000) {
         @Override
@@ -68,7 +71,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             markDirty();
 
             for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierSynchronizer(this.amount, fluidStorage.variant, fluidStorage.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPurifierEnergyData(this.amount, getPos()));
             }
         }
     };
@@ -87,7 +90,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         protected void onFinalCommit() {
             markDirty();
             for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierSynchronizer(this.amount, fluidStorage.variant, fluidStorage.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPurifierFluidData(fluidStorage.variant, fluidStorage.amount, getPos()));
             }
         }
     };
@@ -171,6 +174,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         view.putNullable("PolishingState", PolishingState.CODEC, polishingState);
         view.putNullable("EnergyState", EnergyState.CODEC, energyState);
         view.putNullable("WaterFluidState", WaterFluidState.CODEC, waterState);
+        view.putNullable("GemType", GemType.CODEC, gemType);
     }
 
     @Override
@@ -184,6 +188,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         polishingState = view.read("PolishingState", PolishingState.CODEC).orElse(PolishingState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
         waterState = view.read("WaterFluidState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
+        gemType = view.read("GemType", GemType.CODEC).orElse(null);
     }
 
     @Override
@@ -195,6 +200,38 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new GemPurifierScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        ImplementedInventory.super.setStack(slot, stack);
+        if(slot == INGREDIENT_SLOT) {
+            gemType = detectGem(stack);
+        }
+    }
+
+    private GemType detectGem(ItemStack stack) {
+        if (stack.isOf(ModItems.RUBY)) return GemType.RUBY;
+        if (stack.isOf(ModItems.SAPPHIRE)) return GemType.SAPPHIRE;
+        if (stack.isOf(ModItems.GREEN_SAPPHIRE)) return GemType.GREEN_SAPPHIRE;
+        if (stack.isOf(ModItems.BLUE_GARNET)) return GemType.BLUE_GARNET;
+        if (stack.isOf(ModItems.PINK_GARNET)) return GemType.PINK_GARNET;
+        if (stack.isOf(ModItems.GREEN_GARNET)) return GemType.GREEN_GARNET;
+        if (stack.isOf(ModItems.KYAWTHUITE)) return GemType.KYAWTHUITE;
+        if (stack.isOf(ModItems.TOPAZ)) return GemType.TOPAZ;
+        if (stack.isOf(ModItems.WHITE_TOPAZ)) return GemType.WHITE_TOPAZ;
+        if (stack.isOf(ModItems.PERIDOT)) return GemType.PERIDOT;
+        if (stack.isOf(ModItems.JADE)) return GemType.JADE;
+        if (stack.isOf(ModItems.PYROPE)) return GemType.PYROPE;
+        return null;
+    }
+
+    public GemType getGem() {
+        return detectGem(ingredientStack());
+    }
+
+    public void setGem(GemType gem) {
+        gemType = gem;
     }
 
     @Override
@@ -258,6 +295,15 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
+        ItemStack input = this.ingredientStack();
+        GemType newGem = detectGem(input);
+
+        if (newGem != this.gemType) {
+            setGem(newGem);
+
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+
         changeState();
 
         if(polishingState == PolishingState.RUNNING) {
@@ -299,17 +345,32 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void changeState() {
-        if(propertyDelegate.get(0) > 0) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, true), Block.NOTIFY_ALL);
-        } else {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, false), Block.NOTIFY_ALL);
+        BlockState state = getCachedState();
+
+        boolean polishing = initialProgress > 0;
+        state = state.with(GemPurifierBlock.IS_POLISHING, polishing);
+        MoreOresModInitializer.LOGGER.debug("Gem Purifier at {} is {}. Progress: {}/{}", pos, polishing ? "polishing" : "idle", propertyDelegate.get(0), propertyDelegate.get(1));
+
+        boolean energy = energyStorage.amount > 0;
+        state = state.with(GemPurifierBlock.HAS_ENERGY, energy);
+        MoreOresModInitializer.LOGGER.debug("Gem Purifier at {} has energy: {}", pos, energy);
+
+        if(state != getCachedState()) {
+            world.setBlockState(pos, state, Block.NOTIFY_ALL);
         }
 
-        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
-        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
-        }
+//        if(initialProgress > 0) {
+//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, true), Block.NOTIFY_ALL);
+//            MoreOresModInitializer.LOGGER.debug("Gem Purifier at {} is polishing. Progress: {}/{}", pos, propertyDelegate.get(0), propertyDelegate.get(1));
+//        } else {
+//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, false), Block.NOTIFY_ALL);
+//        }
+//
+//        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
+//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
+//        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
+//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
+//        }
     }
 
     private void insertEnergy() {
