@@ -188,7 +188,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         polishingState = view.read("PolishingState", PolishingState.CODEC).orElse(PolishingState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
         waterState = view.read("WaterFluidState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
-        gemType = view.read("GemType", GemType.CODEC).orElse(null);
+        gemType = view.read("GemType", GemType.CODEC).orElse(GemType.EMPTY);
     }
 
     @Override
@@ -223,7 +223,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         if (stack.isOf(ModItems.PERIDOT)) return GemType.PERIDOT;
         if (stack.isOf(ModItems.JADE)) return GemType.JADE;
         if (stack.isOf(ModItems.PYROPE)) return GemType.PYROPE;
-        return null;
+        return GemType.EMPTY;
     }
 
     public GemType getGem() {

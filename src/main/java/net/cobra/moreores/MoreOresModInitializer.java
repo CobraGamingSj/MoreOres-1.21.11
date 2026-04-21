@@ -6,7 +6,6 @@ import net.cobra.moreores.block.data.PolishingStateData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
-import net.cobra.moreores.component.type.ModDataComponentType;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.networking.ModC2SNetworks;
@@ -323,7 +322,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModConsumableComponents Registry
 		ModConsumableComponents.register();
-		ModDataComponentType.register();
 
 
 		//ModRecipeBookCategories Registry

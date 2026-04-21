@@ -1,13 +1,12 @@
 package net.cobra.moreores.block.entity.gem_polisher.util;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.item.ModItems;
-import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 public enum GemType {
+    EMPTY(0xFFFFFF, Items.AIR),
     RUBY(0xD30100, ModItems.RUBY),
     SAPPHIRE(0x381EFF, ModItems.SAPPHIRE),
     GREEN_SAPPHIRE(0x16BC00, ModItems.GREEN_SAPPHIRE),

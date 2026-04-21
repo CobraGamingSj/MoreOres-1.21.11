@@ -5,7 +5,6 @@ import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.block.entity.gem_polisher.util.GemColorUtils;
 import net.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
-import net.cobra.moreores.client.render.item.tint.GemTintSource;
 import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
@@ -20,7 +19,6 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         GemColorUtils.register();
-        TintSourceTypes.ID_MAPPER.put(MoreOresModInitializer.getId("tint"), GemTintSource.CODEC);
 
         ModS2CNetworks.registerClientS2C();
 
