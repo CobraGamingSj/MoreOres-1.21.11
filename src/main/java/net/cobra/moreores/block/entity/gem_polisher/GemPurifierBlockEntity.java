@@ -1,6 +1,5 @@
 package net.cobra.moreores.block.entity.gem_polisher;
 
-import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierEnergyData;
@@ -9,7 +8,7 @@ import net.cobra.moreores.block.data.GemPurifierSynchronizer;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
-import net.cobra.moreores.block.entity.gem_polisher.util.GemType;
+import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
@@ -61,7 +60,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     private PolishingState polishingState = PolishingState.IDLE;
     private EnergyState energyState = EnergyState.IDLE;
     private WaterFluidState waterState = WaterFluidState.IDLE;
-    private GemType gemType;
+    private GemType gemType = GemType.EMPTY;
 
     public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000, 640000) {
         @Override
@@ -205,12 +204,12 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     @Override
     public void setStack(int slot, ItemStack stack) {
         ImplementedInventory.super.setStack(slot, stack);
-        if(slot == INGREDIENT_SLOT) {
+        if(slot == RESULT_SLOT) {
             gemType = detectGem(stack);
         }
     }
 
-    private GemType detectGem(ItemStack stack) {
+    public GemType detectGem(ItemStack stack) {
         if (stack.isOf(ModItems.RUBY)) return GemType.RUBY;
         if (stack.isOf(ModItems.SAPPHIRE)) return GemType.SAPPHIRE;
         if (stack.isOf(ModItems.GREEN_SAPPHIRE)) return GemType.GREEN_SAPPHIRE;
@@ -227,7 +226,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     public GemType getGem() {
-        return detectGem(ingredientStack());
+        return detectGem(resultStack());
     }
 
     public void setGem(GemType gem) {
@@ -295,8 +294,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        ItemStack input = this.ingredientStack();
-        GemType newGem = detectGem(input);
+        ItemStack result = this.resultStack();
+        GemType newGem = detectGem(result);
 
         if (newGem != this.gemType) {
             setGem(newGem);
@@ -347,13 +346,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     private void changeState() {
         BlockState state = getCachedState();
 
-        boolean polishing = initialProgress > 0;
-        state = state.with(GemPurifierBlock.IS_POLISHING, polishing);
-        MoreOresModInitializer.LOGGER.debug("Gem Purifier at {} is {}. Progress: {}/{}", pos, polishing ? "polishing" : "idle", propertyDelegate.get(0), propertyDelegate.get(1));
+        state = state.with(GemPurifierBlock.IS_POLISHING, detectGem(resultStack()));
 
-        boolean energy = energyStorage.amount > 0;
-        state = state.with(GemPurifierBlock.HAS_ENERGY, energy);
-        MoreOresModInitializer.LOGGER.debug("Gem Purifier at {} has energy: {}", pos, energy);
 
         if(state != getCachedState()) {
             world.setBlockState(pos, state, Block.NOTIFY_ALL);

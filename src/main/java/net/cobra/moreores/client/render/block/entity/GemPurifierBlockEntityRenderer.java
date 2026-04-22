@@ -34,19 +34,22 @@ public final class GemPurifierBlockEntityRenderer implements BlockEntityRenderer
     private void renderItem(ItemRenderState state, MatrixStack matrices,
                             OrderedRenderCommandQueue queue,
                             float x, float z, float rotationAngle, int light) {
-            matrices.push();
+        matrices.push();
 
-            matrices.translate(0.5, 0, 0.5);
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotationAngle));
-            matrices.translate(-0.5, 0, -0.5);
+        matrices.translate(0.5, 0, 0.5);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotationAngle));
+        matrices.translate(-0.5, 0, -0.5);
 
-            matrices.translate(x, 0.9F, z);
-            matrices.scale(0.25f, 0.25f, 0.25f);
-            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
-            matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
+        matrices.translate(x, 0.9F, z);
+        matrices.scale(0.25f, 0.25f, 0.25f);
+        if(state == GemPurifierBlockEntityRenderState.INSTANCE.resultItemRenderState) {
+            matrices.scale(0.5f, 0.5f, 0.5f);
+        }
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-270));
+        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
 
-            state.render(matrices, queue, light, OverlayTexture.DEFAULT_UV, 0);
-            matrices.pop();
+        state.render(matrices, queue, light, OverlayTexture.DEFAULT_UV, 0);
+        matrices.pop();
     }
 
     private float getRotationAngle(GemPurifierBlockEntity entity) {

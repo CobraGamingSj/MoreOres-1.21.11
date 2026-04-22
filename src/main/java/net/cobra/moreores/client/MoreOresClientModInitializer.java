@@ -1,24 +1,21 @@
 package net.cobra.moreores.client;
 
-import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
-import net.cobra.moreores.block.entity.gem_polisher.util.GemColorUtils;
-import net.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
-import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
+import net.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
+import net.cobra.moreores.networking.ModS2CNetworks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.item.tint.TintSourceTypes;
 
 public class MoreOresClientModInitializer implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        GemColorUtils.register();
+//        GemColorUtils.register();
 
         ModS2CNetworks.registerClientS2C();
 

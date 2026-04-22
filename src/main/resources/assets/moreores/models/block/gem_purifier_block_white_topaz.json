@@ -3,10 +3,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"1": "moreores:block/gem_purifier/body_energy",
+		"1": "moreores:block/gem_purifier/body",
 		"3": "moreores:block/gem_purifier/legs",
 		"4": "moreores:block/gem_purifier/tray",
-		"5": "moreores:block/gem_purifier/ot_tray",
+		"5": "moreores:block/gem_purifier/ot_tray_white_topaz",
 		"particle": "moreores:block/gem_purifier/gem_purifier_break"
 	},
 	"elements": [

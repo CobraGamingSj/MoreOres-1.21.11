@@ -1,7 +1,7 @@
 //package net.cobra.moreores.component.type;
 //
 //import com.mojang.serialization.Codec;
-//import net.cobra.moreores.block.entity.gem_polisher.util.GemType;
+//import net.cobra.moreores.item.util.GemType;
 //import net.minecraft.network.RegistryByteBuf;
 //import net.minecraft.network.codec.PacketCodec;
 //import net.minecraft.network.codec.PacketCodecs;

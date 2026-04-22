@@ -2,7 +2,7 @@
 //
 //import com.mojang.serialization.MapCodec;
 //import com.mojang.serialization.codecs.RecordCodecBuilder;
-//import net.cobra.moreores.block.entity.gem_polisher.util.GemColorUtils;
+//import net.cobra.moreores.item.util.GemColorUtils;
 //import net.cobra.moreores.component.type.GemTypeComponent;
 //import net.cobra.moreores.component.type.ModDataComponentType;
 //import net.minecraft.client.render.item.tint.PotionTintSource;
@@ -15,7 +15,7 @@
 //import net.minecraft.util.dynamic.Codecs;
 //import org.jspecify.annotations.Nullable;
 //
-//import static net.cobra.moreores.block.entity.gem_polisher.util.GemColorUtils.GEMS;
+//import static net.cobra.moreores.item.util.GemColorUtils.GEMS;
 //
 //public record GemTintSource(int defaultColor) implements TintSource {
 //

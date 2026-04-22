@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
+import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.*;
@@ -36,8 +37,7 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
-    public static final BooleanProperty HAS_ENERGY = BooleanProperty.of("has_energy");
-    public static final BooleanProperty IS_POLISHING = BooleanProperty.of("is_polishing");
+    public static final EnumProperty<GemType> IS_POLISHING = EnumProperty.of("is_polishing", GemType.class);
     public static final MapCodec<GemPurifierBlock> CODEC = GemPurifierBlock.createCodec(GemPurifierBlock::new);
 
     @Override
@@ -47,13 +47,14 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
 
     protected GemPurifierBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false).with(HAS_ENERGY, false).with(IS_POLISHING, false));
+        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
+                .with(IS_POLISHING, GemType.EMPTY));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(HAS_ENERGY, false).with(IS_POLISHING, false);
+                .with(IS_POLISHING, GemType.EMPTY);
     }
 
     @Override
@@ -96,9 +97,17 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        BlockState newState = state;
+
         if(state.get(REDSTONE_POWERED) && !world.isReceivingRedstonePower(pos)) {
-            world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
+            newState = newState.with(REDSTONE_POWERED, false);
         }
+
+        if(world.getBlockEntity(pos) instanceof GemPurifierBlockEntity be) {
+            newState = newState.with(IS_POLISHING, be.detectGem(be.resultStack()));
+        }
+
+        world.setBlockState(pos, newState, Block.NOTIFY_ALL);
     }
 
     @Override
@@ -182,7 +191,6 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
         builder.add(REDSTONE_POWERED);
-        builder.add(HAS_ENERGY);
         builder.add(IS_POLISHING);
     }
 }
