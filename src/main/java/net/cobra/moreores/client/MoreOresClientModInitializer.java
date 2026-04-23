@@ -15,8 +15,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 public class MoreOresClientModInitializer implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-//        GemColorUtils.register();
-
         ModS2CNetworks.registerClientS2C();
 
         BlockRenderLayerMap.putBlock(ModBlocks.TOMATO_CROP, BlockRenderLayer.CUTOUT);
