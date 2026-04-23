@@ -74,7 +74,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             }
         }
     };
-    public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<FluidVariant>() {
+    public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
         @Override
         protected FluidVariant getBlankVariant() {
             return FluidVariant.blank();
@@ -88,7 +88,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         @Override
         protected void onFinalCommit() {
             markDirty();
-            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+            for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
                 ServerPlayNetworking.send(user, new GemPurifierFluidData(fluidStorage.variant, fluidStorage.amount, getPos()));
             }
         }
@@ -294,8 +294,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        ItemStack result = this.resultStack();
-        GemType newGem = detectGem(result);
+        GemType newGem = getGem();
 
         if (newGem != this.gemType) {
             setGem(newGem);
@@ -346,25 +345,12 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     private void changeState() {
         BlockState state = getCachedState();
 
-        state = state.with(GemPurifierBlock.IS_POLISHING, detectGem(resultStack()));
+        state = state.with(GemPurifierBlock.IS_POLISHING, getGem());
 
 
         if(state != getCachedState()) {
             world.setBlockState(pos, state, Block.NOTIFY_ALL);
         }
-
-//        if(initialProgress > 0) {
-//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, true), Block.NOTIFY_ALL);
-//            MoreOresModInitializer.LOGGER.debug("Gem Purifier at {} is polishing. Progress: {}/{}", pos, propertyDelegate.get(0), propertyDelegate.get(1));
-//        } else {
-//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.IS_POLISHING, false), Block.NOTIFY_ALL);
-//        }
-//
-//        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
-//        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-//            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
-//        }
     }
 
     private void insertEnergy() {

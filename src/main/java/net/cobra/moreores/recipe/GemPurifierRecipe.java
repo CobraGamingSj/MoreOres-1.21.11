@@ -3,6 +3,7 @@ package net.cobra.moreores.recipe;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;

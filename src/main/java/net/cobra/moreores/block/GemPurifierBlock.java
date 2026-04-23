@@ -104,7 +104,7 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
         }
 
         if(world.getBlockEntity(pos) instanceof GemPurifierBlockEntity be) {
-            newState = newState.with(IS_POLISHING, be.detectGem(be.resultStack()));
+            newState = newState.with(IS_POLISHING, be.getGem());
         }
 
         world.setBlockState(pos, newState, Block.NOTIFY_ALL);

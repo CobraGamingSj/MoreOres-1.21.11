@@ -139,16 +139,16 @@ public class ModItems {
 
 //     Radiant Armor
     public static final Item RADIANT_HELMET = register(
-      "radiant_helmet",
-      new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof().registryKey(setRegistryKey("radiant_helmet")))
+            "radiant_helmet",
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof())
     );
     public static final Item RADIANT_CHESTPLATE = register(
             "radiant_chestplate",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof().registryKey(setRegistryKey("radiant_chestplate")))
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof())
     );
     public static final Item RADIANT_LEGGINGS = register(
             "radiant_leggings",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof().registryKey(setRegistryKey("radiant_leggings")))
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof())
     );
     public static final Item RADIANT_BOOTS = register(
             "radiant_boots",

@@ -242,10 +242,22 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, getRecipeName(ModItems.RUBY));
 
                 createGemPolishing(
+                                Ingredient.ofItem(ModBlocks.RAW_RUBY_BLOCK.asItem()), new ItemStack(ModBlocks.RUBY_BLOCK.asItem()), RecipeCategory.MISC
+                        )
+                        .criterion(hasItem(ModBlocks.RAW_RUBY_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_RUBY_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.RUBY_BLOCK.asItem()));
+
+                createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_SAPPHIRE), new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_SAPPHIRE), conditionsFromItem(ModItems.RAW_SAPPHIRE))
                         .offerTo(exporter, getRecipeName(ModItems.SAPPHIRE));
+
+                createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_SAPPHIRE_BLOCK.asItem()), new ItemStack(ModBlocks.SAPPHIRE_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_SAPPHIRE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_SAPPHIRE_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.SAPPHIRE_BLOCK.asItem()));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_GREEN_SAPPHIRE), new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
@@ -254,10 +266,22 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, getRecipeName(ModItems.GREEN_SAPPHIRE));
 
                 createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem()), new ItemStack(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()));
+
+                createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_BLUE_GARNET), new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_BLUE_GARNET), conditionsFromItem(ModItems.RAW_BLUE_GARNET))
                         .offerTo(exporter, getRecipeName(ModItems.BLUE_GARNET));
+
+                createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.BLUE_GARNET_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.BLUE_GARNET_BLOCK.asItem()));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_PINK_GARNET), new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
@@ -266,10 +290,22 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, getRecipeName(ModItems.PINK_GARNET));
 
                 createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.PINK_GARNET_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.PINK_GARNET_BLOCK.asItem()));
+
+                createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_GREEN_GARNET), new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_GREEN_GARNET), conditionsFromItem(ModItems.RAW_GREEN_GARNET))
                         .offerTo(exporter, getRecipeName(ModItems.GREEN_GARNET));
+
+                createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.GREEN_GARNET_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.GREEN_GARNET_BLOCK.asItem()));
 
                 createGemPolishing(
                         Ingredient.ofItems(ModItems.RAW_KYAWTHUITE), new ItemStack(ModItems.KYAWTHUITE), RecipeCategory.MISC
@@ -278,10 +314,22 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, getRecipeName(ModItems.KYAWTHUITE));
 
                 createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem()), new ItemStack(ModBlocks.KYAWTHUITE_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.KYAWTHUITE_BLOCK.asItem()));
+
+                createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_TOPAZ), conditionsFromItem(ModItems.RAW_TOPAZ))
                         .offerTo(exporter, getRecipeName(ModItems.TOPAZ));
+
+                createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_TOPAZ_BLOCK.asItem()), new ItemStack(ModBlocks.TOPAZ_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_TOPAZ_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_TOPAZ_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.TOPAZ_BLOCK.asItem()));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_WHITE_TOPAZ), new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
@@ -290,10 +338,22 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, getRecipeName(ModItems.WHITE_TOPAZ));
 
                 createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem()), new ItemStack(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()));
+
+                createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_PERIDOT), new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PERIDOT), conditionsFromItem(ModItems.RAW_PERIDOT))
                         .offerTo(exporter, getRecipeName(ModItems.PERIDOT));
+
+                createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_PERIDOT_BLOCK.asItem()), new ItemStack(ModBlocks.PERIDOT_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_PERIDOT_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PERIDOT_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.PERIDOT_BLOCK.asItem()));
 
                 createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_JADE), new ItemStack(ModItems.JADE), RecipeCategory.MISC
@@ -302,10 +362,22 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, getRecipeName(ModItems.JADE));
 
                 createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_JADE_BLOCK.asItem()), new ItemStack(ModBlocks.JADE_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_JADE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_JADE_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.JADE_BLOCK.asItem()));
+
+                createGemPolishing(
                                 Ingredient.ofItems(ModItems.RAW_PYROPE), new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
                         )
                         .criterion(hasItem(ModItems.RAW_PYROPE), conditionsFromItem(ModItems.RAW_PYROPE))
                         .offerTo(exporter, getRecipeName(ModItems.PYROPE));
+
+                createGemPolishing(
+                        Ingredient.ofItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), new ItemStack(ModBlocks.PYROPE_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.PYROPE_BLOCK.asItem()));
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                         .pattern("aaa")
