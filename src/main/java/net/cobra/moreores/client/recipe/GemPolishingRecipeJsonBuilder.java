@@ -53,7 +53,7 @@ public class GemPolishingRecipeJsonBuilder {
 
     private void validate(RegistryKey<Recipe<?>> recipeId) {
         if (this.criterion.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + recipeId);
+            throw new IllegalStateException("No way of obtaining recipe " + recipeId + ", missing 'criterion'");
         }
     }
 }

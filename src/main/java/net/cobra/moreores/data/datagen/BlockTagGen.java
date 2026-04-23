@@ -38,6 +38,9 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE)
+                .add(ModBlocks.KYAWTHUITE_BLOCK)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE)
                 .add(ModBlocks.TOPAZ_BLOCK)
                 .add(ModBlocks.TOPAZ_ORE)
                 .add(ModBlocks.DEEPSLATE_TOPAZ_ORE)
@@ -59,6 +62,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_BLUE_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_GREEN_GARNET_BLOCK)
+                .add(ModBlocks.RAW_KYAWTHUITE_BLOCK)
                 .add(ModBlocks.RAW_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
@@ -75,6 +79,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLUE_GARNET_BLOCK)
                 .add(ModBlocks.GREEN_GARNET_BLOCK)
                 .add(ModBlocks.PINK_GARNET_BLOCK)
+                .add(ModBlocks.KYAWTHUITE_BLOCK)
                 .add(ModBlocks.TOPAZ_BLOCK)
                 .add(ModBlocks.WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.PERIDOT_BLOCK)
@@ -92,6 +97,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE)
                 .add(ModBlocks.TOPAZ_ORE)
                 .add(ModBlocks.DEEPSLATE_TOPAZ_ORE)
                 .add(ModBlocks.WHITE_TOPAZ_ORE)
@@ -108,6 +115,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_BLUE_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_GREEN_GARNET_BLOCK)
+                .add(ModBlocks.RAW_KYAWTHUITE_BLOCK)
                 .add(ModBlocks.RAW_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
@@ -123,6 +131,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLUE_GARNET_BLOCK)
                 .add(ModBlocks.GREEN_GARNET_BLOCK)
                 .add(ModBlocks.PINK_GARNET_BLOCK)
+                .add(ModBlocks.KYAWTHUITE_BLOCK)
                 .add(ModBlocks.TOPAZ_BLOCK)
                 .add(ModBlocks.WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.PERIDOT_BLOCK)
@@ -140,6 +149,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE)
                 .add(ModBlocks.TOPAZ_ORE)
                 .add(ModBlocks.DEEPSLATE_TOPAZ_ORE)
                 .add(ModBlocks.WHITE_TOPAZ_ORE)
@@ -156,6 +167,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_BLUE_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_GREEN_GARNET_BLOCK)
+                .add(ModBlocks.RAW_KYAWTHUITE_BLOCK)
                 .add(ModBlocks.RAW_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
@@ -172,6 +184,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLUE_GARNET_BLOCK)
                 .add(ModBlocks.GREEN_GARNET_BLOCK)
                 .add(ModBlocks.PINK_GARNET_BLOCK)
+                .add(ModBlocks.KYAWTHUITE_BLOCK)
                 .add(ModBlocks.TOPAZ_BLOCK)
                 .add(ModBlocks.WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.PERIDOT_BLOCK)
@@ -189,6 +202,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE)
                 .add(ModBlocks.TOPAZ_ORE)
                 .add(ModBlocks.DEEPSLATE_TOPAZ_ORE)
                 .add(ModBlocks.WHITE_TOPAZ_ORE)
@@ -205,6 +220,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_BLUE_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_GREEN_GARNET_BLOCK)
+                .add(ModBlocks.RAW_KYAWTHUITE_BLOCK)
                 .add(ModBlocks.RAW_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
@@ -220,6 +236,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLUE_GARNET_BLOCK)
                 .add(ModBlocks.GREEN_GARNET_BLOCK)
                 .add(ModBlocks.PINK_GARNET_BLOCK)
+                .add(ModBlocks.KYAWTHUITE_BLOCK)
                 .add(ModBlocks.TOPAZ_BLOCK)
                 .add(ModBlocks.WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.PERIDOT_BLOCK)
@@ -237,6 +254,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE)
                 .add(ModBlocks.TOPAZ_ORE)
                 .add(ModBlocks.DEEPSLATE_TOPAZ_ORE)
                 .add(ModBlocks.WHITE_TOPAZ_ORE)
@@ -253,6 +272,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_BLUE_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_GREEN_GARNET_BLOCK)
+                .add(ModBlocks.RAW_KYAWTHUITE_BLOCK)
                 .add(ModBlocks.RAW_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
@@ -268,6 +288,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLUE_GARNET_BLOCK)
                 .add(ModBlocks.GREEN_GARNET_BLOCK)
                 .add(ModBlocks.PINK_GARNET_BLOCK)
+                .add(ModBlocks.KYAWTHUITE_BLOCK)
                 .add(ModBlocks.TOPAZ_BLOCK)
                 .add(ModBlocks.WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.PERIDOT_BLOCK)
@@ -285,6 +306,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE)
                 .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE)
                 .add(ModBlocks.TOPAZ_ORE)
                 .add(ModBlocks.DEEPSLATE_TOPAZ_ORE)
                 .add(ModBlocks.WHITE_TOPAZ_ORE)
@@ -301,6 +324,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_BLUE_GARNET_BLOCK)
                 .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
                 .add(ModBlocks.RAW_GREEN_GARNET_BLOCK)
+                .add(ModBlocks.RAW_KYAWTHUITE_BLOCK)
                 .add(ModBlocks.RAW_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
@@ -337,9 +361,54 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.GREEN_SAPPHIRE_ORE)
                 .add(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
 
+        valueLookupBuilder(ModBlockTags.BLUE_GARNET_ORES)
+                .add(ModBlocks.BLUE_GARNET_ORE)
+                .add(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE);
+
+        valueLookupBuilder(ModBlockTags.PINK_GARNET_ORES)
+                .add(ModBlocks.PINK_GARNET_ORE)
+                .add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
+
+        valueLookupBuilder(ModBlockTags.GREEN_GARNET_ORES)
+                .add(ModBlocks.GREEN_GARNET_ORE)
+                .add(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
+
+        valueLookupBuilder(ModBlockTags.KYAWTHUITE_ORES)
+                .add(ModBlocks.KYAWTHUITE_ORE)
+                .add(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE);
+
+        valueLookupBuilder(ModBlockTags.TOPAZ_ORES)
+                .add(ModBlocks.TOPAZ_ORE)
+                .add(ModBlocks.DEEPSLATE_TOPAZ_ORE);
+
+        valueLookupBuilder(ModBlockTags.WHITE_TOPAZ_ORES)
+                .add(ModBlocks.WHITE_TOPAZ_ORE)
+                .add(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
+
+        valueLookupBuilder(ModBlockTags.PERIDOT_ORES)
+                .add(ModBlocks.PERIDOT_ORE)
+                .add(ModBlocks.DEEPSLATE_PERIDOT_ORE);
+
+        valueLookupBuilder(ModBlockTags.JADE_ORES)
+                .add(ModBlocks.JADE_ORE)
+                .add(ModBlocks.DEEPSLATE_JADE_ORE);
+
+        valueLookupBuilder(ModBlockTags.PYROPE_ORES)
+                .add(ModBlocks.PYROPE_ORE)
+                .add(ModBlocks.DEEPSLATE_PYROPE_ORE);
+
         valueLookupBuilder(ModBlockTags.MOD_ORES)
                 .addTag(ModBlockTags.RUBY_ORES)
                 .addTag(ModBlockTags.SAPPHIRE_ORES)
-                .addTag(ModBlockTags.GREEN_SAPPHIRE_ORES);
+                .addTag(ModBlockTags.GREEN_SAPPHIRE_ORES)
+                .addTag(ModBlockTags.BLUE_GARNET_ORES)
+                .addTag(ModBlockTags.PINK_GARNET_ORES)
+                .addTag(ModBlockTags.GREEN_GARNET_ORES)
+                .addTag(ModBlockTags.KYAWTHUITE_ORES)
+                .addTag(ModBlockTags.TOPAZ_ORES)
+                .addTag(ModBlockTags.WHITE_TOPAZ_ORES)
+                .addTag(ModBlockTags.PERIDOT_ORES)
+                .addTag(ModBlockTags.JADE_ORES)
+                .addTag(ModBlockTags.PYROPE_ORES);
     }
 }

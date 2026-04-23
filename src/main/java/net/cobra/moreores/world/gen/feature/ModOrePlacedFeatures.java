@@ -33,6 +33,8 @@ public class ModOrePlacedFeatures {
     public static final RegistryKey<PlacedFeature> ORE_GREEN_GARNET = ModPlacedFeatures.of("ore_green_garnet");
     public static final RegistryKey<PlacedFeature> ORE_GREEN_GARNET_MEDIUM = ModPlacedFeatures.of("ore_green_garnet_medium");
     public static final RegistryKey<PlacedFeature> ORE_GREEN_GARNET_LARGE = ModPlacedFeatures.of("ore_green_garnet_large");
+    public static final RegistryKey<PlacedFeature> ORE_KYAWTHUITE = ModPlacedFeatures.of("ore_kyawthuite");
+    public static final RegistryKey<PlacedFeature> ORE_KYAWTHUITE_DEEPSLATE = ModPlacedFeatures.of("ore_kyawthuite_deepslate");
     public static final RegistryKey<PlacedFeature> ORE_TOPAZ = ModPlacedFeatures.of("ore_topaz");
     public static final RegistryKey<PlacedFeature> ORE_TOPAZ_MEDIUM = ModPlacedFeatures.of("ore_topaz_medium");
     public static final RegistryKey<PlacedFeature> ORE_TOPAZ_LARGE = ModPlacedFeatures.of("ore_topaz_large");
@@ -80,6 +82,7 @@ public class ModOrePlacedFeatures {
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry35 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_GREEN_GARNET_SMALL);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry36 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_GREEN_GARNET_MEDIUM);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry37 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_GREEN_GARNET_LARGE);
+        RegistryEntry<ConfiguredFeature<?, ?>> registryEntryX = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_KYAWTHUITE);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry38 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_TOPAZ_SMALL);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry39 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_TOPAZ_MEDIUM);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry40 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_TOPAZ_LARGE);
@@ -133,7 +136,7 @@ public class ModOrePlacedFeatures {
                 modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(76)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_GREEN_SAPPHIRE_MEDIUM, registryEntry25,modifiersWithCount(5,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_GREEN_SAPPHIRE_MEDIUM, registryEntry27,modifiersWithCount(5,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
@@ -188,6 +191,36 @@ public class ModOrePlacedFeatures {
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,
+                ORE_KYAWTHUITE,
+                registryEntryX,
+                List.of(
+                        CountPlacementModifier.of(2),
+                        RarityFilterPlacementModifier.of(7), // very rare in stone
+                        SquarePlacementModifier.of(),
+                        HeightRangePlacementModifier.trapezoid(
+                                YOffset.fixed(-32),
+                                YOffset.fixed(40)
+                        ),
+                        BiomePlacementModifier.of()
+                )
+        );
+        PlacedFeatures.register(
+                placedFeatureRegisterable,
+                ORE_KYAWTHUITE_DEEPSLATE,
+                registryEntryX,
+                List.of(
+                        CountPlacementModifier.of(1),
+                        RarityFilterPlacementModifier.of(8), // deepslate
+                        SquarePlacementModifier.of(),
+                        HeightRangePlacementModifier.trapezoid(
+                                YOffset.fixed(-64),
+                                YOffset.fixed(-20)
+                        ),
+                        BiomePlacementModifier.of()
+                )
+        );
+        PlacedFeatures.register(
+                placedFeatureRegisterable,
                 ORE_TOPAZ,
                 registryEntry38,
                 modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(52)))
@@ -208,7 +241,7 @@ public class ModOrePlacedFeatures {
                 modifiersWithCount(5,HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(67)))
         );
         PlacedFeatures.register(
-                placedFeatureRegisterable, ORE_WHITE_TOPAZ_MEDIUM, registryEntry47,modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
+                placedFeatureRegisterable, ORE_WHITE_TOPAZ_MEDIUM, registryEntry42,modifiersWithCount(7,HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-4)))
         );
         PlacedFeatures.register(
                 placedFeatureRegisterable,

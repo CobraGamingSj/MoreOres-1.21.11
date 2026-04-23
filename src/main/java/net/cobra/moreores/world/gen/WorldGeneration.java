@@ -64,6 +64,12 @@ public class WorldGeneration {
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_GREEN_GARNET_LARGE);
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_KYAWTHUITE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_KYAWTHUITE_DEEPSLATE);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModOrePlacedFeatures.ORE_TOPAZ);
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),

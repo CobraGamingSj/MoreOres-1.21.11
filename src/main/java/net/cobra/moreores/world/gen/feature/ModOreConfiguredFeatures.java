@@ -33,6 +33,7 @@ public class ModOreConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_GREEN_GARNET_SMALL = ModConfiguredFeatures.of("ore_green_garnet_small");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_GREEN_GARNET_MEDIUM = ModConfiguredFeatures.of("ore_green_garnet_medium");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_GREEN_GARNET_LARGE = ModConfiguredFeatures.of("ore_green_garnet_large");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_KYAWTHUITE = ModConfiguredFeatures.of("ore_kyawthuite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_TOPAZ_SMALL = ModConfiguredFeatures.of("ore_topaz_small");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_TOPAZ_MEDIUM = ModConfiguredFeatures.of("ore_topaz_medium");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_TOPAZ_LARGE = ModConfiguredFeatures.of("ore_topaz_large");
@@ -76,6 +77,10 @@ public class ModOreConfiguredFeatures {
                 OreFeatureConfig.createTarget(ruleTest2, ModBlocks.GREEN_GARNET_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_GREEN_GARNET_ORE.getDefaultState())
         );
+        List<OreFeatureConfig.Target> kyawthuiteList = List.of(
+                OreFeatureConfig.createTarget(ruleTest2, ModBlocks.KYAWTHUITE_ORE.getDefaultState()),
+                OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_KYAWTHUITE_ORE.getDefaultState())
+        );
         List<OreFeatureConfig.Target> topazList = List.of(
                 OreFeatureConfig.createTarget(ruleTest2, ModBlocks.TOPAZ_ORE.getDefaultState()),
                 OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_TOPAZ_ORE.getDefaultState())
@@ -115,6 +120,7 @@ public class ModOreConfiguredFeatures {
         ConfiguredFeatures.register(featureRegisterable, ORE_GREEN_GARNET_SMALL, Feature.ORE, new OreFeatureConfig(greenGarnetList, 2, 0.694F));
         ConfiguredFeatures.register(featureRegisterable, ORE_GREEN_GARNET_LARGE, Feature.ORE, new OreFeatureConfig(greenGarnetList, 5, 0.695F));
         ConfiguredFeatures.register(featureRegisterable, ORE_GREEN_GARNET_MEDIUM, Feature.ORE, new OreFeatureConfig(greenGarnetList, 4, 0.5F));
+        ConfiguredFeatures.register(featureRegisterable, ORE_KYAWTHUITE, Feature.ORE, new OreFeatureConfig(kyawthuiteList, 2, 0.0F));
         ConfiguredFeatures.register(featureRegisterable, ORE_TOPAZ_SMALL, Feature.ORE, new OreFeatureConfig(topazList, 2, 0.69F));
         ConfiguredFeatures.register(featureRegisterable, ORE_TOPAZ_LARGE, Feature.ORE, new OreFeatureConfig(topazList, 6, 0.695F));
         ConfiguredFeatures.register(featureRegisterable, ORE_TOPAZ_MEDIUM, Feature.ORE, new OreFeatureConfig(topazList, 4, 0.5F));

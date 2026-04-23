@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_kyawthuite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:raw_kyawthuite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:kyawthuite_from_blasting_raw_kyawthuite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_kyawthuite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:kyawthuite_from_blasting_raw_kyawthuite"
+    ]
+  }
+}

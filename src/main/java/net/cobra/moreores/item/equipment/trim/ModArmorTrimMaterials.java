@@ -20,6 +20,7 @@ public class ModArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> BLUE_GARNET = of("blue_garnet");
     public static final RegistryKey<ArmorTrimMaterial> PINK_GARNET = of("pink_garnet");
     public static final RegistryKey<ArmorTrimMaterial> GREEN_GARNET = of("green_garnet");
+    public static final RegistryKey<ArmorTrimMaterial> KYAWTHUITE = of("kyawthuite");
     public static final RegistryKey<ArmorTrimMaterial> TOPAZ = of("topaz");
     public static final RegistryKey<ArmorTrimMaterial> WHITE_TOPAZ = of("white_topaz");
     public static final RegistryKey<ArmorTrimMaterial> PERIDOT = of("peridot");
@@ -34,6 +35,7 @@ public class ModArmorTrimMaterials {
         register(registerable, BLUE_GARNET, Style.EMPTY.withColor(TextColor.fromRgb(1507522)), ModArmorTrimAssets.BLUE_GARNET);
         register(registerable, PINK_GARNET, Style.EMPTY.withColor(16711927), ModArmorTrimAssets.PINK_GARNET);
         register(registerable, GREEN_GARNET, Style.EMPTY.withColor(65331), ModArmorTrimAssets.GREEN_GARNET);
+        register(registerable, KYAWTHUITE, Style.EMPTY.withColor(16737792), ModArmorTrimAssets.KYAWTHUITE);
         register(registerable, TOPAZ, Style.EMPTY.withColor(13713152), ModArmorTrimAssets.TOPAZ);
         register(registerable, WHITE_TOPAZ, Style.EMPTY.withColor(15328482), ModArmorTrimAssets.WHITE_TOPAZ);
         register(registerable, PERIDOT, Style.EMPTY.withColor(52238), ModArmorTrimAssets.PERIDOT);

@@ -20,8 +20,10 @@ bc0ad363d6d6c898d6e5649d6bb9d0d142c28fd9 data/minecraft/tags/item/sapphire_tool_
 966828e8ee905acb69f09e745a37d68bd883c31b data/minecraft/tags/item/shovels.json
 ce0fe74a13eb1e92018c73c142e2ca62dc52de0f data/minecraft/tags/item/spears.json
 9a513dcbeb45c9b180682cab7d878c990ee5a933 data/minecraft/tags/item/swords.json
-3f070f2014886d68e4bbcf7289029201ce371b75 data/minecraft/tags/item/trim_materials.json
+9ae5bb7bf5f360c6d7aef9225e7a5abd0fab2a66 data/minecraft/tags/item/trim_materials.json
 858bbc53af65857180e536d3528a61df9920440f data/minecraft/tags/item/trimmable_armor.json
 c1fed1231b9ba55bc3e16b4fe3b1ee78ee0115a7 data/minecraft/tags/item/villager_plantable_seeds.json
-9413174accfcf1b480370b8c43f68e9d3258f5bc data/moreores/tags/item/rare/gemstone.json
-4e44273e1c41366a859ffc3c73f8a079e50cddb6 data/moreores/tags/item/rare/raw_gemstone.json
+ad4d6bc54fb53439ef840758c2a6167b4843f62c data/moreores/tags/item/rare/gemstone.json
+bc01bee0721eba34d2e45120af20a2ab27b0870c data/moreores/tags/item/rare/gemstone_blocks.json
+11a42c1376e8bcd8d2a9579647696014d266d410 data/moreores/tags/item/rare/raw_gemstone.json
+5caea290043c00f98934634560a03a46da0b4ee7 data/moreores/tags/item/rare/raw_gemstone_blocks.json

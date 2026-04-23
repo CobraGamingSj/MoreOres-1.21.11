@@ -1,0 +1,8 @@
+{
+  "type": "moreores:gem_polishing",
+  "ingredientGem": "moreores:raw_kyawthuite",
+  "resultGem": {
+    "count": 1,
+    "id": "moreores:kyawthuite"
+  }
+}

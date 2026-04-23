@@ -1,9 +1,6 @@
 package net.cobra.moreores.data.datagen;
 
-import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.PineappleCropBlock;
-import net.cobra.moreores.block.RubyLampBlock;
-import net.cobra.moreores.block.TomatoCropBlock;
+import net.cobra.moreores.block.*;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
@@ -20,67 +17,72 @@ public class ModelGen extends FabricModelProvider {
     }
     
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RUBY_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RADIANT_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SAPPHIRE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GREEN_SAPPHIRE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GREEN_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TOPAZ_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WHITE_TOPAZ_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PYROPE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.JADE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PERIDOT_BLOCK);
+    public void generateBlockStateModels(BlockStateModelGenerator generator) {
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RUBY_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SAPPHIRE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GREEN_SAPPHIRE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GREEN_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TOPAZ_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WHITE_TOPAZ_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PYROPE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.JADE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PERIDOT_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.RUBY_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RADIANT_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.SAPPHIRE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.GREEN_SAPPHIRE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.GREEN_GARNET_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.KYAWTHUITE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.TOPAZ_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.WHITE_TOPAZ_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.PYROPE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.JADE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.PERIDOT_BLOCK);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_RUBY_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_TOPAZ_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PYROPE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_JADE_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PERIDOT_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.RUBY_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.SAPPHIRE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.GREEN_SAPPHIRE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.GREEN_GARNET_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.KYAWTHUITE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.TOPAZ_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.WHITE_TOPAZ_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.PYROPE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.JADE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.PERIDOT_ORE);
 
-        blockStateModelGenerator.registerCrop(ModBlocks.TOMATO_CROP, TomatoCropBlock.AGE, 0, 1, 2, 3, 4, 5);
-        blockStateModelGenerator.registerCrop(ModBlocks.PINEAPPLE_CROP, PineappleCropBlock.AGE, 0, 1, 2, 3, 4);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_RUBY_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_TOPAZ_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PYROPE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_JADE_ORE);
+        generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PERIDOT_ORE);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ENERGY_BLOCK);
+        generator.registerCrop(ModBlocks.TOMATO_CROP, TomatoCropBlock.AGE, 0, 1, 2, 3, 4, 5);
+        generator.registerCrop(ModBlocks.PINEAPPLE_CROP, PineappleCropBlock.AGE, 0, 1, 2, 3, 4);
 
-        Identifier lampOffIdentifier = TexturedModel.CUBE_ALL.upload(ModBlocks.RUBY_LAMP, blockStateModelGenerator.modelCollector);
-        Identifier lampOnIdentifier = blockStateModelGenerator.createSubModel(ModBlocks.RUBY_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
-        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(ModBlocks.RUBY_LAMP)
+        generator.registerSimpleCubeAll(ModBlocks.ENERGY_BLOCK);
+
+        Identifier lampOffIdentifier = TexturedModel.CUBE_ALL.upload(ModBlocks.RUBY_LAMP, generator.modelCollector);
+        Identifier lampOnIdentifier = generator.createSubModel(ModBlocks.RUBY_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
+        generator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(ModBlocks.RUBY_LAMP)
                 .with(BlockStateModelGenerator.createBooleanModelMap(RubyLampBlock.LIT,
                         new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOnIdentifier)).build()),
                                 new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOffIdentifier)).build()))));
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_RUBY_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_SAPPHIRE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_BLUE_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PINK_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_GREEN_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_TOPAZ_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PERIDOT_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PYROPE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_JADE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_RUBY_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_SAPPHIRE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_BLUE_GARNET_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_PINK_GARNET_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_GREEN_GARNET_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_TOPAZ_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_KYAWTHUITE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_PERIDOT_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_PYROPE_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.RAW_JADE_BLOCK);
     }
 
     @Override
@@ -102,6 +104,7 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BLUE_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.GREEN_GARNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.KYAWTHUITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.WHITE_TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.PERIDOT, Models.GENERATED);
@@ -114,6 +117,7 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_BLUE_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_GREEN_GARNET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAW_KYAWTHUITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_WHITE_TOPAZ, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_PERIDOT, Models.GENERATED);
@@ -126,6 +130,8 @@ public class ModelGen extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.ENERGY_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.WOOD_PELLET, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.GEM_DETECTOR, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.PINEAPPLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TOMATO, Models.GENERATED);

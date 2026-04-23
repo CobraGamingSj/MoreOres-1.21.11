@@ -35,6 +35,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BLUE_GARNET_BLOCK);
         addDrop(ModBlocks.PINK_GARNET_BLOCK);
         addDrop(ModBlocks.GREEN_GARNET_BLOCK);
+        addDrop(ModBlocks.KYAWTHUITE_BLOCK);
         addDrop(ModBlocks.TOPAZ_BLOCK);
         addDrop(ModBlocks.WHITE_TOPAZ_BLOCK);
         addDrop(ModBlocks.PERIDOT_BLOCK);
@@ -50,6 +51,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
         addDrop(ModBlocks.RAW_GREEN_GARNET_BLOCK);
         addDrop(ModBlocks.RAW_TOPAZ_BLOCK);
+        addDrop(ModBlocks.RAW_KYAWTHUITE_BLOCK);
         addDrop(ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
         addDrop(ModBlocks.RAW_PERIDOT_BLOCK);
         addDrop(ModBlocks.RAW_PYROPE_BLOCK);
@@ -66,7 +68,9 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PINK_GARNET_ORE, oreDrops(ModBlocks.PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
         addDrop(ModBlocks.DEEPSLATE_PINK_GARNET_ORE, oreDrops(ModBlocks.DEEPSLATE_PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
         addDrop(ModBlocks.GREEN_GARNET_ORE, oreDrops(ModBlocks.GREEN_GARNET_ORE, ModItems.RAW_GREEN_GARNET));
-        addDrop(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE,oreDrops(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModItems.RAW_GREEN_GARNET));
+        addDrop(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, oreDrops(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModItems.RAW_GREEN_GARNET));
+        addDrop(ModBlocks.KYAWTHUITE_ORE, oreDrops(ModBlocks.KYAWTHUITE_ORE, ModItems.RAW_KYAWTHUITE));
+        addDrop(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE, oreDrops(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE, ModItems.RAW_KYAWTHUITE));
         addDrop(ModBlocks.TOPAZ_ORE, oreDrops(ModBlocks.TOPAZ_ORE, ModItems.RAW_TOPAZ));
         addDrop(ModBlocks.DEEPSLATE_TOPAZ_ORE, oreDrops(ModBlocks.DEEPSLATE_TOPAZ_ORE, ModItems.RAW_TOPAZ));
         addDrop(ModBlocks.WHITE_TOPAZ_ORE, oreDrops(ModBlocks.WHITE_TOPAZ_ORE, ModItems.RAW_WHITE_TOPAZ));

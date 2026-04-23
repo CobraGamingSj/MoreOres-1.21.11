@@ -16,6 +16,8 @@ public class GemPurifierBlockEntityRenderState extends BlockEntityRenderState {
     final ItemRenderState energyItemRenderState = new ItemRenderState();
     final ItemRenderState resultItemRenderState = new ItemRenderState();
 
+    public static final GemPurifierBlockEntityRenderState INSTANCE = new GemPurifierBlockEntityRenderState();
+
     public void setEntity(GemPurifierBlockEntity entity) {
         this.entity = entity;
     }

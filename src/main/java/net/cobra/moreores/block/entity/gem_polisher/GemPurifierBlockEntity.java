@@ -4,9 +4,11 @@ import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.data.GemPurifierEnergyData;
 import net.cobra.moreores.block.data.GemPurifierFluidData;
+import net.cobra.moreores.block.data.GemPurifierSynchronizer;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
+import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
@@ -53,11 +55,12 @@ import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.Optional;
 
-public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPurifierEnergyData>, ImplementedInventory, TickableBlockEntity {
+public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<GemPurifierSynchronizer>, ImplementedInventory, TickableBlockEntity {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(16, ItemStack.EMPTY);
     private PolishingState polishingState = PolishingState.IDLE;
     private EnergyState energyState = EnergyState.IDLE;
     private WaterFluidState waterState = WaterFluidState.IDLE;
+    private GemType gemType = GemType.EMPTY;
 
     public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000, 640000) {
         @Override
@@ -71,7 +74,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             }
         }
     };
-    public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<FluidVariant>() {
+    public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
         @Override
         protected FluidVariant getBlankVariant() {
             return FluidVariant.blank();
@@ -85,8 +88,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         @Override
         protected void onFinalCommit() {
             markDirty();
-            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierFluidData(this.variant, this.amount, getPos()));
+            for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+                ServerPlayNetworking.send(user, new GemPurifierFluidData(fluidStorage.variant, fluidStorage.amount, getPos()));
             }
         }
     };
@@ -102,7 +105,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     protected final PropertyDelegate propertyDelegate;
     private int initialProgress = 0;
     private int maxProgressTick = 384;
-    private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.GEM_POLISHING);
+    private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.INSTANCE);
 
     public GemPurifierBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, pos, state);
@@ -170,6 +173,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         view.putNullable("PolishingState", PolishingState.CODEC, polishingState);
         view.putNullable("EnergyState", EnergyState.CODEC, energyState);
         view.putNullable("WaterFluidState", WaterFluidState.CODEC, waterState);
+        view.putNullable("GemType", GemType.CODEC, gemType);
     }
 
     @Override
@@ -183,6 +187,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         polishingState = view.read("PolishingState", PolishingState.CODEC).orElse(PolishingState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
         waterState = view.read("WaterFluidState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
+        gemType = view.read("GemType", GemType.CODEC).orElse(GemType.EMPTY);
     }
 
     @Override
@@ -194,6 +199,38 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new GemPurifierScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        ImplementedInventory.super.setStack(slot, stack);
+        if(slot == RESULT_SLOT) {
+            gemType = detectGem(stack);
+        }
+    }
+
+    public GemType detectGem(ItemStack stack) {
+        if (stack.isOf(ModItems.RUBY) || stack.isOf(ModBlocks.RUBY_BLOCK.asItem())) return GemType.RUBY;
+        if (stack.isOf(ModItems.SAPPHIRE) || stack.isOf(ModBlocks.SAPPHIRE_BLOCK.asItem())) return GemType.SAPPHIRE;
+        if (stack.isOf(ModItems.GREEN_SAPPHIRE) || stack.isOf(ModBlocks.GREEN_SAPPHIRE_ORE.asItem())) return GemType.GREEN_SAPPHIRE;
+        if (stack.isOf(ModItems.BLUE_GARNET) || stack.isOf(ModBlocks.BLUE_GARNET_BLOCK.asItem())) return GemType.BLUE_GARNET;
+        if (stack.isOf(ModItems.PINK_GARNET) || stack.isOf(ModBlocks.PINK_GARNET_BLOCK.asItem())) return GemType.PINK_GARNET;
+        if (stack.isOf(ModItems.GREEN_GARNET) || stack.isOf(ModBlocks.GREEN_GARNET_BLOCK.asItem())) return GemType.GREEN_GARNET;
+        if (stack.isOf(ModItems.KYAWTHUITE) || stack.isOf(ModBlocks.KYAWTHUITE_BLOCK.asItem())) return GemType.KYAWTHUITE;
+        if (stack.isOf(ModItems.TOPAZ) || stack.isOf(ModBlocks.TOPAZ_BLOCK.asItem())) return GemType.TOPAZ;
+        if (stack.isOf(ModItems.WHITE_TOPAZ) || stack.isOf(ModBlocks.WHITE_TOPAZ_BLOCK.asItem())) return GemType.WHITE_TOPAZ;
+        if (stack.isOf(ModItems.PERIDOT) || stack.isOf(ModBlocks.PERIDOT_BLOCK.asItem())) return GemType.PERIDOT;
+        if (stack.isOf(ModItems.JADE) || stack.isOf(ModBlocks.JADE_BLOCK.asItem())) return GemType.JADE;
+        if (stack.isOf(ModItems.PYROPE) || stack.isOf(ModBlocks.PYROPE_BLOCK.asItem())) return GemType.PYROPE;
+        return GemType.EMPTY;
+    }
+
+    public GemType getGem() {
+        return detectGem(resultStack());
+    }
+
+    public void setGem(GemType gem) {
+        gemType = gem;
     }
 
     @Override
@@ -219,8 +256,8 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
 
     @Override
-    public GemPurifierEnergyData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPurifierEnergyData(energyAmount(), this.pos);
+    public GemPurifierSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return new GemPurifierSynchronizer(energyAmount(), fluidStorage.variant, fluidStorage.amount, this.pos);
     }
 
     @Override
@@ -257,7 +294,15 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
             return;
         }
 
-        changeStateAtEnergyAmount();
+        GemType newGem = getGem();
+
+        if (newGem != this.gemType) {
+            setGem(newGem);
+
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+
+        changeState();
 
         if(polishingState == PolishingState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
@@ -290,12 +335,6 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
                 energyState = EnergyState.IDLE;
                 waterState= WaterFluidState.IDLE;
             }
-//            if(waterAmount() < 810000 && hasWaterBucket()) {
-//                waterState = WaterFluidState.FILLING;
-//                fillWater();
-//            } else {
-//                waterState= WaterFluidState.IDLE;
-//            }
         }
 
         checkForEnoughEnergyAndRemoveItem();
@@ -303,11 +342,14 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         markDirty(world, pos, state);
     }
 
-    private void changeStateAtEnergyAmount() {
-        if (this.energyStorage.amount > 0 && !getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, true), Block.NOTIFY_ALL);
-        } else if (this.energyStorage.amount == 0 && getCachedState().get(GemPurifierBlock.HAS_ENERGY)) {
-            world.setBlockState(pos, getCachedState().with(GemPurifierBlock.HAS_ENERGY, false), Block.NOTIFY_ALL);
+    private void changeState() {
+        BlockState state = getCachedState();
+
+        state = state.with(GemPurifierBlock.IS_POLISHING, getGem());
+
+
+        if(state != getCachedState()) {
+            world.setBlockState(pos, state, Block.NOTIFY_ALL);
         }
     }
 
@@ -327,11 +369,11 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void fillWater() {
-        if(!hasWaterBucket() || waterAmount() >= 10_000_000) {
+        if(!hasWaterBucket() || waterAmount() >= 810000) {
             waterState = WaterFluidState.IDLE;
             return;
         }
-        long amount = 1024;
+        long amount = 1620;
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = fluidStorage.insert(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();
@@ -350,7 +392,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     private void consumeWater() {
-        long amount = 256;
+        long amount = 810;
         try(Transaction transaction = Transaction.openOuter()) {
             fluidStorage.extract(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();

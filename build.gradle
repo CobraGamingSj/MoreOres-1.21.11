@@ -56,6 +56,11 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
+
+//tasks.remapJar {
+//	archiveFileName.set("MoreOres+ v${project.mod_version}.jar")
+//}
+
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
@@ -67,10 +72,9 @@ java {
 }
 
 jar {
-	inputs.property "archivesName", project.base.archivesName
-
+	archiveFileName = archives_base_name + " v" + project.mod_version
 	from("LICENSE") {
-		rename { "${it}_${inputs.properties.archivesName}"}
+		rename { "${it}_${project.base.archivesName.get()}" }
 	}
 }
 

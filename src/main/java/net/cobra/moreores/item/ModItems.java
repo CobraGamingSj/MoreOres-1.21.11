@@ -14,11 +14,15 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Rarity;
 
+import java.util.function.Function;
+
 import static net.cobra.moreores.MoreOresModInitializer.getId;
 import static net.cobra.moreores.MoreOresModInitializer.setRegistryKey;
 
 public class ModItems {
 
+
+    public static final Item GEM_DETECTOR = register("gem_detector", GemDetector::new);
 
     //Seeds
     public static final Item TOMATO_SEEDS = register("tomato_seeds", new AliasedBlockItem("tomato_seeds", ModBlocks.TOMATO_CROP));
@@ -26,9 +30,9 @@ public class ModItems {
 
 
     //Foods
-    public static final Item PINEAPPLE = register("pineapple", new Item(new Item.Settings().food(ModFoods.PINEAPPLE, ModConsumableComponents.PINEAPPLE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("pineapple")))));
-    public static final Item TOMATO = register("tomato", new Item(new Item.Settings().food(ModFoods.TOMATO).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("tomato")))));
-    public static final Item DIAMOND_APPLE = register("diamond_apple", new Item(new Item.Settings().food(ModFoods.DIAMOND_APPLE, ModConsumableComponents.DIAMOND_APPLE).rarity(Rarity.EPIC).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("diamond_apple")))));
+    public static final Item PINEAPPLE = register("pineapple", s -> new Item(s.food(ModFoods.PINEAPPLE, ModConsumableComponents.PINEAPPLE)));
+    public static final Item TOMATO = register("tomato", s -> new Item(s.food(ModFoods.TOMATO)));
+    public static final Item DIAMOND_APPLE = register("diamond_apple", s -> new Item(s.food(ModFoods.DIAMOND_APPLE, ModConsumableComponents.DIAMOND_APPLE).rarity(Rarity.EPIC)));
 
 
     //Gemstones & Ingots
@@ -45,6 +49,8 @@ public class ModItems {
     public static final Item RAW_BLUE_GARNET = register("raw_blue_garnet", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_blue_garnet")))));
     public static final Item GREEN_GARNET = register("green_garnet", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.GREEN_GARNET).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("green_garnet")))));
     public static final Item RAW_GREEN_GARNET = register("raw_green_garnet", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_green_garnet")))));
+    public static final Item KYAWTHUITE = register("kyawthuite", new Item(new Item.Settings().trimMaterial(ModArmorTrimMaterials.KYAWTHUITE).fireproof().rarity(Rarity.RARE).registryKey(setRegistryKey("kyawthuite"))));
+    public static final Item RAW_KYAWTHUITE = register("raw_kyawthuite", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(setRegistryKey("raw_kyawthuite"))));
     public static final Item TOPAZ = register("topaz", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.TOPAZ).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("topaz")))));
     public static final Item RAW_TOPAZ = register("raw_topaz", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_topaz")))));
     public static final Item PERIDOT = register("peridot", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.PERIDOT).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("peridot")))));
@@ -133,20 +139,20 @@ public class ModItems {
 
 //     Radiant Armor
     public static final Item RADIANT_HELMET = register(
-      "radiant_helmet",
-      new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof().registryKey(setRegistryKey("radiant_helmet")))
+            "radiant_helmet",
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof())
     );
     public static final Item RADIANT_CHESTPLATE = register(
             "radiant_chestplate",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof().registryKey(setRegistryKey("radiant_chestplate")))
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof())
     );
     public static final Item RADIANT_LEGGINGS = register(
             "radiant_leggings",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof().registryKey(setRegistryKey("radiant_leggings")))
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof())
     );
     public static final Item RADIANT_BOOTS = register(
             "radiant_boots",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof().registryKey(setRegistryKey("radiant_boots")))
+            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof())
     );
 
 
@@ -161,13 +167,30 @@ public class ModItems {
 
 
     //    Radiant Tools & Weapons
-    public static final Item RADIANT_SWORD = register(
+    public static final Item RADIANT_SWORD = registerSword(
             "radiant_sword",
-            new Item(new Item.Settings().sword(ModToolMaterials.RADIANT,  32, -1.0f).rarity(Rarity.EPIC).fireproof().registryKey(setRegistryKey("radiant_sword")))
+            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            32, -1f, ModToolMaterials.RADIANT
     );
-    public static final Item RADIANT_PICKAXE = register(
+    public static final Item RADIANT_PICKAXE = registerPickaxe(
             "radiant_pickaxe",
-            new Item(new Item.Settings().pickaxe(ModToolMaterials.RADIANT, 20, -1.5F).rarity(Rarity.EPIC).fireproof().registryKey(setRegistryKey("radiant_pickaxe")))
+            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            20, -1.5f, ModToolMaterials.RADIANT
+    );
+    public static final Item RADIANT_AXE = registerAxe(
+            "radiant_axe",
+            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            32, -1f, ModToolMaterials.RADIANT
+    );
+    public static final Item RADIANT_SHOVEL = registerShovel(
+            "radiant_shovel",
+            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            16, -1.8f, ModToolMaterials.RADIANT
+    );
+    public static final Item RADIANT_HOE = registerHoe(
+      "radiant_hoe",
+      s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            12, -2.2f, ModToolMaterials.RADIANT
     );
 
 
@@ -180,6 +203,35 @@ public class ModItems {
     public static Item register(String id, Item item) {
         return Registry.register(Registries.ITEM, getId(id), item);
     }
+
+    public static Item register(String name, Function<Item.Settings, Item> item) {
+        return Registry.register(Registries.ITEM, MoreOresModInitializer.getId(name), item.apply(new Item.Settings().registryKey(MoreOresModInitializer.setRegistryKey(name))));
+    }
+
+    public static Item registerSword(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).sword(material, attackDamage, attackSpeed)));
+    }
+
+    public static Item registerPickaxe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).pickaxe(material, attackDamage, attackSpeed)));
+    }
+
+    public static Item registerAxe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).axe(material, attackDamage, attackSpeed)));
+    }
+
+    public static Item registerHoe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).hoe(material, attackDamage, attackSpeed)));
+    }
+
+    public static Item registerShovel(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).shovel(material, attackDamage, attackSpeed)));
+    }
+
+//    public static Item registerSpear(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+//        return Registry.register(Registries.ITEM, MoreOresModInitializer.getId(name), item.apply(new Item.Settings().spear(material)
+//                .registryKey(MoreOresModInitializer.setRegistryKey(name))));
+//    }
 
     public static void register() {
         MoreOresModInitializer.LOGGER.info("Loading ModItems for " + MoreOresModInitializer.MOD_ID + " mod.");

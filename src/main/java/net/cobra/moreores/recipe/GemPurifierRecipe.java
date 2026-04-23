@@ -3,6 +3,7 @@ package net.cobra.moreores.recipe;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
@@ -53,12 +54,12 @@ public class GemPurifierRecipe implements Recipe<GemPurifyingRecipeInput> {
 
     @Override
     public RecipeSerializer<? extends Recipe<GemPurifyingRecipeInput>> getSerializer() {
-        return Serializer.GEM_POLISHING;
+        return Serializer.INSTANCE;
     }
 
     @Override
     public RecipeType<? extends Recipe<GemPurifyingRecipeInput>> getType() {
-        return Type.GEM_POLISHING;
+        return Type.INSTANCE;
     }
 
     @Override
@@ -93,14 +94,14 @@ public class GemPurifierRecipe implements Recipe<GemPurifyingRecipeInput> {
 
         //RECIPE PROPERTIES
         private Type() {}
-        public static final Type GEM_POLISHING = new Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "gem_polishing"; //Recipe ID
     }
 
     public static class Serializer implements RecipeSerializer<GemPurifierRecipe> {
 
         //RECIPE PROPERTIES
-        public static final Serializer GEM_POLISHING = new Serializer();
+        public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "gem_polishing"; //Recipe ID
 
         //CODEC
