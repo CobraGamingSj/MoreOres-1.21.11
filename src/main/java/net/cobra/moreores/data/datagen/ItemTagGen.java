@@ -148,6 +148,20 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.RAW_JADE)
                 .add(ModItems.RAW_PYROPE);
 
+        valueLookupBuilder(ModItemTags.RAW_GEMSTONE_BLOCKS)
+                .add(ModBlocks.RAW_RUBY_BLOCK.asItem(),
+                        ModBlocks.RAW_SAPPHIRE_BLOCK.asItem(),
+                        ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem(),
+                        ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem(),
+                        ModBlocks.RAW_PINK_GARNET_BLOCK.asItem(),
+                        ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem(),
+                        ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem(),
+                        ModBlocks.RAW_TOPAZ_BLOCK.asItem(),
+                        ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem(),
+                        ModBlocks.RAW_PERIDOT_BLOCK.asItem(),
+                        ModBlocks.RAW_JADE_BLOCK.asItem(),
+                        ModBlocks.RAW_PYROPE_BLOCK.asItem());
+
         valueLookupBuilder(ModItemTags.METAL)
                 .add(Items.IRON_INGOT)
                 .add(Items.COPPER_INGOT)

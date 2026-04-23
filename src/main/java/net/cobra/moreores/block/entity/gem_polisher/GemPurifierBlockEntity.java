@@ -210,18 +210,18 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
     }
 
     public GemType detectGem(ItemStack stack) {
-        if (stack.isOf(ModItems.RUBY)) return GemType.RUBY;
-        if (stack.isOf(ModItems.SAPPHIRE)) return GemType.SAPPHIRE;
-        if (stack.isOf(ModItems.GREEN_SAPPHIRE)) return GemType.GREEN_SAPPHIRE;
-        if (stack.isOf(ModItems.BLUE_GARNET)) return GemType.BLUE_GARNET;
-        if (stack.isOf(ModItems.PINK_GARNET)) return GemType.PINK_GARNET;
-        if (stack.isOf(ModItems.GREEN_GARNET)) return GemType.GREEN_GARNET;
-        if (stack.isOf(ModItems.KYAWTHUITE)) return GemType.KYAWTHUITE;
-        if (stack.isOf(ModItems.TOPAZ)) return GemType.TOPAZ;
-        if (stack.isOf(ModItems.WHITE_TOPAZ)) return GemType.WHITE_TOPAZ;
-        if (stack.isOf(ModItems.PERIDOT)) return GemType.PERIDOT;
-        if (stack.isOf(ModItems.JADE)) return GemType.JADE;
-        if (stack.isOf(ModItems.PYROPE)) return GemType.PYROPE;
+        if (stack.isOf(ModItems.RUBY) || stack.isOf(ModBlocks.RUBY_BLOCK.asItem())) return GemType.RUBY;
+        if (stack.isOf(ModItems.SAPPHIRE) || stack.isOf(ModBlocks.SAPPHIRE_BLOCK.asItem())) return GemType.SAPPHIRE;
+        if (stack.isOf(ModItems.GREEN_SAPPHIRE) || stack.isOf(ModBlocks.GREEN_SAPPHIRE_ORE.asItem())) return GemType.GREEN_SAPPHIRE;
+        if (stack.isOf(ModItems.BLUE_GARNET) || stack.isOf(ModBlocks.BLUE_GARNET_BLOCK.asItem())) return GemType.BLUE_GARNET;
+        if (stack.isOf(ModItems.PINK_GARNET) || stack.isOf(ModBlocks.PINK_GARNET_BLOCK.asItem())) return GemType.PINK_GARNET;
+        if (stack.isOf(ModItems.GREEN_GARNET) || stack.isOf(ModBlocks.GREEN_GARNET_BLOCK.asItem())) return GemType.GREEN_GARNET;
+        if (stack.isOf(ModItems.KYAWTHUITE) || stack.isOf(ModBlocks.KYAWTHUITE_BLOCK.asItem())) return GemType.KYAWTHUITE;
+        if (stack.isOf(ModItems.TOPAZ) || stack.isOf(ModBlocks.TOPAZ_BLOCK.asItem())) return GemType.TOPAZ;
+        if (stack.isOf(ModItems.WHITE_TOPAZ) || stack.isOf(ModBlocks.WHITE_TOPAZ_BLOCK.asItem())) return GemType.WHITE_TOPAZ;
+        if (stack.isOf(ModItems.PERIDOT) || stack.isOf(ModBlocks.PERIDOT_BLOCK.asItem())) return GemType.PERIDOT;
+        if (stack.isOf(ModItems.JADE) || stack.isOf(ModBlocks.JADE_BLOCK.asItem())) return GemType.JADE;
+        if (stack.isOf(ModItems.PYROPE) || stack.isOf(ModBlocks.PYROPE_BLOCK.asItem())) return GemType.PYROPE;
         return GemType.EMPTY;
     }
 

@@ -1,5 +1,6 @@
 package net.cobra.moreores.screen;
 
+import net.cobra.moreores.registry.ModBlockTags;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,6 @@ public class GemPurifierInputSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        return stack.isIn(ModItemTags.RAW_GEMSTONE);
+        return stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS);
     }
 }
