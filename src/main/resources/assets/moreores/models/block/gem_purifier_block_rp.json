@@ -3,10 +3,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"1": "moreores:block/gem_purifier/body_rp",
 		"3": "moreores:block/gem_purifier/legs",
 		"4": "moreores:block/gem_purifier/tray",
 		"5": "moreores:block/gem_purifier/ot_tray",
+		"6": "moreores:block/gem_purifier/body_rp",
 		"particle": "moreores:block/gem_purifier/gem_purifier_break"
 	},
 	"elements": [
@@ -128,12 +128,12 @@
 			"to": [16, 14, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [8, 12, 16, 16], "texture": "#1"},
-				"east": {"uv": [8, 0, 16, 4], "texture": "#1"},
-				"south": {"uv": [8, 4, 16, 8], "texture": "#1"},
-				"west": {"uv": [8, 8, 16, 12], "texture": "#1"},
-				"up": {"uv": [8, 8, 0, 0], "rotation": 90, "texture": "#1"},
-				"down": {"uv": [8, 8, 0, 16], "rotation": 270, "texture": "#1"}
+				"north": {"uv": [8, 12, 16, 16], "texture": "#6"},
+				"east": {"uv": [8, 0, 16, 4], "texture": "#6"},
+				"south": {"uv": [8, 4, 16, 8], "texture": "#6"},
+				"west": {"uv": [8, 8, 16, 12], "texture": "#6"},
+				"up": {"uv": [8, 8, 0, 0], "rotation": 90, "texture": "#6"},
+				"down": {"uv": [8, 8, 0, 16], "rotation": 270, "texture": "#6"}
 			}
 		},
 		{
