@@ -1,7 +1,9 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.block.data.GemPurifierEnergyData;
 import net.cobra.moreores.block.data.GemPurifierSynchronizer;
+import net.cobra.moreores.block.entity.gem.GemFusionBlockEntity;
 import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
@@ -25,32 +27,31 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHandlerInventoryHelper {
+public class GemFusionScreenHandler extends ScreenHandler implements ScreenHandlerInventoryHelper {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
-    public final GemPurifierBlockEntity blockEntity;
+    public final GemFusionBlockEntity blockEntity;
 
     // Client Side Constructor
-    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierSynchronizer data) {
+    public GemFusionScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierEnergyData data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(2));
     }
 
     // Main Constructor
-    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, syncId);
-        checkSize((Inventory) blockEntity, 16);
+    public GemFusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
+        super(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, syncId);
+        checkSize((Inventory) blockEntity, 15);
 
         this.inventory = ((Inventory) blockEntity);
         this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
         this.propertyDelegate = propertyDelegate;
-        this.blockEntity = (GemPurifierBlockEntity) blockEntity;
+        this.blockEntity = (GemFusionBlockEntity) blockEntity;
 
         this.addSlot(new GemPurifierInputSlot(inventory, 0, 79, 11)); // Input
         this.addSlot(new GemPurifierResultSlot(inventory, 1, 79, 61)); // Result
         this.addSlot(new EnergySlot(inventory, 2, 40, 20)); // Energy Input
-        this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source
 
         addFirstAdditionalInventory(inventory);
         addSecondAdditionalInventory(inventory);
@@ -124,13 +125,9 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
         return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
     }
 
-    private boolean isWaterBucket(ItemStack stack) {
-        return stack.isOf(Items.WATER_BUCKET);
-    }
-
     @Override
     public boolean canUse(PlayerEntity player) {
-        return canUse(this.context, player, ModBlocks.GEM_PURIFIER_BLOCK);
+        return canUse(this.context, player, ModBlocks.GEM_FUSION_BLOCK);
     }
 
     @Override
@@ -151,13 +148,13 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
 
     public void addFirstAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 8; ++i) {
-            this.addSlot(new Slot(playerInventory, 4 + i, 26 + i * 18, 95));
+            this.addSlot(new Slot(playerInventory, 3 + i, 26 + i * 18, 95));
         }
     }
 
     public void addSecondAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 4; ++i) {
-            this.addSlot(new Slot(playerInventory, 12 +  i, 179, 115 + i * 18));
+            this.addSlot(new Slot(playerInventory, 11 +  i, 179, 115 + i * 18));
         }
     }
 

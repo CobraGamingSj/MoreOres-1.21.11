@@ -2,6 +2,7 @@ package net.cobra.moreores.client;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
+import net.cobra.moreores.client.gui.screen.GemFusionScreen;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
@@ -23,6 +24,7 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
 
         HandledScreens.register(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, GemPurifierScreen::new);
+        HandledScreens.register(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, GemFusionScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, GemPurifierBlockEntityRenderer::new);
     }

@@ -1,20 +1,20 @@
-package net.cobra.moreores.block.entity.gem_polisher;
+package net.cobra.moreores.block.entity.gem;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.util.StringIdentifiable;
 
-public enum PolishingState implements StringIdentifiable {
+public enum PolishingFusionState implements StringIdentifiable {
     IDLE("idle"),
     RUNNING("running"),
     PAUSED("paused");
 
     private final String name;
 
-    PolishingState(String name) {
+    PolishingFusionState(String name) {
         this.name = name;
     }
 
-    public static final Codec<PolishingState> CODEC = StringIdentifiable.createCodec(PolishingState::values);
+    public static final Codec<PolishingFusionState> CODEC = StringIdentifiable.createCodec(PolishingFusionState::values);
 
     public boolean isIdle() {
         return this == IDLE;

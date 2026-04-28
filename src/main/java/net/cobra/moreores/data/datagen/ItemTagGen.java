@@ -11,6 +11,7 @@ import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
+
 public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
 
     public ItemTagGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {

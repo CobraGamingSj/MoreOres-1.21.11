@@ -9,24 +9,25 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.input.AbstractInput;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 public class TextureButtonWidget extends ButtonWidget {
     private final Identifier texture;
     private final int buttonId;
-    private final GemPurifierScreenHandler handler;
+    private final BlockPos pos;
 
-    public TextureButtonWidget(int x, int y, net.minecraft.text.Text message, Identifier texture, int buttonId, GemPurifierScreenHandler handler) {
+    public TextureButtonWidget(int x, int y, net.minecraft.text.Text message, Identifier texture, int buttonId, BlockPos pos) {
         super(x, y, 32, 32, message, btn -> {
 
         }, DEFAULT_NARRATION_SUPPLIER);
         this.texture = texture;
         this.buttonId = buttonId;
-        this.handler = handler;
+        this.pos = pos;
     }
 
     @Override
     public void onPress(AbstractInput input) {
-        ClientPlayNetworking.send(new GemPurifierButtonClick(buttonId, handler.blockEntity.getPos()));
+        ClientPlayNetworking.send(new GemPurifierButtonClick(buttonId, pos));
     }
 
     @Override

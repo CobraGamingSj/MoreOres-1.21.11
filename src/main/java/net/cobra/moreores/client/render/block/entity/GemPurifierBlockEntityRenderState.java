@@ -1,6 +1,6 @@
 package net.cobra.moreores.client.render.block.entity;
 
-import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.minecraft.client.render.block.entity.state.BlockEntityRenderState;
 import net.minecraft.client.render.item.ItemRenderState;
 import net.minecraft.util.math.BlockPos;

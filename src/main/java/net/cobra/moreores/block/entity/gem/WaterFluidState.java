@@ -1,4 +1,4 @@
-package net.cobra.moreores.block.entity.gem_polisher;
+package net.cobra.moreores.block.entity.gem;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.util.StringIdentifiable;

@@ -1,7 +1,7 @@
 package net.cobra.moreores.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
@@ -45,7 +45,6 @@ public record GemPurifierButtonClick(int buttonID, BlockPos pos) implements Cust
         MoreOresModInitializer.LOGGER.info("Received button click with ID: {} at {}", buttonID, "[" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + "]");
 
         }
-
 
     @Override
     public Id<? extends CustomPayload> getId() {

@@ -1,7 +1,7 @@
 package net.cobra.moreores.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;

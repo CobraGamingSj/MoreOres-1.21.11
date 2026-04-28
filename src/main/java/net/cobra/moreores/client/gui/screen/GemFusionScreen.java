@@ -23,16 +23,16 @@ import net.minecraft.util.math.MathHelper;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
-public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
+public class GemFusionScreen extends HandledScreen<GemFusionScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
-    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_purifier_gui_test.png");
+    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_fusion_gui_test.png");
     private static final Identifier START_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/start.png");
     private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/pause.png");
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/resume.png");
     private static final Identifier STOP_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/stop.png");
 
-    public GemPurifierScreen(GemPurifierScreenHandler handler, PlayerInventory inventory, Text title) {
+    public GemFusionScreen(GemFusionScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundHeight = 196;
         this.backgroundWidth = 207;
@@ -43,8 +43,6 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
         super.init();
         titleY = 1000;
         playerInventoryTitleY = 1000;
-
-        addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).build());
 
         ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 112, y + 8, START_BUTTON, Text.literal("Start Polishing"));
 

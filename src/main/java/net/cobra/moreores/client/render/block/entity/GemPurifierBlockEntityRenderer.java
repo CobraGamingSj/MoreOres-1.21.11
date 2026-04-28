@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.render.block.entity;
 
 import net.cobra.moreores.block.GemPurifierBlock;
-import net.cobra.moreores.block.entity.gem_polisher.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.minecraft.client.item.ItemModelManager;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
