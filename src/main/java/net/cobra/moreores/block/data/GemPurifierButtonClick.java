@@ -1,7 +1,7 @@
 package net.cobra.moreores.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
+import net.cobra.moreores.block.entity.gem.AbstractGemPFBlockEntity;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
@@ -24,20 +24,20 @@ public record GemPurifierButtonClick(int buttonID, BlockPos pos) implements Cust
     public void handle(ServerPlayNetworking.Context context) {
         ServerWorld world = context.server().getOverworld();
 
-        if(world.getBlockEntity(pos) instanceof GemPurifierBlockEntity gemPurifierBlockEntity) {
+        if(world.getBlockEntity(pos) instanceof AbstractGemPFBlockEntity<?> blockEntity) {
             switch (buttonID) {
-                case 0 -> gemPurifierBlockEntity.startPolish();
-                case 1 -> gemPurifierBlockEntity.pausePolish();
-                case 2 -> gemPurifierBlockEntity.resumePolish();
-                case 3 -> gemPurifierBlockEntity.stopPolish();
+                case 0 -> blockEntity.start();
+                case 1 -> blockEntity.pause();
+                case 2 -> blockEntity.resume();
+                case 3 -> blockEntity.stop();
                 }
 
                 if(context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(pos)) {
                     switch (buttonID) {
-                        case 0 -> gemPurifierBlockEntity.startPolish();
-                        case 1 -> gemPurifierBlockEntity.pausePolish();
-                        case 2 -> gemPurifierBlockEntity.resumePolish();
-                        case 3 -> gemPurifierBlockEntity.stopPolish();
+                        case 0 -> blockEntity.start();
+                        case 1 -> blockEntity.pause();
+                        case 2 -> blockEntity.resume();
+                        case 3 -> blockEntity.stop();
                     }
                 }
             }

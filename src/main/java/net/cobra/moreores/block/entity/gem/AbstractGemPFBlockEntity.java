@@ -1,7 +1,7 @@
 package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPurifierEnergyData;
+import net.cobra.moreores.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.item.ModItems;
@@ -16,6 +16,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.recipe.ServerRecipeManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.storage.ReadView;
@@ -30,6 +31,10 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
     protected EnergyState energyState = EnergyState.IDLE;
     protected GemType gemType = GemType.EMPTY;
 
+    public int initialProgress = 0;
+
+    private long lastRemovedEnergyMilestone = 0;
+
     public AbstractGemPFBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.main = DefaultedList.ofSize(mainStackSize(), ItemStack.EMPTY);
@@ -43,7 +48,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
             markDirty();
 
             for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierEnergyData(this.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPFEnergyData(this.amount, getPos()));
             }
         }
     };
@@ -52,6 +57,8 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
     public abstract long getEnergyCapacity();
     public abstract long getMaxEnergyInsert();
     public abstract long getMaxEnergyExtract();
+    public abstract ServerRecipeManager.MatchGetter<?, ?> getMatchGetter();
+    public abstract int getInitialProgress();
 
     @Override
     protected void writeData(WriteView view) {
@@ -105,6 +112,10 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
         return this.energyStack().isOf(ModItems.ENERGY_INGOT) || this.energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem());
     }
 
+    protected boolean hasEnoughEnergy() {
+        return this.energyStorage.amount >= 13;
+    }
+
     protected void insertEnergy() {
         if(!hasEnergySourceProviderItem() || energyStorage.amount >= 1_000_000) {
             energyState = EnergyState.IDLE;
@@ -127,5 +138,36 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
             transaction.commit();
         }
         energyState = EnergyState.EXTRACTING;
+    }
+
+    protected abstract boolean hasRecipe();
+
+    private void resetProgress() {
+        this.initialProgress = 0;
+    }
+
+    public void start() {
+        if(polishingFusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+            polishingFusionState = PolishingFusionState.RUNNING;
+        }
+    }
+
+    public void pause() {
+        if(polishingFusionState.isRunning()) {
+            polishingFusionState = PolishingFusionState.PAUSED;
+        }
+    }
+
+    public void resume() {
+        if(polishingFusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
+            polishingFusionState = PolishingFusionState.RUNNING;
+        }
+    }
+
+    public void stop() {
+        if(!polishingFusionState.isIdle()) {
+            polishingFusionState = PolishingFusionState.IDLE;
+            resetProgress();
+        }
     }
 }

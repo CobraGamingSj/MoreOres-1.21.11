@@ -2,12 +2,9 @@ package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPurifierEnergyData;
 import net.cobra.moreores.block.data.GemPurifierFluidData;
 import net.cobra.moreores.block.data.GemPurifierSynchronizer;
-import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
-import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
@@ -17,14 +14,12 @@ import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.cobra.moreores.util.FluidStack;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
@@ -51,29 +46,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 import java.util.Optional;
 
 public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifierSynchronizer> {
-//    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(16, ItemStack.EMPTY);
-//    private PolishingFusionState polishingFusionState = PolishingFusionState.IDLE;
-//    private EnergyState energyState = EnergyState.IDLE;
-    private WaterFluidState waterState = WaterFluidState.IDLE;
-//    private GemType gemType = GemType.EMPTY;
 
-//    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(10_000_000, 192000, 640000) {
-//        @Override
-//        public void onFinalCommit() {
-//            super.onFinalCommit();
-//
-//            markDirty();
-//
-//            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-//                ServerPlayNetworking.send(user, new GemPurifierEnergyData(this.amount, getPos()));
-//            }
-//        }
-//    };
+    private WaterFluidState waterState = WaterFluidState.IDLE;
+
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
         @Override
         protected FluidVariant getBlankVariant() {
@@ -179,31 +158,29 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
     }
 
     @Override
+    public ServerRecipeManager.MatchGetter<?, ?> getMatchGetter() {
+        return matchGetter;
+    }
+
+    @Override
+    public int getInitialProgress() {
+        return 0;
+    }
+
+    @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        Inventories.writeData(view, main);
         view.putInt("gem_purifier.progress", initialProgress);
-        view.putLong("gem_purifier.energy", energyStorage.amount);
         view.putLong("gem_purifier.water", fluidStorage.amount);
         view.putNullable("gem_purifier.fluid.variant", FluidVariant.CODEC, fluidStorage.variant);
-        view.putNullable("PolishingState", PolishingFusionState.CODEC, polishingFusionState);
-        view.putNullable("EnergyState", EnergyState.CODEC, energyState);
-        view.putNullable("WaterFluidState", WaterFluidState.CODEC, waterState);
-        view.putNullable("GemType", GemType.CODEC, gemType);
     }
 
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        Inventories.readData(view, main);
         initialProgress = view.getInt("gem_purifier.progress", 0);
-        energyStorage.amount = view.getLong("gem_purifier.energy", 0);
         fluidStorage.amount = view.getLong("gem_purifier.water", 0);
         fluidStorage.variant = view.read("gem_purifier.fluid.variant", FluidVariant.CODEC).orElse(FluidVariant.blank());
-        polishingFusionState = view.read("PolishingState", PolishingFusionState.CODEC).orElse(PolishingFusionState.IDLE);
-        energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
-        waterState = view.read("WaterFluidState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
-        gemType = view.read("GemType", GemType.CODEC).orElse(GemType.EMPTY);
     }
 
     @Override
@@ -389,7 +366,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         }
     }
 
-    private boolean hasEnoughEnergy() {
+    protected boolean hasEnoughEnergy() {
         return this.energyStorage.amount >= 128;
     }
 
@@ -421,7 +398,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         }
     }
 
-    private boolean hasRecipe() {
+    protected boolean hasRecipe() {
         Optional<RecipeEntry<GemPurifierRecipe>> recipe = currentRecipe();
 
         return recipe.isPresent() && hasEnoughEnergy() && canInsertCountIntoResultSlot(recipe.get().value().getResult())

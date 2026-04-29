@@ -2,9 +2,7 @@ package net.cobra.moreores.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.gem.AbstractGemPFBlockEntity;
-import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
-import net.cobra.moreores.client.gui.screen.GemFusionScreenHandler;
-import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
+import net.cobra.moreores.client.gui.screen.AbstractGemPFScreenHandler;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.network.RegistryByteBuf;
@@ -13,8 +11,8 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 
-public record GemPurifierEnergyData(long energy, BlockPos blockPos) implements CustomPayload {
-    public static final Id<GemPurifierEnergyData> ID = new Id<>(MoreOresModInitializer.getId("pos_energy"));
+public record GemPFEnergyData(long energy, BlockPos blockPos) implements CustomPayload {
+    public static final Id<GemPFEnergyData> ID = new Id<>(MoreOresModInitializer.getId("pos_energy"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;
@@ -23,18 +21,17 @@ public record GemPurifierEnergyData(long energy, BlockPos blockPos) implements C
         if (world.getBlockEntity(this.blockPos) instanceof AbstractGemPFBlockEntity<?> blockEntity) {
             blockEntity.setEnergyLevel(this.energy);
 
-            if ((context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(this.blockPos)) ||
-                    context.player().currentScreenHandler instanceof GemFusionScreenHandler handler && handler.blockEntity.getPos().equals(blockPos)) {
+            if (context.player().currentScreenHandler instanceof AbstractGemPFScreenHandler screenHandler && screenHandler.getPos().equals(this.blockPos)) {
                 blockEntity.setEnergyLevel(this.energy);
             }
         }
     }
 
-    public static final PacketCodec<RegistryByteBuf, GemPurifierEnergyData> PACKET_CODEC =
+    public static final PacketCodec<RegistryByteBuf, GemPFEnergyData> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.LONG, GemPurifierEnergyData::energy,
-                    BlockPos.PACKET_CODEC, GemPurifierEnergyData::blockPos,
-                    GemPurifierEnergyData::new
+                    PacketCodecs.LONG, GemPFEnergyData::energy,
+                    BlockPos.PACKET_CODEC, GemPFEnergyData::blockPos,
+                    GemPFEnergyData::new
             );
 
     @Override

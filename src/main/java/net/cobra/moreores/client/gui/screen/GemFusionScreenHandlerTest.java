@@ -14,37 +14,32 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemFusionScreenHandler extends ScreenHandler implements ScreenHandlerInventoryHelper {
+public class GemFusionScreenHandlerTest extends AbstractGemPFScreenHandler {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
     public final GemFusionBlockEntity blockEntity;
 
-    // Client Side Constructor
-    public GemFusionScreenHandler(int syncId, PlayerInventory playerInventory, GemPFEnergyData data) {
+    public GemFusionScreenHandlerTest(int syncId, PlayerInventory playerInventory, GemPFEnergyData data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(2));
     }
 
-    // Main Constructor
-    public GemFusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, syncId);
-        checkSize((Inventory) blockEntity, 15);
+    public GemFusionScreenHandlerTest(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
+        super(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, syncId, entity.getPos());
+        checkSize((Inventory) entity, 15);
 
-        this.inventory = ((Inventory) blockEntity);
-        this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
-        this.propertyDelegate = propertyDelegate;
-        this.blockEntity = (GemFusionBlockEntity) blockEntity;
+        this.inventory = (Inventory) entity;
+        this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
+        this.propertyDelegate = delegate;
+        this.blockEntity = (GemFusionBlockEntity) entity;
 
         this.addSlot(new GemPurifierInputSlot(inventory, 0, 79, 11)); // Input
         this.addSlot(new GemPurifierResultSlot(inventory, 1, 79, 61)); // Result
@@ -56,8 +51,37 @@ public class GemFusionScreenHandler extends ScreenHandler implements ScreenHandl
         addPlayerGenericInventory(playerInventory);
         addPlayerHotbarInventory(playerInventory);
 
-        addProperties(propertyDelegate);
+        addProperties(delegate);
     }
+
+    // Client Side Constructor
+//    public GemFusionScreenHandlerTest(int syncId, PlayerInventory playerInventory, GemPurifierEnergyData data) {
+//        this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
+//                new ArrayPropertyDelegate(2));
+//    }
+
+    // Main Constructor
+//    public GemFusionScreenHandlerTest(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
+//        super(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, syncId);
+//        checkSize((Inventory) blockEntity, 15);
+//
+//        this.inventory = ((Inventory) blockEntity);
+//        this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
+//        this.propertyDelegate = propertyDelegate;
+//        this.blockEntity = (GemFusionBlockEntity) blockEntity;
+//
+//        this.addSlot(new GemPurifierInputSlot(inventory, 0, 79, 11)); // Input
+//        this.addSlot(new GemPurifierResultSlot(inventory, 1, 79, 61)); // Result
+//        this.addSlot(new EnergySlot(inventory, 2, 40, 20)); // Energy Input
+//
+//        addFirstAdditionalInventory(inventory);
+//        addSecondAdditionalInventory(inventory);
+//
+//        addPlayerGenericInventory(playerInventory);
+//        addPlayerHotbarInventory(playerInventory);
+//
+//        addProperties(propertyDelegate);
+//    }
 
     public boolean isPolishing() {
         return propertyDelegate.get(0) > 0;
@@ -127,33 +151,7 @@ public class GemFusionScreenHandler extends ScreenHandler implements ScreenHandl
         return canUse(this.context, player, ModBlocks.GEM_FUSION_BLOCK);
     }
 
-    @Override
-    public void addPlayerGenericInventory(PlayerInventory playerInventory) {
-        for (int i = 0; i < 3; ++i) {
-            for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 115 + i * 18));
-            }
-        }
-    }
 
-    @Override
-    public void addPlayerHotbarInventory(PlayerInventory playerInventory) {
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 173));
-        }
-    }
-
-    public void addFirstAdditionalInventory(Inventory playerInventory) {
-        for (int i = 0; i < 8; ++i) {
-            this.addSlot(new Slot(playerInventory, 3 + i, 26 + i * 18, 95));
-        }
-    }
-
-    public void addSecondAdditionalInventory(Inventory playerInventory) {
-        for (int i = 0; i < 4; ++i) {
-            this.addSlot(new Slot(playerInventory, 11 +  i, 179, 115 + i * 18));
-        }
-    }
 
     @Override
     public BlockEntity getBlockEntity(BlockPos pos, BlockState state, World world) {
