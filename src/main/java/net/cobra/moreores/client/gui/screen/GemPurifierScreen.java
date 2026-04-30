@@ -1,13 +1,12 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.client.gui.widget.FluidWidget;
 import net.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;

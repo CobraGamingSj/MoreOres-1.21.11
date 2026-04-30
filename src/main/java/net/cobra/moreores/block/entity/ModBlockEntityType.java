@@ -18,8 +18,8 @@ public class ModBlockEntityType {
     public static final BlockEntityType<GemPurifierBlockEntity> GEM_PURIFIER_BLOCK_ENTITY =
             register("gem_purifier", FabricBlockEntityTypeBuilder.create(GemPurifierBlockEntity::new, ModBlocks.GEM_PURIFIER_BLOCK));
 
-    public static final BlockEntityType<GemFusionBlockEntity> GEM_FUSION_BLOCK_ENTITY_BLOCK_ENTITY_TYPE =
-            register("fusuion", FabricBlockEntityTypeBuilder.create(GemFusionBlockEntity::new, ModBlocks.GEM_FUSION_BLOCK));
+    public static final BlockEntityType<GemFusionBlockEntity> GEM_FUSION_BLOCK_ENTITY =
+            register("gem_fusion", FabricBlockEntityTypeBuilder.create(GemFusionBlockEntity::new, ModBlocks.GEM_FUSION_BLOCK));
 
     private static <BE extends BlockEntity> BlockEntityType<BE> register(String id, FabricBlockEntityTypeBuilder<BE> factory) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, id), factory.build());

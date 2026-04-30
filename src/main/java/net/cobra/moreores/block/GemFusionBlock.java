@@ -29,13 +29,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
 public class GemFusionBlock extends BlockWithEntity implements BlockEntityProvider {
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 20, 16, 20);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
     public static final EnumProperty<GemType> IS_POLISHING = EnumProperty.of("is_polishing", GemType.class);

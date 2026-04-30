@@ -1,4 +1,4 @@
-package net.cobra.moreores.block.data;
+package net.cobra.moreores.networking.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.gem.AbstractGemPFBlockEntity;

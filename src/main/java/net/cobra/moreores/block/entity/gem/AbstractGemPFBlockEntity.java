@@ -1,7 +1,7 @@
 package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPFEnergyData;
+import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.item.ModItems;
@@ -33,8 +33,6 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
 
     public int initialProgress = 0;
 
-    private long lastRemovedEnergyMilestone = 0;
-
     public AbstractGemPFBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.main = DefaultedList.ofSize(mainStackSize(), ItemStack.EMPTY);
@@ -64,6 +62,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
     protected void writeData(WriteView view) {
         super.writeData(view);
         Inventories.writeData(view, main);
+        view.putInt("Progress", initialProgress);
         view.putLong("gem_purifier.energy", energyStorage.amount);
         view.putNullable("PolishingState", PolishingFusionState.CODEC, polishingFusionState);
         view.putNullable("EnergyState", EnergyState.CODEC, energyState);
@@ -74,6 +73,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
     protected void readData(ReadView view) {
         super.readData(view);
         Inventories.readData(view, main);
+        initialProgress = view.getInt("Progress", 0);
         energyStorage.amount = view.getLong("gem_purifier.energy", 0);
         polishingFusionState = view.read("PolishingState", PolishingFusionState.CODEC).orElse(PolishingFusionState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
@@ -110,6 +110,14 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
 
     protected boolean hasEnergySourceProviderItem() {
         return this.energyStack().isOf(ModItems.ENERGY_INGOT) || this.energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem());
+    }
+
+    protected void increaseProgress() {
+        if(this.world.isReceivingRedstonePower(this.pos)) {
+            initialProgress += (int) 2.5;
+        } else {
+            initialProgress++;
+        }
     }
 
     protected boolean hasEnoughEnergy() {

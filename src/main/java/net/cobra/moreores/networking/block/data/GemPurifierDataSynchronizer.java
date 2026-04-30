@@ -1,4 +1,4 @@
-package net.cobra.moreores.block.data;
+package net.cobra.moreores.networking.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
@@ -12,9 +12,9 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 
-public record GemPurifierSynchronizer(long energy, FluidVariant fluidVariant, long fluid, BlockPos blockPos) implements CustomPayload {
+public record GemPurifierDataSynchronizer(long energy, FluidVariant fluidVariant, long fluid, BlockPos blockPos) implements CustomPayload {
 
-    public static final Id<GemPurifierSynchronizer> ID = new Id<>(MoreOresModInitializer.getId("pos_sync"));
+    public static final Id<GemPurifierDataSynchronizer> ID = new Id<>(MoreOresModInitializer.getId("pos_sync"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;
@@ -31,13 +31,13 @@ public record GemPurifierSynchronizer(long energy, FluidVariant fluidVariant, lo
         }
     }
 
-    public static final PacketCodec<RegistryByteBuf, GemPurifierSynchronizer> PACKET_CODEC =
+    public static final PacketCodec<RegistryByteBuf, GemPurifierDataSynchronizer> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.LONG, GemPurifierSynchronizer::energy,
-                    FluidVariant.PACKET_CODEC, GemPurifierSynchronizer::fluidVariant,
-                    PacketCodecs.LONG, GemPurifierSynchronizer::fluid,
-                    BlockPos.PACKET_CODEC, GemPurifierSynchronizer::blockPos,
-                    GemPurifierSynchronizer::new
+                    PacketCodecs.LONG, GemPurifierDataSynchronizer::energy,
+                    FluidVariant.PACKET_CODEC, GemPurifierDataSynchronizer::fluidVariant,
+                    PacketCodecs.LONG, GemPurifierDataSynchronizer::fluid,
+                    BlockPos.PACKET_CODEC, GemPurifierDataSynchronizer::blockPos,
+                    GemPurifierDataSynchronizer::new
             );
 
     @Override

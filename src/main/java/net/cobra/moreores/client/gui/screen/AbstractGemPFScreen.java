@@ -1,6 +1,6 @@
 package net.cobra.moreores.client.gui.screen;
 
-import net.cobra.moreores.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;

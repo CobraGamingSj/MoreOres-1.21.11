@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPFEnergyData;
+import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.gem.GemFusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
@@ -38,7 +38,7 @@ public class GemFusionScreenHandler extends ScreenHandler implements ScreenHandl
 
     // Main Constructor
     public GemFusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, syncId);
+        super(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER, syncId);
         checkSize((Inventory) blockEntity, 15);
 
         this.inventory = ((Inventory) blockEntity);

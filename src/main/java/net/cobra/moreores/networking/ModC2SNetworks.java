@@ -1,8 +1,8 @@
 package net.cobra.moreores.networking;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.data.GemPurifierButtonClick;
-import net.cobra.moreores.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
+import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.math.BlockPos;

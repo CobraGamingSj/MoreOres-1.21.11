@@ -24,7 +24,7 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
 
         HandledScreens.register(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, GemPurifierScreen::new);
-        HandledScreens.register(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER_SCREEN_HANDLER_TYPE, GemFusionScreenTest::new);
+        HandledScreens.register(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER, GemFusionScreenTest::new);
 
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, GemPurifierBlockEntityRenderer::new);
     }

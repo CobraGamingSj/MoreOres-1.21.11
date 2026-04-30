@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPurifierSynchronizer;
+import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
@@ -32,7 +32,7 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
     public final GemPurifierBlockEntity blockEntity;
 
     // Client Side Constructor
-    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierSynchronizer data) {
+    public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierDataSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(2));
     }

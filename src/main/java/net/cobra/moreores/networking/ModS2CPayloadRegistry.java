@@ -1,10 +1,10 @@
 package net.cobra.moreores.networking;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.data.GemPFEnergyData;
-import net.cobra.moreores.block.data.GemPurifierFluidData;
-import net.cobra.moreores.block.data.GemPurifierSynchronizer;
-import net.cobra.moreores.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.GemPFEnergyData;
+import net.cobra.moreores.networking.block.data.GemPurifierFluidData;
+import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
+import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -17,7 +17,7 @@ public class ModS2CPayloadRegistry {
     static {
        registerS2C(GemPFEnergyData.ID, GemPFEnergyData.PACKET_CODEC);
        registerS2C(GemPurifierFluidData.ID, GemPurifierFluidData.PACKET_CODEC);
-       registerS2C(GemPurifierSynchronizer.ID, GemPurifierSynchronizer.PACKET_CODEC);
+       registerS2C(GemPurifierDataSynchronizer.ID, GemPurifierDataSynchronizer.PACKET_CODEC);
        registerS2C(PolishingStateData.ID, PolishingStateData.CODEC);
     }
 

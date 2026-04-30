@@ -2,8 +2,8 @@ package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPurifierFluidData;
-import net.cobra.moreores.block.data.GemPurifierSynchronizer;
+import net.cobra.moreores.networking.block.data.GemPurifierFluidData;
+import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.item.ModItems;
@@ -23,7 +23,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -49,7 +48,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifierSynchronizer> {
+public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifierDataSynchronizer> {
 
     private WaterFluidState waterState = WaterFluidState.IDLE;
 
@@ -173,6 +172,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         view.putInt("gem_purifier.progress", initialProgress);
         view.putLong("gem_purifier.water", fluidStorage.amount);
         view.putNullable("gem_purifier.fluid.variant", FluidVariant.CODEC, fluidStorage.variant);
+        view.putNullable("WaterState", WaterFluidState.CODEC, waterState);
     }
 
     @Override
@@ -181,6 +181,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         initialProgress = view.getInt("gem_purifier.progress", 0);
         fluidStorage.amount = view.getLong("gem_purifier.water", 0);
         fluidStorage.variant = view.read("gem_purifier.fluid.variant", FluidVariant.CODEC).orElse(FluidVariant.blank());
+        waterState = view.read("WaterState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
     }
 
     @Override
@@ -217,8 +218,8 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
 
 
     @Override
-    public GemPurifierSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPurifierSynchronizer(energyAmount(), fluidStorage.variant, fluidStorage.amount, this.pos);
+    public GemPurifierDataSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return new GemPurifierDataSynchronizer(energyAmount(), fluidStorage.variant, fluidStorage.amount, this.pos);
     }
 
     @Override
@@ -366,12 +367,13 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         }
     }
 
+    @Override
     protected boolean hasEnoughEnergy() {
         return this.energyStorage.amount >= 128;
     }
 
     private boolean hasEnoughWater() {
-        return this.fluidStorage.amount >= 1024;
+        return this.fluidStorage.amount >= 1215;
     }
 
     private void resetProgress() {
@@ -390,6 +392,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         return initialProgress >= maxProgressTick;
     }
 
+    @Override
     public void increaseProgress() {
         if(this.world.isReceivingRedstonePower(this.pos)) {
             initialProgress += 5;
@@ -398,6 +401,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         }
     }
 
+    @Override
     protected boolean hasRecipe() {
         Optional<RecipeEntry<GemPurifierRecipe>> recipe = currentRecipe();
 

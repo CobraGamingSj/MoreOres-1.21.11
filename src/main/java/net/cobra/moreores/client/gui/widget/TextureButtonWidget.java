@@ -1,6 +1,6 @@
 package net.cobra.moreores.client.gui.widget;
 
-import net.cobra.moreores.block.data.GemPurifierButtonClick;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;

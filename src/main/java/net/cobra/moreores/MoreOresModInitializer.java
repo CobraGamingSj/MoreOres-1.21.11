@@ -1,8 +1,8 @@
 package net.cobra.moreores;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPurifierButtonClick;
-import net.cobra.moreores.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
+import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.component.type.ModConsumableComponents;

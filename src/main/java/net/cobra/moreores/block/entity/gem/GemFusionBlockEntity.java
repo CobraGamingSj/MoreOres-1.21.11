@@ -2,7 +2,7 @@ package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.GemFusionBlock;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.data.GemPFEnergyData;
+import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.GemFusionScreenHandlerTest;
 import net.cobra.moreores.item.ModItems;
@@ -14,7 +14,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -28,8 +27,6 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -53,7 +50,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.INSTANCE);
 
     public GemFusionBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityType.GEM_FUSION_BLOCK_ENTITY_BLOCK_ENTITY_TYPE, pos, state);
+        super(ModBlockEntityType.GEM_FUSION_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -122,18 +119,6 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     @Override
     public long getMaxEnergyExtract() {
         return 64000;
-    }
-
-    @Override
-    protected void writeData(WriteView view) {
-        super.writeData(view);
-        view.putInt("gem_purifier.progress", initialProgress);
-    }
-
-    @Override
-    protected void readData(ReadView view) {
-        super.readData(view);
-        initialProgress = view.getInt("gem_purifier.progress", 0);
     }
 
     @Override
@@ -284,13 +269,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
         return initialProgress >= maxProgressTicks;
     }
 
-    public void increaseProgress() {
-        if(this.world.isReceivingRedstonePower(this.pos)) {
-            initialProgress += (int) 2.5;
-        } else {
-            initialProgress++;
-        }
-    }
+
 
     protected boolean hasRecipe() {
         Optional<RecipeEntry<GemPurifierRecipe>> recipe = currentRecipe();
@@ -315,30 +294,5 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
 
     private boolean isResultSlotEmptyOrReceivable() {
         return this.resultStack().isEmpty() || this.resultStack().getCount() < this.resultStack().getMaxCount();
-    }
-
-    public void start() {
-        if(polishingFusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
-            polishingFusionState = PolishingFusionState.RUNNING;
-        }
-    }
-
-    public void pause() {
-        if(polishingFusionState.isRunning()) {
-            polishingFusionState = PolishingFusionState.PAUSED;
-        }
-    }
-
-    public void resume() {
-        if(polishingFusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
-            polishingFusionState = PolishingFusionState.RUNNING;
-        }
-    }
-
-    public void stop() {
-        if(!polishingFusionState.isIdle()) {
-            polishingFusionState = PolishingFusionState.IDLE;
-            resetProgress();
-        }
     }
 }
