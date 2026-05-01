@@ -1,0 +1,6 @@
+{
+	"parent": "moreores:block/gem_fusion_block",
+	"textures": {
+		"5": "moreores:block/gem_purifier/ot_tray_red"
+	}
+}

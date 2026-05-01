@@ -15,11 +15,11 @@ import net.minecraft.screen.ScreenHandlerType;
 public class ModScreenHandlerType {
 
     public static final ScreenHandlerType<GemPurifierScreenHandler> GEM_PURIFYING_SCREEN_HANDLER =
-            register("gem_purifier", GemPurifierScreenHandler::new, GemPurifierDataSynchronizer.PACKET_CODEC
+            register("gem_purifier_block", GemPurifierScreenHandler::new, GemPurifierDataSynchronizer.PACKET_CODEC
             );
 
     public static final ScreenHandlerType<GemFusionScreenHandlerTest> GEM_FUSION_SCREEN_HANDLER =
-            register("gem_fusion", GemFusionScreenHandlerTest::new, GemPFEnergyData.PACKET_CODEC);
+            register("gem_fusion_block", GemFusionScreenHandlerTest::new, GemPFEnergyData.PACKET_CODEC);
 
     private static <S extends ScreenHandler, D extends CustomPayload> ExtendedScreenHandlerType<S, D> register(String id, ExtendedScreenHandlerType.ExtendedFactory<S, D> factory, PacketCodec<? super RegistryByteBuf, D> packetCodec) {
         return Registry.register(Registries.SCREEN_HANDLER, MoreOresModInitializer.getId(id), new ExtendedScreenHandlerType<>(factory, packetCodec));
