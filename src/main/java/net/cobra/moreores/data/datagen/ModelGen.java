@@ -87,15 +87,6 @@ public class ModelGen extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.MUSIC_DISC_DEEPER, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_WATCHER, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_ARIA_MATH, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_BIOME_FEST, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_ENDLESS, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_FEATHERFALL, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_DREITON, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_TASWELL, Models.TEMPLATE_MUSIC_DISC);
-        itemModelGenerator.register(ModItems.MUSIC_DISC_INFINITE_AMETHYST, Models.TEMPLATE_MUSIC_DISC);
 
         itemModelGenerator.register(ModItems.RUBY, Models.GENERATED);
         itemModelGenerator.register(ModItems.RADIANT, Models.GENERATED);

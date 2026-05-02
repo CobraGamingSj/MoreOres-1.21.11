@@ -2,7 +2,6 @@ package net.cobra.moreores.item;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.jukebox.ModJukeboxSongs;
 import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.item.equipment.ModArmorMaterials;
 import net.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
@@ -67,18 +66,6 @@ public class ModItems {
 
     //Fuel
     public static final Item WOOD_PELLET = register("wood_pellet", new Item(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("wood_pellet")))));
-
-
-    //Music Discs
-    public static final Item MUSIC_DISC_TASWELL = register("music_disc_taswell", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.TASWELL).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_taswell")))));
-    public static final Item MUSIC_DISC_DREITON = register("music_disc_dreiton", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.DREITON).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_dreiton")))));
-    public static final Item MUSIC_DISC_BIOME_FEST = register("music_disc_biome_fest", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.BIOME_FEST).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_biome_fest")))));
-    public static final Item MUSIC_DISC_ARIA_MATH = register("music_disc_aria_math", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.ARIA_MATH).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_aria_math")))));
-    public static final Item MUSIC_DISC_INFINITE_AMETHYST = register("music_disc_infinite_amethyst", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.INFINITE_AMETHYST).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_infinite_amethyst")))));
-    public static final Item MUSIC_DISC_ENDLESS = register("music_disc_endless", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.ENDLESS).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_endless")))));
-    public static final Item MUSIC_DISC_FEATHERFALL = register("music_disc_featherfall", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.FEATHERFALL).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_featherfall")))));
-    public static final Item MUSIC_DISC_DEEPER = register("music_disc_deeper", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.DEEPER).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_deeper")))));
-    public static final Item MUSIC_DISC_WATCHER = register("music_disc_watcher", new Item(new Item.Settings().jukeboxPlayable(ModJukeboxSongs.WATCHER).rarity(Rarity.RARE).maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("music_disc_watcher")))));
 
 
     //  Ruby Tools & Weapons

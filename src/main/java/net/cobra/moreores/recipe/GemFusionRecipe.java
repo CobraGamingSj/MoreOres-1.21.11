@@ -89,7 +89,7 @@ public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
 
     @Override
     public RecipeBookCategory getRecipeBookCategory() {
-        return ModRecipeBookCategories.GEM_POLISHING;
+        return ModRecipeBookCategories.GEM_FUSION;
     }
 
     public List<Ingredient> getIngredients() {

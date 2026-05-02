@@ -20,16 +20,6 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        valueLookupBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS)
-                .add(ModItems.MUSIC_DISC_WATCHER)
-                .add(ModItems.MUSIC_DISC_ENDLESS)
-                .add(ModItems.MUSIC_DISC_DEEPER)
-                .add(ModItems.MUSIC_DISC_DREITON)
-                .add(ModItems.MUSIC_DISC_TASWELL)
-                .add(ModItems.MUSIC_DISC_ARIA_MATH)
-                .add(ModItems.MUSIC_DISC_BIOME_FEST)
-                .add(ModItems.MUSIC_DISC_FEATHERFALL)
-                .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST);
 
         valueLookupBuilder(ItemTags.SPEARS)
                 .add(ModItems.RUBY_SPEAR)
@@ -171,17 +161,6 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(ModItemTags.RARE)
                 .addTag(ModItemTags.GEMSTONE)
                 .addTag(ModItemTags.METAL);
-
-        valueLookupBuilder(ModItemTags.JUKEBOX_PLAYABLE_DISCS)
-                .add(ModItems.MUSIC_DISC_ARIA_MATH)
-                .add(ModItems.MUSIC_DISC_DREITON)
-                .add(ModItems.MUSIC_DISC_TASWELL)
-                .add(ModItems.MUSIC_DISC_BIOME_FEST)
-                .add(ModItems.MUSIC_DISC_FEATHERFALL)
-                .add(ModItems.MUSIC_DISC_ENDLESS)
-                .add(ModItems.MUSIC_DISC_INFINITE_AMETHYST)
-                .add(ModItems.MUSIC_DISC_DEEPER)
-                .add(ModItems.MUSIC_DISC_WATCHER);
 
         valueLookupBuilder(ModItemTags.REPAIRS_RUBY_ARMOR)
                 .add(ModItems.RUBY);

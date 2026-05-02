@@ -1,8 +1,6 @@
 package net.cobra.moreores;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
-import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import net.cobra.moreores.component.type.ModConsumableComponents;
@@ -11,13 +9,14 @@ import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.networking.ModC2SNetworks;
 import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
+import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.recipe.GemFusionRecipe;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.registry.BirthdayRewardState;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
-import net.cobra.moreores.sound.ModSoundEvents;
 import net.cobra.moreores.util.CustomTrades;
 import net.cobra.moreores.util.VanillaLootTableModifier;
 import net.cobra.moreores.village.ModVillagerProfessions;
@@ -143,15 +142,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		// Tools & Music Discs Registry
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(toolEventEntries -> {
-			toolEventEntries.addAfter(Items.MUSIC_DISC_OTHERSIDE, ModItems.MUSIC_DISC_ARIA_MATH);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_ARIA_MATH, ModItems.MUSIC_DISC_BIOME_FEST);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_BIOME_FEST, ModItems.MUSIC_DISC_DREITON);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_DREITON, ModItems.MUSIC_DISC_ENDLESS);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_ENDLESS, ModItems.MUSIC_DISC_FEATHERFALL);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_FEATHERFALL, ModItems.MUSIC_DISC_INFINITE_AMETHYST);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_INFINITE_AMETHYST, ModItems.MUSIC_DISC_TASWELL);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_TASWELL, ModItems.MUSIC_DISC_DEEPER);
-			toolEventEntries.addAfter(ModItems.MUSIC_DISC_DEEPER, ModItems.MUSIC_DISC_WATCHER);
 			toolEventEntries.addAfter(Items.NETHERITE_HOE, ModItems.RUBY_SHOVEL);
 			toolEventEntries.addAfter(ModItems.RUBY_SHOVEL, ModItems.RUBY_PICKAXE);
 			toolEventEntries.addAfter(ModItems.RUBY_PICKAXE, ModItems.RUBY_AXE);
@@ -278,7 +268,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		// ModSounds & ModBlockSoundGroups Registry
-		ModSoundEvents.register();
 		ModBlockSoundGroup.register();
 
 

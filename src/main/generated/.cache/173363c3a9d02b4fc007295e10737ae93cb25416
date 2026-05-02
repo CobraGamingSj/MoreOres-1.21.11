@@ -1,14 +1,5 @@
 // 1.21.11	-999999999-01-01T00:00:00	MoreOres+/Dynamic Registry
 520e297d7ee1d2352223fe947b2bce9611673baf data/moreores/enchantment/thunder_striker.json
-ce62e6f9876c3b017635ce3b3990a177deecf1a6 data/moreores/jukebox_song/aria_math.json
-bf77a94a1c2efefc018ff9ee65ea2bda1f1d2979 data/moreores/jukebox_song/biome_fest.json
-2da372d29131bd5cf47fdefa09e9af0e51b1d2eb data/moreores/jukebox_song/deeper.json
-0bc5b0438055c2d6d4459159940856e27abfad57 data/moreores/jukebox_song/dreiton.json
-c235b971b4cbf9767d2197c00b1df59ae481c89c data/moreores/jukebox_song/endless.json
-b7b393d67c4359445370a293cab7a9e1d691602d data/moreores/jukebox_song/featherfall.json
-26b654bdaa726235bc225bc14d33c67bad47c6f0 data/moreores/jukebox_song/infinite_amethyst.json
-466fd6497a4178829ec972ae1eca4abab33f6f24 data/moreores/jukebox_song/taswell.json
-9898c25d4e11eae327d4d177043f73733304cebd data/moreores/jukebox_song/watcher.json
 ce8cd249ab5e6fd3ac50e3011a47c0142115c885 data/moreores/trim_material/blue_garnet.json
 aa19331c740303c65fe666b3594bb7904fd182ff data/moreores/trim_material/green_garnet.json
 5246d2bb87e1c7f351d4cb67f7af508e9260cddc data/moreores/trim_material/green_sapphire.json

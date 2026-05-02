@@ -1,6 +1,5 @@
 package net.cobra.moreores;
 
-import net.cobra.moreores.block.jukebox.ModJukeboxSongs;
 import net.cobra.moreores.data.datagen.*;
 import net.cobra.moreores.enchantment.ModEnchantments;
 import net.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
@@ -29,7 +28,6 @@ public class MoreOresDataGenerator implements DataGeneratorEntrypoint {
 
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {
-		registryBuilder.addRegistry(RegistryKeys.JUKEBOX_SONG, ModJukeboxSongs::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ModArmorTrimMaterials::bootstrap);

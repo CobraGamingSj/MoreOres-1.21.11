@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 public class ModRecipeBookCategories {
 
     public static final RecipeBookCategory GEM_POLISHING = register("gem_polishing");
+    public static final RecipeBookCategory GEM_FUSION = register("gem_fusion");
 
     public static RecipeBookCategory register(String id) {
         return Registry.register(Registries.RECIPE_BOOK_CATEGORY, Identifier.of(MoreOresModInitializer.MOD_ID, id), new RecipeBookCategory());

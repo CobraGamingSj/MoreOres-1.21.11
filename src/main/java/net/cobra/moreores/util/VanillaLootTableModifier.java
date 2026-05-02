@@ -18,10 +18,7 @@ public class VanillaLootTableModifier {
     private static final RegistryKey<LootTable> JUNGLE_PYRAMID_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/jungle_temple"));
     private static final RegistryKey<LootTable> PLAINS_VILLAGE_HOUSE_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/village_plains_house"));
     private static final RegistryKey<LootTable> PLAINS_VILLAGE_TOOLSMITH_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/village_toolsmith"));
-    private static final RegistryKey<LootTable> ANCIENT_CITY_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/ancient_city"));
-    private static final RegistryKey<LootTable> CREEPER_SKELETON_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "entities/creeper"));
     private static final RegistryKey<LootTable> ELDER_GUARDIAN_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.ofVanilla("entities/elder_guardian"));
-    private static final RegistryKey<LootTable> WARDEN_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.ofVanilla("entities/warden"));
 
     public static void modifyVanillaLoot() {
 
@@ -35,29 +32,11 @@ public class VanillaLootTableModifier {
 
                 tableBuilder.pool(poolBuilder);
             }
-            if (WARDEN_KEY.equals(key)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.005f)) //0.5% Chances
-                        .with(ItemEntry.builder(ModItems.MUSIC_DISC_DEEPER))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
-
-                tableBuilder.pool(poolBuilder);
-            }
             if (ELDER_GUARDIAN_KEY.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.00025f)) //0.025% Chances
                         .with(ItemEntry.builder(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
-
-                tableBuilder.pool(poolBuilder);
-            }
-            if (ANCIENT_CITY_KEY.equals(key)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.0005f)) //0.05% Chances
-                        .with(ItemEntry.builder(ModItems.MUSIC_DISC_DEEPER))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
 
                 tableBuilder.pool(poolBuilder);
@@ -119,15 +98,6 @@ public class VanillaLootTableModifier {
             tableBuilder.pool(poolBuilder5);
             tableBuilder.pool(poolBuilder6);
         }
-//        if (CREEPER_SKELETON_KEY.equals(key)) {
-//                LootPool.Builder poolBuilder = LootPool.builder()
-//                        .rolls(ConstantLootNumberProvider.create(1))
-//                        .conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(EntityType.SKELETON)))
-//                        .with(TagEntry.builder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
-//                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)));
-//
-//                tableBuilder.pool(poolBuilder);
-//            }
         });
 
         MoreOresModInitializer.LOGGER.info("Modifying VanillaLootTables for " + MoreOresModInitializer.MOD_ID + " mod.");
