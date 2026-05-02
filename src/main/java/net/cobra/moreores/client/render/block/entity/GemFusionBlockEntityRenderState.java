@@ -13,6 +13,7 @@ public class GemFusionBlockEntityRenderState extends BlockEntityRenderState {
     public BlockPos lightPos;
 
     final ItemRenderState inputItemRenderState = new ItemRenderState();
+    final ItemRenderState inputAfterItemRenderState = new ItemRenderState();
     final ItemRenderState energyItemRenderState = new ItemRenderState();
     final ItemRenderState resultItemRenderState = new ItemRenderState();
 

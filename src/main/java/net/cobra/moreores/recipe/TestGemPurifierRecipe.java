@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
-import net.cobra.moreores.recipe.input.TestGemPurifyingRecipeInput;
+import net.cobra.moreores.recipe.input.GemFusionRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class TestGemPurifierRecipe implements Recipe<TestGemPurifyingRecipeInput> {
+public class TestGemPurifierRecipe implements Recipe<GemFusionRecipeInput> {
     public final Ingredient ingredient;
     public final ItemStack output;
 
@@ -33,7 +33,7 @@ public class TestGemPurifierRecipe implements Recipe<TestGemPurifyingRecipeInput
     }
 
     @Override
-    public ItemStack craft(TestGemPurifyingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(GemFusionRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return this.output.copy();
     }
 
@@ -46,18 +46,18 @@ public class TestGemPurifierRecipe implements Recipe<TestGemPurifyingRecipeInput
     }
 
     @Override
-    public boolean matches(TestGemPurifyingRecipeInput input, World world) {
+    public boolean matches(GemFusionRecipeInput input, World world) {
         if (world.isClient()) return false;
         return this.ingredient.test(input.firstInputStack()) && this.ingredient.test(input.secondInputStack());
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<TestGemPurifyingRecipeInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<GemFusionRecipeInput>> getSerializer() {
         return Serializer.GEM_POLISHING;
     }
 
     @Override
-    public RecipeType<? extends Recipe<TestGemPurifyingRecipeInput>> getType() {
+    public RecipeType<? extends Recipe<GemFusionRecipeInput>> getType() {
         return Type.GEM_POLISHING;
     }
 

@@ -25,7 +25,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHandlerInventoryHelper {
+public class GemPurifierScreenHandler extends AbstractGemPFScreenHandler implements ScreenHandlerInventoryHelper {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
@@ -39,7 +39,7 @@ public class GemPurifierScreenHandler extends ScreenHandler implements ScreenHan
 
     // Main Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, syncId);
+        super(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, syncId, blockEntity.getPos());
         checkSize((Inventory) blockEntity, 16);
 
         this.inventory = ((Inventory) blockEntity);

@@ -107,6 +107,8 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
 
         itemModelManager.clearAndUpdate(state.inputItemRenderState, blockEntity.getStack(GemFusionBlockEntity.INGREDIENT_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
+        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.getStack(GemFusionBlockEntity.SECOND_INGREDIENT_SLOT),
+                ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
         itemModelManager.clearAndUpdate(state.energyItemRenderState, blockEntity.getStack(GemFusionBlockEntity.ENERGY_SOURCE_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
         itemModelManager.clearAndUpdate(state.resultItemRenderState, blockEntity.getStack(GemFusionBlockEntity.RESULT_SLOT),
@@ -134,6 +136,7 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
 
         renderEnergyTray(state.energyItemRenderState, matrices, queue, 0.5f, 0.25f, rotationAngles, light);
         renderInputTray(state.inputItemRenderState, matrices, queue, 0.775f, 0.21f, rotationAngles, light);
+        renderInputTray(state.inputAfterItemRenderState, matrices, queue, 0.225f, 0.21f, rotationAngles, light);
         renderOutputTray(state.resultItemRenderState, matrices, queue, 0.51f, 0.675f, rotationAngles, light);
     }
 

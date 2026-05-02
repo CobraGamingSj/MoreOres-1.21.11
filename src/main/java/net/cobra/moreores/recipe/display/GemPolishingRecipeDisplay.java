@@ -16,7 +16,7 @@ public record GemPolishingRecipeDisplay(SlotDisplay ingredient, SlotDisplay resu
 
     public static final MapCodec<GemPolishingRecipeDisplay> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
-                            SlotDisplay.CODEC.fieldOf("ingredient").forGetter(GemPolishingRecipeDisplay::ingredient),
+                            SlotDisplay.CODEC.fieldOf("ingredientBefore").forGetter(GemPolishingRecipeDisplay::ingredient),
                             SlotDisplay.CODEC.fieldOf("result").forGetter(GemPolishingRecipeDisplay::result),
                             SlotDisplay.CODEC.fieldOf("work_station").forGetter(GemPolishingRecipeDisplay::workStation)
                     )

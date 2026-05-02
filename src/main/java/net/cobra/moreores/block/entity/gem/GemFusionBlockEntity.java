@@ -4,11 +4,11 @@ import net.cobra.moreores.block.GemFusionBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
-import net.cobra.moreores.client.gui.screen.GemFusionScreenHandlerTest;
+import net.cobra.moreores.client.gui.screen.GemFusionScreenHandler;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.util.GemType;
-import net.cobra.moreores.recipe.GemPurifierRecipe;
-import net.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
+import net.cobra.moreores.recipe.GemFusionRecipe;
+import net.cobra.moreores.recipe.input.GemFusionRecipeInput;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -39,15 +39,16 @@ import java.util.Optional;
 public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyData> {
 
     public static final int INGREDIENT_SLOT = 0;
-    public static final int SECOND_INGREDIENT_SLOT = 3;
-    public static final int RESULT_SLOT = 1;
-    public static final int ENERGY_SOURCE_SLOT = 2;
+    public static final int SECOND_INGREDIENT_SLOT = 1;
+    public static final int RESULT_SLOT = 2;
+    public static final int ENERGY_SOURCE_SLOT = 3;
+    public static final int RADIANT_SLOT = 4;
 
     private long lastRemovedEnergyMilestone = 0;
 
     protected final PropertyDelegate propertyDelegate;
     private int maxProgressTicks = 200;
-    private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.INSTANCE);
+    private final ServerRecipeManager.MatchGetter<GemFusionRecipeInput, GemFusionRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemFusionRecipe.Type.INSTANCE);
 
     public GemFusionBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_FUSION_BLOCK_ENTITY, pos, state);
@@ -92,7 +93,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     }
 
     @Override
-    public ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> getMatchGetter() {
+    public ServerRecipeManager.MatchGetter<GemFusionRecipeInput, GemFusionRecipe> getMatchGetter() {
         return matchGetter;
     }
 
@@ -102,8 +103,13 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     }
 
     @Override
+    protected boolean hasEnergySourceProviderItem() {
+        return energyStack().isOf(ModItems.RADIANT);
+    }
+
+    @Override
     public int mainStackSize() {
-        return 15;
+        return 17;
     }
 
     @Override
@@ -129,7 +135,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new GemFusionScreenHandlerTest(syncId, playerInventory, this, this.propertyDelegate);
+        return new GemFusionScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
     @Override
@@ -143,7 +149,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
         }
 
         if (slot == ENERGY_SOURCE_SLOT) {
-            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem()));  //
+            return side == Direction.UP && (this.energyStack().isOf(ModItems.RADIANT));  //
         }
 
         return false;
@@ -161,7 +167,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
             case INGREDIENT_SLOT, SECOND_INGREDIENT_SLOT ->
                     stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE);
             case ENERGY_SOURCE_SLOT ->
-                    stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+                    stack.isOf(ModItems.RADIANT);
             case RESULT_SLOT->
                     stack.isIn(ModItemTags.GEMSTONE);
             default -> false;
@@ -258,7 +264,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     }
 
     private void getFusionedGemstone() {
-        RecipeEntry<GemPurifierRecipe> recipe = currentRecipe().orElseThrow();
+        RecipeEntry<GemFusionRecipe> recipe = currentRecipe().orElseThrow();
 
         this.removeStack(INGREDIENT_SLOT, 1);
 
@@ -272,15 +278,15 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
 
 
     protected boolean hasRecipe() {
-        Optional<RecipeEntry<GemPurifierRecipe>> recipe = currentRecipe();
+        Optional<RecipeEntry<GemFusionRecipe>> recipe = currentRecipe();
 
         return recipe.isPresent() && hasEnoughEnergy() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
                 && canInsertItemIntoResultSlot(recipe.get().value().getResult().getItem());
     }
 
-    private Optional<RecipeEntry<GemPurifierRecipe>> currentRecipe() {
+    private Optional<RecipeEntry<GemFusionRecipe>> currentRecipe() {
         ServerWorld serverWorld = (ServerWorld) world;
-        return this.matchGetter.getFirstMatch(new GemPurifyingRecipeInput(this.ingredientStack()), serverWorld);
+        return this.matchGetter.getFirstMatch(new GemFusionRecipeInput(this.ingredientStack(), getStack(SECOND_INGREDIENT_SLOT)), serverWorld);
     }
 
     private boolean canInsertItemIntoResultSlot(Item item) {

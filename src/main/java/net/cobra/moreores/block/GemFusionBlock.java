@@ -124,7 +124,7 @@ public class GemFusionBlock extends BlockWithEntity implements BlockEntityProvid
                 ItemStack inputStack = be.getStack(GemFusionBlockEntity.INGREDIENT_SLOT);
 
                 if(!world.isClient()) {
-                    if((heldStack.getItem() == ModItems.ENERGY_INGOT || heldStack.getItem() == ModBlocks.ENERGY_BLOCK.asItem())) {
+                    if(heldStack.getItem() == ModItems.RADIANT) {
                         if(energyStack.isEmpty()) {
                             be.setStack(GemFusionBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
                             heldStack.decrement(heldStack.getCount());

@@ -39,13 +39,13 @@ public abstract class AbstractGemPFScreenHandler extends ScreenHandler implement
 
     public void addFirstAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 8; ++i) {
-            this.addSlot(new Slot(playerInventory, 3 + i, 26 + i * 18, 95));
+            this.addSlot(new Slot(playerInventory, 5 + i, 26 + i * 18, 95));
         }
     }
 
     public void addSecondAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 4; ++i) {
-            this.addSlot(new Slot(playerInventory, 11 +  i, 179, 115 + i * 18));
+            this.addSlot(new Slot(playerInventory, 13 +  i, 179, 115 + i * 18));
         }
     }
 }
