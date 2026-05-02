@@ -2,6 +2,7 @@ package net.cobra.moreores.networking.block.data;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.gem.AbstractGemPFBlockEntity;
+import net.cobra.moreores.client.gui.screen.GemFusionScreenHandler;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
@@ -32,7 +33,8 @@ public record GemPurifierButtonClick(int buttonID, BlockPos pos) implements Cust
                 case 3 -> blockEntity.stop();
                 }
 
-                if(context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(pos)) {
+                if((context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(pos)) ||
+                context.player().currentScreenHandler instanceof GemFusionScreenHandler screenHandlerL && screenHandlerL.blockEntity.getPos().equals(pos)) {
                     switch (buttonID) {
                         case 0 -> blockEntity.start();
                         case 1 -> blockEntity.pause();

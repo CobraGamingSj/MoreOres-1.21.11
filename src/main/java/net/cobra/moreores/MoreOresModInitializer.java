@@ -11,6 +11,7 @@ import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.networking.ModC2SNetworks;
 import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
+import net.cobra.moreores.recipe.GemFusionRecipe;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
@@ -307,8 +308,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModRecipes Registry
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Type.ID), GemPurifierRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemFusionRecipe.Type.ID), GemFusionRecipe.Type.INSTANCE);
         LOGGER.info("Loading ModRecipeType for " + MOD_ID + " mod.");
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Serializer.ID), GemPurifierRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemFusionRecipe.Serializer.ID), GemFusionRecipe.Serializer.INSTANCE);
         LOGGER.info("Loading ModRecipeSerializer for" + MOD_ID + " mod.");
 
 

@@ -1,14 +1,14 @@
 {
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
-	"parent": "minecraft:block/block",
+	"parent": "moreores:block/gem_fusion_block",
 	"texture_size": [64, 64],
 	"textures": {
-		"output_tray": "moreores:block/output_tray/ot_tray",
+		"output_tray": "moreores:block/output_tray/ot_tray_blue",
 		"energy_tray": "moreores:block/gem_fusion/tray_energy",
 		"tray": "moreores:block/gem_fusion/tray",
 		"body": "moreores:block/gem_fusion/body",
-		"particle": "moreores:block/gem_purifier/gem_purifier_break"
+		"particle": "moreores:block/gem_fusion/body_rp"
 	},
 	"elements": [
 		{

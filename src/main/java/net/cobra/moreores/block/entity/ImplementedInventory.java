@@ -74,14 +74,14 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-     * Returns true if the firstInputStack can be inserted in the slot at the side.
+     * Returns true if the inputBefore can be inserted in the slot at the side.
      *
      * <p>The default implementation returns true.
      *
      * @param slot the slot
-     * @param stack the firstInputStack
+     * @param stack the inputBefore
      * @param side the side
-     * @return true if the firstInputStack can be inserted
+     * @return true if the inputBefore can be inserted
      */
     @Override
     default boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
@@ -89,14 +89,14 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-     * Returns true if the firstInputStack can be extracted from the slot at the side.
+     * Returns true if the inputBefore can be extracted from the slot at the side.
      *
      * <p>The default implementation returns true.
      *
      * @param slot the slot
-     * @param stack the firstInputStack
+     * @param stack the inputBefore
      * @param side the side
-     * @return true if the firstInputStack can be extracted
+     * @return true if the inputBefore can be extracted
      */
     @Override
     default boolean canExtract(int slot, ItemStack stack, Direction side) {
@@ -133,7 +133,7 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-    * @return true is this inventory has full firstInputStack, false otherwise
+    * @return true is this inventory has full inputBefore, false otherwise
      */
 
     default boolean isFull() {
@@ -176,14 +176,14 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-     * Takes a firstInputStack of the size from the slot.
+     * Takes a inputBefore of the size from the slot.
      *
      * <p>(default implementation) If there are less items in the slot than what are requested,
      * takes all items in that slot.
      *
      * @param slot the slot
      * @param count the item count
-     * @return a firstInputStack
+     * @return a inputBefore
      */
     @Override
     default ItemStack removeStack(int slot, int count) {
@@ -196,12 +196,12 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-     * Removes the current firstInputStack in the {@code slot} and returns it.
+     * Removes the current inputBefore in the {@code slot} and returns it.
      *
      * <p>The default implementation uses {@link Inventories#removeStack(List, int)}
      *
      * @param slot the slot
-     * @return the removed firstInputStack
+     * @return the removed inputBefore
      */
     @Override
     default ItemStack removeStack(int slot) {
@@ -209,13 +209,13 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-     * Replaces the current firstInputStack in the {@code slot} with the provided firstInputStack.
+     * Replaces the current inputBefore in the {@code slot} with the provided inputBefore.
      *
-     * <p>If the firstInputStack is too big for this inventory ({@link Inventory#getMaxCountPerStack()}),
+     * <p>If the inputBefore is too big for this inventory ({@link Inventory#getMaxCountPerStack()}),
      * it gets resized to this inventory's maximum amount.
      *
      * @param slot the slot
-     * @param stack the firstInputStack
+     * @param stack the inputBefore
      */
     @Override
     default void setStack(int slot, ItemStack stack) {

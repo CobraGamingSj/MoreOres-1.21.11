@@ -105,9 +105,9 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
         state.entityWorld = blockEntity.getWorld();
         state.lightPos = blockEntity.getPos();
 
-        itemModelManager.clearAndUpdate(state.inputItemRenderState, blockEntity.getStack(GemFusionBlockEntity.INGREDIENT_SLOT),
+        itemModelManager.clearAndUpdate(state.inputItemRenderState, blockEntity.getStack(GemFusionBlockEntity.INGREDIENT_BEFORE_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.getStack(GemFusionBlockEntity.SECOND_INGREDIENT_SLOT),
+        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.getStack(GemFusionBlockEntity.INGREDIENT_AFTER_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
         itemModelManager.clearAndUpdate(state.energyItemRenderState, blockEntity.getStack(GemFusionBlockEntity.ENERGY_SOURCE_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);

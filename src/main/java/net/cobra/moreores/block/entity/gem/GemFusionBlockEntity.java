@@ -38,8 +38,8 @@ import java.util.Optional;
 
 public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyData> {
 
-    public static final int INGREDIENT_SLOT = 0;
-    public static final int SECOND_INGREDIENT_SLOT = 1;
+    public static final int INGREDIENT_BEFORE_SLOT = 0;
+    public static final int INGREDIENT_AFTER_SLOT = 1;
     public static final int RESULT_SLOT = 2;
     public static final int ENERGY_SOURCE_SLOT = 3;
     public static final int RADIANT_SLOT = 4;
@@ -103,11 +103,6 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     }
 
     @Override
-    protected boolean hasEnergySourceProviderItem() {
-        return energyStack().isOf(ModItems.RADIANT);
-    }
-
-    @Override
     public int mainStackSize() {
         return 17;
     }
@@ -138,18 +133,38 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
         return new GemFusionScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
+    public ItemStack radiantStack() {
+        return getStack(RADIANT_SLOT);
+    }
+
+    public ItemStack ingredientAfterStack() {
+        return getStack(INGREDIENT_AFTER_SLOT);
+    }
+
+    @Override
+    public ItemStack resultStack() {
+        return getStack(RESULT_SLOT);
+    }
+
+    @Override
+    public ItemStack energyStack() {
+        return getStack(ENERGY_SOURCE_SLOT);
+    }
+
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
         if (side == Direction.DOWN) {
             return false;
         }
 
-        if (slot == INGREDIENT_SLOT || slot == SECOND_INGREDIENT_SLOT) {
-            return ingredientStack().isIn(ModItemTags.RAW_GEMSTONE);
+        if (slot == INGREDIENT_BEFORE_SLOT || slot == INGREDIENT_AFTER_SLOT) {
+            return ingredientStack().isIn(ModItemTags.RAW_GEMSTONE) || ingredientAfterStack().isIn(ModItemTags.RAW_GEMSTONE);
         }
 
         if (slot == ENERGY_SOURCE_SLOT) {
-            return side == Direction.UP && (this.energyStack().isOf(ModItems.RADIANT));  //
+            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem()));  //
+        } else if (slot == RADIANT_SLOT) {
+            return side == Direction.UP && this.getStack(RADIANT_SLOT).isOf(ModItems.RADIANT);
         }
 
         return false;
@@ -164,12 +179,14 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     @Override
     public boolean isValid(int slot, ItemStack stack) {
         return switch (slot) {
-            case INGREDIENT_SLOT, SECOND_INGREDIENT_SLOT ->
+            case INGREDIENT_BEFORE_SLOT, INGREDIENT_AFTER_SLOT ->
                     stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE);
             case ENERGY_SOURCE_SLOT ->
-                    stack.isOf(ModItems.RADIANT);
+                    stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
             case RESULT_SLOT->
                     stack.isIn(ModItemTags.GEMSTONE);
+            case RADIANT_SLOT ->
+                stack.isOf(ModItems.RADIANT);
             default -> false;
         };
     }
@@ -205,7 +222,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
 
         if(polishingFusionState == PolishingFusionState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
-            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
+            if (isResultSlotEmptyOrReceivable() && hasRadiant() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
                 this.extractEnergy();
                 if (hasFusionFinished()) {
@@ -245,6 +262,11 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
         }
     }
 
+    @Override
+    public GemType getGem() {
+        return detectGem(getStack(RESULT_SLOT));
+    }
+
     protected void checkForEnoughEnergyAndRemoveItem() {
         long energy = this.energyStorage.amount;
 
@@ -266,7 +288,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     private void getFusionedGemstone() {
         RecipeEntry<GemFusionRecipe> recipe = currentRecipe().orElseThrow();
 
-        this.removeStack(INGREDIENT_SLOT, 1);
+        this.removeStack(INGREDIENT_BEFORE_SLOT, 1);
 
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));
@@ -275,7 +297,9 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
         return initialProgress >= maxProgressTicks;
     }
 
-
+    private boolean hasRadiant() {
+        return !radiantStack().isEmpty() && radiantStack().isOf(ModItems.RADIANT);
+    }
 
     protected boolean hasRecipe() {
         Optional<RecipeEntry<GemFusionRecipe>> recipe = currentRecipe();
@@ -286,7 +310,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
 
     private Optional<RecipeEntry<GemFusionRecipe>> currentRecipe() {
         ServerWorld serverWorld = (ServerWorld) world;
-        return this.matchGetter.getFirstMatch(new GemFusionRecipeInput(this.ingredientStack(), getStack(SECOND_INGREDIENT_SLOT)), serverWorld);
+        return this.matchGetter.getFirstMatch(new GemFusionRecipeInput(this.ingredientStack(), this.ingredientAfterStack()), serverWorld);
     }
 
     private boolean canInsertItemIntoResultSlot(Item item) {

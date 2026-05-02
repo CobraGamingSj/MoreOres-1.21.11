@@ -1,5 +1,5 @@
 {
-	"parent": "moreores:block/gem_purifier_block",
+	"parent": "moreores:block/gem_fusion_block_rp",
 	"textures": {
 		"output_tray": "moreores:block/output_tray/ot_tray_red"
 	}

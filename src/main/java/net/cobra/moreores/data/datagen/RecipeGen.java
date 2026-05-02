@@ -2,6 +2,7 @@ package net.cobra.moreores.data.datagen;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.client.recipe.GemFusionRecipeJsonBuilder;
 import net.cobra.moreores.client.recipe.GemPolishingRecipeJsonBuilder;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
@@ -379,6 +380,12 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.PYROPE_BLOCK.asItem()));
 
+                createGemFusion(
+                        Ingredient.ofItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), Ingredient.ofItem(ModBlocks.BLUE_GARNET_BLOCK), new ItemStack(ModBlocks.RADIANT_BLOCK.asItem()), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.RADIANT_BLOCK.asItem()));
+
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                         .pattern("aaa")
                         .pattern("aba")
@@ -573,6 +580,10 @@ public class RecipeGen extends FabricRecipeProvider {
 
     public GemPolishingRecipeJsonBuilder createGemPolishing(Ingredient input, ItemStack result, RecipeCategory category) {
         return GemPolishingRecipeJsonBuilder.create(input, result, category);
+    }
+
+    public GemFusionRecipeJsonBuilder createGemFusion(Ingredient inputBefore, Ingredient inputAfter, ItemStack result, RecipeCategory category) {
+        return GemFusionRecipeJsonBuilder.create(inputBefore, inputAfter, result, category);
     }
     
     @Override

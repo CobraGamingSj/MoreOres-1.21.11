@@ -1,6 +1,6 @@
 {
 	"parent": "moreores:block/gem_fusion_block",
 	"textures": {
-		"output_tray": "moreores:block/output_tray/ot_tray_red"
+		"body": "moreores:block/gem_fusion/body_rp"
 	}
 }

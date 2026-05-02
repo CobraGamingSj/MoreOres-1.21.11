@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.block.entity.gem.GemFusionBlockEntity;
-import net.cobra.moreores.block.entity.gem.GemFusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.registry.ModItemTags;
@@ -16,7 +15,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -29,7 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
@@ -121,7 +118,7 @@ public class GemFusionBlock extends BlockWithEntity implements BlockEntityProvid
 
             if(!heldStack.isEmpty() && world.getBlockEntity(pos) instanceof GemFusionBlockEntity be) {
                 ItemStack energyStack = be.getStack(GemFusionBlockEntity.ENERGY_SOURCE_SLOT);
-                ItemStack inputStack = be.getStack(GemFusionBlockEntity.INGREDIENT_SLOT);
+                ItemStack inputStack = be.getStack(GemFusionBlockEntity.INGREDIENT_BEFORE_SLOT);
 
                 if(!world.isClient()) {
                     if(heldStack.getItem() == ModItems.RADIANT) {
@@ -137,7 +134,7 @@ public class GemFusionBlock extends BlockWithEntity implements BlockEntityProvid
 
                     if(heldStack.isIn(ModItemTags.RAW_GEMSTONE)) {
                         if(inputStack.isEmpty()) {
-                            be.setStack(GemFusionBlockEntity.INGREDIENT_SLOT, heldStack.copyWithCount(heldStack.getCount()));
+                            be.setStack(GemFusionBlockEntity.INGREDIENT_BEFORE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
                             heldStack.decrement(heldStack.getCount());
                         } else if (ItemStack.areItemsEqual(inputStack, heldStack)) {
                             inputStack.increment(heldStack.getCount());

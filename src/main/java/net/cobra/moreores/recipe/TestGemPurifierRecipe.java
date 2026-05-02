@@ -48,7 +48,7 @@ public class TestGemPurifierRecipe implements Recipe<GemFusionRecipeInput> {
     @Override
     public boolean matches(GemFusionRecipeInput input, World world) {
         if (world.isClient()) return false;
-        return this.ingredient.test(input.firstInputStack()) && this.ingredient.test(input.secondInputStack());
+        return this.ingredient.test(input.inputBefore()) && this.ingredient.test(input.inputAfter());
     }
 
     @Override

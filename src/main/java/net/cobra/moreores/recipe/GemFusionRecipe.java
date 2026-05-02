@@ -54,8 +54,8 @@ public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
     @Override
     public boolean matches(GemFusionRecipeInput input, World world) {
         if (world.isClient()) return false;
-        return this.ingredientBefore.test(input.firstInputStack()) && this.ingredientBefore.test(input.secondInputStack()) ||
-                this.ingredientAfter.test(input.firstInputStack()) && this.ingredientAfter.test(input.secondInputStack());
+        return this.ingredientBefore.test(input.inputBefore()) && this.ingredientBefore.test(input.inputAfter()) ||
+                this.ingredientAfter.test(input.inputBefore()) && this.ingredientAfter.test(input.inputAfter());
     }
 
     @Override

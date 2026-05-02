@@ -41,15 +41,23 @@ public class GemFusionScreenHandler extends AbstractGemPFScreenHandler {
         this.propertyDelegate = delegate;
         this.blockEntity = (GemFusionBlockEntity) entity;
 
-        this.addSlot(new GemPurifierInputSlot(inventory, 0, 47, 22)); // Input
-        this.addSlot(new GemPurifierInputSlot(inventory, 1, 87, 22)); // Input After
-        this.addSlot(new GemPurifierResultSlot(inventory, 2, 67, 72)); // Result
-        this.addSlot(new EnergySlot(inventory, 3, 13, 21) {
+        this.addSlot(new GemPurifierInputSlot(inventory, 0, 47, 22) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(ModItems.RADIANT);
+                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
+                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
             }
-        }); // Energy Input
+        }); // Input Before
+
+        this.addSlot(new GemPurifierInputSlot(inventory, 1, 87, 22) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
+                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
+            }
+        }); // Input After
+        this.addSlot(new GemPurifierResultSlot(inventory, 2, 67, 72)); // Result
+        this.addSlot(new EnergySlot(inventory, 3, 13, 21)); // Energy Input
         this.addSlot(new Slot(inventory, 4, 39, 59));
 
         addFirstAdditionalInventory(inventory);

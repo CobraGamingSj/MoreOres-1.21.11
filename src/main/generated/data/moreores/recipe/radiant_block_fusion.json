@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_fusing",
+  "fuseGemAfter": "moreores:blue_garnet_block",
+  "fuseGemBefore": "moreores:raw_pyrope_block",
+  "gemFuseFinal": {
+    "count": 1,
+    "id": "moreores:radiant_block"
+  }
+}
