@@ -20,7 +20,12 @@ public class ModelGen extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
 
         generator.registerSimpleCubeAll(ModBlocks.RUBY_BLOCK);
+
         generator.registerSimpleCubeAll(ModBlocks.RADIANT_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.EXPOSED_RADIANT_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.WEATHERED_RADIANT_BLOCK);
+        generator.registerSimpleCubeAll(ModBlocks.CORRODED_RADIANT_BLOCK);
+
         generator.registerSimpleCubeAll(ModBlocks.SAPPHIRE_BLOCK);
         generator.registerSimpleCubeAll(ModBlocks.GREEN_SAPPHIRE_BLOCK);
         generator.registerSimpleCubeAll(ModBlocks.BLUE_GARNET_BLOCK);
@@ -90,6 +95,7 @@ public class ModelGen extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.RUBY, Models.GENERATED);
         itemModelGenerator.register(ModItems.RADIANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RADIANT_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.SAPPHIRE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GREEN_SAPPHIRE, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLUE_GARNET, Models.GENERATED);

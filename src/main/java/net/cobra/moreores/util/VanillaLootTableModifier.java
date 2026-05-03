@@ -92,11 +92,11 @@ public class VanillaLootTableModifier {
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
 
                 tableBuilder.pool(poolBuilder);
-            tableBuilder.pool(poolBuilder2);
-            tableBuilder.pool(poolBuilder3);
-            tableBuilder.pool(poolBuilder4);
-            tableBuilder.pool(poolBuilder5);
-            tableBuilder.pool(poolBuilder6);
+                tableBuilder.pool(poolBuilder2);
+                tableBuilder.pool(poolBuilder3);
+                tableBuilder.pool(poolBuilder4);
+                tableBuilder.pool(poolBuilder5);
+                tableBuilder.pool(poolBuilder6);
         }
         });
 

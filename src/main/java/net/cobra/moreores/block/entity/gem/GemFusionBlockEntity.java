@@ -298,7 +298,7 @@ public class GemFusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyDa
     }
 
     private boolean hasRadiant() {
-        return !radiantStack().isEmpty() && radiantStack().isOf(ModItems.RADIANT);
+        return !radiantStack().isEmpty() && radiantStack().isOf(ModItems.RADIANT_DUST);
     }
 
     protected boolean hasRecipe() {

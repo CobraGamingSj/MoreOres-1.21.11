@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "moreores:corroded_radiant_block"
+          "name": "moreores:exposed_radiant_block"
         }
       ],
       "rolls": 1.0

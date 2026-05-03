@@ -30,6 +30,9 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RUBY_BLOCK);
         addDrop(ModBlocks.RUBY_LAMP);
         addDrop(ModBlocks.RADIANT_BLOCK);
+        addDrop(ModBlocks.EXPOSED_RADIANT_BLOCK);
+        addDrop(ModBlocks.WEATHERED_RADIANT_BLOCK);
+        addDrop(ModBlocks.CORRODED_RADIANT_BLOCK);
         addDrop(ModBlocks.SAPPHIRE_BLOCK);
         addDrop(ModBlocks.GREEN_SAPPHIRE_BLOCK);
         addDrop(ModBlocks.BLUE_GARNET_BLOCK);

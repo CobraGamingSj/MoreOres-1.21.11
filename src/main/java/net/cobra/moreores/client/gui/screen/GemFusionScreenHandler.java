@@ -58,7 +58,12 @@ public class GemFusionScreenHandler extends AbstractGemPFScreenHandler {
         }); // Input After
         this.addSlot(new GemPurifierResultSlot(inventory, 2, 67, 72)); // Result
         this.addSlot(new EnergySlot(inventory, 3, 13, 21)); // Energy Input
-        this.addSlot(new Slot(inventory, 4, 39, 59));
+        this.addSlot(new Slot(inventory, 4, 39, 59) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.RADIANT_DUST);
+            }
+        });
 
         addFirstAdditionalInventory(inventory);
         addSecondAdditionalInventory(inventory);

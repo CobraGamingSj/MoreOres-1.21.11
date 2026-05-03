@@ -3,3 +3,5 @@ accessWidener v2 named
 accessible method net/minecraft/client/gui/DrawContext drawTexturedQuad (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/util/Identifier;IIIIFFFFI)V
 accessible method net/minecraft/client/gui/DrawContext drawTexturedQuad (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/textures/GpuTextureView;Lnet/minecraft/client/gl/GpuSampler;IIIIFFFFI)V
 accessible method net/minecraft/client/texture/NativeImage getColor (II)I
+
+accessible method net/minecraft/util/function/ValueLists createIndexToValueFunction (Ljava/util/function/ToIntFunction;[Ljava/lang/Object;)Ljava/util/function/IntFunction;
