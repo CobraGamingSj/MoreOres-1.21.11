@@ -1,0 +1,6 @@
+{
+	"parent": "moreores:block/gem_fusion_block_rp",
+	"textures": {
+		"body": "moreores:block/gem_fusion/body_rp_gem"
+	}
+}

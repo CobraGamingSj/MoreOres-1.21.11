@@ -426,16 +426,6 @@ public class RecipeGen extends FabricRecipeProvider {
                                         .criterion(hasItem(Blocks.TNT), conditionsFromItem(Blocks.TNT))
                                                 .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModBlocks.ENERGY_BLOCK) + "_from_radiant")));
 
-                createShaped(RecipeCategory.FOOD, ModItems.DIAMOND_APPLE, 1)
-                        .pattern("aaa")
-                        .pattern("aba")
-                        .pattern("aaa")
-                        .input('a', Blocks.DIAMOND_BLOCK)
-                        .input('b', Items.APPLE)
-                        .criterion(hasItem(Items.DIAMOND_BLOCK), conditionsFromItem(Blocks.DIAMOND_BLOCK))
-                        .criterion(hasItem(Items.APPLE), conditionsFromItem(Items.APPLE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.DIAMOND_APPLE))));
-
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.RUBY_LAMP, 1)
                         .pattern("aba")
                         .pattern("bcb")

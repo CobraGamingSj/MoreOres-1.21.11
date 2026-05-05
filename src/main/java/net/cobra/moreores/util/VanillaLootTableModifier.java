@@ -41,24 +41,6 @@ public class VanillaLootTableModifier {
 
                 tableBuilder.pool(poolBuilder);
             }
-            if (PLAINS_VILLAGE_HOUSE_KEY.equals(key)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.75f)) //75% Chance
-                        .with(ItemEntry.builder(ModItems.TOMATO_SEEDS))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 4.0f)));
-
-                tableBuilder.pool(poolBuilder);
-            }
-            if (PLAINS_VILLAGE_HOUSE_KEY.equals(key)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.35f)) //35% Chance
-                        .with(ItemEntry.builder(ModItems.PINEAPPLE_SEEDS))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)));
-
-                tableBuilder.pool(poolBuilder);
-            }
             if (PLAINS_VILLAGE_TOOLSMITH_KEY.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))

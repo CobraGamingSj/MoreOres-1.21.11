@@ -6,7 +6,6 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -20,22 +19,6 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import java.util.function.Function;
 
 public class ModBlocks {
-
-    public static final Block TOMATO_CROP = Registry.register(Registries.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "tomato_crop"),
-            new TomatoCropBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "tomato_crop"))).mapColor(MapColor.DARK_GREEN)
-                    .noCollision()
-                    .ticksRandomly()
-                    .breakInstantly()
-                    .sounds(BlockSoundGroup.CROP)
-                    .pistonBehavior(PistonBehavior.DESTROY)));
-
-    public static final Block PINEAPPLE_CROP = Registry.register(Registries.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "pineapple_crop"),
-            new PineappleCropBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "pineapple_crop"))).mapColor(MapColor.YELLOW)
-                    .noCollision()
-                    .ticksRandomly()
-                    .breakInstantly()
-                    .sounds(BlockSoundGroup.CROP)
-                    .pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block ENERGY_BLOCK = register("energy_block", new EnergyBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "energy_block"))).mapColor(MapColor.BLUE).requiresTool().strength(256.0f, 512.0f).strength(512.0f).sounds(ModBlockSoundGroup.ENERGY_BLOCK).luminance((state) -> {
         return 30;
@@ -119,13 +102,13 @@ public class ModBlocks {
 
     public static Block register(String id, Block block) {
         registerBlockItem(id, block);
-        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
+        Identifier ID = MoreOresModInitializer.getId(id);
 
         return Registry.register(Registries.BLOCK, ID, block);
     }
 
     public static Block registerSolidBlock(String id, Function<AbstractBlock.Settings, Block> blockFunction, float strength, float resistance) {
-        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
+        Identifier ID = MoreOresModInitializer.getId(id);
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.setBlockKey(id)).strength(strength, resistance);
         Block block = Registry.register(Registries.BLOCK, ID, blockFunction.apply(settings));
         Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(MoreOresModInitializer.setRegistryKey(id)).useBlockPrefixedTranslationKey()));
@@ -134,13 +117,13 @@ public class ModBlocks {
     }
 
     public static void registerBlockItem(String id, Block block) {
-        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
+        Identifier ID = MoreOresModInitializer.getId(id);
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, ID);
         Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(key).useBlockPrefixedTranslationKey()));
     }
 
     public static void register() {
-        MoreOresModInitializer.LOGGER.info("Loading ModBlocks for " + MoreOresModInitializer.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading ModBlocks for {} mod.", MoreOresModInitializer.MOD_ID);
     }
 
 }

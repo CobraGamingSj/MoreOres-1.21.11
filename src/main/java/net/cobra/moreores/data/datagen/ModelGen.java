@@ -64,9 +64,6 @@ public class ModelGen extends FabricModelProvider {
         generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_JADE_ORE);
         generator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_PERIDOT_ORE);
 
-        generator.registerCrop(ModBlocks.TOMATO_CROP, TomatoCropBlock.AGE, 0, 1, 2, 3, 4, 5);
-        generator.registerCrop(ModBlocks.PINEAPPLE_CROP, PineappleCropBlock.AGE, 0, 1, 2, 3, 4);
-
         generator.registerSimpleCubeAll(ModBlocks.ENERGY_BLOCK);
 
         Identifier lampOffIdentifier = TexturedModel.CUBE_ALL.upload(ModBlocks.RUBY_LAMP, generator.modelCollector);
@@ -129,10 +126,6 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.WOOD_PELLET, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.GEM_DETECTOR, Models.GENERATED);
-
-        itemModelGenerator.register(ModItems.PINEAPPLE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.TOMATO, Models.GENERATED);
-        itemModelGenerator.register(ModItems.DIAMOND_APPLE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.RADIANT_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_SWORD, Models.HANDHELD);

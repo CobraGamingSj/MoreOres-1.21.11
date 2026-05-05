@@ -6,6 +6,7 @@ import net.cobra.moreores.registry.BirthdayRewardState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -53,7 +54,7 @@ public abstract class AnvilScreenHandlerMixin {
 
         serverPlayer.giveItemStack(new ItemStack(ModItems.RUBY, 32));
         serverPlayer.giveItemStack(new ItemStack(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, 9));
-        serverPlayer.giveItemStack(new ItemStack(ModItems.DIAMOND_APPLE, 5));
+        serverPlayer.giveItemStack(new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 5));
         serverPlayer.sendMessage(
                 Text.literal("🎉 [MoreOres+] ")
                         .formatted(Formatting.GOLD)

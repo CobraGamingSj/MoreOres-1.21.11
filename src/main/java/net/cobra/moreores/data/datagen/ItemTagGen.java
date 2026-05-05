@@ -40,10 +40,6 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.JADE)
                 .add(ModItems.PYROPE);
 
-        valueLookupBuilder(ItemTags.VILLAGER_PLANTABLE_SEEDS)
-                .add(ModItems.TOMATO_SEEDS)
-                .add(ModItems.PINEAPPLE_SEEDS);
-
         valueLookupBuilder(ModItemTags.ARCSHAPERS);
 
         valueLookupBuilder(ItemTags.SWORDS)

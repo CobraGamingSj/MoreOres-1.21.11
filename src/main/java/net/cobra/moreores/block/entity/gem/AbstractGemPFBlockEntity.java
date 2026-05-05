@@ -1,11 +1,11 @@
 package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.util.GemType;
+import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -14,7 +14,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.recipe.ServerRecipeManager;
@@ -64,7 +63,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
         super.writeData(view);
         Inventories.writeData(view, main);
         view.putInt("Progress", initialProgress);
-        view.putLong("gem_purifier.energy", energyStorage.amount);
+        view.putLong("Energy", energyStorage.amount);
         view.putNullable("PolishingState", PolishingFusionState.CODEC, polishingFusionState);
         view.putNullable("EnergyState", EnergyState.CODEC, energyState);
         view.putNullable("GemType", GemType.CODEC, gemType);
@@ -75,7 +74,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
         super.readData(view);
         Inventories.readData(view, main);
         initialProgress = view.getInt("Progress", 0);
-        energyStorage.amount = view.getLong("gem_purifier.energy", 0);
+        energyStorage.amount = view.getLong("Energy", 0);
         polishingFusionState = view.read("PolishingState", PolishingFusionState.CODEC).orElse(PolishingFusionState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
         gemType = view.read("GemType", GemType.CODEC).orElse(GemType.EMPTY);

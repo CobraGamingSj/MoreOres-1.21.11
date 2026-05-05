@@ -189,8 +189,6 @@ public class MoreOresModInitializer implements ModInitializer {
 			naturalEventEntries.addAfter(ModBlocks.RAW_WHITE_TOPAZ_BLOCK, ModBlocks.RAW_PERIDOT_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_PERIDOT_BLOCK, ModBlocks.RAW_PYROPE_BLOCK);
 			naturalEventEntries.addAfter(ModBlocks.RAW_PYROPE_BLOCK, ModBlocks.RAW_JADE_BLOCK);
-			naturalEventEntries.addBefore(Items.TORCHFLOWER_SEEDS, ModItems.TOMATO_SEEDS);
-			naturalEventEntries.addBefore(Items.PUMPKIN_SEEDS, ModItems.PINEAPPLE_SEEDS);
 			naturalEventEntries.addAfter(Blocks.DEEPSLATE_DIAMOND_ORE, ModBlocks.RUBY_ORE);
 			naturalEventEntries.addAfter(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE);
 			naturalEventEntries.addAfter(ModBlocks.DEEPSLATE_RUBY_ORE, ModBlocks.SAPPHIRE_ORE);
@@ -223,6 +221,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			functionalEventEntries.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
 			functionalEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 			functionalEventEntries.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
+			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_FUSION_BLOCK);
 		});
 
 
@@ -230,15 +229,6 @@ public class MoreOresModInitializer implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(redstoneEEventEntries -> {
 			redstoneEEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 		});
-
-
-		// Food Registry
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(foodEventEntries -> {
-			foodEventEntries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, ModItems.DIAMOND_APPLE);
-			foodEventEntries.addAfter(Items.POTATO, ModItems.PINEAPPLE);
-			foodEventEntries.addAfter(ModItems.PINEAPPLE, ModItems.TOMATO);
-		});
-
 
 		// Gemstone Blocks Registry
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(buildingBlockEventEntries -> {
@@ -337,7 +327,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		serverPlayer.giveItemStack(new ItemStack(ModItems.RUBY, 32));
 		serverPlayer.giveItemStack(new ItemStack(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, 9));
-		serverPlayer.giveItemStack(new ItemStack(ModItems.DIAMOND_APPLE, 5));
+		serverPlayer.giveItemStack(new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 5));
 		serverPlayer.sendMessage(
 				Text.literal("🎉 [MoreOres+] ")
 						.formatted(Formatting.GOLD)

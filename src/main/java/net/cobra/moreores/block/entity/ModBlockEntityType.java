@@ -28,6 +28,6 @@ public class ModBlockEntityType {
     public static void register() {
         EnergyStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.energyStorage, GEM_PURIFIER_BLOCK_ENTITY);
         FluidStorage.SIDED.registerForBlockEntity(((blockEntity, direction) -> blockEntity.fluidStorage), GEM_PURIFIER_BLOCK_ENTITY);
-        MoreOresModInitializer.LOGGER.info("Loading ModBlockEntityTypes for " + MoreOresModInitializer.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading ModBlockEntityTypes for {} mod.", MoreOresModInitializer.MOD_ID);
     }
 }

@@ -56,14 +56,16 @@ public class GemFusionScreenHandler extends AbstractGemPFScreenHandler {
                         stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
             }
         }); // Input After
+
         this.addSlot(new GemPurifierResultSlot(inventory, 2, 67, 72)); // Result
         this.addSlot(new EnergySlot(inventory, 3, 13, 21)); // Energy Input
+
         this.addSlot(new Slot(inventory, 4, 39, 59) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.RADIANT_DUST);
             }
-        });
+        });// Radiant Slot
 
         addFirstAdditionalInventory(inventory);
         addSecondAdditionalInventory(inventory);
@@ -96,11 +98,11 @@ public class GemFusionScreenHandler extends AbstractGemPFScreenHandler {
             stack = originalStack.copy();
 
             if(invSlot == 2) {
-                if(!this.insertItem(originalStack, 15, 51, true)) {
+                if(!this.insertItem(originalStack, 18, 54, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickTransfer(originalStack, stack);
-            } else if(invSlot >= 15 && invSlot < 51) {
+            } else if(invSlot >= 18 && invSlot < 54) {
                 if(isValidInput(originalStack)) {
                     if(!this.insertItem(originalStack, 0, 1, false)) {
                         return ItemStack.EMPTY;
@@ -109,13 +111,18 @@ public class GemFusionScreenHandler extends AbstractGemPFScreenHandler {
                     if(!this.insertItem(originalStack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else {
-                    if(!this.insertItem(originalStack, 3, 15, false)) {
+                } else if (isRadiantDust(originalStack)) {
+                    if(!this.insertItem(originalStack, 4, 5, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else {
+                    if(!this.insertItem(originalStack, 6, 18, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
             } else {
-                if(!this.insertItem(originalStack, 15, 51, false)) {
+                if(!this.insertItem(originalStack, 18, 54, false)) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -130,11 +137,16 @@ public class GemFusionScreenHandler extends AbstractGemPFScreenHandler {
     }
 
     private boolean isValidInput(ItemStack stack) {
-        return stack.isIn(ModItemTags.RAW_GEMSTONE);
+        return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
+                stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
     }
 
     private boolean isValidEnergyItem(ItemStack stack) {
         return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+    }
+
+    private boolean isRadiantDust(ItemStack stack) {
+        return stack.isOf(ModItems.RADIANT_DUST);
     }
 
     @Override

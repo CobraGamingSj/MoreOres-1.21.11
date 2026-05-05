@@ -12,29 +12,6 @@ import net.minecraft.village.TradedItem;
 public class CustomTrades {
 
     public static void register() {
-
-        TradeOfferHelper.registerWanderingTraderOffers(factories -> {
-            factories.addAll(MoreOresModInitializer.getId("emerald_for_tomato_seeds"), (world, entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 3),
-                    new ItemStack(ModItems.TOMATO_SEEDS),
-                    6, 5, 0.05f
-            ));
-            factories.addAll(MoreOresModInitializer.getId("emerald_for_pineapple_seeds"), (world, entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 5),
-                    new ItemStack(ModItems.PINEAPPLE_SEEDS),
-                    6, 5, 0.05f
-            ));
-            factories.addAll(MoreOresModInitializer.getId("emerald_for_tomato"), (world, entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 7),
-                    new ItemStack(ModItems.TOMATO),
-                    6, 5, 0.05f
-            ));
-            factories.addAll(MoreOresModInitializer.getId("emerald_for_pineapple"), (world, entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 11),
-                    new ItemStack(ModItems.PINEAPPLE),
-                    6, 5, 0.05f
-            ));
-        });
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.JEWELLER, 1, factories -> {
             factories.add((world, entity, random) -> new TradeOffer(
                     new TradedItem(Items.COAL, 24),

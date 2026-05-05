@@ -19,9 +19,6 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
     public void onInitializeClient() {
         ModS2CNetworks.registerClientS2C();
 
-        BlockRenderLayerMap.putBlock(ModBlocks.TOMATO_CROP, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModBlocks.PINEAPPLE_CROP, BlockRenderLayer.CUTOUT);
-
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_FUSION_BLOCK, BlockRenderLayer.TRANSLUCENT);
 

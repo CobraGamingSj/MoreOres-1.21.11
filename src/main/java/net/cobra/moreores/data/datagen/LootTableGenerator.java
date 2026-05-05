@@ -1,7 +1,6 @@
 package net.cobra.moreores.data.datagen;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.TomatoCropBlock;
 import net.cobra.moreores.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -19,13 +18,6 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-
-        BlockStatePropertyLootCondition.Builder builder = BlockStatePropertyLootCondition.builder(ModBlocks.TOMATO_CROP).properties(StatePredicate.Builder.create()
-                .exactMatch(TomatoCropBlock.AGE, 5));
-        addDrop(ModBlocks.TOMATO_CROP, cropDrops(ModBlocks.TOMATO_CROP, ModItems.TOMATO, ModItems.TOMATO_SEEDS, builder));
-        BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(ModBlocks.PINEAPPLE_CROP).properties(StatePredicate.Builder.create()
-                .exactMatch(TomatoCropBlock.AGE, 4));
-        addDrop(ModBlocks.PINEAPPLE_CROP, cropDrops(ModBlocks.PINEAPPLE_CROP, ModItems.PINEAPPLE, ModItems.PINEAPPLE_SEEDS, builder2));
 
         addDrop(ModBlocks.RUBY_BLOCK);
         addDrop(ModBlocks.RUBY_LAMP);

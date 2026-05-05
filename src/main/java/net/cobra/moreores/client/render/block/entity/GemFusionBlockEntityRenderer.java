@@ -40,8 +40,8 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotationAngle));
         matrices.translate(-0.5, 0, -0.5);
 
-        matrices.translate(x, 0.9F, z);
-        matrices.scale(0.1f, 0.1f, 0.1f);
+        matrices.translate(x, 0.85F, z);
+        matrices.scale(0.125f, 0.125f, 0.125f);
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-270));
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
 

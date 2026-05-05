@@ -81,7 +81,6 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
     private long lastRemovedWaterMilestone = 0;
 
     protected final PropertyDelegate propertyDelegate;
-    private int initialProgress = 0;
     private int maxProgressTick = 384;
     private final ServerRecipeManager.MatchGetter<GemPurifyingRecipeInput, GemPurifierRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemPurifierRecipe.Type.INSTANCE);
 
@@ -169,7 +168,6 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        view.putInt("gem_purifier.progress", initialProgress);
         view.putLong("gem_purifier.water", fluidStorage.amount);
         view.putNullable("gem_purifier.fluid.variant", FluidVariant.CODEC, fluidStorage.variant);
         view.putNullable("WaterState", WaterFluidState.CODEC, waterState);
@@ -178,7 +176,6 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        initialProgress = view.getInt("gem_purifier.progress", 0);
         fluidStorage.amount = view.getLong("gem_purifier.water", 0);
         fluidStorage.variant = view.read("gem_purifier.fluid.variant", FluidVariant.CODEC).orElse(FluidVariant.blank());
         waterState = view.read("WaterState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);

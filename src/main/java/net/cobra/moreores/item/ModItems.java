@@ -23,17 +23,6 @@ public class ModItems {
 
     public static final Item GEM_DETECTOR = register("gem_detector", GemDetector::new);
 
-    //Seeds
-    public static final Item TOMATO_SEEDS = register("tomato_seeds", new AliasedBlockItem("tomato_seeds", ModBlocks.TOMATO_CROP));
-    public static final Item PINEAPPLE_SEEDS = register("pineapple_seeds", new AliasedBlockItem("pineapple_seeds", ModBlocks.PINEAPPLE_CROP));
-
-
-    //Foods
-    public static final Item PINEAPPLE = register("pineapple", s -> new Item(s.food(ModFoods.PINEAPPLE, ModConsumableComponents.PINEAPPLE)));
-    public static final Item TOMATO = register("tomato", s -> new Item(s.food(ModFoods.TOMATO)));
-    public static final Item DIAMOND_APPLE = register("diamond_apple", s -> new Item(s.food(ModFoods.DIAMOND_APPLE, ModConsumableComponents.DIAMOND_APPLE).rarity(Rarity.EPIC)));
-
-
     //Gemstones & Ingots
     public static final Item RUBY = register("ruby", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.RUBY).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby")))));
     public static final Item RAW_RUBY = register("raw_ruby", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_ruby")))));
@@ -145,11 +134,26 @@ public class ModItems {
 
 
     //Sapphire Tools & Weapons
-    public static final Item SAPPHIRE_SWORD = register("sapphire_sword", new Item(new Item.Settings().sword(ModToolMaterials.SAPPHIRE,  8, -2.0f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_sword")))));
-    public static final Item SAPPHIRE_PICKAXE = register("sapphire_pickaxe", new Item(new Item.Settings().pickaxe(ModToolMaterials.SAPPHIRE,  4, -3.0f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_pickaxe")))));
-    public static final Item SAPPHIRE_AXE = register("sapphire_axe", new AxeItem(ModToolMaterials.SAPPHIRE,  8, -2.0f, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_axe")))));
-    public static final Item SAPPHIRE_HOE = register("sapphire_hoe", new HoeItem(ModToolMaterials.SAPPHIRE,  4, -3.0f, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_hoe")))));
-    public static final Item SAPPHIRE_SHOVEL = register("sapphire_shovel", new ShovelItem(ModToolMaterials.SAPPHIRE,  3.5F, -3.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_shovel")))));
+    public static final Item SAPPHIRE_SWORD = registerSword(
+            "sapphire_sword",
+            s-> new Item(s.fireproof()),
+            8, -2.0f, ModToolMaterials.SAPPHIRE);
+    public static final Item SAPPHIRE_PICKAXE = registerPickaxe(
+            "sapphire_pickaxe",
+            s -> new Item(s.fireproof()),
+            4, -3.0f, ModToolMaterials.SAPPHIRE);
+    public static final Item SAPPHIRE_AXE = registerAxe(
+            "sapphire_axe",
+            s -> new Item(s.fireproof()),
+            8, -2.0f, ModToolMaterials.SAPPHIRE);
+    public static final Item SAPPHIRE_HOE = registerHoe(
+            "sapphire_hoe",
+            s -> new Item(s.fireproof()),
+            4, -3.0f, ModToolMaterials.SAPPHIRE);
+    public static final Item SAPPHIRE_SHOVEL = registerShovel(
+            "sapphire_shovel",
+            s -> new Item(s.fireproof()),
+            3.5F, -3.0F, ModToolMaterials.SAPPHIRE);
     public static final Item SAPPHIRE_SPEAR = register("sapphire_spear", new Item(new Item.Settings().spear(ModToolMaterials.SAPPHIRE, 1.25F, 1.4F,
             0.3F, 1.5F, 6.0F, 4.5F, 5.1F, 7.65F, 4.6F).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_spear")))));
 
@@ -176,17 +180,19 @@ public class ModItems {
             16, -1.8f, ModToolMaterials.RADIANT
     );
     public static final Item RADIANT_HOE = registerHoe(
-      "radiant_hoe",
-      s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            "radiant_hoe",
+            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
             12, -2.2f, ModToolMaterials.RADIANT
     );
 
 
     //    Smithing Templates
-    public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = register("ruby_upgrade_smithing_template", ModSmithingTemplateItem.createRubyUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_upgrade_smithing_template")))));
-    public static final Item RADIANT_UPGRADE_SMITHING_TEMPLATE = register("radiant_upgrade_smithing_template", ModSmithingTemplateItem.createRadiantUpgrade(new Item.Settings().rarity(Rarity.UNCOMMON).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("radiant_upgrade_smithing_template")))));
+    public static final Item RUBY_UPGRADE_SMITHING_TEMPLATE = register("ruby_upgrade_smithing_template",
+            s -> ModSmithingTemplateItem.createRubyUpgrade(s.rarity(Rarity.UNCOMMON)));
+    public static final Item RADIANT_UPGRADE_SMITHING_TEMPLATE = register("radiant_upgrade_smithing_template",
+            s -> ModSmithingTemplateItem.createRadiantUpgrade(s.rarity(Rarity.UNCOMMON)));
     public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = register("guardian_armor_trim_smithing_template",
-            SmithingTemplateItem.of(new Item.Settings().rarity(Rarity.RARE).registryKey(setRegistryKey("guardian_armor_trim_smithing_template"))));
+            s -> SmithingTemplateItem.of(s.rarity(Rarity.RARE)));
 
     public static Item register(String id, Item item) {
         return Registry.register(Registries.ITEM, getId(id), item);
