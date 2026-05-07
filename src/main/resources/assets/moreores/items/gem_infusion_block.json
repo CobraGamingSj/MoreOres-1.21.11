@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "moreores:block/gem_fusion_block"
+    "model": "moreores:block/gem_infusion_block"
   }
 }

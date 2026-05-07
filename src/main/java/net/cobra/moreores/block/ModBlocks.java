@@ -58,9 +58,9 @@ public class ModBlocks {
     public static final Block GEM_PURIFIER_BLOCK = register("gem_purifier_block", new GemPurifierBlock(AbstractBlock.Settings.create()
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_purifier_block"))).strength(5f).strength(2.75f, 3f)
             .luminance(state -> state.get(GemPurifierBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
-    public static final Block GEM_FUSION_BLOCK = register("gem_fusion_block", new GemFusionBlock(AbstractBlock.Settings.create()
-            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_fusion_block"))).strength(5f).strength(2.75f, 3f)
-            .luminance(state -> state.get(GemFusionBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
+    public static final Block GEM_INinfusion_BLOCK = register("gem_ininfusion_block", new GemIninfusionBlock(AbstractBlock.Settings.create()
+            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_ininfusion_block"))).strength(5f).strength(2.75f, 3f)
+            .luminance(state -> state.get(GemIninfusionBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
 
     public static final Block RAW_RUBY_BLOCK = register("raw_ruby_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_ruby_block"))).mapColor(MapColor.DARK_RED).requiresTool().strength(6.0f, 6.0f).strength(6.0f)));
     public static final Block RAW_SAPPHIRE_BLOCK = register("raw_sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_sapphire_block"))).mapColor(MapColor.BLUE).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));

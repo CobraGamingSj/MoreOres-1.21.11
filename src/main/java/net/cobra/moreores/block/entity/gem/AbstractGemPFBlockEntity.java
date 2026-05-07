@@ -27,7 +27,7 @@ import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<P>, ImplementedInventory, TickableBlockEntity {
     protected final DefaultedList<ItemStack> main;
-    protected PolishingFusionState polishingFusionState = PolishingFusionState.IDLE;
+    protected PolishinginfusionState polishinginfusionState = PolishinginfusionState.IDLE;
     protected EnergyState energyState = EnergyState.IDLE;
     protected GemType gemType = GemType.EMPTY;
 
@@ -64,7 +64,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
         Inventories.writeData(view, main);
         view.putInt("Progress", initialProgress);
         view.putLong("Energy", energyStorage.amount);
-        view.putNullable("PolishingState", PolishingFusionState.CODEC, polishingFusionState);
+        view.putNullable("PolishingState", PolishinginfusionState.CODEC, polishinginfusionState);
         view.putNullable("EnergyState", EnergyState.CODEC, energyState);
         view.putNullable("GemType", GemType.CODEC, gemType);
     }
@@ -75,7 +75,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
         Inventories.readData(view, main);
         initialProgress = view.getInt("Progress", 0);
         energyStorage.amount = view.getLong("Energy", 0);
-        polishingFusionState = view.read("PolishingState", PolishingFusionState.CODEC).orElse(PolishingFusionState.IDLE);
+        polishinginfusionState = view.read("PolishingState", PolishinginfusionState.CODEC).orElse(PolishinginfusionState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
         gemType = view.read("GemType", GemType.CODEC).orElse(GemType.EMPTY);
     }
@@ -155,26 +155,26 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
     }
 
     public void start() {
-        if(polishingFusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
-            polishingFusionState = PolishingFusionState.RUNNING;
+        if(polishinginfusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+            polishinginfusionState = PolishinginfusionState.RUNNING;
         }
     }
 
     public void pause() {
-        if(polishingFusionState.isRunning()) {
-            polishingFusionState = PolishingFusionState.PAUSED;
+        if(polishinginfusionState.isRunning()) {
+            polishinginfusionState = PolishinginfusionState.PAUSED;
         }
     }
 
     public void resume() {
-        if(polishingFusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
-            polishingFusionState = PolishingFusionState.RUNNING;
+        if(polishinginfusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
+            polishinginfusionState = PolishinginfusionState.RUNNING;
         }
     }
 
     public void stop() {
-        if(!polishingFusionState.isIdle()) {
-            polishingFusionState = PolishingFusionState.IDLE;
+        if(!polishinginfusionState.isIdle()) {
+            polishinginfusionState = PolishinginfusionState.IDLE;
             resetProgress();
         }
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "moreores:radiant_block_fusion"
+        "recipe": "moreores:radiant_block_infusion"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "moreores:radiant_block_fusion"
+      "moreores:radiant_block_infusion"
     ]
   }
 }

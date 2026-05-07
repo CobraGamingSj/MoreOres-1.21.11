@@ -5,9 +5,9 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"output_tray": "moreores:block/output_tray/ot_tray",
-		"energy_tray": "moreores:block/gem_fusion/tray_energy",
-		"tray": "moreores:block/gem_fusion/tray",
-		"body": "moreores:block/gem_fusion/body",
+		"energy_tray": "moreores:block/gem_infusion/tray_energy",
+		"tray": "moreores:block/gem_infusion/tray",
+		"body": "moreores:block/gem_infusion/body",
 		"particle": "moreores:block/gem_purifier/gem_purifier_break"
 	},
 	"elements": [

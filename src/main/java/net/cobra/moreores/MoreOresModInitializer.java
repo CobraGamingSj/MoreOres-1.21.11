@@ -3,7 +3,6 @@ package net.cobra.moreores;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
-import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.networking.ModC2SNetworks;
@@ -11,7 +10,7 @@ import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
 import net.cobra.moreores.networking.block.data.PolishingStateData;
-import net.cobra.moreores.recipe.GemFusionRecipe;
+import net.cobra.moreores.recipe.GemIninfusionRecipe;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
@@ -99,7 +98,6 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		// Fuel Registry
 		FuelRegistryEvents.BUILD.register(((builder, context) -> {
-			builder.add(ModItems.WOOD_PELLET, 2000);
 			builder.add(ModItems.ENERGY_INGOT, 25000);
 			builder.add(ModBlocks.ENERGY_BLOCK, 24500);
 		}));
@@ -123,7 +121,6 @@ public class MoreOresModInitializer implements ModInitializer {
 			ingredientsEventEntries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE);
 			ingredientsEventEntries.addAfter(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
 			ingredientsEventEntries.addBefore(Items.NETHERITE_INGOT, ModItems.ENERGY_INGOT);
-			ingredientsEventEntries.addBefore(Items.COAL, ModItems.WOOD_PELLET);
 			ingredientsEventEntries.addAfter(Items.NETHERITE_INGOT, ModItems.RADIANT);
 			ingredientsEventEntries.addAfter(ModItems.RADIANT, ModItems.RUBY);
 			ingredientsEventEntries.addAfter(ModItems.RUBY, ModItems.SAPPHIRE);
@@ -221,7 +218,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			functionalEventEntries.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
 			functionalEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 			functionalEventEntries.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
-			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_FUSION_BLOCK);
+			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_INinfusion_BLOCK);
 		});
 
 
@@ -287,10 +284,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModRecipes Registry
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Type.ID), GemPurifierRecipe.Type.INSTANCE);
-        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemFusionRecipe.Type.ID), GemFusionRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemIninfusionRecipe.Type.ID), GemIninfusionRecipe.Type.INSTANCE);
         LOGGER.info("Loading ModRecipeType for " + MOD_ID + " mod.");
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Serializer.ID), GemPurifierRecipe.Serializer.INSTANCE);
-        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemFusionRecipe.Serializer.ID), GemFusionRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemIninfusionRecipe.Serializer.ID), GemIninfusionRecipe.Serializer.INSTANCE);
         LOGGER.info("Loading ModRecipeSerializer for" + MOD_ID + " mod.");
 
 
@@ -301,9 +298,6 @@ public class MoreOresModInitializer implements ModInitializer {
 		PayloadTypeRegistry.playC2S().register(GemPurifierButtonClick.ID, GemPurifierButtonClick.PACKET_CODEC);
 		PayloadTypeRegistry.playC2S().register(PolishingStateData.ID, PolishingStateData.CODEC);
 		ModC2SNetworks.registerServerC2S();
-
-		//ModConsumableComponents Registry
-		ModConsumableComponents.register();
 
 
 		//ModRecipeBookCategories Registry

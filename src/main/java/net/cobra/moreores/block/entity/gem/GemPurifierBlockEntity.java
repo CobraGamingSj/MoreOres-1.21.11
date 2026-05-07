@@ -263,7 +263,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
 
         changeState();
 
-        if(polishingFusionState == PolishingFusionState.RUNNING) {
+        if(polishinginfusionState == PolishinginfusionState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && hasEnoughWater()) {
                 this.increaseProgress();
@@ -276,10 +276,10 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
                 markDirty(world, pos, state);
             } else {
                 this.resetProgress();
-                this.polishingFusionState = PolishingFusionState.IDLE;
+                this.polishinginfusionState = PolishinginfusionState.IDLE;
                 markDirty(world, pos, state);
             }
-        } else if (polishingFusionState.isPaused()) {
+        } else if (polishinginfusionState.isPaused()) {
             energyState = EnergyState.INSERTING;
             waterState = WaterFluidState.FILLING;
             insertEnergy();
@@ -455,26 +455,26 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
     }
 
     public void startPolish() {
-        if(polishingFusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
-            polishingFusionState = PolishingFusionState.RUNNING;
+        if(polishinginfusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+            polishinginfusionState = PolishinginfusionState.RUNNING;
         }
     }
 
     public void pausePolish() {
-        if(polishingFusionState.isRunning()) {
-            polishingFusionState = PolishingFusionState.PAUSED;
+        if(polishinginfusionState.isRunning()) {
+            polishinginfusionState = PolishinginfusionState.PAUSED;
         }
     }
 
     public void resumePolish() {
-        if(polishingFusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
-            polishingFusionState = PolishingFusionState.RUNNING;
+        if(polishinginfusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
+            polishinginfusionState = PolishinginfusionState.RUNNING;
         }
     }
 
     public void stopPolish() {
-        if(!polishingFusionState.isIdle()) {
-            polishingFusionState = PolishingFusionState.IDLE;
+        if(!polishinginfusionState.isIdle()) {
+            polishinginfusionState = PolishinginfusionState.IDLE;
             resetProgress();
         }
     }

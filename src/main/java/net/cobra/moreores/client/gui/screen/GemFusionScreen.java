@@ -13,16 +13,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class GemFusionScreen extends AbstractGemPFScreen<GemFusionScreenHandler> {
+public class GeminfusionScreen extends AbstractGemPFScreen<GeminfusionScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
-    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_fusion_gui_test.png");
+    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_infusion_gui_test.png");
     private static final Identifier START_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/start.png");
     private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/pause.png");
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/resume.png");
     private static final Identifier STOP_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/stop.png");
 
-    public GemFusionScreen(GemFusionScreenHandler handler, PlayerInventory inventory, Text title) {
+    public GeminfusionScreen(GeminfusionScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundHeight = 196;
         this.backgroundWidth = 207;

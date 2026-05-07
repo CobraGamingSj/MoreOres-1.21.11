@@ -1,10 +1,7 @@
 package net.cobra.moreores.item;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.component.type.ModConsumableComponents;
 import net.cobra.moreores.item.equipment.ModArmorMaterials;
-import net.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
 import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
@@ -24,37 +21,48 @@ public class ModItems {
     public static final Item GEM_DETECTOR = register("gem_detector", GemDetector::new);
 
     //Gemstones & Ingots
-    public static final Item RUBY = register("ruby", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.RUBY).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby")))));
-    public static final Item RAW_RUBY = register("raw_ruby", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_ruby")))));
-    public static final Item RADIANT = register("radiant", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.RADIANT).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("radiant")))));
-    public static final Item RADIANT_DUST = register("radiant_dust", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.RADIANT).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("radiant_dust")))));
-    public static final Item SAPPHIRE = register("sapphire", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.SAPPHIRE).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire")))));
-    public static final Item RAW_SAPPHIRE = register("raw_sapphire", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_sapphire")))));
-    public static final Item GREEN_SAPPHIRE = register("green_sapphire", new Item(new Item.Settings().trimMaterial(ModArmorTrimMaterials.GREEN_SAPPHIRE).fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("green_sapphire")))));
-    public static final Item RAW_GREEN_SAPPHIRE = register("raw_green_sapphire", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_green_sapphire")))));
-    public static final Item PINK_GARNET = register("pink_garnet", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.PINK_GARNET).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("pink_garnet")))));
-    public static final Item RAW_PINK_GARNET = register("raw_pink_garnet", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_pink_garnet")))));
-    public static final Item BLUE_GARNET = register("blue_garnet", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.BLUE_GARNET).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("blue_garnet")))));
-    public static final Item RAW_BLUE_GARNET = register("raw_blue_garnet", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_blue_garnet")))));
-    public static final Item GREEN_GARNET = register("green_garnet", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.GREEN_GARNET).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("green_garnet")))));
-    public static final Item RAW_GREEN_GARNET = register("raw_green_garnet", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_green_garnet")))));
-    public static final Item KYAWTHUITE = register("kyawthuite", new Item(new Item.Settings().trimMaterial(ModArmorTrimMaterials.KYAWTHUITE).fireproof().rarity(Rarity.RARE).registryKey(setRegistryKey("kyawthuite"))));
-    public static final Item RAW_KYAWTHUITE = register("raw_kyawthuite", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(setRegistryKey("raw_kyawthuite"))));
-    public static final Item TOPAZ = register("topaz", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.TOPAZ).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("topaz")))));
-    public static final Item RAW_TOPAZ = register("raw_topaz", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_topaz")))));
-    public static final Item PERIDOT = register("peridot", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.PERIDOT).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("peridot")))));
-    public static final Item RAW_PERIDOT = register("raw_peridot", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_peridot")))));
-    public static final Item WHITE_TOPAZ = register("white_topaz", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.WHITE_TOPAZ).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("white_topaz")))));
-    public static final Item RAW_WHITE_TOPAZ = register("raw_white_topaz", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_white_topaz")))));
-    public static final Item PYROPE = register("pyrope", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.PYROPE).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("pyrope")))));
-    public static final Item RAW_PYROPE = register("raw_pyrope",new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_pyrope")))));
-    public static final Item JADE = register("jade", new Item(new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.JADE).rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("jade")))));
-    public static final Item RAW_JADE = register("raw_jade", new Item(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("raw_jade")))));
+    public static final Item RUBY = register("ruby", s -> new GemItem(s, "ruby"));
+    public static final Item RAW_RUBY = register("raw_ruby", s -> new Item(s.fireproof()));
+    public static final Item RADIANT = register("radiant", s -> new GemItem(s, "radiant"));
+    public static final Item RADIANT_DUST = register("radiant_dust", s -> new Item(s.rarity(Rarity.EPIC)));
+    public static final Item SAPPHIRE = register("sapphire", s -> new GemItem(s, "sapphire"));
+    public static final Item RAW_SAPPHIRE = register("raw_sapphire", Item::new);
+    public static final Item GREEN_SAPPHIRE = register("green_sapphire", s -> new GemItem(s, "green_sapphire"));
+    public static final Item RAW_GREEN_SAPPHIRE = register("raw_green_sapphire", Item::new);
+    public static final Item PINK_GARNET = register("pink_garnet", s -> new GemItem(s, "pink_garnet"));
+    public static final Item RAW_PINK_GARNET = register("raw_pink_garnet", Item::new);
+    public static final Item BLUE_GARNET = register("blue_garnet", s -> new GemItem(s, "blue_garnet"));
+    public static final Item RAW_BLUE_GARNET = register("raw_blue_garnet", Item::new);
+    public static final Item GREEN_GARNET = register("green_garnet", s -> new GemItem(s,  "green_garnet"));
+    public static final Item RAW_GREEN_GARNET = register("raw_green_garnet", Item::new);
+    public static final Item KYAWTHUITE = register("kyawthuite", s -> new GemItem(s, "kyawthuite"));
+    public static final Item RAW_KYAWTHUITE = register("raw_kyawthuite", Item::new);
+    public static final Item TOPAZ = register("topaz", s -> new GemItem(s, "topaz"));
+    public static final Item RAW_TOPAZ = register("raw_topaz", Item::new);
+    public static final Item PERIDOT = register("peridot", s -> new GemItem(s, "peridot"));
+    public static final Item RAW_PERIDOT = register("raw_peridot", Item::new);
+    public static final Item WHITE_TOPAZ = register("white_topaz", s -> new GemItem(s, "white_topaz"));
+    public static final Item RAW_WHITE_TOPAZ = register("raw_white_topaz", Item::new);
+    public static final Item PYROPE = register("pyrope", s -> new GemItem(s, "pyrope"));
+    public static final Item RAW_PYROPE = register("raw_pyrope", Item::new);
+    public static final Item JADE = register("jade", s -> new GemItem(s, "jade"));
+    public static final Item RAW_JADE = register("raw_jade", Item::new);
+
+    // New Gem Variants {Gem infusion}
+    public static final Item CRIMSON_SAPPHIRE = register("crimson_sapphire", s -> new GemItem(s, "crimson_sapphire"));
+    public static final Item CRYSTALLITE = register("crystallite", s -> new GemItem(s, "crystallite"));
+    public static final Item RADIANT_AMETHYST = register("radiant_amethyst", s -> new GemItem(s, "radiant_amethyst"));
+    public static final Item MOONSTONE = register("moonstone", s -> new GemItem(s, "moonstone"));
+    public static final Item LIMESTONE = register("limestone", s -> new GemItem(s, "limestone"));
+    public static final Item QUARTSIDIAN = register("quartsidian", s -> new GemItem(s, "quartsidian"));
+    public static final Item ALEXANDRITE = register("alexandrite", s -> new GemItem(s, "alexandrite"));
+    public static final Item PAINITE = register("painite", s -> new GemItem(s, "painite"));
+    public static final Item OPAL = register("opal", s -> new GemItem(s, "opal"));
+    public static final Item GRANDIDIERITE = register("grandidierite", s -> new GemItem(s, "grandidierite"));
+    public static final Item BERYL = register("beryl", s -> new GemItem(s, "beryl"));
+    public static final Item KASHMIR_SAPPHIRE = register("kashmir_sapphire", s -> new GemItem(s, "kashmir_sapphire"));
+
     public static final Item ENERGY_INGOT = register("energy_ingot", new EnergyIngotItem(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("energy_ingot")))));
-
-
-    //Fuel
-    public static final Item WOOD_PELLET = register("wood_pellet", new Item(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("wood_pellet")))));
 
 
     //  Ruby Tools & Weapons

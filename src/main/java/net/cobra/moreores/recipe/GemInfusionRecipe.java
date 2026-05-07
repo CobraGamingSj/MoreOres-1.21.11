@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
-import net.cobra.moreores.recipe.input.GemFusionRecipeInput;
+import net.cobra.moreores.recipe.input.GemIninfusionRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
+public class GemIninfusionRecipe implements Recipe<GemIninfusionRecipeInput> {
     public final Ingredient ingredientBefore;
     public final Ingredient ingredientAfter;
     public final ItemStack output;
@@ -28,14 +28,14 @@ public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
     @Nullable
     private IngredientPlacement ingredientPlacement;
 
-    public GemFusionRecipe(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack result) {
+    public GemIninfusionRecipe(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack result) {
         this.ingredientBefore = ingredientBefore;
         this.ingredientAfter = ingredientAfter;
         this.output = result;
     }
 
     @Override
-    public ItemStack craft(GemFusionRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(GemIninfusionRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return this.output.copy();
     }
 
@@ -52,19 +52,19 @@ public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
     }
 
     @Override
-    public boolean matches(GemFusionRecipeInput input, World world) {
+    public boolean matches(GemIninfusionRecipeInput input, World world) {
         if (world.isClient()) return false;
         return this.ingredientBefore.test(input.inputBefore()) && this.ingredientBefore.test(input.inputAfter()) ||
                 this.ingredientAfter.test(input.inputBefore()) && this.ingredientAfter.test(input.inputAfter());
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<GemFusionRecipeInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<GemIninfusionRecipeInput>> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<? extends Recipe<GemFusionRecipeInput>> getType() {
+    public RecipeType<? extends Recipe<GemIninfusionRecipeInput>> getType() {
         return Type.INSTANCE;
     }
 
@@ -89,14 +89,14 @@ public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
 
     @Override
     public RecipeBookCategory getRecipeBookCategory() {
-        return ModRecipeBookCategories.GEM_FUSION;
+        return ModRecipeBookCategories.GEM_infusion;
     }
 
     public List<Ingredient> getIngredients() {
         return List.of(ingredientBefore, ingredientAfter);
     }
 
-    public static class Type implements RecipeType<GemFusionRecipe> {
+    public static class Type implements RecipeType<GemIninfusionRecipe> {
 
         //RECIPE PROPERTIES
         private Type() {}
@@ -104,39 +104,39 @@ public class GemFusionRecipe implements Recipe<GemFusionRecipeInput> {
         public static final String ID = "gem_fusing"; //Recipe ID
     }
 
-    public static class Serializer implements RecipeSerializer<GemFusionRecipe> {
+    public static class Serializer implements RecipeSerializer<GemIninfusionRecipe> {
 
         //RECIPE PROPERTIES
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "gem_fusing"; //Recipe ID
 
         //CODEC
-        private static final MapCodec<GemFusionRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                Ingredient.CODEC.fieldOf("fuseGemBefore").forGetter(GemFusionRecipe::getIngredientBefore),
-                Ingredient.CODEC.fieldOf("fuseGemAfter").forGetter(GemFusionRecipe::getIngredientAfter),
-                ItemStack.VALIDATED_CODEC.fieldOf("gemFuseFinal").forGetter(GemFusionRecipe::getResult)
-        ).apply(instance, GemFusionRecipe::new));
+        private static final MapCodec<GemIninfusionRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                Ingredient.CODEC.fieldOf("fuseGemBefore").forGetter(GemIninfusionRecipe::getIngredientBefore),
+                Ingredient.CODEC.fieldOf("fuseGemAfter").forGetter(GemIninfusionRecipe::getIngredientAfter),
+                ItemStack.VALIDATED_CODEC.fieldOf("gemFuseFinal").forGetter(GemIninfusionRecipe::getResult)
+        ).apply(instance, GemIninfusionRecipe::new));
 
         @Override
-        public MapCodec<GemFusionRecipe> codec() {
+        public MapCodec<GemIninfusionRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public PacketCodec<RegistryByteBuf, GemFusionRecipe> packetCodec() {
+        public PacketCodec<RegistryByteBuf, GemIninfusionRecipe> packetCodec() {
             return PacketCodec.ofStatic(Serializer::write, Serializer::read);
         }
 
-        private static void write(RegistryByteBuf buf, GemFusionRecipe recipe) {
+        private static void write(RegistryByteBuf buf, GemIninfusionRecipe recipe) {
             Ingredient.PACKET_CODEC.encode(buf, recipe.getIngredientBefore());
             ItemStack.PACKET_CODEC.encode(buf, recipe.getResult());
         }
 
-        private static GemFusionRecipe read(RegistryByteBuf buf) {
+        private static GemIninfusionRecipe read(RegistryByteBuf buf) {
             Ingredient ingredient = Ingredient.PACKET_CODEC.decode(buf);
             Ingredient ingredient2 = Ingredient.PACKET_CODEC.decode(buf);
             ItemStack result = ItemStack.PACKET_CODEC.decode(buf);
-            return new GemFusionRecipe(ingredient, ingredient2, result);
+            return new GemIninfusionRecipe(ingredient, ingredient2, result);
         }
     }
 }

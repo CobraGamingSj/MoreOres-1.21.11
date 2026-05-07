@@ -35,7 +35,7 @@ public class VanillaLootTableModifier {
             if (ELDER_GUARDIAN_KEY.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.00025f)) //0.025% Chances
+                        .conditionally(RandomChanceLootCondition.builder(0.0025f)) //0.25% Chances
                         .with(ItemEntry.builder(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)));
 

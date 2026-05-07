@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.render.block.entity;
 
 import net.cobra.moreores.block.GemPurifierBlock;
-import net.cobra.moreores.block.entity.gem.GemFusionBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemIninfusionBlockEntity;
 import net.minecraft.client.item.ItemModelManager;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
@@ -22,11 +22,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<GemFusionBlockEntity, GemFusionBlockEntityRenderState> {
+public final class GemIninfusionBlockEntityRenderer implements BlockEntityRenderer<GemIninfusionBlockEntity, GemIninfusionBlockEntityRenderState> {
     private final BlockEntityRendererFactory.Context context;
     private final ItemModelManager itemModelManager;
 
-    public GemFusionBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
+    public GemIninfusionBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
         this.context = context;
         this.itemModelManager = context.itemModelManager();
     }
@@ -86,7 +86,7 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
         matrices.pop();
     }
 
-    private float getRotationAngle(GemFusionBlockEntity entity) {
+    private float getRotationAngle(GemIninfusionBlockEntity entity) {
         if (entity.getWorld() != null) {
             return switch (entity.getCachedState().get(GemPurifierBlock.FACING)) {
                 case NORTH -> 180f;
@@ -99,19 +99,19 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
     }
 
     @Override
-    public void updateRenderState(GemFusionBlockEntity blockEntity, GemFusionBlockEntityRenderState state, float tickProgress, Vec3d cameraPos, @Nullable ModelCommandRenderer.CrumblingOverlayCommand crumblingOverlay) {
+    public void updateRenderState(GemIninfusionBlockEntity blockEntity, GemIninfusionBlockEntityRenderState state, float tickProgress, Vec3d cameraPos, @Nullable ModelCommandRenderer.CrumblingOverlayCommand crumblingOverlay) {
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
         state.setEntity(blockEntity);
         state.entityWorld = blockEntity.getWorld();
         state.lightPos = blockEntity.getPos();
 
-        itemModelManager.clearAndUpdate(state.inputItemRenderState, blockEntity.getStack(GemFusionBlockEntity.INGREDIENT_BEFORE_SLOT),
+        itemModelManager.clearAndUpdate(state.inputItemRenderState, blockEntity.getStack(GemIninfusionBlockEntity.INGREDIENT_BEFORE_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.getStack(GemFusionBlockEntity.INGREDIENT_AFTER_SLOT),
+        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.getStack(GemIninfusionBlockEntity.INGREDIENT_AFTER_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.energyItemRenderState, blockEntity.getStack(GemFusionBlockEntity.ENERGY_SOURCE_SLOT),
+        itemModelManager.clearAndUpdate(state.energyItemRenderState, blockEntity.getStack(GemIninfusionBlockEntity.ENERGY_SOURCE_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.resultItemRenderState, blockEntity.getStack(GemFusionBlockEntity.RESULT_SLOT),
+        itemModelManager.clearAndUpdate(state.resultItemRenderState, blockEntity.getStack(GemIninfusionBlockEntity.RESULT_SLOT),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
     }
 
@@ -122,13 +122,13 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
     }
 
     @Override
-    public GemFusionBlockEntityRenderState createRenderState() {
-        return new GemFusionBlockEntityRenderState();
+    public GemIninfusionBlockEntityRenderState createRenderState() {
+        return new GemIninfusionBlockEntityRenderState();
     }
 
     @Override
-    public void render(GemFusionBlockEntityRenderState state, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
-        GemFusionBlockEntity entity = state.entity;
+    public void render(GemIninfusionBlockEntityRenderState state, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
+        GemIninfusionBlockEntity entity = state.entity;
         if (entity == null || entity.getWorld() == null) return;
 
         int light = getLightLevel(state.entityWorld, state.lightPos);
@@ -148,7 +148,7 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (GemFusionBlockEntityRenderer) obj;
+        var that = (GemIninfusionBlockEntityRenderer) obj;
         return Objects.equals(this.context, that.context);
     }
 
@@ -159,7 +159,7 @@ public final class GemFusionBlockEntityRenderer implements BlockEntityRenderer<G
 
     @Override
     public String toString() {
-        return "GemFusionBlockEntityRenderer[" +
+        return "GeminfusionBlockEntityRenderer[" +
                 "context=" + context + ']';
     }
 

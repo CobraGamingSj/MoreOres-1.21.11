@@ -2,6 +2,7 @@
   "item.moreores.ruby": "Ruby",
   "item.moreores.energy_ingot": "Energy Ingot",
   "item.moreores.radiant": "§1Radiant§r",
+  "item.moreores.radiant_dust": "§2Radiant Dust§r",
   "item.moreores.sapphire": "Sapphire",
   "item.moreores.green_sapphire": "Green Sapphire",
   "item.moreores.blue_garnet": "Blue Garnet",
@@ -66,7 +67,7 @@
   "block.moreores.ruby_lamp": "Ruby Lamp",
 
   "block.moreores.gem_purifier_block": "Gem Purifier",
-  "block.moreores.gem_fusion_block": "Gem Fusion",
+  "block.moreores.gem_ininfusion_block": "Gem Ininfusion",
 
   "block.moreores.ruby_ore": "Ruby Ore",
   "block.moreores.deepslate_ruby_ore": "Deepslate Ruby Ore",

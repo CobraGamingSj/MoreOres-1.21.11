@@ -123,7 +123,6 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.ENERGY_INGOT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.WOOD_PELLET, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.GEM_DETECTOR, Models.GENERATED);
 

@@ -2,10 +2,10 @@ package net.cobra.moreores.client;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
-import net.cobra.moreores.client.gui.screen.GemFusionScreen;
+import net.cobra.moreores.client.gui.screen.GeminfusionScreen;
 import net.cobra.moreores.client.gui.screen.GemPurifierScreen;
 import net.cobra.moreores.client.gui.screen.ModScreenHandlerType;
-import net.cobra.moreores.client.render.block.entity.GemFusionBlockEntityRenderer;
+import net.cobra.moreores.client.render.block.entity.GemIninfusionBlockEntityRenderer;
 import net.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
 import net.cobra.moreores.networking.ModS2CNetworks;
 import net.fabricmc.api.ClientModInitializer;
@@ -20,12 +20,12 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
         ModS2CNetworks.registerClientS2C();
 
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
-        BlockRenderLayerMap.putBlock(ModBlocks.GEM_FUSION_BLOCK, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.GEM_INinfusion_BLOCK, BlockRenderLayer.TRANSLUCENT);
 
         HandledScreens.register(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, GemPurifierScreen::new);
-        HandledScreens.register(ModScreenHandlerType.GEM_FUSION_SCREEN_HANDLER, GemFusionScreen::new);
+        HandledScreens.register(ModScreenHandlerType.GEM_infusion_SCREEN_HANDLER, GeminfusionScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, GemPurifierBlockEntityRenderer::new);
-        BlockEntityRendererFactories.register(ModBlockEntityType.GEM_FUSION_BLOCK_ENTITY, GemFusionBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntityType.GEM_infusion_BLOCK_ENTITY, GemIninfusionBlockEntityRenderer::new);
     }
 }
