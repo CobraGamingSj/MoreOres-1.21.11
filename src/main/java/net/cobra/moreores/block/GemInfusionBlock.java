@@ -3,7 +3,7 @@ package net.cobra.moreores.block;
 import com.mojang.serialization.MapCodec;
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
-import net.cobra.moreores.block.entity.gem.GemIninfusionBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.util.GemType;
 import net.cobra.moreores.registry.ModItemTags;
@@ -32,19 +32,19 @@ import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
-public class GemIninfusionBlock extends BlockWithEntity implements BlockEntityProvider {
+public class GemInfusionBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
     public static final EnumProperty<GemType> IS_POLISHING = EnumProperty.of("is_polishing", GemType.class);
-    public static final MapCodec<GemIninfusionBlock> CODEC = GemIninfusionBlock.createCodec(GemIninfusionBlock::new);
+    public static final MapCodec<GemInfusionBlock> CODEC = GemInfusionBlock.createCodec(GemInfusionBlock::new);
 
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
     }
 
-    protected GemIninfusionBlock(Settings settings) {
+    protected GemInfusionBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
                 .with(IS_POLISHING, GemType.EMPTY));
@@ -64,15 +64,15 @@ public class GemIninfusionBlock extends BlockWithEntity implements BlockEntityPr
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new GemIninfusionBlockEntity(pos, state);
+        return new GemInfusionBlockEntity(pos, state);
     }
 
     @Override
     protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
         if (state.getBlock() != state.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof GemIninfusionBlockEntity) {
-                ItemScatterer.spawn(world, pos, (GemIninfusionBlockEntity) blockEntity);
+            if (blockEntity instanceof GemInfusionBlockEntity) {
+                ItemScatterer.spawn(world, pos, (GemInfusionBlockEntity) blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, moved);
@@ -102,7 +102,7 @@ public class GemIninfusionBlock extends BlockWithEntity implements BlockEntityPr
             newState = newState.with(REDSTONE_POWERED, false);
         }
 
-        if(world.getBlockEntity(pos) instanceof GemIninfusionBlockEntity be) {
+        if(world.getBlockEntity(pos) instanceof GemInfusionBlockEntity be) {
             newState = newState.with(IS_POLISHING, be.getGem());
         }
 
@@ -116,14 +116,14 @@ public class GemIninfusionBlock extends BlockWithEntity implements BlockEntityPr
 
             ItemStack heldStack = player.getStackInHand(Hand.MAIN_HAND);
 
-            if(!heldStack.isEmpty() && world.getBlockEntity(pos) instanceof GemIninfusionBlockEntity be) {
-                ItemStack energyStack = be.getStack(GemIninfusionBlockEntity.ENERGY_SOURCE_SLOT);
-                ItemStack inputStack = be.getStack(GemIninfusionBlockEntity.INGREDIENT_BEFORE_SLOT);
+            if(!heldStack.isEmpty() && world.getBlockEntity(pos) instanceof GemInfusionBlockEntity be) {
+                ItemStack energyStack = be.getStack(GemInfusionBlockEntity.ENERGY_SOURCE_SLOT);
+                ItemStack inputStack = be.getStack(GemInfusionBlockEntity.INGREDIENT_BEFORE_SLOT);
 
                 if(!world.isClient()) {
                     if(heldStack.getItem() == ModItems.RADIANT) {
                         if(energyStack.isEmpty()) {
-                            be.setStack(GemIninfusionBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
+                            be.setStack(GemInfusionBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
                             heldStack.decrement(heldStack.getCount());
                         } else if (ItemStack.areItemsEqual(energyStack, heldStack) && energyStack.getCount() < energyStack.getMaxCount()) {
                             energyStack.increment(heldStack.getCount());
@@ -134,7 +134,7 @@ public class GemIninfusionBlock extends BlockWithEntity implements BlockEntityPr
 
                     if(heldStack.isIn(ModItemTags.RAW_GEMSTONE)) {
                         if(inputStack.isEmpty()) {
-                            be.setStack(GemIninfusionBlockEntity.INGREDIENT_BEFORE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
+                            be.setStack(GemInfusionBlockEntity.INGREDIENT_BEFORE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
                             heldStack.decrement(heldStack.getCount());
                         } else if (ItemStack.areItemsEqual(inputStack, heldStack)) {
                             inputStack.increment(heldStack.getCount());
@@ -148,7 +148,7 @@ public class GemIninfusionBlock extends BlockWithEntity implements BlockEntityPr
         }
 
         if(!world.isClient()){
-            NamedScreenHandlerFactory screenHandlerFactory = ((GemIninfusionBlockEntity) world.getBlockEntity(pos));
+            NamedScreenHandlerFactory screenHandlerFactory = ((GemInfusionBlockEntity) world.getBlockEntity(pos));
 
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);

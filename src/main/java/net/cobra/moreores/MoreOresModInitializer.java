@@ -10,7 +10,7 @@ import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
 import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
 import net.cobra.moreores.networking.block.data.PolishingStateData;
-import net.cobra.moreores.recipe.GemIninfusionRecipe;
+import net.cobra.moreores.recipe.GemInfusionRecipe;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
@@ -218,7 +218,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			functionalEventEntries.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
 			functionalEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 			functionalEventEntries.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
-			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_INinfusion_BLOCK);
+			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_Infusion_BLOCK);
 		});
 
 
@@ -284,10 +284,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModRecipes Registry
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Type.ID), GemPurifierRecipe.Type.INSTANCE);
-        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemIninfusionRecipe.Type.ID), GemIninfusionRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemInfusionRecipe.Type.ID), GemInfusionRecipe.Type.INSTANCE);
         LOGGER.info("Loading ModRecipeType for " + MOD_ID + " mod.");
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Serializer.ID), GemPurifierRecipe.Serializer.INSTANCE);
-        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemIninfusionRecipe.Serializer.ID), GemIninfusionRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemInfusionRecipe.Serializer.ID), GemInfusionRecipe.Serializer.INSTANCE);
         LOGGER.info("Loading ModRecipeSerializer for" + MOD_ID + " mod.");
 
 

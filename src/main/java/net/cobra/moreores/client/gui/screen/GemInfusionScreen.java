@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class GeminfusionScreen extends AbstractGemPFScreen<GeminfusionScreenHandler> {
+public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
     private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_infusion_gui_test.png");
@@ -22,7 +22,7 @@ public class GeminfusionScreen extends AbstractGemPFScreen<GeminfusionScreenHand
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/resume.png");
     private static final Identifier STOP_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/stop.png");
 
-    public GeminfusionScreen(GeminfusionScreenHandler handler, PlayerInventory inventory, Text title) {
+    public GemInfusionScreen(GemInfusionScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundHeight = 196;
         this.backgroundWidth = 207;

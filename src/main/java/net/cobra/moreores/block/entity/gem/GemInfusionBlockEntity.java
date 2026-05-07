@@ -1,14 +1,14 @@
 package net.cobra.moreores.block.entity.gem;
 
-import net.cobra.moreores.block.GemIninfusionBlock;
+import net.cobra.moreores.block.GemInfusionBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
-import net.cobra.moreores.client.gui.screen.GeminfusionScreenHandler;
+import net.cobra.moreores.client.gui.screen.GemInfusionScreenHandler;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.util.GemType;
-import net.cobra.moreores.recipe.GemIninfusionRecipe;
-import net.cobra.moreores.recipe.input.GemIninfusionRecipeInput;
+import net.cobra.moreores.recipe.GemInfusionRecipe;
+import net.cobra.moreores.recipe.input.GemInfusionRecipeInput;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyData> {
+public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyData> {
 
     public static final int INGREDIENT_BEFORE_SLOT = 0;
     public static final int INGREDIENT_AFTER_SLOT = 1;
@@ -48,16 +48,16 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
 
     protected final PropertyDelegate propertyDelegate;
     private int maxProgressTicks = 300;
-    private final ServerRecipeManager.MatchGetter<GemIninfusionRecipeInput, GemIninfusionRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemIninfusionRecipe.Type.INSTANCE);
+    private final ServerRecipeManager.MatchGetter<GemInfusionRecipeInput, GemInfusionRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemInfusionRecipe.Type.INSTANCE);
 
-    public GemIninfusionBlockEntity(BlockPos pos, BlockState state) {
+    public GemInfusionBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_infusion_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> GemIninfusionBlockEntity.this.initialProgress;
-                    case 1 -> GemIninfusionBlockEntity.this.maxProgressTicks;
+                    case 0 -> GemInfusionBlockEntity.this.initialProgress;
+                    case 1 -> GemInfusionBlockEntity.this.maxProgressTicks;
                     default -> 0;
                 };
             }
@@ -65,8 +65,8 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> GemIninfusionBlockEntity.this.initialProgress = value;
-                    case 1 -> GemIninfusionBlockEntity.this.maxProgressTicks = value;
+                    case 0 -> GemInfusionBlockEntity.this.initialProgress = value;
+                    case 1 -> GemInfusionBlockEntity.this.maxProgressTicks = value;
                 }
             }
 
@@ -93,7 +93,7 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
     }
 
     @Override
-    public ServerRecipeManager.MatchGetter<GemIninfusionRecipeInput, GemIninfusionRecipe> getMatchGetter() {
+    public ServerRecipeManager.MatchGetter<GemInfusionRecipeInput, GemInfusionRecipe> getMatchGetter() {
         return matchGetter;
     }
 
@@ -124,13 +124,13 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
 
     @Override
     public Text getDisplayName() {
-        return ModBlocks.GEM_INinfusion_BLOCK.getName();
+        return ModBlocks.GEM_Infusion_BLOCK.getName();
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new GeminfusionScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+        return new GemInfusionScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
     public ItemStack radiantStack() {
@@ -220,22 +220,22 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
 
         changeState();
 
-        if(polishinginfusionState == PolishinginfusionState.RUNNING) {
+        if(polishingInfusionState == PolishingInfusionState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
             if (isResultSlotEmptyOrReceivable() && hasRadiant() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
                 this.extractEnergy();
                 if (hasinfusionFinished()) {
-                    this.getinfusionedGemstone ();
+                    this.getinfusionedGemstone();
                     this.resetProgress();
                 }
                 markDirty(world, pos, state);
             } else {
                 this.resetProgress();
-                this.polishinginfusionState = PolishinginfusionState.IDLE;
+                this.polishingInfusionState = PolishingInfusionState.IDLE;
                 markDirty(world, pos, state);
             }
-        } else if (polishinginfusionState.isPaused()) {
+        } else if (polishingInfusionState.isPaused()) {
             energyState = EnergyState.INSERTING;
             insertEnergy();
         } else {
@@ -254,7 +254,7 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
     private void changeState() {
         BlockState state = getCachedState();
 
-        state = state.with(GemIninfusionBlock.IS_POLISHING, getGem());
+        state = state.with(GemInfusionBlock.IS_POLISHING, getGem());
 
 
         if(state != getCachedState()) {
@@ -286,7 +286,7 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
     }
 
     private void getinfusionedGemstone() {
-        RecipeEntry<GemIninfusionRecipe> recipe = currentRecipe().orElseThrow();
+        RecipeEntry<GemInfusionRecipe> recipe = currentRecipe().orElseThrow();
 
         this.removeStack(INGREDIENT_BEFORE_SLOT, 1);
 
@@ -302,15 +302,15 @@ public class GemIninfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEner
     }
 
     protected boolean hasRecipe() {
-        Optional<RecipeEntry<GemIninfusionRecipe>> recipe = currentRecipe();
+        Optional<RecipeEntry<GemInfusionRecipe>> recipe = currentRecipe();
 
         return recipe.isPresent() && hasEnoughEnergy() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
                 && canInsertItemIntoResultSlot(recipe.get().value().getResult().getItem());
     }
 
-    private Optional<RecipeEntry<GemIninfusionRecipe>> currentRecipe() {
+    private Optional<RecipeEntry<GemInfusionRecipe>> currentRecipe() {
         ServerWorld serverWorld = (ServerWorld) world;
-        return this.matchGetter.getFirstMatch(new GemIninfusionRecipeInput(this.ingredientStack(), this.ingredientAfterStack()), serverWorld);
+        return this.matchGetter.getFirstMatch(new GemInfusionRecipeInput(this.ingredientStack(), this.ingredientAfterStack()), serverWorld);
     }
 
     private boolean canInsertItemIntoResultSlot(Item item) {

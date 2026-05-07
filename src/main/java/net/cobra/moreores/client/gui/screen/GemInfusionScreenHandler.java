@@ -2,7 +2,7 @@ package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
-import net.cobra.moreores.block.entity.gem.GemIninfusionBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.cobra.moreores.screen.EnergySlot;
@@ -21,25 +21,25 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GeminfusionScreenHandler extends AbstractGemPFScreenHandler {
+public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
-    public final GemIninfusionBlockEntity blockEntity;
+    public final GemInfusionBlockEntity blockEntity;
 
-    public GeminfusionScreenHandler(int syncId, PlayerInventory playerInventory, GemPFEnergyData data) {
+    public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, GemPFEnergyData data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(2));
     }
 
-    public GeminfusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
+    public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
         super(ModScreenHandlerType.GEM_infusion_SCREEN_HANDLER, syncId, entity.getPos());
         checkSize((Inventory) entity, 17);
 
         this.inventory = (Inventory) entity;
         this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
         this.propertyDelegate = delegate;
-        this.blockEntity = (GemIninfusionBlockEntity) entity;
+        this.blockEntity = (GemInfusionBlockEntity) entity;
 
         this.addSlot(new GemPurifierInputSlot(inventory, 0, 47, 22) {
             @Override
@@ -151,7 +151,7 @@ public class GeminfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return canUse(this.context, player, ModBlocks.GEM_INinfusion_BLOCK);
+        return canUse(this.context, player, ModBlocks.GEM_Infusion_BLOCK);
     }
 
     @Override

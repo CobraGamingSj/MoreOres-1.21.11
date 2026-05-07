@@ -1,14 +1,14 @@
 package net.cobra.moreores.client.render.block.entity;
 
-import net.cobra.moreores.block.entity.gem.GemIninfusionBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.minecraft.client.render.block.entity.state.BlockEntityRenderState;
 import net.minecraft.client.render.item.ItemRenderState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GemIninfusionBlockEntityRenderState extends BlockEntityRenderState {
+public class GemInfusionBlockEntityRenderState extends BlockEntityRenderState {
 
-    public GemIninfusionBlockEntity entity;
+    public GemInfusionBlockEntity entity;
     public World entityWorld;
     public BlockPos lightPos;
 
@@ -17,9 +17,9 @@ public class GemIninfusionBlockEntityRenderState extends BlockEntityRenderState 
     final ItemRenderState energyItemRenderState = new ItemRenderState();
     final ItemRenderState resultItemRenderState = new ItemRenderState();
 
-    public static final GemIninfusionBlockEntityRenderState INSTANCE = new GemIninfusionBlockEntityRenderState();
+    public static final GemInfusionBlockEntityRenderState INSTANCE = new GemInfusionBlockEntityRenderState();
 
-    public void setEntity(GemIninfusionBlockEntity entity) {
+    public void setEntity(GemInfusionBlockEntity entity) {
         this.entity = entity;
     }
 }

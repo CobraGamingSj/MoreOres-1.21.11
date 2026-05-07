@@ -2,7 +2,7 @@ package net.cobra.moreores.block.entity;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.block.entity.gem.GemIninfusionBlockEntity;
+import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
@@ -18,8 +18,8 @@ public class ModBlockEntityType {
     public static final BlockEntityType<GemPurifierBlockEntity> GEM_PURIFIER_BLOCK_ENTITY =
             register("gem_purifier_block", FabricBlockEntityTypeBuilder.create(GemPurifierBlockEntity::new, ModBlocks.GEM_PURIFIER_BLOCK));
 
-    public static final BlockEntityType<GemIninfusionBlockEntity> GEM_infusion_BLOCK_ENTITY =
-            register("gem_infusion_block", FabricBlockEntityTypeBuilder.create(GemIninfusionBlockEntity::new, ModBlocks.GEM_INinfusion_BLOCK));
+    public static final BlockEntityType<GemInfusionBlockEntity> GEM_infusion_BLOCK_ENTITY =
+            register("gem_infusion_block", FabricBlockEntityTypeBuilder.create(GemInfusionBlockEntity::new, ModBlocks.GEM_Infusion_BLOCK));
 
     private static <BE extends BlockEntity> BlockEntityType<BE> register(String id, FabricBlockEntityTypeBuilder<BE> factory) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, id), factory.build());

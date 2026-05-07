@@ -2,7 +2,7 @@ package net.cobra.moreores.data.datagen;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.client.recipe.GeminfusionRecipeJsonBuilder;
+import net.cobra.moreores.client.recipe.GemInfusionRecipeJsonBuilder;
 import net.cobra.moreores.client.recipe.GemPolishingRecipeJsonBuilder;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
@@ -17,7 +17,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -572,8 +571,8 @@ public class RecipeGen extends FabricRecipeProvider {
         return GemPolishingRecipeJsonBuilder.create(input, result, category);
     }
 
-    public GeminfusionRecipeJsonBuilder createGeminfusion(Ingredient inputBefore, Ingredient inputAfter, ItemStack result, RecipeCategory category) {
-        return GeminfusionRecipeJsonBuilder.create(inputBefore, inputAfter, result, category);
+    public GemInfusionRecipeJsonBuilder createGeminfusion(Ingredient inputBefore, Ingredient inputAfter, ItemStack result, RecipeCategory category) {
+        return GemInfusionRecipeJsonBuilder.create(inputBefore, inputAfter, result, category);
     }
     
     @Override

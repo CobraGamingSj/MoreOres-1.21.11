@@ -18,8 +18,8 @@ public class ModScreenHandlerType {
             register("gem_purifier_block", GemPurifierScreenHandler::new, GemPurifierDataSynchronizer.PACKET_CODEC
             );
 
-    public static final ScreenHandlerType<GeminfusionScreenHandler> GEM_infusion_SCREEN_HANDLER =
-            register("gem_infusion_block", GeminfusionScreenHandler::new, GemPFEnergyData.PACKET_CODEC);
+    public static final ScreenHandlerType<GemInfusionScreenHandler> GEM_infusion_SCREEN_HANDLER =
+            register("gem_infusion_block", GemInfusionScreenHandler::new, GemPFEnergyData.PACKET_CODEC);
 
     private static <S extends ScreenHandler, D extends CustomPayload> ExtendedScreenHandlerType<S, D> register(String id, ExtendedScreenHandlerType.ExtendedFactory<S, D> factory, PacketCodec<? super RegistryByteBuf, D> packetCodec) {
         return Registry.register(Registries.SCREEN_HANDLER, MoreOresModInitializer.getId(id), new ExtendedScreenHandlerType<>(factory, packetCodec));

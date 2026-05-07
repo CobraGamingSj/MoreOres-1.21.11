@@ -1,7 +1,7 @@
 package net.cobra.moreores.client.recipe;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.recipe.GemIninfusionRecipe;
+import net.cobra.moreores.recipe.GemInfusionRecipe;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementRequirements;
@@ -18,25 +18,25 @@ import net.minecraft.registry.RegistryKeys;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class GeminfusionRecipeJsonBuilder {
+public class GemInfusionRecipeJsonBuilder {
     private final Ingredient ingredientBefore;
     private final Ingredient ingredientAfter;
     private final ItemStack output;
     private final RecipeCategory category;
     private final Map<String, AdvancementCriterion<?>> criterion = new LinkedHashMap<>();
 
-    public GeminfusionRecipeJsonBuilder(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack output, RecipeCategory category) {
+    public GemInfusionRecipeJsonBuilder(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack output, RecipeCategory category) {
         this.ingredientBefore = ingredientBefore;
         this.ingredientAfter = ingredientAfter;
         this.output = output;
         this.category = category;
     }
 
-    public static GeminfusionRecipeJsonBuilder create(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack result, RecipeCategory category) {
-        return new GeminfusionRecipeJsonBuilder(ingredientBefore, ingredientAfter, result, category);
+    public static GemInfusionRecipeJsonBuilder create(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack result, RecipeCategory category) {
+        return new GemInfusionRecipeJsonBuilder(ingredientBefore, ingredientAfter, result, category);
     }
 
-    public GeminfusionRecipeJsonBuilder criterion(String name, AdvancementCriterion<?> criterion) {
+    public GemInfusionRecipeJsonBuilder criterion(String name, AdvancementCriterion<?> criterion) {
         this.criterion.put(name, criterion);
         return this;
     }
@@ -49,7 +49,7 @@ public class GeminfusionRecipeJsonBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(recipeId))
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
         this.criterion.forEach(builder::criterion);
-        GemIninfusionRecipe geminfusionRecipe = new GemIninfusionRecipe(this.ingredientBefore, this.ingredientAfter, this.output);
+        GemInfusionRecipe geminfusionRecipe = new GemInfusionRecipe(this.ingredientBefore, this.ingredientAfter, this.output);
         exporter.accept(recipeId, geminfusionRecipe, builder.build(recipeId.getValue().withPrefixedPath("recipes/" + this.category.getName() + "/")));
     }
 
