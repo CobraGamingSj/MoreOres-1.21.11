@@ -58,7 +58,7 @@ public class ModBlocks {
     public static final Block GEM_PURIFIER_BLOCK = register("gem_purifier_block", new GemPurifierBlock(AbstractBlock.Settings.create()
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_purifier_block"))).strength(5f).strength(2.75f, 3f)
             .luminance(state -> state.get(GemPurifierBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
-    public static final Block GEM_Infusion_BLOCK = register("gem_infusion_block", new GemInfusionBlock(AbstractBlock.Settings.create()
+    public static final Block GEM_INFUSION_BLOCK = register("gem_infusion_block", new GemInfusionBlock(AbstractBlock.Settings.create()
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_infusion_block"))).strength(5f).strength(2.75f, 3f)
             .luminance(state -> state.get(GemInfusionBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
 

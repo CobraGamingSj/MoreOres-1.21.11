@@ -1,12 +1,9 @@
 package net.cobra.moreores.networking;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.gem.AbstractGemPFBlockEntity;
 import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
 import net.cobra.moreores.networking.block.data.PolishingStateData;
-import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.util.math.BlockPos;
 
 import static net.cobra.moreores.MoreOresModInitializer.LOGGER;
 
@@ -14,22 +11,7 @@ public class ModC2SNetworks {
 
     public static void registerServerC2S() {
         ServerPlayNetworking.registerGlobalReceiver(GemPurifierButtonClick.ID, GemPurifierButtonClick::handle);
-        ServerPlayNetworking.registerGlobalReceiver(PolishingStateData.ID, ((payload, context) -> {
-            BlockPos pos = payload.pos();
-            String action = payload.action();
-
-            context.server().execute(() -> {
-                if(context.player().getEntityWorld().getBlockEntity(pos) instanceof AbstractGemPFBlockEntity<?> be) {
-                    switch(action) {
-                        case "start" -> be.start();
-                        case "pause" -> be.pause();
-                        case "resume" -> be.resume();
-                        case "stop" -> be.stop();
-                    }
-                    be.markDirty();
-                }
-            });
-        }));
+        ServerPlayNetworking.registerGlobalReceiver(PolishingStateData.ID, PolishingStateData::handle);
     }
 
     public static void register() {

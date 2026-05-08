@@ -124,7 +124,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
 
     @Override
     public Text getDisplayName() {
-        return ModBlocks.GEM_Infusion_BLOCK.getName();
+        return ModBlocks.GEM_INFUSION_BLOCK.getName();
     }
 
     @Nullable
@@ -225,8 +225,8 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
             if (isResultSlotEmptyOrReceivable() && hasRadiant() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
                 this.extractEnergy();
-                if (hasinfusionFinished()) {
-                    this.getinfusionedGemstone();
+                if (hasInfusionFinished()) {
+                    this.getInfusedGem();
                     this.resetProgress();
                 }
                 markDirty(world, pos, state);
@@ -285,7 +285,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         this.initialProgress = 0;
     }
 
-    private void getinfusionedGemstone() {
+    private void getInfusedGem() {
         RecipeEntry<GemInfusionRecipe> recipe = currentRecipe().orElseThrow();
 
         this.removeStack(INGREDIENT_BEFORE_SLOT, 1);
@@ -293,7 +293,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));
     }
-    private boolean hasinfusionFinished() {
+    private boolean hasInfusionFinished() {
         return initialProgress >= maxProgressTicks;
     }
 

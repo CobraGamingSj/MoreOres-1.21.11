@@ -5,9 +5,6 @@ import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
-import net.cobra.moreores.screen.EnergySlot;
-import net.cobra.moreores.screen.GemPurifierInputSlot;
-import net.cobra.moreores.screen.GemPurifierResultSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,7 +38,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
         this.propertyDelegate = delegate;
         this.blockEntity = (GemInfusionBlockEntity) entity;
 
-        this.addSlot(new GemPurifierInputSlot(inventory, 0, 47, 22) {
+        this.addSlot(new Slot(inventory, 0, 47, 22) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
@@ -49,7 +46,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
             }
         }); // Input Before
 
-        this.addSlot(new GemPurifierInputSlot(inventory, 1, 87, 22) {
+        this.addSlot(new Slot(inventory, 1, 87, 22) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
@@ -57,15 +54,25 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
             }
         }); // Input After
 
-        this.addSlot(new GemPurifierResultSlot(inventory, 2, 67, 72)); // Result
-        this.addSlot(new EnergySlot(inventory, 3, 13, 21)); // Energy Input
+        this.addSlot(new Slot(inventory, 2, 67, 72) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE_BLOCKS);
+            }
+        }); // Result
+        this.addSlot(new Slot(inventory, 3, 13, 21) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+            }
+        }); // Energy Input
 
         this.addSlot(new Slot(inventory, 4, 39, 59) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(ModItems.RADIANT_DUST);
             }
-        });// Radiant Slot
+        }); // Radiant Slot
 
         addFirstAdditionalInventory(inventory);
         addSecondAdditionalInventory(inventory);
@@ -151,7 +158,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return canUse(this.context, player, ModBlocks.GEM_Infusion_BLOCK);
+        return canUse(this.context, player, ModBlocks.GEM_INFUSION_BLOCK);
     }
 
     @Override

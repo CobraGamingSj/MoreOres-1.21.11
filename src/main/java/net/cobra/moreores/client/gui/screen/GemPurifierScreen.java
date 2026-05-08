@@ -65,31 +65,6 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
         return this.addDrawableChild(button);
     }
 
-    @Override
-    public boolean keyPressed(KeyInput input) {
-        if(input.getKeycode() == GLFW.GLFW_KEY_S) {
-            sendPolishControlPacket("start");
-            return true;
-        }
-        if(input.getKeycode() == GLFW.GLFW_KEY_P) {
-            sendPolishControlPacket("pause");
-            return true;
-        }
-        if(input.getKeycode() == GLFW.GLFW_KEY_R) {
-            sendPolishControlPacket("resume");
-            return true;
-        }
-        if(input.getKeycode() == GLFW.GLFW_KEY_SLASH) {
-            sendPolishControlPacket("stop");
-            return true;
-        }
-        return super.keyPressed(input);
-    }
-
-    private void sendPolishControlPacket(String action) {
-        ClientPlayNetworking.send(new PolishingStateData(handler.blockEntity.getPos(), action));
-    }
-
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
             context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 83, y + 31, 207, 0, 8, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
@@ -105,11 +80,11 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
 
     @Override
     public void drawForeground(DrawContext context, int mouseX, int mouseY) {
+        super.drawForeground(context, mouseX, mouseY);
         String name = this.handler.blockEntity.getDisplayName().getString();
         int x = 8;
         int y = 8;
-        context.drawText(this.textRenderer, name, this.x + x, this.y + y, 5390966, false);
-        super.drawForeground(context, mouseX, mouseY);
+        context.drawText(this.textRenderer, name, x, y, Colors.BLACK, false);
     }
 
     @Override

@@ -1,13 +1,10 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.cobra.moreores.item.ModItems;
+import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.cobra.moreores.registry.ModItemTags;
-import net.cobra.moreores.screen.EnergySlot;
-import net.cobra.moreores.screen.GemPurifierInputSlot;
-import net.cobra.moreores.screen.GemPurifierResultSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
@@ -47,9 +43,24 @@ public class GemPurifierScreenHandler extends AbstractGemPFScreenHandler impleme
         this.propertyDelegate = propertyDelegate;
         this.blockEntity = (GemPurifierBlockEntity) blockEntity;
 
-        this.addSlot(new GemPurifierInputSlot(inventory, 0, 79, 11)); // Input
-        this.addSlot(new GemPurifierResultSlot(inventory, 1, 79, 61)); // Result
-        this.addSlot(new EnergySlot(inventory, 2, 40, 20)); // Energy Input
+        this.addSlot(new Slot(inventory, 0, 79, 11) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS);
+            }
+        }); // Input
+        this.addSlot(new Slot(inventory, 1, 79, 61) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE_BLOCKS);
+            }
+        }); // Result
+        this.addSlot(new Slot(inventory, 2, 40, 20) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+            }
+        }); // Energy Input
         this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source
 
         addFirstAdditionalInventory(inventory);
@@ -131,22 +142,6 @@ public class GemPurifierScreenHandler extends AbstractGemPFScreenHandler impleme
     @Override
     public boolean canUse(PlayerEntity player) {
         return canUse(this.context, player, ModBlocks.GEM_PURIFIER_BLOCK);
-    }
-
-    @Override
-    public void addPlayerGenericInventory(PlayerInventory playerInventory) {
-        for (int i = 0; i < 3; ++i) {
-            for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 115 + i * 18));
-            }
-        }
-    }
-
-    @Override
-    public void addPlayerHotbarInventory(PlayerInventory playerInventory) {
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 173));
-        }
     }
 
     public void addFirstAdditionalInventory(Inventory playerInventory) {

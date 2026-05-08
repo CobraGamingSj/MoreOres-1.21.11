@@ -379,11 +379,11 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.PYROPE_BLOCK.asItem()));
 
-                createGeminfusion(
-                        Ingredient.ofItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), Ingredient.ofItem(ModBlocks.BLUE_GARNET_BLOCK), new ItemStack(ModBlocks.RADIANT_BLOCK.asItem()), RecipeCategory.MISC
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.RADIANT), Ingredient.ofItem(ModItems.SAPPHIRE), new ItemStack(ModItems.CRIMSON_SAPPHIRE), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
-                        .offerTo(exporter, getRecipeName(ModBlocks.RADIANT_BLOCK.asItem()));
+                        .criterion(hasItem(ModItems.RUBY.asItem()), conditionsFromItem(ModItems.RUBY))
+                        .offerTo(exporter, getRecipeName(ModItems.CRIMSON_SAPPHIRE));
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                         .pattern("aaa")
@@ -571,7 +571,7 @@ public class RecipeGen extends FabricRecipeProvider {
         return GemPolishingRecipeJsonBuilder.create(input, result, category);
     }
 
-    public GemInfusionRecipeJsonBuilder createGeminfusion(Ingredient inputBefore, Ingredient inputAfter, ItemStack result, RecipeCategory category) {
+    public GemInfusionRecipeJsonBuilder createGemInfusion(Ingredient inputBefore, Ingredient inputAfter, ItemStack result, RecipeCategory category) {
         return GemInfusionRecipeJsonBuilder.create(inputBefore, inputAfter, result, category);
     }
     

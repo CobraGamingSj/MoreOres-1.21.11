@@ -74,6 +74,18 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModItems.PERIDOT);
 				entries.add(ModItems.PYROPE);
 				entries.add(ModItems.JADE);
+				entries.add(ModItems.CRIMSON_SAPPHIRE);
+				entries.add(ModItems.CRYSTALLITE);
+				entries.add(ModItems.RADIANT_AMETHYST);
+				entries.add(ModItems.MOONSTONE);
+				entries.add(ModItems.LIMESTONE);
+				entries.add(ModItems.QUARTSIDIAN);
+				entries.add(ModItems.ALEXANDRITE);
+				entries.add(ModItems.PAINITE);
+				entries.add(ModItems.OPAL);
+				entries.add(ModItems.GRANDIDIERITE);
+				entries.add(ModItems.BERYL);
+				entries.add(ModItems.KASHMIR_SAPPHIRE);
 			}).build();
 
     public static RegistryKey<Block> setBlockKey(String id) {
@@ -218,7 +230,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			functionalEventEntries.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
 			functionalEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 			functionalEventEntries.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
-			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_Infusion_BLOCK);
+			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_INFUSION_BLOCK);
 		});
 
 

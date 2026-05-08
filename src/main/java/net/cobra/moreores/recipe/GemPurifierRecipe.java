@@ -93,7 +93,6 @@ public class GemPurifierRecipe implements Recipe<GemPurifyingRecipeInput> {
     public static class Type implements RecipeType<GemPurifierRecipe> {
 
         //RECIPE PROPERTIES
-        private Type() {}
         public static final Type INSTANCE = new Type();
         public static final String ID = "gem_polishing"; //Recipe ID
     }
