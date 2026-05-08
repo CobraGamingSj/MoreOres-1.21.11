@@ -36,7 +36,7 @@ public class GemInfusionBlock extends BlockWithEntity implements BlockEntityProv
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
-    public static final EnumProperty<GemType> IS_POLISHING = EnumProperty.of("is_polishing", GemType.class);
+    public static final EnumProperty<GemType> IS_POLISHING = EnumProperty.of("is_infusing", GemType.class);
     public static final MapCodec<GemInfusionBlock> CODEC = GemInfusionBlock.createCodec(GemInfusionBlock::new);
 
     @Override
@@ -119,9 +119,10 @@ public class GemInfusionBlock extends BlockWithEntity implements BlockEntityProv
             if(!heldStack.isEmpty() && world.getBlockEntity(pos) instanceof GemInfusionBlockEntity be) {
                 ItemStack energyStack = be.getStack(GemInfusionBlockEntity.ENERGY_SOURCE_SLOT);
                 ItemStack inputStack = be.getStack(GemInfusionBlockEntity.INGREDIENT_BEFORE_SLOT);
+                ItemStack inputAfterStack = be.getStack(GemInfusionBlockEntity.INGREDIENT_AFTER_SLOT);
 
                 if(!world.isClient()) {
-                    if(heldStack.getItem() == ModItems.RADIANT) {
+                    if(heldStack.getItem() == ModItems.ENERGY_INGOT) {
                         if(energyStack.isEmpty()) {
                             be.setStack(GemInfusionBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
                             heldStack.decrement(heldStack.getCount());

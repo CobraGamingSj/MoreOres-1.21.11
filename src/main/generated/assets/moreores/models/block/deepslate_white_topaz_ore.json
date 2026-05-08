@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "moreores:block/deepslate_white_topaz_ore"
-  }
-}

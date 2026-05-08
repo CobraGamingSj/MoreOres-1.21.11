@@ -120,6 +120,136 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "crimson_garnet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:crimson_garnet"
+          }
+        ]
+      }
+    },
+    "kyawthuite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:kyawthuite"
+          }
+        ]
+      }
+    },
+    "crystallite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:crystallite"
+          }
+        ]
+      }
+    },
+    "radiant_amethyst": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:radiant_amethyst"
+          }
+        ]
+      }
+    },
+    "limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:limestone"
+          }
+        ]
+      }
+    },
+    "moonstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:moonstone"
+          }
+        ]
+      }
+    },
+    "grandidierite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:grandidierite"
+          }
+        ]
+      }
+    },
+    "red_beryl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:red_beryl"
+          }
+        ]
+      }
+    },
+    "alexandrite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:alexandrite"
+          }
+        ]
+      }
+    },
+    "quartsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:quartsidian"
+          }
+        ]
+      }
+    },
+    "opal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:opal"
+          }
+        ]
+      }
+    },
+    "painite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:painite"
+          }
+        ]
+      }
+    },
+    "kashmir_sapphire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:kashmir_sapphire"
+          }
+        ]
+      }
     }
   },
   "display": {
@@ -172,7 +302,52 @@
     ],
     [
       "pyrope"
+    ],
+    [
+      "crimson_garnet"
+    ],
+    [
+      "kyawthuite"
+    ],
+    [
+      "crystallite"
+    ],
+    [
+      "radiant_amethyst"
+    ],
+    [
+      "limestone"
+    ],
+    [
+      "moonstone"
+    ],
+    [
+      "quartsidian"
+    ],
+    [
+      "alexandrite"
+    ],
+    [
+      "painite"
+    ],
+    [
+      "opal"
+    ],
+    [
+      "grandidierite"
+    ],
+    [
+      "red_beryl"
+    ],
+    [
+      "kashmir_sapphire"
     ]
   ],
+  "rewards": {
+    "experience": 5,
+    "loot": [
+      "minecraft:blocks/diamond_ore"
+    ]
+  },
   "sends_telemetry_event": true
 }

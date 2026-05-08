@@ -186,7 +186,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
             case RESULT_SLOT->
                     stack.isIn(ModItemTags.GEMSTONE);
             case RADIANT_DUST_SLOT ->
-                stack.isOf(ModItems.RADIANT);
+                stack.isOf(ModItems.RADIANT_DUST);
             default -> false;
         };
     }
@@ -289,6 +289,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         RecipeEntry<GemInfusionRecipe> recipe = currentRecipe().orElseThrow();
 
         this.removeStack(INGREDIENT_BEFORE_SLOT, 1);
+        this.removeStack(INGREDIENT_AFTER_SLOT, 1);
 
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));

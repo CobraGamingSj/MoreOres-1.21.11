@@ -24,7 +24,7 @@ public class ModItems {
     public static final Item RUBY = register("ruby", s -> new GemItem(s, "ruby"));
     public static final Item RAW_RUBY = register("raw_ruby", s -> new Item(s.fireproof()));
     public static final Item RADIANT = register("radiant", s -> new GemItem(s, "radiant"));
-    public static final Item RADIANT_DUST = register("radiant_dust", s -> new Item(s.rarity(Rarity.EPIC)));
+    public static final Item RADIANT_DUST = register("radiant_dust", s -> new Item(s.rarity(Rarity.EPIC).fireproof()));
     public static final Item SAPPHIRE = register("sapphire", s -> new GemItem(s, "sapphire"));
     public static final Item RAW_SAPPHIRE = register("raw_sapphire", Item::new);
     public static final Item GREEN_SAPPHIRE = register("green_sapphire", s -> new GemItem(s, "green_sapphire"));
@@ -49,7 +49,7 @@ public class ModItems {
     public static final Item RAW_JADE = register("raw_jade", Item::new);
 
     // New Gem Variants {Gem infusion}
-    public static final Item CRIMSON_SAPPHIRE = register("crimson_sapphire", s -> new GemItem(s, "crimson_sapphire"));
+    public static final Item CRIMSON_GARNET = register("crimson_garnet", s -> new GemItem(s, "crimson_garnet"));
     public static final Item CRYSTALLITE = register("crystallite", s -> new GemItem(s, "crystallite"));
     public static final Item RADIANT_AMETHYST = register("radiant_amethyst", s -> new GemItem(s, "radiant_amethyst"));
     public static final Item MOONSTONE = register("moonstone", s -> new GemItem(s, "moonstone"));
@@ -59,7 +59,7 @@ public class ModItems {
     public static final Item PAINITE = register("painite", s -> new GemItem(s, "painite"));
     public static final Item OPAL = register("opal", s -> new GemItem(s, "opal"));
     public static final Item GRANDIDIERITE = register("grandidierite", s -> new GemItem(s, "grandidierite"));
-    public static final Item BERYL = register("beryl", s -> new GemItem(s, "beryl"));
+    public static final Item RED_BERYL = register("red_beryl", s -> new GemItem(s, "beryl"));
     public static final Item KASHMIR_SAPPHIRE = register("kashmir_sapphire", s -> new GemItem(s, "kashmir_sapphire"));
 
     public static final Item ENERGY_INGOT = register("energy_ingot", new EnergyIngotItem(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("energy_ingot")))));

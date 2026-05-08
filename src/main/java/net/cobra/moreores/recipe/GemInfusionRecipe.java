@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import net.cobra.moreores.recipe.display.GemInfusionRecipeDisplay;
-import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.recipe.input.GemInfusionRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
@@ -90,7 +89,7 @@ public class GemInfusionRecipe implements Recipe<GemInfusionRecipeInput> {
 
     @Override
     public RecipeBookCategory getRecipeBookCategory() {
-        return ModRecipeBookCategories.GEM_infusion;
+        return ModRecipeBookCategories.GEM_INFUSION;
     }
 
     public List<Ingredient> getIngredients() {
@@ -113,7 +112,7 @@ public class GemInfusionRecipe implements Recipe<GemInfusionRecipeInput> {
         //CODEC
         private static final MapCodec<GemInfusionRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Ingredient.CODEC.fieldOf("gemBefore").forGetter(GemInfusionRecipe::getIngredientBefore),
-                Ingredient.CODEC.fieldOf("gemBefore").forGetter(GemInfusionRecipe::getIngredientAfter),
+                Ingredient.CODEC.fieldOf("gemAfter").forGetter(GemInfusionRecipe::getIngredientAfter),
                 ItemStack.VALIDATED_CODEC.fieldOf("infusedGem").forGetter(GemInfusionRecipe::getResult)
         ).apply(instance, GemInfusionRecipe::new));
 

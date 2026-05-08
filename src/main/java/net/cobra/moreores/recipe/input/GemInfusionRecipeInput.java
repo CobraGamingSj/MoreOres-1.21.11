@@ -15,6 +15,6 @@ public record GemInfusionRecipeInput(ItemStack inputBefore, ItemStack inputAfter
 
     @Override
     public int size() {
-        return 1;
+        return 2;
     }
 }

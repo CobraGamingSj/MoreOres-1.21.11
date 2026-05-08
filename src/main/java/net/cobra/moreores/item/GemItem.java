@@ -21,7 +21,7 @@ public class GemItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-        textConsumer.accept(Text.literal("Gemstone").formatted(Formatting.AQUA, Formatting.BOLD));
+        textConsumer.accept(Text.literal("Gemstone").formatted(Formatting.LIGHT_PURPLE, Formatting.BOLD));
         super.appendTooltip(stack, context, displayComponent, textConsumer, type);
     }
 }

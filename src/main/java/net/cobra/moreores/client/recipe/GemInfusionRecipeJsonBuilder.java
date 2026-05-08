@@ -1,14 +1,17 @@
 package net.cobra.moreores.client.recipe;
 
 import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.recipe.GemInfusionRecipe;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementRequirements;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -32,8 +35,12 @@ public class GemInfusionRecipeJsonBuilder {
         this.category = category;
     }
 
-    public static GemInfusionRecipeJsonBuilder create(Ingredient ingredientBefore, Ingredient ingredientAfter, ItemStack result, RecipeCategory category) {
-        return new GemInfusionRecipeJsonBuilder(ingredientBefore, ingredientAfter, result, category);
+    public static GemInfusionRecipeJsonBuilder create(Ingredient ingredientBefore, ItemStack result, RecipeCategory category) {
+        return new GemInfusionRecipeJsonBuilder(ingredientBefore, Ingredient.ofItem(ModItems.RADIANT), result, category);
+    }
+
+    public static void createQuartsidian() {
+        new GemInfusionRecipeJsonBuilder(Ingredient.ofItem(Items.QUARTZ), Ingredient.ofItem(Blocks.OBSIDIAN.asItem()), new ItemStack(ModItems.QUARTSIDIAN), RecipeCategory.MISC);
     }
 
     public GemInfusionRecipeJsonBuilder criterion(String name, AdvancementCriterion<?> criterion) {

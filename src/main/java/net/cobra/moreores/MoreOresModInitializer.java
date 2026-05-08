@@ -13,6 +13,7 @@ import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.recipe.GemInfusionRecipe;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
+import net.cobra.moreores.recipe.display.GemInfusionRecipeDisplay;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.registry.BirthdayRewardState;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
@@ -72,9 +73,22 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModItems.TOPAZ);
 				entries.add(ModItems.WHITE_TOPAZ);
 				entries.add(ModItems.PERIDOT);
-				entries.add(ModItems.PYROPE);
 				entries.add(ModItems.JADE);
-				entries.add(ModItems.CRIMSON_SAPPHIRE);
+				entries.add(ModItems.PYROPE);
+				entries.add(ModBlocks.RUBY_BLOCK);
+				entries.add(ModBlocks.RADIANT_BLOCK);
+				entries.add(ModBlocks.SAPPHIRE_BLOCK);
+				entries.add(ModBlocks.GREEN_SAPPHIRE_BLOCK);
+				entries.add(ModBlocks.BLUE_GARNET_BLOCK);
+				entries.add(ModBlocks.PINK_GARNET_BLOCK);
+				entries.add(ModBlocks.GREEN_GARNET_BLOCK);
+				entries.add(ModBlocks.KYAWTHUITE_BLOCK);
+				entries.add(ModBlocks.TOPAZ_BLOCK);
+				entries.add(ModBlocks.WHITE_TOPAZ_BLOCK);
+				entries.add(ModBlocks.PERIDOT_BLOCK);
+				entries.add(ModBlocks.JADE_BLOCK);
+				entries.add(ModBlocks.PYROPE_BLOCK);
+				entries.add(ModItems.CRIMSON_GARNET);
 				entries.add(ModItems.CRYSTALLITE);
 				entries.add(ModItems.RADIANT_AMETHYST);
 				entries.add(ModItems.MOONSTONE);
@@ -84,8 +98,20 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModItems.PAINITE);
 				entries.add(ModItems.OPAL);
 				entries.add(ModItems.GRANDIDIERITE);
-				entries.add(ModItems.BERYL);
+				entries.add(ModItems.RED_BERYL);
 				entries.add(ModItems.KASHMIR_SAPPHIRE);
+				entries.add(ModBlocks.CRIMSON_GARNET_BLOCK);
+				entries.add(ModBlocks.CRYSTALLITE_BLOCK);
+				entries.add(ModBlocks.RADIANT_AMETHYST_BLOCK);
+				entries.add(ModBlocks.MOONSTONE_BLOCK);
+				entries.add(ModBlocks.LIMESTONE_BLOCK);
+				entries.add(ModBlocks.QUARTSIDIAN_BLOCK);
+				entries.add(ModBlocks.ALEXANDRITE_BLOCK);
+				entries.add(ModBlocks.PAINITE_BLOCK);
+				entries.add(ModBlocks.OPAL_BLOCK);
+				entries.add(ModBlocks.GRANDIDIERITE_BLOCK);
+				entries.add(ModBlocks.RED_BERYL_BLOCK);
+				entries.add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK);
 			}).build();
 
     public static RegistryKey<Block> setBlockKey(String id) {
@@ -133,6 +159,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			ingredientsEventEntries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE);
 			ingredientsEventEntries.addAfter(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
 			ingredientsEventEntries.addBefore(Items.NETHERITE_INGOT, ModItems.ENERGY_INGOT);
+			ingredientsEventEntries.addAfter(Items.BLAZE_POWDER, ModItems.RADIANT_DUST);
 			ingredientsEventEntries.addAfter(Items.NETHERITE_INGOT, ModItems.RADIANT);
 			ingredientsEventEntries.addAfter(ModItems.RADIANT, ModItems.RUBY);
 			ingredientsEventEntries.addAfter(ModItems.RUBY, ModItems.SAPPHIRE);
@@ -253,8 +280,20 @@ public class MoreOresModInitializer implements ModInitializer {
 			buildingBlockEventEntries.addAfter(ModBlocks.KYAWTHUITE_BLOCK, ModBlocks.TOPAZ_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.TOPAZ_BLOCK, ModBlocks.WHITE_TOPAZ_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.WHITE_TOPAZ_BLOCK, ModBlocks.PERIDOT_BLOCK);
-			buildingBlockEventEntries.addAfter(ModBlocks.PERIDOT_BLOCK, ModBlocks.PYROPE_BLOCK);
-			buildingBlockEventEntries.addAfter(ModBlocks.PYROPE_BLOCK, ModBlocks.JADE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.PERIDOT_BLOCK, ModBlocks.JADE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.JADE_BLOCK, ModBlocks.PYROPE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.PYROPE_BLOCK, ModBlocks.CRIMSON_GARNET_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.CRIMSON_GARNET_BLOCK, ModBlocks.CRYSTALLITE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.CRYSTALLITE_BLOCK, ModBlocks.RADIANT_AMETHYST_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.RADIANT_AMETHYST_BLOCK, ModBlocks.MOONSTONE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.MOONSTONE_BLOCK, ModBlocks.LIMESTONE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.LIMESTONE_BLOCK, ModBlocks.QUARTSIDIAN_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.QUARTSIDIAN_BLOCK, ModBlocks.ALEXANDRITE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.ALEXANDRITE_BLOCK, ModBlocks.PAINITE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.PAINITE_BLOCK, ModBlocks.OPAL_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.OPAL_BLOCK, ModBlocks.GRANDIDIERITE_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.GRANDIDIERITE_BLOCK, ModBlocks.RED_BERYL_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.RED_BERYL_BLOCK, ModBlocks.KASHMIR_SAPPHIRE_BLOCK);
 		});
 
 
@@ -315,6 +354,7 @@ public class MoreOresModInitializer implements ModInitializer {
 		//ModRecipeBookCategories Registry
 		ModRecipeBookCategories.register();
         Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.getId("gem_polishing"), GemPolishingRecipeDisplay.SERIALIZER);
+        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.getId("gem_infusion"), GemInfusionRecipeDisplay.SERIALIZER);
 
 
 		//EnchantmentEffects Registry

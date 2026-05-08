@@ -42,6 +42,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                 .criterion("blue_garnet", InventoryChangedCriterion.Conditions.items(ModItems.BLUE_GARNET))
                 .criterion("pink_garnet", InventoryChangedCriterion.Conditions.items(ModItems.PINK_GARNET))
                 .criterion("green_garnet", InventoryChangedCriterion.Conditions.items(ModItems.GREEN_GARNET))
+                .criterion("kyawthuite", InventoryChangedCriterion.Conditions.items(ModItems.KYAWTHUITE))
                 .criterion("topaz", InventoryChangedCriterion.Conditions.items(ModItems.TOPAZ))
                 .criterion("white_topaz", InventoryChangedCriterion.Conditions.items(ModItems.WHITE_TOPAZ))
                 .criterion("peridot", InventoryChangedCriterion.Conditions.items(ModItems.PERIDOT))
@@ -54,7 +55,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                         ModItems.RUBY_CHESTPLATE,
                         Text.translatable("advancement.moreores.ruby_armor").formatted(Formatting.DARK_AQUA),
                         Text.translatable("advancement.moreores.ruby_armor.desc"),
-                        Identifier.of("moreores"),
+                        Identifier.of("moreores", "textures/block/radiant_block.png"),
                         AdvancementFrame.GOAL,
                         true,
                         true,

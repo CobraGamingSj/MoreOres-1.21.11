@@ -79,6 +79,19 @@ public class RecipeGen extends FabricRecipeProvider {
 
                 offerBlasting(List.of(ModItems.RUBY), RecipeCategory.MISC, Items.NETHERITE_INGOT, 0.15f, 450, "netherite");
 
+                createShaped(
+                        RecipeCategory.REDSTONE, ModBlocks.GEM_INFUSION_BLOCK
+                )
+                        .pattern("aba")
+                                .pattern("cdc")
+                                        .pattern("ccc")
+                                                .input('a', Items.REDSTONE)
+                                                        .input('b', Ingredient.ofItems(ModItems.ENERGY_INGOT, ModBlocks.ENERGY_BLOCK.asItem()))
+                        .input('c', Ingredient.ofItems(Blocks.IRON_BLOCK.asItem()))
+                        .input('d', Ingredient.ofItems(ModBlocks.GEM_PURIFIER_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.GEM_PURIFIER_BLOCK.asItem()), conditionsFromItem(ModBlocks.GEM_PURIFIER_BLOCK.asItem()))
+                        .offerTo(exporter, getRecipeName(ModBlocks.GEM_INFUSION_BLOCK.asItem()));
+
                 // Armor
                 SmithingTransformRecipeJsonBuilder.create(
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
@@ -379,11 +392,74 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.PYROPE_BLOCK.asItem()));
 
+                // Gem Infusion
                 createGemInfusion(
-                        Ingredient.ofItem(ModItems.RADIANT), Ingredient.ofItem(ModItems.SAPPHIRE), new ItemStack(ModItems.CRIMSON_SAPPHIRE), RecipeCategory.MISC
+                        Ingredient.ofItem(ModItems.RUBY), new ItemStack(ModItems.ALEXANDRITE), RecipeCategory.MISC
                 )
                         .criterion(hasItem(ModItems.RUBY.asItem()), conditionsFromItem(ModItems.RUBY))
-                        .offerTo(exporter, getRecipeName(ModItems.CRIMSON_SAPPHIRE));
+                        .offerTo(exporter, getRecipeName(ModItems.ALEXANDRITE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.SAPPHIRE), new ItemStack(ModItems.KASHMIR_SAPPHIRE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.SAPPHIRE.asItem()), conditionsFromItem(ModItems.SAPPHIRE))
+                        .offerTo(exporter, getRecipeName(ModItems.KASHMIR_SAPPHIRE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.GREEN_SAPPHIRE), new ItemStack(ModItems.CRYSTALLITE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.GREEN_SAPPHIRE), conditionsFromItem(ModItems.GREEN_SAPPHIRE))
+                                .offerTo(exporter, getRecipeName(ModItems.CRYSTALLITE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.BLUE_GARNET), new ItemStack(ModItems.CRIMSON_GARNET), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.BLUE_GARNET), conditionsFromItem(ModItems.BLUE_GARNET))
+                        .offerTo(exporter, getRecipeName(ModItems.CRIMSON_GARNET));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.PINK_GARNET), new ItemStack(ModItems.RADIANT_AMETHYST), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.PINK_GARNET), conditionsFromItem(ModItems.PINK_GARNET))
+                        .offerTo(exporter, getRecipeName(ModItems.RADIANT_AMETHYST));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.GREEN_GARNET), new ItemStack(ModItems.LIMESTONE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.GREEN_GARNET), conditionsFromItem(ModItems.GREEN_GARNET))
+                        .offerTo(exporter, getRecipeName(ModItems.LIMESTONE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.KYAWTHUITE), new ItemStack(ModItems.PAINITE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.KYAWTHUITE), conditionsFromItem(ModItems.KYAWTHUITE))
+                        .offerTo(exporter, getRecipeName(ModItems.PAINITE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.WHITE_TOPAZ), new ItemStack(ModItems.MOONSTONE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.WHITE_TOPAZ), conditionsFromItem(ModItems.WHITE_TOPAZ))
+                        .offerTo(exporter, getRecipeName(ModItems.MOONSTONE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.PERIDOT), new ItemStack(ModItems.OPAL), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.PERIDOT), conditionsFromItem(ModItems.PERIDOT))
+                        .offerTo(exporter, getRecipeName(ModItems.OPAL));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.JADE), new ItemStack(ModItems.GRANDIDIERITE), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.JADE), conditionsFromItem(ModItems.JADE))
+                        .offerTo(exporter, getRecipeName(ModItems.GRANDIDIERITE));
+
+                createGemInfusion(
+                        Ingredient.ofItem(ModItems.PYROPE), new ItemStack(ModItems.RED_BERYL), RecipeCategory.MISC
+                )
+                        .criterion(hasItem(ModItems.PYROPE), conditionsFromItem(ModItems.PYROPE))
+                        .offerTo(exporter, getRecipeName(ModItems.RED_BERYL));
+
+                GemInfusionRecipeJsonBuilder.createQuartsidian();
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                         .pattern("aaa")
@@ -571,8 +647,8 @@ public class RecipeGen extends FabricRecipeProvider {
         return GemPolishingRecipeJsonBuilder.create(input, result, category);
     }
 
-    public GemInfusionRecipeJsonBuilder createGemInfusion(Ingredient inputBefore, Ingredient inputAfter, ItemStack result, RecipeCategory category) {
-        return GemInfusionRecipeJsonBuilder.create(inputBefore, inputAfter, result, category);
+    public GemInfusionRecipeJsonBuilder createGemInfusion(Ingredient inputBefore, ItemStack result, RecipeCategory category) {
+        return GemInfusionRecipeJsonBuilder.create(inputBefore, result, category);
     }
     
     @Override

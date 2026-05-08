@@ -38,9 +38,10 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.WHITE_TOPAZ)
                 .add(ModItems.PERIDOT)
                 .add(ModItems.JADE)
-                .add(ModItems.PYROPE);
-
-        valueLookupBuilder(ModItemTags.ARCSHAPERS);
+                .add(ModItems.PYROPE)
+                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.PAINITE,
+                        ModItems.OPAL, ModItems.QUARTSIDIAN, ModItems.KASHMIR_SAPPHIRE, ModItems.RADIANT_AMETHYST,
+                        ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE);
 
         valueLookupBuilder(ItemTags.SWORDS)
                 .add(ModItems.RUBY_SWORD)
@@ -105,7 +106,10 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PYROPE)
                 .add(Items.LAPIS_LAZULI)
                 .add(Items.QUARTZ)
-                .add(Items.DIAMOND);
+                .add(Items.DIAMOND)
+                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.PAINITE,
+                        ModItems.OPAL, ModItems.QUARTSIDIAN, ModItems.KASHMIR_SAPPHIRE, ModItems.RADIANT_AMETHYST,
+                        ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE);
 
         valueLookupBuilder(ModItemTags.GEMSTONE_BLOCKS)
                 .add(ModBlocks.RUBY_BLOCK.asItem(),

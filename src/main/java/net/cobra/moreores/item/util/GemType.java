@@ -20,7 +20,7 @@ public enum GemType implements StringIdentifiable {
     WHITE_TOPAZ("white_topaz", ModItems.WHITE_TOPAZ, ModBlocks.WHITE_TOPAZ_BLOCK.asItem()),
     PERIDOT("peridot", ModItems.PERIDOT, ModBlocks.PERIDOT_BLOCK.asItem()),
     JADE("jade", ModItems.JADE, ModBlocks.JADE_BLOCK.asItem()),
-    PYROPE("pyrope", ModItems.PYROPE, ModBlocks.PYROPE_BLOCK.asItem()),;
+    PYROPE("pyrope", ModItems.PYROPE, ModBlocks.PYROPE_BLOCK.asItem());
 
     public static final Codec<GemType> CODEC = Codec.STRING.xmap(
             s -> GemType.valueOf(s.toUpperCase()),

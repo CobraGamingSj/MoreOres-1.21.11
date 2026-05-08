@@ -55,6 +55,19 @@ public class ModBlocks {
     public static final Block JADE_BLOCK = register("jade_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "jade_block"))).requiresTool().strength(6.0f, 6.5f).strength(7.0f)));
     public static final Block PYROPE_BLOCK = register("pyrope_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "pyrope_block"))).requiresTool().strength(6.0f, 6.5f).strength(7.0f)));
 
+    public static final Block CRIMSON_GARNET_BLOCK = register("crimson_garnet_block", Block::new);
+    public static final Block CRYSTALLITE_BLOCK = register("crystallite_block", Block::new);
+    public static final Block RADIANT_AMETHYST_BLOCK = register("radiant_amethyst_block", Block::new);
+    public static final Block MOONSTONE_BLOCK = register("moonstone_block", Block::new);
+    public static final Block LIMESTONE_BLOCK = register("limestone_block", Block::new);
+    public static final Block QUARTSIDIAN_BLOCK = register("quartsidian_block", Block::new);
+    public static final Block ALEXANDRITE_BLOCK = register("alexandrite_block", Block::new);
+    public static final Block PAINITE_BLOCK = register("painite_block", Block::new);
+    public static final Block OPAL_BLOCK = register("opal_block", Block::new);
+    public static final Block GRANDIDIERITE_BLOCK = register("grandidierite_block", Block::new);
+    public static final Block RED_BERYL_BLOCK = register("red_beryl_block", Block::new);
+    public static final Block KASHMIR_SAPPHIRE_BLOCK = register("kashmir_sapphire_block", Block::new);
+
     public static final Block GEM_PURIFIER_BLOCK = register("gem_purifier_block", new GemPurifierBlock(AbstractBlock.Settings.create()
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_purifier_block"))).strength(5f).strength(2.75f, 3f)
             .luminance(state -> state.get(GemPurifierBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
@@ -105,6 +118,10 @@ public class ModBlocks {
         Identifier ID = MoreOresModInitializer.getId(id);
 
         return Registry.register(Registries.BLOCK, ID, block);
+    }
+
+    public static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory) {
+       return registerSolidBlock(id, blockFactory, 7f, 7f);
     }
 
     public static Block registerSolidBlock(String id, Function<AbstractBlock.Settings, Block> blockFunction, float strength, float resistance) {
