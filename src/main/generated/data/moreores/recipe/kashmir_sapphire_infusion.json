@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_infusing",
+  "gemAfter": "moreores:radiant",
+  "gemBefore": "moreores:sapphire",
+  "infusedGem": {
+    "count": 1,
+    "id": "moreores:kashmir_sapphire"
+  }
+}

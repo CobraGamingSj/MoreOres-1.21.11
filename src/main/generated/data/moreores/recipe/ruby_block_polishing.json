@@ -1,0 +1,8 @@
+{
+  "type": "moreores:gem_polishing",
+  "ingredientGem": "moreores:raw_ruby_block",
+  "resultGem": {
+    "count": 1,
+    "id": "moreores:ruby_block"
+  }
+}

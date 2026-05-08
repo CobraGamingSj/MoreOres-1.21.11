@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:ruby_tool_materials",
+  "base": "minecraft:netherite_pickaxe",
+  "result": {
+    "id": "moreores:ruby_pickaxe"
+  },
+  "template": "moreores:ruby_upgrade_smithing_template"
+}

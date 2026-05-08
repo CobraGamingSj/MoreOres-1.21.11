@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 1500,
+  "experience": 0.15,
+  "group": "green_garnet",
+  "ingredient": "moreores:green_garnet_ore",
+  "result": {
+    "id": "moreores:green_garnet"
+  }
+}

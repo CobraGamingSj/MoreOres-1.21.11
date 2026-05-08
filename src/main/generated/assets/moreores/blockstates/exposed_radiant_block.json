@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "moreores:block/exposed_radiant_block"
+    }
+  }
+}

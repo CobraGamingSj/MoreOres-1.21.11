@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 1500,
+  "experience": 0.15,
+  "group": "pink_garnet",
+  "ingredient": "moreores:deepslate_pink_garnet_ore",
+  "result": {
+    "id": "moreores:pink_garnet"
+  }
+}

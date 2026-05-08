@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:iron_bars",
+    "I": "minecraft:iron_block"
+  },
+  "pattern": [
+    "III",
+    "III",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moreores:gem_purifier_block"
+  }
+}
