@@ -17,7 +17,6 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
     private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_infusion_gui_test.png");
-    private static final Identifier DUST_LENGTH_TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/dust_length.png");
     private static final Identifier START_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/start.png");
     private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/pause.png");
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/resume.png");
@@ -57,7 +56,7 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
     @Override
     protected void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
-            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 51, y + 40, 207, 0, 8, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 71, y + 40, 207, 0, 8, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
     }
 
@@ -69,9 +68,9 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
 
     private void renderRadiantDust(DrawContext context, int x, int y) {
         int k = handler.getDustCount();
-        int l = MathHelper.clamp((18 * k + 200 - 1) / 200, 0, 18);
+        int l = MathHelper.clamp((18 * k + 2000 - 1) / 2000, 0, 18);
         if(l > 0) {
-            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 38, y + 84, 207, 29, l, 4, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 38, y + 97, 207, 29, l, 4, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
     }
 
@@ -96,12 +95,12 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
-        int k = MathHelper.clamp((18 * handler.getDustCount() + 200 - 1) / 200, 0, 18);
+        int k = MathHelper.clamp((18 * handler.getDustCount() + 2000 - 1) / 2000, 0, 18);
         if (isPointWithinBounds(13, 43 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
         }
-        if (isPointWithinBounds(38 + 18 - k, 84, k, 4, mouseX, mouseY)) {
-            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getDustCount() + "Count"),  mouseX, mouseY);
+        if (isPointWithinBounds(38 + 18 - k, 97, k, 4, mouseX, mouseY)) {
+            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getDustCount() + " Particles").formatted(Formatting.RED),  mouseX, mouseY);
         }
     }
 }

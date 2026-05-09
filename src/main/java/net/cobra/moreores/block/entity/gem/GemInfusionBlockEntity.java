@@ -49,6 +49,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
     private long lastRemovedEnergyMilestone = 0;
 
     public int dustParticleCount = 0;
+    private int dustTick;
 
     protected final PropertyDelegate propertyDelegate;
     private int maxProgressTicks = 300;
@@ -107,12 +108,14 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
     protected void writeData(WriteView view) {
         super.writeData(view);
         view.putInt("DustCount", dustParticleCount);
+        view.putInt("DustTick", dustTick);
     }
 
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        view.getInt("DustCount", 0);
+        dustParticleCount = view.getInt("DustCount", 0);
+        dustTick = view.getInt("DustTick", 0);
     }
 
     @Override
@@ -122,7 +125,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
 
     @Override
     public int mainStackSize() {
-        return 17;
+        return 9;
     }
 
     @Override
@@ -228,12 +231,15 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
             return;
         }
 
+        dustTick++;
+
         GemType newGem = getGem();
 
         if (newGem != this.gemType) {
             setGem(newGem);
 
             world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+            markDirty(world, pos, state);
         }
 
         ItemStack stack = radiantDustStack();
@@ -245,17 +251,24 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         markDirty(world, pos, state);
 
         changeState();
+        markDirty(world, pos, state);
 
         if(polishingInfusionState == PolishingInfusionState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
-            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && dustParticleCount > 2) {
+            markDirty(world, pos, state);
+            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
                 this.increaseProgress();
                 this.extractEnergy();
-                this.dustParticleCount--;
+                if(dustTick >= 20 && dustParticleCount > 0) {
+                    this.dustParticleCount--;
+                    this.dustTick = 0;
+                    markDirty(world, pos, state);
+                }
                 markDirty(world, pos, state);
                 if (hasInfusionFinished()) {
                     this.getInfusedGem();
                     this.resetProgress();
+                    markDirty(world, pos, state);
                 }
                 markDirty(world, pos, state);
             } else {
@@ -266,12 +279,15 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         } else if (polishingInfusionState.isPaused()) {
             energyState = EnergyState.INSERTING;
             insertEnergy();
+            markDirty(world, pos, state);
         } else {
             if((energyAmount() < 1_000_000 && hasEnergySourceProviderItem())) {
                 energyState = EnergyState.INSERTING;
                 insertEnergy();
+                markDirty(world, pos, state);
             } else {
                 energyState = EnergyState.IDLE;
+                markDirty(world, pos, state);
             }
         }
 
@@ -292,7 +308,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
 
     @Override
     public GemType getGem() {
-        return detectGem(getStack(RESULT_SLOT));
+        return detectGem(resultStack());
     }
 
     protected void checkForEnoughEnergyAndRemoveItem() {

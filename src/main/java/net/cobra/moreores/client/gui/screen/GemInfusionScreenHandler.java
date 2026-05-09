@@ -31,7 +31,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
         super(ModScreenHandlerType.GEM_infusion_SCREEN_HANDLER, syncId, entity.getPos());
-        checkSize((Inventory) entity, 17);
+        checkSize((Inventory) entity, 9);
 
         this.inventory = (Inventory) entity;
         this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
@@ -74,13 +74,19 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
             }
         }); // Radiant Slot
 
-        addFirstAdditionalInventory(inventory);
         addSecondAdditionalInventory(inventory);
 
         addPlayerGenericInventory(playerInventory);
         addPlayerHotbarInventory(playerInventory);
 
         addProperties(delegate);
+    }
+
+    @Override
+    public void addSecondAdditionalInventory(Inventory playerInventory) {
+        for (int i = 0; i < 4; ++i) {
+            this.addSlot(new Slot(playerInventory, 5 + i, 179, 97 + i * 18));
+        }
     }
 
     public boolean isPolishing() {
