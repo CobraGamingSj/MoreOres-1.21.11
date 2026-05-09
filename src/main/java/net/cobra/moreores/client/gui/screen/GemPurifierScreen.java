@@ -25,11 +25,11 @@ import org.lwjgl.glfw.GLFW;
 public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
-    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_purifier_gui_test.png");
-    private static final Identifier START_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/start.png");
-    private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/pause.png");
-    private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/resume.png");
-    private static final Identifier STOP_BUTTON = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/button/stop.png");
+    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_purifier_gui.png");
+    private static final Identifier START_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/start.png");
+    private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/pause.png");
+    private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/resume.png");
+    private static final Identifier STOP_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/stop.png");
 
     public GemPurifierScreen(GemPurifierScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
