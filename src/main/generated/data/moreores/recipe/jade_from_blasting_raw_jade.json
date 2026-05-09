@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "jade",
+  "group": "moreores:jade",
   "ingredient": "moreores:raw_jade",
   "result": {
     "id": "moreores:jade"

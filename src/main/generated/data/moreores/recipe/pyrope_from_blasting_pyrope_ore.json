@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "pyrope",
+  "group": "moreores:pyrope",
   "ingredient": "moreores:pyrope_ore",
   "result": {
     "id": "moreores:pyrope"

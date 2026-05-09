@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "green_garnet",
+  "group": "moreores:green_garnet",
   "ingredient": "moreores:raw_green_garnet",
   "result": {
     "id": "moreores:green_garnet"

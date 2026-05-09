@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 1500,
   "experience": 0.15,
-  "group": "blue_garnet",
+  "group": "moreores:blue_garnet",
   "ingredient": "moreores:deepslate_blue_garnet_ore",
   "result": {
     "id": "moreores:blue_garnet"

@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 1500,
   "experience": 0.15,
-  "group": "white_topaz",
+  "group": "moreores:white_topaz",
   "ingredient": "moreores:white_topaz_ore",
   "result": {
     "id": "moreores:white_topaz"

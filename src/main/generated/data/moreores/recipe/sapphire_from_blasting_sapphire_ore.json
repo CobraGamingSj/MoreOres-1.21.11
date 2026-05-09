@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "sapphire",
+  "group": "moreores:sapphire",
   "ingredient": "moreores:sapphire_ore",
   "result": {
     "id": "moreores:sapphire"

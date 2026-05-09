@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 1500,
   "experience": 0.15,
-  "group": "topaz",
+  "group": "moreores:topaz",
   "ingredient": "moreores:deepslate_topaz_ore",
   "result": {
     "id": "moreores:topaz"

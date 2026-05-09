@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "ruby",
+  "group": "moreores:ruby",
   "ingredient": "moreores:raw_ruby",
   "result": {
     "id": "moreores:ruby"

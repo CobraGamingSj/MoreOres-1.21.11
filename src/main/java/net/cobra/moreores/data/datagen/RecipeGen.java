@@ -13,7 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -24,9 +24,49 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class RecipeGen extends FabricRecipeProvider {
+    private static final Map<Item, Item> SMELTABLES = Map.ofEntries(
+            Map.entry(ModBlocks.RUBY_ORE.asItem(), ModItems.RUBY),
+            Map.entry(ModBlocks.DEEPSLATE_RUBY_ORE.asItem(), ModItems.RUBY),
+            Map.entry(ModBlocks.SAPPHIRE_ORE.asItem(), ModItems.SAPPHIRE),
+            Map.entry(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.asItem(), ModItems.SAPPHIRE),
+            Map.entry(ModBlocks.GREEN_SAPPHIRE_ORE.asItem(), ModItems.GREEN_SAPPHIRE),
+            Map.entry(ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE.asItem(), ModItems.GREEN_SAPPHIRE),
+            Map.entry(ModBlocks.BLUE_GARNET_ORE.asItem(), ModItems.BLUE_GARNET),
+            Map.entry(ModBlocks.DEEPSLATE_BLUE_GARNET_ORE.asItem(), ModItems.BLUE_GARNET),
+            Map.entry(ModBlocks.PINK_GARNET_ORE.asItem(), ModItems.PINK_GARNET),
+            Map.entry(ModBlocks.DEEPSLATE_PINK_GARNET_ORE.asItem(), ModItems.PINK_GARNET),
+            Map.entry(ModBlocks.GREEN_GARNET_ORE.asItem(), ModItems.GREEN_GARNET),
+            Map.entry(ModBlocks.DEEPSLATE_GREEN_GARNET_ORE.asItem(), ModItems.GREEN_GARNET),
+            Map.entry(ModBlocks.KYAWTHUITE_ORE.asItem(), ModItems.KYAWTHUITE),
+            Map.entry(ModBlocks.DEEPSLATE_KYAWTHUITE_ORE.asItem(), ModItems.KYAWTHUITE),
+            Map.entry(ModBlocks.TOPAZ_ORE.asItem(), ModItems.TOPAZ),
+            Map.entry(ModBlocks.DEEPSLATE_TOPAZ_ORE.asItem(), ModItems.TOPAZ),
+            Map.entry(ModBlocks.WHITE_TOPAZ_ORE.asItem(), ModItems.WHITE_TOPAZ),
+            Map.entry(ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE.asItem(), ModItems.WHITE_TOPAZ),
+            Map.entry(ModBlocks.PERIDOT_ORE.asItem(), ModItems.PERIDOT),
+            Map.entry(ModBlocks.DEEPSLATE_PERIDOT_ORE.asItem(), ModItems.PERIDOT),
+            Map.entry(ModBlocks.JADE_ORE.asItem(), ModItems.JADE),
+            Map.entry(ModBlocks.DEEPSLATE_JADE_ORE.asItem(), ModItems.JADE),
+            Map.entry(ModBlocks.PYROPE_ORE.asItem(), ModItems.PYROPE),
+            Map.entry(ModBlocks.DEEPSLATE_PYROPE_ORE.asItem(), ModItems.PYROPE),
+            Map.entry(ModItems.RAW_RUBY, ModItems.RUBY),
+            Map.entry(ModItems.RAW_SAPPHIRE, ModItems.SAPPHIRE),
+            Map.entry(ModItems.RAW_GREEN_SAPPHIRE, ModItems.GREEN_SAPPHIRE),
+            Map.entry(ModItems.RAW_BLUE_GARNET, ModItems.BLUE_GARNET),
+            Map.entry(ModItems.RAW_PINK_GARNET, ModItems.PINK_GARNET),
+            Map.entry(ModItems.RAW_GREEN_GARNET, ModItems.GREEN_GARNET),
+            Map.entry(ModItems.RAW_KYAWTHUITE, ModItems.KYAWTHUITE),
+            Map.entry(ModItems.RAW_TOPAZ, ModItems.TOPAZ),
+            Map.entry(ModItems.RAW_WHITE_TOPAZ, ModItems.WHITE_TOPAZ),
+            Map.entry(ModItems.RAW_PERIDOT, ModItems.PERIDOT),
+            Map.entry(ModItems.RAW_JADE, ModItems.JADE),
+            Map.entry(ModItems.RAW_PYROPE, ModItems.PYROPE)
+            );
+
     public RecipeGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -38,44 +78,21 @@ public class RecipeGen extends FabricRecipeProvider {
             public void generate() {
                 int defaultSmeltingTime = 1500;
                 int defaultBlastingTime = 750;
-                List<ItemConvertible> RUBY_SMELTABLES = List.of(ModBlocks.RUBY_ORE, ModBlocks.DEEPSLATE_RUBY_ORE, ModItems.RAW_RUBY);
-                List<ItemConvertible> SAPPHIRE_SMELTABLES = List.of(ModBlocks.SAPPHIRE_ORE, ModBlocks.DEEPSLATE_SAPPHIRE_ORE, ModItems.RAW_SAPPHIRE);
-                List<ItemConvertible> GREEN_SAPPHIRE_SMELTABLES = List.of(ModBlocks.GREEN_SAPPHIRE_ORE, ModBlocks.DEEPSLATE_GREEN_SAPPHIRE_ORE, ModItems.RAW_GREEN_SAPPHIRE);
-                List<ItemConvertible> BLUE_GARNET_SMELTABLES = List.of(ModBlocks.BLUE_GARNET_ORE, ModBlocks.DEEPSLATE_BLUE_GARNET_ORE, ModItems.RAW_BLUE_GARNET);
-                List<ItemConvertible> PINK_GARNET_SMELTABLES = List.of(ModBlocks.PINK_GARNET_ORE, ModBlocks.DEEPSLATE_PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET);
-                List<ItemConvertible> GREEN_GARNET_SMELTABLES = List.of(ModBlocks.GREEN_GARNET_ORE, ModBlocks.DEEPSLATE_GREEN_GARNET_ORE, ModItems.RAW_GREEN_GARNET);
-                List<ItemConvertible> KYAWTHUITE_SMELTABLES = List.of(ModBlocks.KYAWTHUITE_ORE, ModBlocks.DEEPSLATE_KYAWTHUITE_ORE, ModItems.RAW_KYAWTHUITE);
-                List<ItemConvertible> TOPAZ_SMELTABLES = List.of(ModBlocks.TOPAZ_ORE, ModBlocks.DEEPSLATE_TOPAZ_ORE, ModItems.RAW_TOPAZ);
-                List<ItemConvertible> WHITE_TOPAZ_SMELTABLES = List.of(ModBlocks.WHITE_TOPAZ_ORE, ModBlocks.DEEPSLATE_WHITE_TOPAZ_ORE, ModItems.RAW_WHITE_TOPAZ);
-                List<ItemConvertible> PERIDOT_SMELTABLES = List.of(ModBlocks.PERIDOT_ORE, ModBlocks.DEEPSLATE_PERIDOT_ORE, ModItems.RAW_PERIDOT);
-                List<ItemConvertible> JADE_SMELTABLES = List.of(ModBlocks.JADE_ORE, ModBlocks.DEEPSLATE_JADE_ORE, ModItems.RAW_JADE);
-                List<ItemConvertible> PYROPE_SMELTABLES = List.of(ModBlocks.PYROPE_ORE, ModBlocks.DEEPSLATE_PYROPE_ORE, ModItems.RAW_PYROPE);
 
-                offerSmelting(RUBY_SMELTABLES, RecipeCategory.MISC, ModItems.RUBY, 0.15f, defaultSmeltingTime, "ruby");
-                offerSmelting(SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ModItems.SAPPHIRE, 0.15f, defaultSmeltingTime, "sapphire");
-                offerSmelting(GREEN_SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ModItems.GREEN_SAPPHIRE, 0.15f, defaultSmeltingTime, "green_sapphire");
-                offerSmelting(BLUE_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.BLUE_GARNET, 0.15f, defaultSmeltingTime, "blue_garnet");
-                offerSmelting(PINK_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.PINK_GARNET, 0.15f, defaultSmeltingTime, "pink_garnet");
-                offerSmelting(GREEN_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.GREEN_GARNET, 0.15f, defaultSmeltingTime, "green_garnet");
-                offerSmelting(KYAWTHUITE_SMELTABLES, RecipeCategory.MISC, ModItems.KYAWTHUITE, 0.15f, defaultSmeltingTime, "kyawthuite");
-                offerSmelting(TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.TOPAZ, 0.15f, defaultSmeltingTime, "topaz");
-                offerSmelting(WHITE_TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.WHITE_TOPAZ, 0.15f, defaultSmeltingTime, "white_topaz");
-                offerSmelting(PERIDOT_SMELTABLES, RecipeCategory.MISC, ModItems.PERIDOT, 0.15f, defaultSmeltingTime, "peridot");
-                offerSmelting(JADE_SMELTABLES, RecipeCategory.MISC, ModItems.JADE, 0.15f, defaultSmeltingTime, "jade");
-                offerSmelting(PYROPE_SMELTABLES, RecipeCategory.MISC, ModItems.PYROPE, 0.15f, defaultSmeltingTime, "pyrope");
+                for (var entry: SMELTABLES.entrySet()) {
+                    var input = entry.getKey();
+                    var output = entry.getValue();
 
-                offerBlasting(RUBY_SMELTABLES, RecipeCategory.MISC, ModItems.RUBY, 0.15f, defaultBlastingTime, "ruby");
-                offerBlasting(SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ModItems.SAPPHIRE, 0.15f, defaultBlastingTime, "sapphire");
-                offerBlasting(GREEN_SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ModItems.GREEN_SAPPHIRE, 0.15f, defaultBlastingTime, "green_sapphire");
-                offerBlasting(BLUE_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.BLUE_GARNET, 0.15f, defaultBlastingTime, "blue_garnet");
-                offerBlasting(PINK_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.PINK_GARNET, 0.15f, defaultBlastingTime, "pink_garnet");
-                offerBlasting(GREEN_GARNET_SMELTABLES, RecipeCategory.MISC, ModItems.GREEN_GARNET, 0.15f, defaultBlastingTime, "green_garnet");
-                offerBlasting(KYAWTHUITE_SMELTABLES, RecipeCategory.MISC, ModItems.KYAWTHUITE, 0.15f, defaultBlastingTime, "kyawthuite");
-                offerBlasting(TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.TOPAZ, 0.15f, defaultBlastingTime, "topaz");
-                offerBlasting(WHITE_TOPAZ_SMELTABLES, RecipeCategory.MISC, ModItems.WHITE_TOPAZ, 0.15f, defaultBlastingTime, "white_topaz");
-                offerBlasting(PERIDOT_SMELTABLES, RecipeCategory.MISC, ModItems.PERIDOT, 0.15f, defaultBlastingTime, "peridot");
-                offerBlasting(JADE_SMELTABLES, RecipeCategory.MISC, ModItems.JADE, 0.15f, defaultBlastingTime, "jade");
-                offerBlasting(PYROPE_SMELTABLES, RecipeCategory.MISC, ModItems.PYROPE, 0.15f, defaultBlastingTime, "pyrope");
+                    offerSmelting(List.of(input), RecipeCategory.MISC, output, .15f, defaultSmeltingTime, output.toString());
+                    offerBlasting(List.of(input), RecipeCategory.MISC, output, .15f, defaultBlastingTime, output.toString());
+                }
+
+                for(var entry : GEM_POLISHABLES.entrySet()) {
+                    var input = entry.getKey();
+                    var output = entry.getValue();
+
+                    createGemPurifying(Ingredient.ofItem(input), new ItemStack(output));
+                }
 
                 offerBlasting(List.of(ModItems.RUBY), RecipeCategory.MISC, Items.NETHERITE_INGOT, 0.15f, 450, "netherite");
 
@@ -223,173 +240,148 @@ public class RecipeGen extends FabricRecipeProvider {
                 offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.PYROPE, RecipeCategory.DECORATIONS,
                         ModBlocks.PYROPE_BLOCK);
 
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_RUBY, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_RUBY_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_SAPPHIRE, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_SAPPHIRE_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_GREEN_SAPPHIRE, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_BLUE_GARNET, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_BLUE_GARNET_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_PINK_GARNET, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_PINK_GARNET_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_GREEN_GARNET, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_GREEN_GARNET_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_TOPAZ, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_TOPAZ_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_KYAWTHUITE, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_KYAWTHUITE_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_WHITE_TOPAZ, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_WHITE_TOPAZ_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_PERIDOT, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_PERIDOT_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_JADE, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_JADE_BLOCK);
-                offerReversibleCompactingRecipes(RecipeCategory.BUILDING_BLOCKS, ModItems.RAW_PYROPE, RecipeCategory.DECORATIONS,
-                        ModBlocks.RAW_PYROPE_BLOCK);
-
-                createGemPolishing(
-                                Ingredient.ofItem(ModItems.RAW_RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItem(ModItems.RUBY), new ItemStack(ModItems.RUBY), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_RUBY), conditionsFromItem(ModItems.RAW_RUBY))
+                        .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .offerTo(exporter, getRecipeName(ModItems.RUBY));
 
-                createGemPolishing(
-                                Ingredient.ofItem(ModBlocks.RAW_RUBY_BLOCK.asItem()), new ItemStack(ModBlocks.RUBY_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItem(ModBlocks.RUBY_BLOCK.asItem()), new ItemStack(ModBlocks.RUBY_BLOCK.asItem()), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModBlocks.RAW_RUBY_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_RUBY_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.RUBY_BLOCK.asItem()), conditionsFromItem(ModBlocks.RUBY_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.RUBY_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_SAPPHIRE), new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.SAPPHIRE), new ItemStack(ModItems.SAPPHIRE), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_SAPPHIRE), conditionsFromItem(ModItems.RAW_SAPPHIRE))
+                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
                         .offerTo(exporter, getRecipeName(ModItems.SAPPHIRE));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_SAPPHIRE_BLOCK.asItem()), new ItemStack(ModBlocks.SAPPHIRE_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.SAPPHIRE_BLOCK.asItem()), new ItemStack(ModBlocks.SAPPHIRE_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_SAPPHIRE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_SAPPHIRE_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.SAPPHIRE_BLOCK.asItem()), conditionsFromItem(ModBlocks.SAPPHIRE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.SAPPHIRE_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_GREEN_SAPPHIRE), new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.GREEN_SAPPHIRE), new ItemStack(ModItems.GREEN_SAPPHIRE), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_GREEN_SAPPHIRE), conditionsFromItem(ModItems.RAW_GREEN_SAPPHIRE))
+                        .criterion(hasItem(ModItems.GREEN_SAPPHIRE), conditionsFromItem(ModItems.GREEN_SAPPHIRE))
                         .offerTo(exporter, getRecipeName(ModItems.GREEN_SAPPHIRE));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem()), new ItemStack(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()), new ItemStack(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_GREEN_SAPPHIRE_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()), conditionsFromItem(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_BLUE_GARNET), new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.BLUE_GARNET), new ItemStack(ModItems.BLUE_GARNET), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_BLUE_GARNET), conditionsFromItem(ModItems.RAW_BLUE_GARNET))
+                        .criterion(hasItem(ModItems.BLUE_GARNET), conditionsFromItem(ModItems.BLUE_GARNET))
                         .offerTo(exporter, getRecipeName(ModItems.BLUE_GARNET));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.BLUE_GARNET_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.BLUE_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.BLUE_GARNET_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.BLUE_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.BLUE_GARNET_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.BLUE_GARNET_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_PINK_GARNET), new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.PINK_GARNET), new ItemStack(ModItems.PINK_GARNET), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_PINK_GARNET), conditionsFromItem(ModItems.RAW_PINK_GARNET))
+                        .criterion(hasItem(ModItems.PINK_GARNET), conditionsFromItem(ModItems.PINK_GARNET))
                         .offerTo(exporter, getRecipeName(ModItems.PINK_GARNET));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.PINK_GARNET_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.PINK_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.PINK_GARNET_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.PINK_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.PINK_GARNET_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.PINK_GARNET_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_GREEN_GARNET), new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.GREEN_GARNET), new ItemStack(ModItems.GREEN_GARNET), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_GREEN_GARNET), conditionsFromItem(ModItems.RAW_GREEN_GARNET))
+                        .criterion(hasItem(ModItems.GREEN_GARNET), conditionsFromItem(ModItems.GREEN_GARNET))
                         .offerTo(exporter, getRecipeName(ModItems.GREEN_GARNET));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.GREEN_GARNET_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.GREEN_GARNET_BLOCK.asItem()), new ItemStack(ModBlocks.GREEN_GARNET_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.GREEN_GARNET_BLOCK.asItem()), conditionsFromItem(ModBlocks.GREEN_GARNET_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.GREEN_GARNET_BLOCK.asItem()));
 
-                createGemPolishing(
-                        Ingredient.ofItems(ModItems.RAW_KYAWTHUITE), new ItemStack(ModItems.KYAWTHUITE), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItems(ModItems.KYAWTHUITE), new ItemStack(ModItems.KYAWTHUITE), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModItems.RAW_KYAWTHUITE), conditionsFromItem(ModItems.RAW_KYAWTHUITE))
+                        .criterion(hasItem(ModItems.KYAWTHUITE), conditionsFromItem(ModItems.KYAWTHUITE))
                         .offerTo(exporter, getRecipeName(ModItems.KYAWTHUITE));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem()), new ItemStack(ModBlocks.KYAWTHUITE_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.KYAWTHUITE_BLOCK.asItem()), new ItemStack(ModBlocks.KYAWTHUITE_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.KYAWTHUITE_BLOCK.asItem()), conditionsFromItem(ModBlocks.KYAWTHUITE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.KYAWTHUITE_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.TOPAZ), new ItemStack(ModItems.TOPAZ), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_TOPAZ), conditionsFromItem(ModItems.RAW_TOPAZ))
+                        .criterion(hasItem(ModItems.TOPAZ), conditionsFromItem(ModItems.TOPAZ))
                         .offerTo(exporter, getRecipeName(ModItems.TOPAZ));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_TOPAZ_BLOCK.asItem()), new ItemStack(ModBlocks.TOPAZ_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.TOPAZ_BLOCK.asItem()), new ItemStack(ModBlocks.TOPAZ_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_TOPAZ_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_TOPAZ_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.TOPAZ_BLOCK.asItem()), conditionsFromItem(ModBlocks.TOPAZ_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.TOPAZ_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_WHITE_TOPAZ), new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.WHITE_TOPAZ), new ItemStack(ModItems.WHITE_TOPAZ), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_WHITE_TOPAZ), conditionsFromItem(ModItems.RAW_WHITE_TOPAZ))
+                        .criterion(hasItem(ModItems.WHITE_TOPAZ), conditionsFromItem(ModItems.WHITE_TOPAZ))
                         .offerTo(exporter, getRecipeName(ModItems.WHITE_TOPAZ));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem()), new ItemStack(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()), new ItemStack(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_WHITE_TOPAZ_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()), conditionsFromItem(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.WHITE_TOPAZ_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_PERIDOT), new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.PERIDOT), new ItemStack(ModItems.PERIDOT), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_PERIDOT), conditionsFromItem(ModItems.RAW_PERIDOT))
+                        .criterion(hasItem(ModItems.PERIDOT), conditionsFromItem(ModItems.PERIDOT))
                         .offerTo(exporter, getRecipeName(ModItems.PERIDOT));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_PERIDOT_BLOCK.asItem()), new ItemStack(ModBlocks.PERIDOT_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.PERIDOT_BLOCK.asItem()), new ItemStack(ModBlocks.PERIDOT_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_PERIDOT_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PERIDOT_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.PERIDOT_BLOCK.asItem()), conditionsFromItem(ModBlocks.PERIDOT_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.PERIDOT_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_JADE), new ItemStack(ModItems.JADE), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.JADE), new ItemStack(ModItems.JADE), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_JADE), conditionsFromItem(ModItems.RAW_JADE))
+                        .criterion(hasItem(ModItems.JADE), conditionsFromItem(ModItems.JADE))
                         .offerTo(exporter, getRecipeName(ModItems.JADE));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_JADE_BLOCK.asItem()), new ItemStack(ModBlocks.JADE_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.JADE_BLOCK.asItem()), new ItemStack(ModBlocks.JADE_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_JADE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_JADE_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.JADE_BLOCK.asItem()), conditionsFromItem(ModBlocks.JADE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.JADE_BLOCK.asItem()));
 
-                createGemPolishing(
-                                Ingredient.ofItems(ModItems.RAW_PYROPE), new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
+                createGemPurifying(
+                                Ingredient.ofItems(ModItems.PYROPE), new ItemStack(ModItems.PYROPE), RecipeCategory.MISC
                         )
-                        .criterion(hasItem(ModItems.RAW_PYROPE), conditionsFromItem(ModItems.RAW_PYROPE))
+                        .criterion(hasItem(ModItems.PYROPE), conditionsFromItem(ModItems.PYROPE))
                         .offerTo(exporter, getRecipeName(ModItems.PYROPE));
 
-                createGemPolishing(
-                        Ingredient.ofItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), new ItemStack(ModBlocks.PYROPE_BLOCK.asItem()), RecipeCategory.MISC
+                createGemPurifying(
+                        Ingredient.ofItem(ModBlocks.PYROPE_BLOCK.asItem()), new ItemStack(ModBlocks.PYROPE_BLOCK.asItem()), RecipeCategory.MISC
                 )
-                        .criterion(hasItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.RAW_PYROPE_BLOCK.asItem()))
+                        .criterion(hasItem(ModBlocks.PYROPE_BLOCK.asItem()), conditionsFromItem(ModBlocks.PYROPE_BLOCK.asItem()))
                         .offerTo(exporter, getRecipeName(ModBlocks.PYROPE_BLOCK.asItem()));
 
                 // Gem Infusion
@@ -643,12 +635,12 @@ public class RecipeGen extends FabricRecipeProvider {
         };
     }
 
-    public GemPolishingRecipeJsonBuilder createGemPolishing(Ingredient input, ItemStack result, RecipeCategory category) {
-        return GemPolishingRecipeJsonBuilder.create(input, result, category);
+    public GemPolishingRecipeJsonBuilder createGemPurifying(Ingredient input, ItemStack result) {
+        return GemPolishingRecipeJsonBuilder.create(input, result, RecipeCategory.MISC);
     }
 
-    public GemInfusionRecipeJsonBuilder createGemInfusion(Ingredient inputBefore, ItemStack result, RecipeCategory category) {
-        return GemInfusionRecipeJsonBuilder.create(inputBefore, result, category);
+    public GemInfusionRecipeJsonBuilder createGemInfusion(Ingredient inputBefore, ItemStack result) {
+        return GemInfusionRecipeJsonBuilder.create(inputBefore, result, RecipeCategory.MISC);
     }
     
     @Override

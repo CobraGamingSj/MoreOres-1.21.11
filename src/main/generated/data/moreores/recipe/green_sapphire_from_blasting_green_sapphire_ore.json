@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "green_sapphire",
+  "group": "moreores:green_sapphire",
   "ingredient": "moreores:green_sapphire_ore",
   "result": {
     "id": "moreores:green_sapphire"

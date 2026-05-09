@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 750,
   "experience": 0.15,
-  "group": "peridot",
+  "group": "moreores:peridot",
   "ingredient": "moreores:peridot_ore",
   "result": {
     "id": "moreores:peridot"

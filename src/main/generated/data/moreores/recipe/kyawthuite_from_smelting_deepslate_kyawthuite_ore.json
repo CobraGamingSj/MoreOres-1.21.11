@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 1500,
   "experience": 0.15,
-  "group": "kyawthuite",
+  "group": "moreores:kyawthuite",
   "ingredient": "moreores:deepslate_kyawthuite_ore",
   "result": {
     "id": "moreores:kyawthuite"
