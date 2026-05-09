@@ -26,7 +26,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, GemPFEnergyData data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
-                new ArrayPropertyDelegate(2));
+                new ArrayPropertyDelegate(3));
     }
 
     public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
@@ -85,6 +85,10 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     public boolean isPolishing() {
         return propertyDelegate.get(0) > 0;
+    }
+
+    public int getDustCount() {
+        return propertyDelegate.get(2);
     }
 
     public int progressGetter() {

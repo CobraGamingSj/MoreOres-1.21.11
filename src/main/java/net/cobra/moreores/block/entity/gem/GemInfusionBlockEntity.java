@@ -27,6 +27,8 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -46,6 +48,8 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
 
     private long lastRemovedEnergyMilestone = 0;
 
+    public int dustParticleCount = 0;
+
     protected final PropertyDelegate propertyDelegate;
     private int maxProgressTicks = 300;
     private final ServerRecipeManager.MatchGetter<GemInfusionRecipeInput, GemInfusionRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemInfusionRecipe.Type.INSTANCE);
@@ -58,6 +62,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
                 return switch (index) {
                     case 0 -> GemInfusionBlockEntity.this.initialProgress;
                     case 1 -> GemInfusionBlockEntity.this.maxProgressTicks;
+                    case 2 ->  GemInfusionBlockEntity.this.dustParticleCount;
                     default -> 0;
                 };
             }
@@ -67,12 +72,13 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
                 switch (index) {
                     case 0 -> GemInfusionBlockEntity.this.initialProgress = value;
                     case 1 -> GemInfusionBlockEntity.this.maxProgressTicks = value;
+                    case 2 -> GemInfusionBlockEntity.this.dustParticleCount = value;
                 }
             }
 
             @Override
             public int size() {
-                return 2;
+                return 3;
             }
         };
     }
@@ -95,6 +101,18 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
     @Override
     public ServerRecipeManager.MatchGetter<GemInfusionRecipeInput, GemInfusionRecipe> getMatchGetter() {
         return matchGetter;
+    }
+
+    @Override
+    protected void writeData(WriteView view) {
+        super.writeData(view);
+        view.putInt("DustCount", dustParticleCount);
+    }
+
+    @Override
+    protected void readData(ReadView view) {
+        super.readData(view);
+        view.getInt("DustCount", 0);
     }
 
     @Override
@@ -133,7 +151,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         return new GemInfusionScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
-    public ItemStack radiantStack() {
+    public ItemStack radiantDustStack() {
         return getStack(RADIANT_DUST_SLOT);
     }
 
@@ -215,16 +233,26 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         if (newGem != this.gemType) {
             setGem(newGem);
 
-            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
         }
+
+        ItemStack stack = radiantDustStack();
+        if(dustParticleCount <= 0 && stack.isOf(ModItems.RADIANT_DUST)) {
+            dustParticleCount = 2000;
+            stack.decrement(1);
+            markDirty(world, pos, state);
+        }
+        markDirty(world, pos, state);
 
         changeState();
 
         if(polishingInfusionState == PolishingInfusionState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
-            if (isResultSlotEmptyOrReceivable() && hasRadiant() && hasRecipe() && hasEnoughEnergy()) {
+            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && dustParticleCount > 2) {
                 this.increaseProgress();
                 this.extractEnergy();
+                this.dustParticleCount--;
+                markDirty(world, pos, state);
                 if (hasInfusionFinished()) {
                     this.getInfusedGem();
                     this.resetProgress();
@@ -296,10 +324,6 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
     }
     private boolean hasInfusionFinished() {
         return initialProgress >= maxProgressTicks;
-    }
-
-    private boolean hasRadiant() {
-        return !radiantStack().isEmpty() && radiantStack().isOf(ModItems.RADIANT_DUST);
     }
 
     protected boolean hasRecipe() {
