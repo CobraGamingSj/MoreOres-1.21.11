@@ -115,7 +115,6 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                     }
                 }
                 if(!handheld) itemModelGenerator.register(item, Models.GENERATED);
-                System.out.println(Registries.ITEM.getId(ModItems.RADIANT_DUST));
             }
         }
     }

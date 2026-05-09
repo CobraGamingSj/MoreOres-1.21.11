@@ -1,9 +1,9 @@
 package net.cobra.moreores.item;
 
-import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.block.ModBlocks;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -11,20 +11,19 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.consume.UseAction;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
-import java.util.function.Consumer;
-
 public class EnergyIngotItem extends Item {
+
+    private int lightningStrikes = 0;
+    private int requiredStrikes = -1;
 
     public EnergyIngotItem(Settings settings) {
         super(settings);
@@ -62,6 +61,41 @@ public class EnergyIngotItem extends Item {
     }
 
     @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        World world = context.getWorld();
+        BlockPos pos = context.getBlockPos();
+        if(!world.isClient()) {
+            if (world.getBlockState(pos).isOf(ModBlocks.RADIANT_BLOCK)) {
+                EntityType<LightningEntity> lightningType = EntityType.LIGHTNING_BOLT;
+                LightningEntity lightning = new LightningEntity(lightningType, world);
+                lightning.setPos(pos.getX(), pos.getY(), pos.getZ());
+                world.spawnEntity(lightning);
+
+                if(requiredStrikes == -1) {
+                    requiredStrikes = world.random.nextBetween(4, 7);
+                }
+
+                lightningStrikes++;
+
+                if(lightningStrikes >= requiredStrikes) {
+                    world.breakBlock(pos, false);
+                    lightning.discard();
+                    world.spawnEntity(new ItemEntity(
+                            world,
+                            pos.getX() + 2,
+                            pos.getY(),
+                            pos.getZ() + 2,
+                            new ItemStack(ModItems.RADIANT_DUST, 9)
+                    ));
+                    lightningStrikes = 0;
+                }
+                return ActionResult.PASS;
+            }
+        }
+        return ActionResult.SUCCESS;
+    }
+
+    @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
 
@@ -94,11 +128,5 @@ public class EnergyIngotItem extends Item {
         }
 
         return super.use(world, user, hand);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-//        textConsumer.accept(Text.literal(energyStorage.getAmount() + " J").formatted(Formatting.DARK_AQUA));
-        super.appendTooltip(stack, context, displayComponent, textConsumer, type);
     }
 }

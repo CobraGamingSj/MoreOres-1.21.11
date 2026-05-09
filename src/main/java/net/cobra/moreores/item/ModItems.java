@@ -1,6 +1,7 @@
 package net.cobra.moreores.item;
 
 import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.item.equipment.ArmorItem;
 import net.cobra.moreores.item.equipment.ModArmorMaterials;
 import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
@@ -125,19 +126,19 @@ public class ModItems {
 //     Radiant Armor
     public static final Item RADIANT_HELMET = register(
             "radiant_helmet",
-            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof())
+            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof())
     );
     public static final Item RADIANT_CHESTPLATE = register(
             "radiant_chestplate",
-            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof())
+            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof())
     );
     public static final Item RADIANT_LEGGINGS = register(
             "radiant_leggings",
-            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof())
+            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof())
     );
     public static final Item RADIANT_BOOTS = register(
             "radiant_boots",
-            s -> new Item(s.armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof())
+            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof())
     );
 
 

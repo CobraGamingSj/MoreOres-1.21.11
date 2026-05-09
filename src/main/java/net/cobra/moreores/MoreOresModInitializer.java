@@ -56,6 +56,10 @@ public class MoreOresModInitializer implements ModInitializer {
 		return RegistryKey.of(RegistryKeys.ITEM, getId(registryKey));
 	}
 
+	private static RegistryKey<Block> blockKey(String registryKey) {
+		return RegistryKey.of(RegistryKeys.BLOCK, getId(registryKey));
+	}
+
 
 	// Gemstones Item Group
 	public static final ItemGroup GEMSTONES = FabricItemGroup.builder()

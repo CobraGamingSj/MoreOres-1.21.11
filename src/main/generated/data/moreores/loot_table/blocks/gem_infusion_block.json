@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "moreores:radiant_block"
+          "name": "moreores:gem_infusion_block"
         }
       ],
       "rolls": 1.0

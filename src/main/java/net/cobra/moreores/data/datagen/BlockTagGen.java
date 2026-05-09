@@ -19,6 +19,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.ENERGY_BLOCK)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK)
+                .add(ModBlocks.GEM_INFUSION_BLOCK)
                 .add(ModBlocks.RUBY_BLOCK)
                 .add(ModBlocks.RADIANT_BLOCK)
                 .add(ModBlocks.RUBY_ORE)
@@ -71,6 +72,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK)
+                .add(ModBlocks.GEM_INFUSION_BLOCK)
                 .add(ModBlocks.ENERGY_BLOCK)
                 .add(ModBlocks.RUBY_BLOCK)
                 .add(ModBlocks.RADIANT_BLOCK)
@@ -173,6 +175,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
                 .add(ModBlocks.RAW_JADE_BLOCK)
+                .add(ModBlocks.GEM_INFUSION_BLOCK)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_IRON_TOOL)

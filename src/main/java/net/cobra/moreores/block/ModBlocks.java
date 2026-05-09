@@ -1,20 +1,27 @@
 package net.cobra.moreores.block;
 
 import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.ExperienceDroppingBlock;
-import net.minecraft.block.MapColor;
+import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.world.World;
 
 import java.util.function.Function;
 
@@ -28,20 +35,8 @@ public class ModBlocks {
     public static final Block RUBY_BLOCK = register("ruby_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "ruby_block"))).mapColor(MapColor.DARK_RED).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
 
     public static final Block RADIANT_BLOCK = registerSolidBlock(
-            "radiant_block", s -> new RadiantBlock(
-            RadiantBlock.RadiantCorrosiveState.UNAFFECTED, s.requiresTool()), 5f, 5f);
-    public static final Block EXPOSED_RADIANT_BLOCK = register(
-            "exposed_radiant_block", new RadiantBlock(
-                    RadiantBlock.RadiantCorrosiveState.EXPOSED, AbstractBlock.Settings.copy(RADIANT_BLOCK)
-                    .registryKey(MoreOresModInitializer.setBlockKey("exposed_radiant_block"))));
-    public static final Block WEATHERED_RADIANT_BLOCK = register(
-            "weathered_radiant_block", new RadiantBlock(
-                    RadiantBlock.RadiantCorrosiveState.WEATHERED, AbstractBlock.Settings.copy(RADIANT_BLOCK)
-                    .registryKey(MoreOresModInitializer.setBlockKey("weathered_radiant_block"))));
-    public static final Block CORRODED_RADIANT_BLOCK = register(
-            "corroded_radiant_block", new RadiantBlock(
-                    RadiantBlock.RadiantCorrosiveState.CORRODED, AbstractBlock.Settings.copy(RADIANT_BLOCK)
-                    .registryKey(MoreOresModInitializer.setBlockKey("radiant_block"))));
+            "radiant_block", s -> new Block(
+            s.requiresTool()), 5f, 5f);
 
     public static final Block SAPPHIRE_BLOCK = register("sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "sapphire_block"))).mapColor(MapColor.BLUE).requiresTool().strength(4.0f, 4.0f).strength(4.0f)));
     public static final Block GREEN_SAPPHIRE_BLOCK = register("green_sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "green_sapphire_block"))).mapColor(MapColor.GREEN).requiresTool().strength(4.0f, 4.0f).strength(4.0f)));

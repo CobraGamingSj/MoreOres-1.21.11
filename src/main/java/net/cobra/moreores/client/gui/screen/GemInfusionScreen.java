@@ -16,7 +16,7 @@ import net.minecraft.util.math.MathHelper;
 public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
-    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_purifier/gem_infusion_gui.png");
+    private static final Identifier TEXTURE = MoreOresModInitializer.getId("textures/gui/container/gem_infusion/gem_infusion_gui.png");
     private static final Identifier START_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/start.png");
     private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/pause.png");
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.getId("textures/gui/container/button/resume.png");
