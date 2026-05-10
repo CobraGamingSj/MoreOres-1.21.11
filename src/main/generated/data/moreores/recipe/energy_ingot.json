@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "building",
+  "category": "misc",
   "ingredients": [
-    "moreores:energy_block"
+    "moreores:energy_ingot"
   ],
   "result": {
     "count": 9,

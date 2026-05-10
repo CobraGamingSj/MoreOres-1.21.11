@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ruby_spear": {
+    "has_raw_green_sapphire": {
       "conditions": {
         "items": [
           {
-            "items": "moreores:ruby_spear"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_sapphire": {
-      "conditions": {
-        "items": [
-          {
-            "items": "moreores:sapphire"
+            "items": "moreores:green_sapphire"
           }
         ]
       },
@@ -23,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "moreores:sapphire_spear"
+        "recipe": "moreores:green_sapphire_polishing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_ruby_spear",
-      "has_sapphire"
+      "has_raw_green_sapphire"
     ]
   ],
   "rewards": {
     "recipes": [
-      "moreores:sapphire_spear"
+      "moreores:green_sapphire_polishing"
     ]
   }
 }

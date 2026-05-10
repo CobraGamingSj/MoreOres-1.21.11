@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_infusing",
+  "gemAfter": "moreores:radiant",
+  "gemBefore": "moreores:blue_garnet_block",
+  "infusedGem": {
+    "count": 1,
+    "id": "moreores:crimson_garnet_block"
+  }
+}

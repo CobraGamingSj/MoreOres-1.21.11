@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ruby_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:alexandrite_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:alexandrite_block_infusion"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ruby_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:alexandrite_block_infusion"
+    ]
+  }
+}

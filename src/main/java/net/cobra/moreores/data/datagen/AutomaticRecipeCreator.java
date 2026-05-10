@@ -23,6 +23,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -30,18 +31,27 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class AutomaticRecipeCreator extends FabricRecipeProvider {
-    private static final Map<Item, Item> RUBY_UPGRADES = Map.ofEntries(
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry(),
-            Map.entry()
+    private static final Map<Item, SmithingData> SMITHING_DATA = Map.ofEntries(
+            Map.entry(Items.NETHERITE_SWORD, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_SWORD, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_PICKAXE, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_PICKAXE, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_AXE, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_AXE, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_HOE, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_HOE, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_SHOVEL, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_SHOVEL, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_HELMET, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_HELMET, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_CHESTPLATE, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_CHESTPLATE, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_LEGGINGS, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_LEGGINGS, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_BOOTS, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_BOOTS, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_NAUTILUS_ARMOR, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_NAUTILUS_ARMOR, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(Items.NETHERITE_SPEAR, new SmithingData(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_SPEAR, ModItemTags.RUBY_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_SWORD, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_SWORD, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_PICKAXE, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_PICKAXE, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_AXE, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_AXE, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_HOE, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_HOE, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_SHOVEL, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_SHOVEL, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_HELMET, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_HELMET, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_CHESTPLATE, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_CHESTPLATE, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_LEGGINGS, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_LEGGINGS, ModItemTags.RADIANT_TOOL_MATERIALS)),
+            Map.entry(ModItems.SAPPHIRE_BOOTS, new SmithingData(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_BOOTS, ModItemTags.RADIANT_TOOL_MATERIALS))
     );
 
     private static final Map<Item, Item> SMELTABLES = Map.ofEntries(
@@ -94,6 +104,8 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
             Map.entry(ModItems.RAW_BLUE_GARNET, ModItems.BLUE_GARNET),
             Map.entry(ModBlocks.RAW_BLUE_GARNET_BLOCK.asItem(), ModBlocks.BLUE_GARNET_BLOCK.asItem()),
             Map.entry(ModItems.RAW_PINK_GARNET, ModItems.PINK_GARNET),
+            Map.entry(ModBlocks.RAW_PINK_GARNET_BLOCK.asItem(), ModBlocks.PINK_GARNET_BLOCK.asItem()),
+            Map.entry(ModItems.RAW_GREEN_GARNET, ModItems.GREEN_GARNET),
             Map.entry(ModBlocks.RAW_GREEN_GARNET_BLOCK.asItem(), ModBlocks.GREEN_GARNET_BLOCK.asItem()),
             Map.entry(ModItems.RAW_KYAWTHUITE, ModItems.KYAWTHUITE),
             Map.entry(ModBlocks.RAW_KYAWTHUITE_BLOCK.asItem(), ModBlocks.KYAWTHUITE_BLOCK.asItem()),
@@ -107,6 +119,43 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
             Map.entry(ModBlocks.RAW_JADE_BLOCK.asItem(), ModBlocks.JADE_BLOCK.asItem()),
             Map.entry(ModItems.RAW_PYROPE, ModItems.PYROPE),
             Map.entry(ModBlocks.RAW_PYROPE_BLOCK.asItem(), ModBlocks.PYROPE_BLOCK.asItem())
+    );
+
+    private static final Map<Item, Item> GEM_INFUSES = Map.ofEntries(
+            Map.entry(ModItems.RUBY, ModItems.ALEXANDRITE),
+            Map.entry(ModBlocks.RUBY_BLOCK.asItem(),  ModBlocks.ALEXANDRITE_BLOCK.asItem()),
+            Map.entry(ModItems.SAPPHIRE, ModItems.KASHMIR_SAPPHIRE),
+            Map.entry(ModBlocks.SAPPHIRE_BLOCK.asItem(), ModBlocks.KASHMIR_SAPPHIRE_BLOCK.asItem()),
+            Map.entry(ModItems.GREEN_SAPPHIRE, ModItems.CRYSTALLITE),
+            Map.entry(ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem(), ModBlocks.CRYSTALLITE_BLOCK.asItem()),
+            Map.entry(ModItems.BLUE_GARNET, ModItems.CRIMSON_GARNET),
+            Map.entry(ModBlocks.BLUE_GARNET_BLOCK.asItem(), ModBlocks.CRIMSON_GARNET_BLOCK.asItem()),
+            Map.entry(ModItems.PINK_GARNET, ModItems.RADIANT_AMETHYST),
+            Map.entry(ModBlocks.PINK_GARNET_BLOCK.asItem(), ModBlocks.RADIANT_AMETHYST_BLOCK.asItem()),
+            Map.entry(ModItems.GREEN_GARNET, ModItems.LIMESTONE),
+            Map.entry(ModBlocks.GREEN_GARNET_BLOCK.asItem(), ModBlocks.LIMESTONE_BLOCK.asItem()),
+            Map.entry(ModItems.KYAWTHUITE, ModItems.PAINITE),
+            Map.entry(ModBlocks.KYAWTHUITE_BLOCK.asItem(), ModBlocks.PAINITE_BLOCK.asItem()),
+            Map.entry(ModItems.WHITE_TOPAZ, ModItems.MOONSTONE),
+            Map.entry(ModBlocks.WHITE_TOPAZ_BLOCK.asItem(), ModBlocks.MOONSTONE_BLOCK.asItem()),
+            Map.entry(ModItems.PERIDOT, ModItems.OPAL),
+            Map.entry(ModBlocks.PERIDOT_BLOCK.asItem(), ModBlocks.OPAL_BLOCK.asItem()),
+            Map.entry(ModItems.JADE, ModItems.GRANDIDIERITE),
+            Map.entry(ModBlocks.JADE_BLOCK.asItem(), ModBlocks.GRANDIDIERITE_BLOCK.asItem()),
+            Map.entry(ModItems.PYROPE, ModItems.RED_BERYL),
+            Map.entry(ModBlocks.PYROPE_BLOCK.asItem(), ModBlocks.RED_BERYL_BLOCK.asItem())
+    );
+
+    private static final  Map<Item, Item> SAPPHIRE_MAP = Map.of(
+            ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD,
+            ModItems.RUBY_PICKAXE, ModItems.SAPPHIRE_PICKAXE,
+            ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE,
+            ModItems.RUBY_SHOVEL, ModItems.SAPPHIRE_SHOVEL,
+            ModItems.RUBY_HOE, ModItems.SAPPHIRE_HOE,
+            ModItems.RUBY_HELMET, ModItems.SAPPHIRE_HELMET,
+            ModItems.RUBY_CHESTPLATE, ModItems.SAPPHIRE_CHESTPLATE,
+            ModItems.RUBY_LEGGINGS, ModItems.SAPPHIRE_LEGGINGS,
+            ModItems.RUBY_BOOTS, ModItems.SAPPHIRE_BOOTS
     );
 
     public AutomaticRecipeCreator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -155,15 +204,35 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                     }
                 }
 
-                for (Map.Entry<Item, Item> entry : RUBY_UPGRADES.entrySet()) {
-                    Item baseItem = entry.getKey();
-                    Item result = entry.getValue();
-                    String path = Registries.ITEM.getId(result).getPath();
-                    RecipeCategory category = (path.contains("_pickaxe") || path.contains("hoe") || path.contains("_shovel")) ? RecipeCategory.TOOLS : RecipeCategory.COMBAT;
-                    createRubySet(registries, baseItem, category, result)
-                            .criterion(hasItem(baseItem), conditionsFromItem(baseItem))
-                            .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(result) + "_smithing"));
+                for(Map.Entry<Item, Item> entry : SAPPHIRE_MAP.entrySet()) {
+                    Item inputItem = entry.getKey();
+                    Item outputItem = entry.getValue();
+                    String path = Registries.ITEM.getId(outputItem).getPath();
+                    RecipeCategory category = (path.contains("_pickaxe") || path.contains("hoe") || path.contains("_shovel"))
+                            ? RecipeCategory.TOOLS : RecipeCategory.COMBAT;
+                    createShaped(category, outputItem)
+                            .pattern("aaa")
+                            .pattern("aba")
+                            .pattern("aaa")
+                            .input('a', ModItems.SAPPHIRE)
+                            .input('b', inputItem)
+                            .criterion(hasItem(ModItems.SAPPHIRE),  conditionsFromItem(ModItems.SAPPHIRE))
+                            .criterion(hasItem(inputItem), conditionsFromItem(inputItem))
+                            .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(outputItem)));
+                }
 
+                for (Map.Entry<Item, SmithingData> entry : SMITHING_DATA.entrySet()) {
+                    Item baseItem = entry.getKey();
+                    SmithingData data = entry.getValue();
+                    Item result = data.result();
+                    Item template = data.template();
+                    TagKey<Item> tag = data.toolTag();
+                    String path = Registries.ITEM.getId(result).getPath();
+                    RecipeCategory category = (path.contains("_pickaxe") || path.contains("hoe") || path.contains("_shovel"))
+                            ? RecipeCategory.TOOLS : RecipeCategory.COMBAT;
+                    SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItem(template), Ingredient.ofItem(baseItem), ingredientFromTag(tag), category, result)
+                            .criterion(hasItem(ModItems.RUBY), conditionsFromTag(tag))
+                            .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(result) + "_smithing"));
                 }
 
                 for (var entry: SMELTABLES.entrySet()) {
@@ -176,9 +245,20 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
 
                 for(var entry : GEM_POLISHABLES.entrySet()) {
                     var input = entry.getKey();
-                    var output = entry.getValue();
+                    var result = entry.getValue();
 
-                    createGemPurifying(Ingredient.ofItem(input), new ItemStack(output));
+                    createGemPurifying(Ingredient.ofItem(input), new ItemStack(result))
+                            .criterion(hasItem(input), conditionsFromItem(result))
+                            .offerTo(exporter, getRecipeName(result));
+                }
+
+                for (var entry : GEM_INFUSES.entrySet()) {
+                    Item inputBefore = entry.getKey();
+                    Item result = entry.getValue();
+
+                    createGemInfusion(Ingredient.ofItem(inputBefore), new ItemStack(result))
+                            .criterion(hasItem(inputBefore), conditionsFromItem(result))
+                            .offerTo(exporter, getRecipeName(result));
                 }
 
                 offerBlasting(List.of(ModItems.RUBY), RecipeCategory.MISC, Items.NETHERITE_INGOT, 0.15f, 450, "netherite");
@@ -198,73 +278,6 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
 
                 offerSmithingTrimRecipe(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE,
                         ModArmorTrimPatterns.GUARDIAN, RegistryKey.of(RegistryKeys.RECIPE, Identifier.ofVanilla(getItemPath(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE) + "_smithing_trim")));
-
-                // Gem Infusion
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.RUBY), new ItemStack(ModItems.ALEXANDRITE)
-                )
-                        .criterion(hasItem(ModItems.RUBY.asItem()), conditionsFromItem(ModItems.RUBY))
-                        .offerTo(exporter, getRecipeName(ModItems.ALEXANDRITE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.SAPPHIRE), new ItemStack(ModItems.KASHMIR_SAPPHIRE)
-                )
-                        .criterion(hasItem(ModItems.SAPPHIRE.asItem()), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, getRecipeName(ModItems.KASHMIR_SAPPHIRE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.GREEN_SAPPHIRE), new ItemStack(ModItems.CRYSTALLITE)
-                )
-                        .criterion(hasItem(ModItems.GREEN_SAPPHIRE), conditionsFromItem(ModItems.GREEN_SAPPHIRE))
-                                .offerTo(exporter, getRecipeName(ModItems.CRYSTALLITE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.BLUE_GARNET), new ItemStack(ModItems.CRIMSON_GARNET)
-                )
-                        .criterion(hasItem(ModItems.BLUE_GARNET), conditionsFromItem(ModItems.BLUE_GARNET))
-                        .offerTo(exporter, getRecipeName(ModItems.CRIMSON_GARNET));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.PINK_GARNET), new ItemStack(ModItems.RADIANT_AMETHYST)
-                )
-                        .criterion(hasItem(ModItems.PINK_GARNET), conditionsFromItem(ModItems.PINK_GARNET))
-                        .offerTo(exporter, getRecipeName(ModItems.RADIANT_AMETHYST));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.GREEN_GARNET), new ItemStack(ModItems.LIMESTONE)
-                )
-                        .criterion(hasItem(ModItems.GREEN_GARNET), conditionsFromItem(ModItems.GREEN_GARNET))
-                        .offerTo(exporter, getRecipeName(ModItems.LIMESTONE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.KYAWTHUITE), new ItemStack(ModItems.PAINITE)
-                )
-                        .criterion(hasItem(ModItems.KYAWTHUITE), conditionsFromItem(ModItems.KYAWTHUITE))
-                        .offerTo(exporter, getRecipeName(ModItems.PAINITE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.WHITE_TOPAZ), new ItemStack(ModItems.MOONSTONE)
-                )
-                        .criterion(hasItem(ModItems.WHITE_TOPAZ), conditionsFromItem(ModItems.WHITE_TOPAZ))
-                        .offerTo(exporter, getRecipeName(ModItems.MOONSTONE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.PERIDOT), new ItemStack(ModItems.OPAL)
-                )
-                        .criterion(hasItem(ModItems.PERIDOT), conditionsFromItem(ModItems.PERIDOT))
-                        .offerTo(exporter, getRecipeName(ModItems.OPAL));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.JADE), new ItemStack(ModItems.GRANDIDIERITE)
-                )
-                        .criterion(hasItem(ModItems.JADE), conditionsFromItem(ModItems.JADE))
-                        .offerTo(exporter, getRecipeName(ModItems.GRANDIDIERITE));
-
-                createGemInfusion(
-                        Ingredient.ofItem(ModItems.PYROPE), new ItemStack(ModItems.RED_BERYL)
-                )
-                        .criterion(hasItem(ModItems.PYROPE), conditionsFromItem(ModItems.PYROPE))
-                        .offerTo(exporter, getRecipeName(ModItems.RED_BERYL));
 
                 GemInfusionRecipeJsonBuilder.createQuartsidian();
 
@@ -288,16 +301,6 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.IRON_BARS), conditionsFromItem(Blocks.IRON_BARS))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModBlocks.GEM_PURIFIER_BLOCK))));
 
-                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_SWORD, 1)
-                        .pattern(" I ")
-                        .pattern(" I ")
-                        .pattern(" B ")
-                        .input('I', ModItems.RADIANT)
-                        .input('B', Items.STICK)
-                        .criterion(hasItem(ModItems.RADIANT), conditionsFromItem(ModItems.RADIANT))
-                        .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT_SWORD))));
-
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.RUBY_LAMP, 1)
                         .pattern("aba")
                         .pattern("bcb")
@@ -309,92 +312,6 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Blocks.GLOWSTONE), conditionsFromItem(Blocks.GLOWSTONE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModBlocks.RUBY_LAMP))));
-
-                // Helmet
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_HELMET, 1)
-                        .pattern("aaa")
-                        .pattern("a a")
-                        .pattern("   ")
-                        .input('a', ModItems.SAPPHIRE)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_HELMET))));
-
-// Chestplate
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_CHESTPLATE, 1)
-                        .pattern("a a")
-                        .pattern("aaa")
-                        .pattern("aaa")
-                        .input('a', ModItems.SAPPHIRE)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_CHESTPLATE))));
-
-// Leggings
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_LEGGINGS, 1)
-                        .pattern("aaa")
-                        .pattern("a a")
-                        .pattern("a a")
-                        .input('a', ModItems.SAPPHIRE)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_LEGGINGS))));
-
-// Boots
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_BOOTS, 1)
-                        .pattern("   ")
-                        .pattern("a a")
-                        .pattern("a a")
-                        .input('a', ModItems.SAPPHIRE)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_BOOTS))));
-
-// Sword
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SWORD, 1)
-                        .pattern(" a ")
-                        .pattern(" a ")
-                        .pattern(" b ")
-                        .input('a', ModItems.SAPPHIRE)
-                        .input('b', Items.STICK)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_SWORD))));
-
-// Pickaxe
-                createShaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_PICKAXE, 1)
-                        .pattern("aaa")
-                        .pattern(" b ")
-                        .pattern(" b ")
-                        .input('a', ModItems.SAPPHIRE)
-                        .input('b', Items.STICK)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_PICKAXE))));
-
-// Axe
-                createShaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_AXE, 1)
-                        .pattern("aa ")
-                        .pattern("ab ")
-                        .pattern(" b ")
-                        .input('a', ModItems.SAPPHIRE)
-                        .input('b', Items.STICK)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_AXE))));
-
-// Shovel
-                createShaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_SHOVEL, 1)
-                        .pattern(" a ")
-                        .pattern(" b ")
-                        .pattern(" b ")
-                        .input('a', ModItems.SAPPHIRE)
-                        .input('b', Items.STICK)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_SHOVEL))));
-
-// Hoe
-                createShaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_HOE, 1)
-                        .pattern("aa ")
-                        .pattern(" b ")
-                        .pattern(" b ")
-                        .input('a', ModItems.SAPPHIRE)
-                        .input('b', Items.STICK)
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_HOE))));
 
                 createShaped(RecipeCategory.MISC, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, 2)
                         .pattern("aba")
@@ -416,26 +333,6 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
-
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SPEAR, 1)
-                        .pattern("bbb")
-                        .pattern("bab")
-                        .pattern("bbb")
-                        .input('a', ModItems.RUBY_SPEAR)
-                        .input('b', ModItems.SAPPHIRE)
-                        .criterion(hasItem(ModItems.RUBY_SPEAR), conditionsFromItem(ModItems.RUBY_SPEAR))
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_SPEAR))));
-
-                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_NAUTILUS_ARMOR, 1)
-                        .pattern("bbb")
-                        .pattern("bab")
-                        .pattern("bbb")
-                        .input('a', ModItems.RUBY_NAUTILUS_ARMOR)
-                        .input('b', ModItems.SAPPHIRE)
-                        .criterion(hasItem(ModItems.RUBY_NAUTILUS_ARMOR), conditionsFromItem(ModItems.RUBY_NAUTILUS_ARMOR))
-                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_NAUTILUS_ARMOR))));
             }
         };
     }
@@ -448,18 +345,12 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
         return GemInfusionRecipeJsonBuilder.create(inputBefore, result, RecipeCategory.MISC);
     }
 
-    public SmithingTransformRecipeJsonBuilder createRubySet(RegistryWrapper.WrapperLookup registry, Item baseItem, RecipeCategory category, Item result) {
-        return SmithingTransformRecipeJsonBuilder.create(
-                Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
-                Ingredient.ofItem(baseItem),
-                Ingredient.ofTag(registry.getOrThrow(RegistryKeys.ITEM).getOrThrow(ModItemTags.RUBY_TOOL_MATERIALS)),
-                category,
-                result
-        );
-    }
-
     @Override
     public String getName() {
         return "Mod Recipes Gen for " + MoreOresModInitializer.MOD_ID;
+    }
+
+    private record SmithingData(Item template, Item result, TagKey<Item> toolTag) {
+
     }
 }

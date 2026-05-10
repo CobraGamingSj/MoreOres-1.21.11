@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sapphire": {
+    "has_raw_kyawthuite_block": {
       "conditions": {
         "items": [
           {
-            "items": "moreores:sapphire"
+            "items": "moreores:kyawthuite_block"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "moreores:sapphire_axe"
+        "recipe": "moreores:kyawthuite_block_polishing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_sapphire"
+      "has_raw_kyawthuite_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "moreores:sapphire_axe"
+      "moreores:kyawthuite_block_polishing"
     ]
   }
 }

@@ -3,12 +3,12 @@
   "category": "equipment",
   "key": {
     "a": "moreores:sapphire",
-    "b": "minecraft:stick"
+    "b": "moreores:ruby_hoe"
   },
   "pattern": [
-    "aa ",
-    " b ",
-    " b "
+    "aaa",
+    "aba",
+    "aaa"
   ],
   "result": {
     "count": 1,

@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_radiant": {
+    "has_kyawthuite_block": {
       "conditions": {
         "items": [
           {
-            "items": "moreores:radiant"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_stick": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:stick"
+            "items": "moreores:painite_block"
           }
         ]
       },
@@ -23,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "moreores:radiant_sword"
+        "recipe": "moreores:painite_block_infusion"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_radiant",
-      "has_stick"
+      "has_kyawthuite_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "moreores:radiant_sword"
+      "moreores:painite_block_infusion"
     ]
   }
 }

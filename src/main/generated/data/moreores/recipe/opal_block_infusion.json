@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_infusing",
+  "gemAfter": "moreores:radiant",
+  "gemBefore": "moreores:peridot_block",
+  "infusedGem": {
+    "count": 1,
+    "id": "moreores:opal_block"
+  }
+}

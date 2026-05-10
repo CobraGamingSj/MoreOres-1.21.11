@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:radiant_tool_materials",
+  "base": "moreores:sapphire_sword",
+  "result": {
+    "id": "moreores:radiant_sword"
+  },
+  "template": "moreores:radiant_upgrade_smithing_template"
+}

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_energy_ingot": {
+    "has_raw_green_sapphire_block": {
       "conditions": {
         "items": [
           {
-            "items": "moreores:energy_ingot"
+            "items": "moreores:green_sapphire_block"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "moreores:energy_block"
+        "recipe": "moreores:green_sapphire_block_polishing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_energy_ingot"
+      "has_raw_green_sapphire_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "moreores:energy_block"
+      "moreores:green_sapphire_block_polishing"
     ]
   }
 }

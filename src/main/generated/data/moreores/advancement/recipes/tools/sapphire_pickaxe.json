@@ -1,6 +1,16 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_ruby_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:ruby_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_sapphire": {
       "conditions": {
         "items": [
@@ -21,7 +31,8 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_sapphire"
+      "has_sapphire",
+      "has_ruby_pickaxe"
     ]
   ],
   "rewards": {

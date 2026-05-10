@@ -2,12 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "a": "moreores:sapphire"
+    "a": "moreores:sapphire",
+    "b": "moreores:ruby_leggings"
   },
   "pattern": [
     "aaa",
-    "a a",
-    "a a"
+    "aba",
+    "aaa"
   ],
   "result": {
     "count": 1,

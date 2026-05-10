@@ -2,11 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "a": "moreores:sapphire"
+    "a": "moreores:sapphire",
+    "b": "moreores:ruby_chestplate"
   },
   "pattern": [
-    "a a",
     "aaa",
+    "aba",
     "aaa"
   ],
   "result": {
