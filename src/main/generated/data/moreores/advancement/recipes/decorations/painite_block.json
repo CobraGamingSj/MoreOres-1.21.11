@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_painite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:painite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:painite_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_painite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:painite_block"
+    ]
+  }
+}

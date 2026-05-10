@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_radiant_amethyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:radiant_amethyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:radiant_amethyst_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_radiant_amethyst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:radiant_amethyst_block"
+    ]
+  }
+}

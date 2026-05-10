@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_red_beryl": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:red_beryl"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:red_beryl_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_red_beryl"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:red_beryl_block"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_moonstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:moonstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:moonstone_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_moonstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:moonstone_block"
+    ]
+  }
+}

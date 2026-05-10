@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "moreores:radiant_amethyst_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "moreores:radiant_amethyst"
+  }
+}

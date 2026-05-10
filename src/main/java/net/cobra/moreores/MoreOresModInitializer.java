@@ -30,6 +30,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -58,6 +59,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 	private static RegistryKey<Block> blockKey(String registryKey) {
 		return RegistryKey.of(RegistryKeys.BLOCK, getId(registryKey));
+	}
+
+	public static RegistryKey<Recipe<?>> setRecipeKey(String recipeName) {
+		return RegistryKey.of(RegistryKeys.RECIPE, getId(recipeName));
 	}
 
 

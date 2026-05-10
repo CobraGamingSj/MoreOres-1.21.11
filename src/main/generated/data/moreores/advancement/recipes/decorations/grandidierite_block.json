@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grandidierite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "moreores:grandidierite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "moreores:grandidierite_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grandidierite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "moreores:grandidierite_block"
+    ]
+  }
+}
