@@ -125,7 +125,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
 
     @Override
     public int mainStackSize() {
-        return 9;
+        return 10;
     }
 
     @Override

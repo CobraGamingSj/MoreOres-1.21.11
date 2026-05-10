@@ -39,8 +39,8 @@ public class GemInfusionRecipeJsonBuilder {
         return new GemInfusionRecipeJsonBuilder(ingredientBefore, Ingredient.ofItem(ModItems.RADIANT), result, category);
     }
 
-    public static void createQuartsidian() {
-        new GemInfusionRecipeJsonBuilder(Ingredient.ofItem(Items.QUARTZ), Ingredient.ofItem(Blocks.OBSIDIAN.asItem()), new ItemStack(ModItems.QUARTSIDIAN), RecipeCategory.MISC);
+    public static GemInfusionRecipeJsonBuilder createQuartsidian() {
+        return new GemInfusionRecipeJsonBuilder(Ingredient.ofItem(Items.QUARTZ), Ingredient.ofItem(Blocks.OBSIDIAN.asItem()), new ItemStack(ModItems.QUARTSIDIAN), RecipeCategory.MISC);
     }
 
     public GemInfusionRecipeJsonBuilder criterion(String name, AdvancementCriterion<?> criterion) {

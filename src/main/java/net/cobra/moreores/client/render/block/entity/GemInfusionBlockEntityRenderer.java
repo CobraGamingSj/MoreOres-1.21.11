@@ -20,8 +20,6 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 public final class GemInfusionBlockEntityRenderer implements BlockEntityRenderer<GemInfusionBlockEntity, GemInfusionBlockEntityRenderState> {
     private final BlockEntityRendererFactory.Context context;
     private final ItemModelManager itemModelManager;
@@ -40,7 +38,7 @@ public final class GemInfusionBlockEntityRenderer implements BlockEntityRenderer
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotationAngle));
         matrices.translate(-0.5, 0, -0.5);
 
-        matrices.translate(x, 0.85F, z);
+        matrices.translate(x, 0.9F, z);
         matrices.scale(0.125f, 0.125f, 0.125f);
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-270));
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
@@ -105,13 +103,13 @@ public final class GemInfusionBlockEntityRenderer implements BlockEntityRenderer
         state.entityWorld = blockEntity.getWorld();
         state.lightPos = blockEntity.getPos();
 
-        itemModelManager.clearAndUpdate(state.inputItemRenderState, blockEntity.getStack(GemInfusionBlockEntity.INGREDIENT_BEFORE_SLOT),
+        itemModelManager.clearAndUpdate(state.inputBeforeItemRenderState, blockEntity.ingredientStack(),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.getStack(GemInfusionBlockEntity.INGREDIENT_AFTER_SLOT),
+        itemModelManager.clearAndUpdate(state.inputAfterItemRenderState, blockEntity.ingredientAfterStack(),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.energyItemRenderState, blockEntity.getStack(GemInfusionBlockEntity.ENERGY_SOURCE_SLOT),
+        itemModelManager.clearAndUpdate(state.energyItemRenderState, blockEntity.energyStack(),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
-        itemModelManager.clearAndUpdate(state.resultItemRenderState, blockEntity.getStack(GemInfusionBlockEntity.RESULT_SLOT),
+        itemModelManager.clearAndUpdate(state.resultItemRenderState, blockEntity.resultStack(),
                 ItemDisplayContext.FIXED, blockEntity.getWorld(), null, 0);
     }
 
@@ -135,7 +133,7 @@ public final class GemInfusionBlockEntityRenderer implements BlockEntityRenderer
         float rotationAngles = getRotationAngle(entity);
 
         renderEnergyTray(state.energyItemRenderState, matrices, queue, 0.5f, 0.25f, rotationAngles, light);
-        renderInputTray(state.inputItemRenderState, matrices, queue, 0.775f, 0.21f, rotationAngles, light);
+        renderInputTray(state.inputBeforeItemRenderState, matrices, queue, 0.775f, 0.21f, rotationAngles, light);
         renderInputTray(state.inputAfterItemRenderState, matrices, queue, 0.225f, 0.21f, rotationAngles, light);
         renderOutputTray(state.resultItemRenderState, matrices, queue, 0.51f, 0.675f, rotationAngles, light);
     }
@@ -143,24 +141,4 @@ public final class GemInfusionBlockEntityRenderer implements BlockEntityRenderer
     public BlockEntityRendererFactory.Context context() {
         return context;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (GemInfusionBlockEntityRenderer) obj;
-        return Objects.equals(this.context, that.context);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(context);
-    }
-
-    @Override
-    public String toString() {
-        return "GeminfusionBlockEntityRenderer[" +
-                "context=" + context + ']';
-    }
-
 }

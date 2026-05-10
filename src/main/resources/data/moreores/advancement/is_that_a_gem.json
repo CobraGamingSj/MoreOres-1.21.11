@@ -122,7 +122,7 @@
     }
   },
   "display": {
-    "background": "moreores:textures/gui/advancements/backgrounds/gems.png",
+    "background": "moreores:block/radiant_block",
     "description": {
       "translate": "advancement.moreores.gems.desc"
     },

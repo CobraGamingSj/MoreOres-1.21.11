@@ -56,7 +56,7 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
     @Override
     protected void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
-            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 71, y + 40, 207, 0, 8, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 70, y + 41, 207, 0, 11, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
     }
 

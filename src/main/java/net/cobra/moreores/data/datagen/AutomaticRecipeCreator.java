@@ -146,16 +146,18 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
             Map.entry(ModBlocks.PYROPE_BLOCK.asItem(), ModBlocks.RED_BERYL_BLOCK.asItem())
     );
 
-    private static final  Map<Item, Item> SAPPHIRE_MAP = Map.of(
-            ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD,
-            ModItems.RUBY_PICKAXE, ModItems.SAPPHIRE_PICKAXE,
-            ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE,
-            ModItems.RUBY_SHOVEL, ModItems.SAPPHIRE_SHOVEL,
-            ModItems.RUBY_HOE, ModItems.SAPPHIRE_HOE,
-            ModItems.RUBY_HELMET, ModItems.SAPPHIRE_HELMET,
-            ModItems.RUBY_CHESTPLATE, ModItems.SAPPHIRE_CHESTPLATE,
-            ModItems.RUBY_LEGGINGS, ModItems.SAPPHIRE_LEGGINGS,
-            ModItems.RUBY_BOOTS, ModItems.SAPPHIRE_BOOTS
+    private static final  Map<Item, Item> SAPPHIRE_MAP = Map.ofEntries(
+            Map.entry(ModItems.RUBY_SWORD, ModItems.SAPPHIRE_SWORD),
+            Map.entry(ModItems.RUBY_PICKAXE, ModItems.SAPPHIRE_PICKAXE),
+            Map.entry(ModItems.RUBY_AXE, ModItems.SAPPHIRE_AXE),
+            Map.entry(ModItems.RUBY_SHOVEL, ModItems.SAPPHIRE_SHOVEL),
+            Map.entry(ModItems.RUBY_HOE, ModItems.SAPPHIRE_HOE),
+            Map.entry(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR),
+            Map.entry(ModItems.RUBY_HELMET, ModItems.SAPPHIRE_HELMET),
+            Map.entry(ModItems.RUBY_CHESTPLATE, ModItems.SAPPHIRE_CHESTPLATE),
+            Map.entry(ModItems.RUBY_LEGGINGS, ModItems.SAPPHIRE_LEGGINGS),
+            Map.entry(ModItems.RUBY_BOOTS, ModItems.SAPPHIRE_BOOTS),
+            Map.entry(ModItems.RUBY_NAUTILUS_ARMOR, ModItems.SAPPHIRE_NAUTILUS_ARMOR)
     );
 
     public AutomaticRecipeCreator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -279,7 +281,10 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                 offerSmithingTrimRecipe(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE,
                         ModArmorTrimPatterns.GUARDIAN, RegistryKey.of(RegistryKeys.RECIPE, Identifier.ofVanilla(getItemPath(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE) + "_smithing_trim")));
 
-                GemInfusionRecipeJsonBuilder.createQuartsidian();
+                GemInfusionRecipeJsonBuilder.createQuartsidian()
+                        .criterion(hasItem(Items.QUARTZ), conditionsFromItem(Items.QUARTZ))
+                        .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
+                        .offerTo(exporter, getRecipeName(ModItems.QUARTSIDIAN));
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                         .pattern("aaa")

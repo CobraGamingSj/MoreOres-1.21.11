@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:is_that_a_gem",
+  "parent": "moreores:is_that_a_gem",
   "criteria": {
     "radiant_sword": {
       "conditions": {
@@ -13,7 +13,7 @@
     }
   },
   "display": {
-    "background": "moreores:textures/gui/advancements/backgrounds/gems.png",
+    "background": "moreores:block/radiant_block",
     "description": {
       "translate": "advancement.moreores.radiant_sword.desc"
     },

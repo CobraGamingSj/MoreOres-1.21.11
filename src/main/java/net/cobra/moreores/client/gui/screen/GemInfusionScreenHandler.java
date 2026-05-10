@@ -6,6 +6,7 @@ import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -31,7 +32,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
         super(ModScreenHandlerType.GEM_infusion_SCREEN_HANDLER, syncId, entity.getPos());
-        checkSize((Inventory) entity, 9);
+        checkSize((Inventory) entity, 10);
 
         this.inventory = (Inventory) entity;
         this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
@@ -50,7 +51,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
-                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
+                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE) || stack.isOf(Blocks.OBSIDIAN.asItem());
             }
         }); // Input After
 
@@ -84,7 +85,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
 
     @Override
     public void addSecondAdditionalInventory(Inventory playerInventory) {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 5; ++i) {
             this.addSlot(new Slot(playerInventory, 5 + i, 179, 97 + i * 18));
         }
     }
@@ -100,7 +101,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
     public int progressGetter() {
         int progress = this.propertyDelegate.get(0); //Progress
         int maxProgress = this.propertyDelegate.get(1); //Max Progress
-        int progressArrowSize = 27; //Height of progress arrow
+        int progressArrowSize = 28; //Height of progress arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize/ maxProgress : 0;
     }

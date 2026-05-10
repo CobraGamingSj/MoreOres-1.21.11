@@ -1,5 +1,6 @@
 package net.cobra.moreores.data.datagen;
 
+import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
@@ -28,7 +29,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                         ModItems.RUBY, // The display icon
                         Text.translatable("advancement.moreores.gems"), // The title
                         Text.translatable("advancement.moreores.gems.desc"), // The description
-                        Identifier.of("moreores:textures/gui/advancements/backgrounds/gems.png"), // Background image used
+                        MoreOresModInitializer.getId("block/radiant_block"), // Background image used
                         AdvancementFrame.TASK,
                         true,
                         true,
@@ -48,14 +49,14 @@ public class AdvancementGen extends FabricAdvancementProvider {
                 .criterion("peridot", InventoryChangedCriterion.Conditions.items(ModItems.PERIDOT))
                 .criterion("jade", InventoryChangedCriterion.Conditions.items(ModItems.JADE))
                 .criterion("pyrope", InventoryChangedCriterion.Conditions.items(ModItems.PYROPE))
-                .build(consumer, "is_that_a_gem");
+                .build(consumer, "moreores:is_that_a_gem");
 
         AdvancementEntry ruby_armor = Advancement.Builder.create()
                 .display(
                         ModItems.RUBY_CHESTPLATE,
                         Text.translatable("advancement.moreores.ruby_armor").formatted(Formatting.DARK_AQUA),
                         Text.translatable("advancement.moreores.ruby_armor.desc"),
-                        Identifier.of("moreores", "textures/block/radiant_block.png"),
+                        MoreOresModInitializer.getId("block/radiant_block"),
                         AdvancementFrame.GOAL,
                         true,
                         true,
@@ -63,14 +64,14 @@ public class AdvancementGen extends FabricAdvancementProvider {
                 )
                 .parent(rubyGem)
                 .criterion("ruby_armor", InventoryChangedCriterion.Conditions.items(ModItems.RUBY_HELMET, ModItems.RUBY_CHESTPLATE, ModItems.RUBY_LEGGINGS, ModItems.RUBY_BOOTS))
-                .build(consumer, "ruby_armor");
+                .build(consumer, "moreores:ruby_armor");
 
         AdvancementEntry radiant_sword = Advancement.Builder.create()
                 .display(
                         ModItems.RADIANT_SWORD,
                         Text.translatable("advancement.moreores.radiant_sword").formatted(Formatting.DARK_PURPLE),
                         Text.translatable("advancement.moreores.radiant_sword.desc"),
-                        Identifier.of("moreores:textures/gui/advancements/backgrounds/gems.png"),
+                        MoreOresModInitializer.getId("block/radiant_block"),
                         AdvancementFrame.CHALLENGE,
                         true,
                         true,
@@ -78,11 +79,6 @@ public class AdvancementGen extends FabricAdvancementProvider {
                 )
                 .parent(rubyGem)
                 .criterion("radiant_sword", InventoryChangedCriterion.Conditions.items(ModItems.RADIANT_SWORD))
-                .build(consumer, "overpowered");
-
-//        AdvancementEntry sapphire_armor = Advancement.Builder.create()
-//                .display(
-//                        MinecraftItem.SAPPHIRE
-//                )
+                .build(consumer, "moreores:overpowered");
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": "moreores:sapphire",
+    "b": "moreores:ruby_nautilus_armor"
+  },
+  "pattern": [
+    "aaa",
+    "aba",
+    "aaa"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moreores:sapphire_nautilus_armor"
+  }
+}

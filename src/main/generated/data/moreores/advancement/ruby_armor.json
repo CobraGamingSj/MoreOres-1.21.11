@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:is_that_a_gem",
+  "parent": "moreores:is_that_a_gem",
   "criteria": {
     "ruby_armor": {
       "conditions": {
@@ -22,7 +22,7 @@
     }
   },
   "display": {
-    "background": "moreores:textures/block/radiant_block.png",
+    "background": "moreores:block/radiant_block",
     "description": {
       "translate": "advancement.moreores.ruby_armor.desc"
     },

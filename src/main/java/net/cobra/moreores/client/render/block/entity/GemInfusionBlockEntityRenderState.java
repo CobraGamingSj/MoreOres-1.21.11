@@ -12,12 +12,10 @@ public class GemInfusionBlockEntityRenderState extends BlockEntityRenderState {
     public World entityWorld;
     public BlockPos lightPos;
 
-    final ItemRenderState inputItemRenderState = new ItemRenderState();
+    final ItemRenderState inputBeforeItemRenderState = new ItemRenderState();
     final ItemRenderState inputAfterItemRenderState = new ItemRenderState();
     final ItemRenderState energyItemRenderState = new ItemRenderState();
     final ItemRenderState resultItemRenderState = new ItemRenderState();
-
-    public static final GemInfusionBlockEntityRenderState INSTANCE = new GemInfusionBlockEntityRenderState();
 
     public void setEntity(GemInfusionBlockEntity entity) {
         this.entity = entity;

@@ -67,7 +67,7 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
-            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 83, y + 31, 207, 0, 8, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 83, y + 31, 207, 0, 10, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
     }
 
