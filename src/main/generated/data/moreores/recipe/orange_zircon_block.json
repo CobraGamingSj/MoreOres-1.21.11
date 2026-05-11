@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "moreores:painite"
+    "#": "moreores:orange_zircon"
   },
   "pattern": [
     "###",
@@ -11,6 +11,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "moreores:painite_block"
+    "id": "moreores:orange_zircon_block"
   }
 }

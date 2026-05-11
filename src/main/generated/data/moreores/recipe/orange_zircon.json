@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    "moreores:painite_block"
+    "moreores:orange_zircon_block"
   ],
   "result": {
     "count": 9,
-    "id": "moreores:painite"
+    "id": "moreores:orange_zircon"
   }
 }

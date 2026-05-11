@@ -68,7 +68,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 	// Gemstones Item Group
 	public static final ItemGroup GEMSTONES = FabricItemGroup.builder()
-			.icon(() -> new ItemStack(ModItems.RUBY))
+			.icon(() -> new ItemStack(ModItems.RADIANT))
 			.displayName(Text.translatable("itemGroup.moreores.gemstones"))
 			.entries((context, entries) -> {
 				entries.add(ModItems.RUBY);
@@ -84,6 +84,18 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModItems.PERIDOT);
 				entries.add(ModItems.JADE);
 				entries.add(ModItems.PYROPE);
+				entries.add(ModItems.CRIMSON_GARNET);
+				entries.add(ModItems.CRYSTALLITE);
+				entries.add(ModItems.RADIANT_AMETHYST);
+				entries.add(ModItems.MOONSTONE);
+				entries.add(ModItems.LIMESTONE);
+				entries.add(ModItems.QUARTSIDIAN);
+				entries.add(ModItems.ALEXANDRITE);
+				entries.add(ModItems.ORANGE_ZIRCON);
+				entries.add(ModItems.OPAL);
+				entries.add(ModItems.GRANDIDIERITE);
+				entries.add(ModItems.RED_BERYL);
+				entries.add(ModItems.KASHMIR_SAPPHIRE);
 				entries.add(ModBlocks.RUBY_BLOCK);
 				entries.add(ModBlocks.RADIANT_BLOCK);
 				entries.add(ModBlocks.SAPPHIRE_BLOCK);
@@ -97,18 +109,6 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModBlocks.PERIDOT_BLOCK);
 				entries.add(ModBlocks.JADE_BLOCK);
 				entries.add(ModBlocks.PYROPE_BLOCK);
-				entries.add(ModItems.CRIMSON_GARNET);
-				entries.add(ModItems.CRYSTALLITE);
-				entries.add(ModItems.RADIANT_AMETHYST);
-				entries.add(ModItems.MOONSTONE);
-				entries.add(ModItems.LIMESTONE);
-				entries.add(ModItems.QUARTSIDIAN);
-				entries.add(ModItems.ALEXANDRITE);
-				entries.add(ModItems.PAINITE);
-				entries.add(ModItems.OPAL);
-				entries.add(ModItems.GRANDIDIERITE);
-				entries.add(ModItems.RED_BERYL);
-				entries.add(ModItems.KASHMIR_SAPPHIRE);
 				entries.add(ModBlocks.CRIMSON_GARNET_BLOCK);
 				entries.add(ModBlocks.CRYSTALLITE_BLOCK);
 				entries.add(ModBlocks.RADIANT_AMETHYST_BLOCK);
@@ -116,7 +116,7 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModBlocks.LIMESTONE_BLOCK);
 				entries.add(ModBlocks.QUARTSIDIAN_BLOCK);
 				entries.add(ModBlocks.ALEXANDRITE_BLOCK);
-				entries.add(ModBlocks.PAINITE_BLOCK);
+				entries.add(ModBlocks.ORANGE_ZIRCON_BLOCK);
 				entries.add(ModBlocks.OPAL_BLOCK);
 				entries.add(ModBlocks.GRANDIDIERITE_BLOCK);
 				entries.add(ModBlocks.RED_BERYL_BLOCK);
@@ -132,8 +132,8 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		ServerMessageEvents.CHAT_MESSAGE.register((msg, sender, params) -> {
-			String mesg = msg.getSignedContent().toLowerCase();
-			if(mesg.contains("happy birthday cobra") || mesg.contains("happy birthday") || mesg.contains("happy bday") || mesg.contains("happy bday cobra")) {
+			String playerSignature = msg.getSignedContent().toLowerCase();
+			if(playerSignature.contains("happy birthday cobra") || playerSignature.contains("happy birthday") || playerSignature.contains("happy bday") || playerSignature.contains("happy bday cobra")) {
 				giveBirthdayRewards(sender);
 			}
 		});
@@ -195,6 +195,10 @@ public class MoreOresModInitializer implements ModInitializer {
 			toolEventEntries.addAfter(ModItems.SAPPHIRE_SHOVEL, ModItems.SAPPHIRE_PICKAXE);
 			toolEventEntries.addAfter(ModItems.SAPPHIRE_PICKAXE, ModItems.SAPPHIRE_AXE);
 			toolEventEntries.addAfter(ModItems.SAPPHIRE_AXE, ModItems.SAPPHIRE_HOE);
+			toolEventEntries.addAfter(ModItems.SAPPHIRE_HOE, ModItems.RADIANT_SHOVEL);
+			toolEventEntries.addAfter(ModItems.RADIANT_SHOVEL, ModItems.RADIANT_PICKAXE);
+			toolEventEntries.addAfter(ModItems.RADIANT_PICKAXE, ModItems.RADIANT_AXE);
+			toolEventEntries.addAfter(ModItems.RADIANT_AXE, ModItems.RADIANT_HOE);
 		});
 
 
@@ -213,6 +217,10 @@ public class MoreOresModInitializer implements ModInitializer {
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_HELMET, ModItems.SAPPHIRE_CHESTPLATE);
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
+			combatEventEntries.addAfter(ModItems.SAPPHIRE_BOOTS, ModItems.RADIANT_HELMET);
+			combatEventEntries.addAfter(ModItems.RADIANT_HELMET, ModItems.RADIANT_CHESTPLATE);
+			combatEventEntries.addAfter(ModItems.RADIANT_CHESTPLATE, ModItems.RADIANT_LEGGINGS);
+			combatEventEntries.addAfter(ModItems.RADIANT_LEGGINGS, ModItems.RADIANT_BOOTS);
             combatEventEntries.addAfter(Items.NETHERITE_SPEAR, ModItems.RUBY_SPEAR);
             combatEventEntries.addAfter(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR);
             combatEventEntries.addAfter(Items.NETHERITE_NAUTILUS_ARMOR, ModItems.RUBY_NAUTILUS_ARMOR);
@@ -298,8 +306,8 @@ public class MoreOresModInitializer implements ModInitializer {
 			buildingBlockEventEntries.addAfter(ModBlocks.MOONSTONE_BLOCK, ModBlocks.LIMESTONE_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.LIMESTONE_BLOCK, ModBlocks.QUARTSIDIAN_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.QUARTSIDIAN_BLOCK, ModBlocks.ALEXANDRITE_BLOCK);
-			buildingBlockEventEntries.addAfter(ModBlocks.ALEXANDRITE_BLOCK, ModBlocks.PAINITE_BLOCK);
-			buildingBlockEventEntries.addAfter(ModBlocks.PAINITE_BLOCK, ModBlocks.OPAL_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.ALEXANDRITE_BLOCK, ModBlocks.ORANGE_ZIRCON_BLOCK);
+			buildingBlockEventEntries.addAfter(ModBlocks.ORANGE_ZIRCON_BLOCK, ModBlocks.OPAL_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.OPAL_BLOCK, ModBlocks.GRANDIDIERITE_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.GRANDIDIERITE_BLOCK, ModBlocks.RED_BERYL_BLOCK);
 			buildingBlockEventEntries.addAfter(ModBlocks.RED_BERYL_BLOCK, ModBlocks.KASHMIR_SAPPHIRE_BLOCK);

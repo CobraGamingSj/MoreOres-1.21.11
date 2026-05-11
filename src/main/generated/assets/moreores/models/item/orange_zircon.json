@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "moreores:item/painite"
+    "layer0": "moreores:item/orange_zircon"
   }
 }

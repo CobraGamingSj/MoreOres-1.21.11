@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_kyawthuite": {
+    "has_orange_zircon": {
       "conditions": {
         "items": [
           {
-            "items": "moreores:painite"
+            "items": "moreores:orange_zircon"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "moreores:painite_infusion"
+        "recipe": "moreores:orange_zircon_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_kyawthuite"
+      "has_orange_zircon"
     ]
   ],
   "rewards": {
     "recipes": [
-      "moreores:painite_infusion"
+      "moreores:orange_zircon_block"
     ]
   }
 }

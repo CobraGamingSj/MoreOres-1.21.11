@@ -1,27 +1,17 @@
 package net.cobra.moreores.block;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCollisionHandler;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.World;
 
 import java.util.function.Function;
 
@@ -57,7 +47,7 @@ public class ModBlocks {
     public static final Block LIMESTONE_BLOCK = register("limestone_block", Block::new);
     public static final Block QUARTSIDIAN_BLOCK = register("quartsidian_block", Block::new);
     public static final Block ALEXANDRITE_BLOCK = register("alexandrite_block", Block::new);
-    public static final Block PAINITE_BLOCK = register("painite_block", Block::new);
+    public static final Block ORANGE_ZIRCON_BLOCK = register("orange_zircon_block", Block::new);
     public static final Block OPAL_BLOCK = register("opal_block", Block::new);
     public static final Block GRANDIDIERITE_BLOCK = register("grandidierite_block", Block::new);
     public static final Block RED_BERYL_BLOCK = register("red_beryl_block", Block::new);

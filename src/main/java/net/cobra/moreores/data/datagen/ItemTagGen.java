@@ -39,7 +39,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PERIDOT)
                 .add(ModItems.JADE)
                 .add(ModItems.PYROPE)
-                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.PAINITE,
+                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.ORANGE_ZIRCON,
                         ModItems.OPAL, ModItems.QUARTSIDIAN, ModItems.KASHMIR_SAPPHIRE, ModItems.RADIANT_AMETHYST,
                         ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE);
 
@@ -107,7 +107,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(Items.LAPIS_LAZULI)
                 .add(Items.QUARTZ)
                 .add(Items.DIAMOND)
-                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.PAINITE,
+                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.ORANGE_ZIRCON,
                         ModItems.OPAL, ModItems.QUARTSIDIAN, ModItems.KASHMIR_SAPPHIRE, ModItems.RADIANT_AMETHYST,
                         ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE);
 

@@ -134,8 +134,8 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
             Map.entry(ModBlocks.PINK_GARNET_BLOCK.asItem(), ModBlocks.RADIANT_AMETHYST_BLOCK.asItem()),
             Map.entry(ModItems.GREEN_GARNET, ModItems.LIMESTONE),
             Map.entry(ModBlocks.GREEN_GARNET_BLOCK.asItem(), ModBlocks.LIMESTONE_BLOCK.asItem()),
-            Map.entry(ModItems.KYAWTHUITE, ModItems.PAINITE),
-            Map.entry(ModBlocks.KYAWTHUITE_BLOCK.asItem(), ModBlocks.PAINITE_BLOCK.asItem()),
+            Map.entry(ModItems.KYAWTHUITE, ModItems.ORANGE_ZIRCON),
+            Map.entry(ModBlocks.KYAWTHUITE_BLOCK.asItem(), ModBlocks.ORANGE_ZIRCON_BLOCK.asItem()),
             Map.entry(ModItems.WHITE_TOPAZ, ModItems.MOONSTONE),
             Map.entry(ModBlocks.WHITE_TOPAZ_BLOCK.asItem(), ModBlocks.MOONSTONE_BLOCK.asItem()),
             Map.entry(ModItems.PERIDOT, ModItems.OPAL),
@@ -183,6 +183,19 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         if(path.endsWith("_block")) {
                             String itemName = path.replace("_block", "");
                             Item item = Registries.ITEM.get(MoreOresModInitializer.getId(itemName));
+                            if(block.getDefaultState().isOf(ModBlocks.RADIANT_BLOCK)) {
+                                createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
+                                        .pattern("aaa")
+                                        .pattern("aba")
+                                        .pattern("aaa")
+                                        .input('a', ModBlocks.RUBY_BLOCK)
+                                        .input('b', Items.DIAMOND)
+                                        .criterion(hasItem(ModBlocks.RUBY_BLOCK), conditionsFromItem(ModBlocks.RUBY_BLOCK))
+                                        .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
+                                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RADIANT) + "_from_ruby"));
+                                offerReversibleCompactingRecipes(RecipeCategory.MISC, ModItems.RADIANT, RecipeCategory.MISC, ModBlocks.RADIANT_BLOCK);
+                                continue;
+                            }
                             if(block.getDefaultState().isOf(ModBlocks.ENERGY_BLOCK)) {
                                 createShaped(RecipeCategory.MISC, ModBlocks.ENERGY_BLOCK, 1)
                                         .pattern("aaa")
@@ -286,16 +299,6 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                         .offerTo(exporter, getRecipeName(ModItems.QUARTSIDIAN));
 
-                createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
-                        .pattern("aaa")
-                        .pattern("aba")
-                        .pattern("aaa")
-                                .input('a', ModBlocks.RUBY_BLOCK)
-                                .input('b', Items.DIAMOND)
-                                        .criterion(hasItem(ModBlocks.RUBY_BLOCK), conditionsFromItem(ModBlocks.RUBY_BLOCK))
-                                        .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
-                                                .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RADIANT) + "_from_ruby")));
-
                 createShaped(RecipeCategory.MISC, ModBlocks.GEM_PURIFIER_BLOCK, 1)
                         .pattern("III")
                         .pattern("III")
@@ -326,18 +329,39 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .input('b', ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)
                         .input('c', Blocks.STONE)
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE) + "_duplication")));
+                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE) + "_duplication"));
 
-                createShaped(RecipeCategory.MISC, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, 1)
+                createShaped(RecipeCategory.MISC, ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, 2)
+                        .pattern("aba")
+                        .pattern("aca")
+                        .pattern("aaa")
+                        .input('a', ModItems.SAPPHIRE)
+                        .input('b', ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)
+                        .input('c', ModBlocks.RUBY_BLOCK)
+                        .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
+                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE) + "_duplication"));
+
+                createShaped(RecipeCategory.MISC, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)
                         .pattern("aba")
                         .pattern("aca")
                         .pattern("aaa")
                         .input('a', Blocks.STONE)
-                        .input('b', ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)
+                        .input('b', Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
                         .input('c', ModItems.RUBY)
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                        .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
+                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)));
+
+                createShaped(RecipeCategory.MISC, ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)
+                        .pattern("aba")
+                        .pattern("aca")
+                        .pattern("aaa")
+                        .input('a', ModBlocks.RUBY_BLOCK)
+                        .input('b', ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)
+                        .input('c', ModItems.SAPPHIRE)
+                        .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
+                        .criterion(hasItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))
+                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)));
             }
         };
     }

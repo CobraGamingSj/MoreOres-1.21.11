@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": "moreores:sapphire",
+    "b": "moreores:radiant_upgrade_smithing_template",
+    "c": "moreores:ruby_block"
+  },
+  "pattern": [
+    "aba",
+    "aca",
+    "aaa"
+  ],
+  "result": {
+    "count": 2,
+    "id": "moreores:radiant_upgrade_smithing_template"
+  }
+}

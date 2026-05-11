@@ -57,7 +57,7 @@ public class ModItems {
     public static final Item LIMESTONE = register("limestone", s -> new GemItem(s, "limestone"));
     public static final Item QUARTSIDIAN = register("quartsidian", s -> new GemItem(s, "quartsidian"));
     public static final Item ALEXANDRITE = register("alexandrite", s -> new GemItem(s, "alexandrite"));
-    public static final Item PAINITE = register("painite", s -> new GemItem(s, "painite"));
+    public static final Item ORANGE_ZIRCON = register("orange_zircon", s -> new GemItem(s, "painite"));
     public static final Item OPAL = register("opal", s -> new GemItem(s, "opal"));
     public static final Item GRANDIDIERITE = register("grandidierite", s -> new GemItem(s, "grandidierite"));
     public static final Item RED_BERYL = register("red_beryl", s -> new GemItem(s, "beryl"));
@@ -126,19 +126,19 @@ public class ModItems {
 //     Radiant Armor
     public static final Item RADIANT_HELMET = register(
             "radiant_helmet",
-            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof())
+            s -> new ArmorItem(s.rarity(Rarity.EPIC).armor(ModArmorMaterials.RADIANT, EquipmentType.HELMET).fireproof())
     );
     public static final Item RADIANT_CHESTPLATE = register(
             "radiant_chestplate",
-            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof())
+            s -> new ArmorItem(s.rarity(Rarity.EPIC).armor(ModArmorMaterials.RADIANT, EquipmentType.CHESTPLATE).fireproof())
     );
     public static final Item RADIANT_LEGGINGS = register(
             "radiant_leggings",
-            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof())
+            s -> new ArmorItem(s.rarity(Rarity.EPIC).armor(ModArmorMaterials.RADIANT, EquipmentType.LEGGINGS).fireproof())
     );
     public static final Item RADIANT_BOOTS = register(
             "radiant_boots",
-            s -> new ArmorItem(s.armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof())
+            s -> new ArmorItem(s.rarity(Rarity.EPIC).armor(ModArmorMaterials.RADIANT, EquipmentType.BOOTS).fireproof())
     );
 
 

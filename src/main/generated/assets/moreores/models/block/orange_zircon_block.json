@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "moreores:block/painite_block"
+    "all": "moreores:block/orange_zircon_block"
   }
 }
