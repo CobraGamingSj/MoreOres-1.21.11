@@ -62,6 +62,23 @@ public class MoreOresModInitializer implements ModInitializer {
 		return RegistryKey.of(RegistryKeys.ITEM, getId(registryKey));
 	}
 
+	public static String formatName(String path) {
+		String[] words = path.split("_");
+		StringBuilder builder = new StringBuilder();
+
+		for(int i = 0; i < words.length; i++) {
+			String word = words[i];
+
+			builder.append(Character.toUpperCase(word.charAt(0)))
+					.append(word.substring(1));
+
+			if(i < words.length - 1) {
+				builder.append(" ");
+			}
+		}
+		return builder.toString();
+	}
+
 	private static RegistryKey<Block> blockKey(String registryKey) {
 		return RegistryKey.of(RegistryKeys.BLOCK, getId(registryKey));
 	}

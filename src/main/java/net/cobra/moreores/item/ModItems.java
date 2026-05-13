@@ -248,11 +248,12 @@ public class ModItems {
                 continue;
             }
             if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
+                String name = MoreOresModInitializer.formatName(id.getPath());
                 if(item == GEM_DETECTOR) {
                     continue;
                 }
                 itemCount++;
-                LOGGER.info("Registering Item: {}, for {} mod", id, MoreOresModInitializer.MOD_ID);
+                LOGGER.info("Registering Item: {}, for {} mod", name, MoreOresModInitializer.MOD_ID);
             }
         }
         LOGGER.info("Registered {} Items for {} mod", itemCount, MoreOresModInitializer.MOD_ID);

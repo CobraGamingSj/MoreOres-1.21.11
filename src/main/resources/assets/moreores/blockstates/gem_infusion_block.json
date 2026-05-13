@@ -4,163 +4,151 @@
     "facing=north,redstone_powered=false,is_infusing=empty": { "model": "moreores:block/gem_infusion_block", "y": 180 },
     "facing=north,redstone_powered=true,is_infusing=empty":  { "model": "moreores:block/gem_infusion_block_rp", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=ruby": { "model": "moreores:block/gem_infusion_block_red", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=ruby":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=alexandrite": { "model": "moreores:block/gem_infusion_block_red", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=alexandrite":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=sapphire": { "model": "moreores:block/gem_infusion_block_blue", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=kashmir_sapphire": { "model": "moreores:block/gem_infusion_block_blue", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=kashmir_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=green_sapphire": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=green_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=crystallite": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=crystallite":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=blue_garnet": { "model": "moreores:block/gem_infusion_block_blue", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=blue_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=crimson_garnet": { "model": "moreores:block/gem_infusion_block_blue", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=crimson_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=pink_garnet": { "model": "moreores:block/gem_infusion_block_pink_garnet", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=pink_garnet":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=radiant_amethyst": { "model": "moreores:block/gem_infusion_block_pink_garnet", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=radiant_amethyst":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=green_garnet": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=green_garnet":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=limestone": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=limestone":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=kyawthuite": { "model": "moreores:block/gem_infusion_block_orange", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=kyawthuite":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=orange_zircon": { "model": "moreores:block/gem_infusion_block_orange", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=orange_zircon":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=topaz": { "model": "moreores:block/gem_infusion_block_orange", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=topaz":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=moonstone": { "model": "moreores:block/gem_infusion_block_white_topaz", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=moonstone":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=white_topaz": { "model": "moreores:block/gem_infusion_block_white_topaz", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=white_topaz":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=opal": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=opal":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=peridot": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=peridot":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
+    "facing=north,redstone_powered=false,is_infusing=grandidierite": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=grandidierite":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_infusing=jade": { "model": "moreores:block/gem_infusion_block_green", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=jade":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 180 },
-
-    "facing=north,redstone_powered=false,is_infusing=pyrope": { "model": "moreores:block/gem_infusion_block_red", "y": 180 },
-    "facing=north,redstone_powered=true,is_infusing=pyrope":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 180 }
+    "facing=north,redstone_powered=false,is_infusing=red_beryl": { "model": "moreores:block/gem_infusion_block_red", "y": 180 },
+    "facing=north,redstone_powered=true,is_infusing=red_beryl":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 180 }
 
   ,
 
     "facing=south,redstone_powered=false,is_infusing=empty": { "model": "moreores:block/gem_infusion_block"},
     "facing=south,redstone_powered=true,is_infusing=empty":  { "model": "moreores:block/gem_infusion_block_rp"},
 
-    "facing=south,redstone_powered=false,is_infusing=ruby": { "model": "moreores:block/gem_infusion_block_red"},
-    "facing=south,redstone_powered=true,is_infusing=ruby":  { "model": "moreores:block/gem_infusion_block_rp_red"},
+    "facing=south,redstone_powered=false,is_infusing=alexandrite": { "model": "moreores:block/gem_infusion_block_red"},
+    "facing=south,redstone_powered=true,is_infusing=alexandrite":  { "model": "moreores:block/gem_infusion_block_rp_red"},
 
-    "facing=south,redstone_powered=false,is_infusing=sapphire": { "model": "moreores:block/gem_infusion_block_blue"},
-    "facing=south,redstone_powered=true,is_infusing=sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue"},
+    "facing=south,redstone_powered=false,is_infusing=kashmir_sapphire": { "model": "moreores:block/gem_infusion_block_blue"},
+    "facing=south,redstone_powered=true,is_infusing=kashmir_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue"},
 
-    "facing=south,redstone_powered=false,is_infusing=green_sapphire": { "model": "moreores:block/gem_infusion_block_green"},
-    "facing=south,redstone_powered=true,is_infusing=green_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_green"},
+    "facing=south,redstone_powered=false,is_infusing=crystallite": { "model": "moreores:block/gem_infusion_block_green"},
+    "facing=south,redstone_powered=true,is_infusing=crystallite":  { "model": "moreores:block/gem_infusion_block_rp_green"},
 
-    "facing=south,redstone_powered=false,is_infusing=blue_garnet": { "model": "moreores:block/gem_infusion_block_blue"},
-    "facing=south,redstone_powered=true,is_infusing=blue_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue"},
+    "facing=south,redstone_powered=false,is_infusing=crimson_garnet": { "model": "moreores:block/gem_infusion_block_blue"},
+    "facing=south,redstone_powered=true,is_infusing=crimson_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue"},
 
-    "facing=south,redstone_powered=false,is_infusing=pink_garnet": { "model": "moreores:block/gem_infusion_block_pink_garnet"},
-    "facing=south,redstone_powered=true,is_infusing=pink_garnet":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet"},
+    "facing=south,redstone_powered=false,is_infusing=radiant_amethyst": { "model": "moreores:block/gem_infusion_block_pink_garnet"},
+    "facing=south,redstone_powered=true,is_infusing=radiant_amethyst":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet"},
 
-    "facing=south,redstone_powered=false,is_infusing=green_garnet": { "model": "moreores:block/gem_infusion_block_green"},
-    "facing=south,redstone_powered=true,is_infusing=green_garnet":  { "model": "moreores:block/gem_infusion_block_rp_green"},
+    "facing=south,redstone_powered=false,is_infusing=limestone": { "model": "moreores:block/gem_infusion_block_green"},
+    "facing=south,redstone_powered=true,is_infusing=limestone":  { "model": "moreores:block/gem_infusion_block_rp_green"},
 
-    "facing=south,redstone_powered=false,is_infusing=kyawthuite": { "model": "moreores:block/gem_infusion_block_orange"},
-    "facing=south,redstone_powered=true,is_infusing=kyawthuite":  { "model": "moreores:block/gem_infusion_block_rp_orange"},
+    "facing=south,redstone_powered=false,is_infusing=orange_zircon": { "model": "moreores:block/gem_infusion_block_orange"},
+    "facing=south,redstone_powered=true,is_infusing=orange_zircon":  { "model": "moreores:block/gem_infusion_block_rp_orange"},
 
-    "facing=south,redstone_powered=false,is_infusing=topaz": { "model": "moreores:block/gem_infusion_block_orange"},
-    "facing=south,redstone_powered=true,is_infusing=topaz":  { "model": "moreores:block/gem_infusion_block_rp_orange"},
+    "facing=south,redstone_powered=false,is_infusing=moonstone": { "model": "moreores:block/gem_infusion_block_white_topaz"},
+    "facing=south,redstone_powered=true,is_infusing=moonstone":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz"},
 
-    "facing=south,redstone_powered=false,is_infusing=white_topaz": { "model": "moreores:block/gem_infusion_block_white_topaz"},
-    "facing=south,redstone_powered=true,is_infusing=white_topaz":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz"},
+    "facing=south,redstone_powered=false,is_infusing=opal": { "model": "moreores:block/gem_infusion_block_green"},
+    "facing=south,redstone_powered=true,is_infusing=opal":  { "model": "moreores:block/gem_infusion_block_rp_green"},
 
-    "facing=south,redstone_powered=false,is_infusing=peridot": { "model": "moreores:block/gem_infusion_block_green"},
-    "facing=south,redstone_powered=true,is_infusing=peridot":  { "model": "moreores:block/gem_infusion_block_rp_green"},
+    "facing=south,redstone_powered=false,is_infusing=grandidierite": { "model": "moreores:block/gem_infusion_block_green"},
+    "facing=south,redstone_powered=true,is_infusing=grandidierite":  { "model": "moreores:block/gem_infusion_block_rp_green"},
 
-    "facing=south,redstone_powered=false,is_infusing=jade": { "model": "moreores:block/gem_infusion_block_green"},
-    "facing=south,redstone_powered=true,is_infusing=jade":  { "model": "moreores:block/gem_infusion_block_rp_green"},
-
-    "facing=south,redstone_powered=false,is_infusing=pyrope": { "model": "moreores:block/gem_infusion_block_red"},
-    "facing=south,redstone_powered=true,is_infusing=pyrope":  { "model": "moreores:block/gem_infusion_block_rp_red"}
+    "facing=south,redstone_powered=false,is_infusing=red_beryl": { "model": "moreores:block/gem_infusion_block_red"},
+    "facing=south,redstone_powered=true,is_infusing=red_beryl":  { "model": "moreores:block/gem_infusion_block_rp_red"}
 
   ,
 
     "facing=east,redstone_powered=false,is_infusing=empty": { "model": "moreores:block/gem_infusion_block", "y": 270 },
     "facing=east,redstone_powered=true,is_infusing=empty":  { "model": "moreores:block/gem_infusion_block_rp", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=ruby": { "model": "moreores:block/gem_infusion_block_red", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=ruby":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=alexandrite": { "model": "moreores:block/gem_infusion_block_red", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=alexandrite":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=sapphire": { "model": "moreores:block/gem_infusion_block_blue", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=kashmir_sapphire": { "model": "moreores:block/gem_infusion_block_blue", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=kashmir_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=green_sapphire": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=green_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=crystallite": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=crystallite":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=blue_garnet": { "model": "moreores:block/gem_infusion_block_blue", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=blue_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=crimson_garnet": { "model": "moreores:block/gem_infusion_block_blue", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=crimson_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=pink_garnet": { "model": "moreores:block/gem_infusion_block_pink_garnet", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=pink_garnet":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=radiant_amethyst": { "model": "moreores:block/gem_infusion_block_pink_garnet", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=radiant_amethyst":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=green_garnet": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=green_garnet":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=limestone": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=limestone":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=kyawthuite": { "model": "moreores:block/gem_infusion_block_orange", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=kyawthuite":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=orange_zircon": { "model": "moreores:block/gem_infusion_block_orange", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=orange_zircon":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=topaz": { "model": "moreores:block/gem_infusion_block_orange", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=topaz":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=moonstone": { "model": "moreores:block/gem_infusion_block_white_topaz", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=moonstone":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=white_topaz": { "model": "moreores:block/gem_infusion_block_white_topaz", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=white_topaz":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=opal": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=opal":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=peridot": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=peridot":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
+    "facing=east,redstone_powered=false,is_infusing=grandidierite": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=grandidierite":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_infusing=jade": { "model": "moreores:block/gem_infusion_block_green", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=jade":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 270 },
-
-    "facing=east,redstone_powered=false,is_infusing=pyrope": { "model": "moreores:block/gem_infusion_block_red", "y": 270 },
-    "facing=east,redstone_powered=true,is_infusing=pyrope":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 270 }
+    "facing=east,redstone_powered=false,is_infusing=red_beryl": { "model": "moreores:block/gem_infusion_block_red", "y": 270 },
+    "facing=east,redstone_powered=true,is_infusing=red_beryl":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 270 }
 
   ,
 
     "facing=west,redstone_powered=false,is_infusing=empty": { "model": "moreores:block/gem_infusion_block", "y": 90 },
     "facing=west,redstone_powered=true,is_infusing=empty":  { "model": "moreores:block/gem_infusion_block_rp", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=ruby": { "model": "moreores:block/gem_infusion_block_red", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=ruby":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=alexandrite": { "model": "moreores:block/gem_infusion_block_red", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=alexandrite":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=sapphire": { "model": "moreores:block/gem_infusion_block_blue", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=kashmir_sapphire": { "model": "moreores:block/gem_infusion_block_blue", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=kashmir_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=green_sapphire": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=green_sapphire":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=crystallite": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=crystallite":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=blue_garnet": { "model": "moreores:block/gem_infusion_block_blue", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=blue_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=crimson_garnet": { "model": "moreores:block/gem_infusion_block_blue", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=crimson_garnet":  { "model": "moreores:block/gem_infusion_block_rp_blue", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=pink_garnet": { "model": "moreores:block/gem_infusion_block_pink_garnet", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=pink_garnet":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=radiant_amethyst": { "model": "moreores:block/gem_infusion_block_pink_garnet", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=radiant_amethyst":  { "model": "moreores:block/gem_infusion_block_rp_pink_garnet", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=green_garnet": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=green_garnet":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=limestone": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=limestone":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=kyawthuite": { "model": "moreores:block/gem_infusion_block_orange", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=kyawthuite":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=orange_zircon": { "model": "moreores:block/gem_infusion_block_orange", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=orange_zircon":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=topaz": { "model": "moreores:block/gem_infusion_block_orange", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=topaz":  { "model": "moreores:block/gem_infusion_block_rp_orange", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=moonstone": { "model": "moreores:block/gem_infusion_block_white_topaz", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=moonstone":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=white_topaz": { "model": "moreores:block/gem_infusion_block_white_topaz", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=white_topaz":  { "model": "moreores:block/gem_infusion_block_rp_white_topaz", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=opal": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=opal":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=peridot": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=peridot":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
+    "facing=west,redstone_powered=false,is_infusing=grandidierite": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=grandidierite":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_infusing=jade": { "model": "moreores:block/gem_infusion_block_green", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=jade":  { "model": "moreores:block/gem_infusion_block_rp_green", "y": 90 },
-
-    "facing=west,redstone_powered=false,is_infusing=pyrope": { "model": "moreores:block/gem_infusion_block_red", "y": 90 },
-    "facing=west,redstone_powered=true,is_infusing=pyrope":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 90 }
+    "facing=west,redstone_powered=false,is_infusing=red_beryl": { "model": "moreores:block/gem_infusion_block_red", "y": 90 },
+    "facing=west,redstone_powered=true,is_infusing=red_beryl":  { "model": "moreores:block/gem_infusion_block_rp_red", "y": 90 }
   }
 }

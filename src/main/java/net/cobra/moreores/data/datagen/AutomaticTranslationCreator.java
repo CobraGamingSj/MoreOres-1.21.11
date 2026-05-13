@@ -28,7 +28,9 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
         translationBuilder.add("upgrade.moreores.radiant_upgrade", "Smithing Template");
         translationBuilder.add("item.moreores.smithing_template.applies_to", "Applies to:");
         translationBuilder.add("item.moreores.smithing_template.ruby_upgrade.applies_to", "Netherite Equipment");
+        translationBuilder.add("item.moreores.smithing_template.ruby_upgrade.ingredients", "Ruby");
         translationBuilder.add("item.moreores.smithing_template.radiant_upgrade.applies_to", "Sapphire Equipment");
+        translationBuilder.add("item.moreores.smithing_template.radiant_upgrade.ingredients", "Sapphire");
         translationBuilder.add("item.moreores.smithing_template.ingredients", "Ingredients:");
         translationBuilder.add("advancement.moreores.gems",  "Is that a gem?");
         translationBuilder.add("advancement.moreores.gems.desc",  "Collect a gemstone");
