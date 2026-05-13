@@ -68,7 +68,7 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
 
     private void renderRadiantDust(DrawContext context, int x, int y) {
         int k = handler.getDustCount();
-        int l = MathHelper.clamp((18 * k + 2000 - 1) / 2000, 0, 18);
+        int l = MathHelper.clamp((18 * k + 10000 - 1) / 10000, 0, 18);
         if(l > 0) {
             context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 38, y + 97, 207, 29, l, 4, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
@@ -77,9 +77,62 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
     @Override
     protected void renderEnergyHandler(DrawContext context, int x, int y) {
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
-        int gradientStart = Colors.BLUE;
-        int gradientEnd = Colors.GREEN;
-        context.fillGradient(x + 13, y + 43 + 44 - energyBarSize, x + 13 + 16, y + 43 + 44, gradientStart, gradientEnd);
+
+        int startY = y + 43 + 44 - energyBarSize;
+        int endY = y + 43 + 44;
+
+        int barX1 = x + 13;
+        int barX2 = barX1 + 16;
+
+        int sectionHeight = Math.max(1, energyBarSize / 5);
+
+        context.fillGradient(
+                barX1,
+                endY - sectionHeight,
+                barX2,
+                endY,
+                Colors.PURPLE,
+                Colors.RED
+        );
+
+        // Bottom
+        context.fillGradient(
+                barX1,
+                endY - sectionHeight * 2,
+                barX2,
+                endY - sectionHeight,
+                Colors.BLUE,
+                Colors.PURPLE
+        );
+
+        // Middle
+        context.fillGradient(
+                barX1,
+                endY - sectionHeight * 3,
+                barX2,
+                endY - sectionHeight * 2,
+                Colors.CYAN,
+                Colors.BLUE
+        );
+
+        // Top
+        context.fillGradient(
+                barX1,
+                endY - sectionHeight * 4,
+                barX2,
+                endY - sectionHeight * 3,
+                Colors.GREEN,
+                Colors.CYAN
+        );
+
+        context.fillGradient(
+                barX1,
+                startY,
+                barX2,
+                endY - sectionHeight * 4,
+                Colors.YELLOW,
+                Colors.GREEN
+        );
     }
 
     @Override
@@ -95,7 +148,7 @@ public class GemInfusionScreen extends AbstractGemPFScreen<GemInfusionScreenHand
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
-        int k = MathHelper.clamp((18 * handler.getDustCount() + 2000 - 1) / 2000, 0, 18);
+        int k = MathHelper.clamp((18 * handler.getDustCount() + 10000 - 1) / 10000, 0, 18);
         if (isPointWithinBounds(13, 43 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
         }

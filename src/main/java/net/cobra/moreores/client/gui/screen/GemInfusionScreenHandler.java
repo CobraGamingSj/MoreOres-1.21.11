@@ -1,6 +1,7 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
@@ -25,7 +26,7 @@ public class GemInfusionScreenHandler extends AbstractGemPFScreenHandler {
     private final PropertyDelegate propertyDelegate;
     public final GemInfusionBlockEntity blockEntity;
 
-    public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, GemPFEnergyData data) {
+    public GemInfusionScreenHandler(int syncId, PlayerInventory playerInventory, GemInfusionDataSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(3));
     }

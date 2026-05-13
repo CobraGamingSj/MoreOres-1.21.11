@@ -1,6 +1,7 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
@@ -19,7 +20,7 @@ public class ModScreenHandlerType {
             );
 
     public static final ScreenHandlerType<GemInfusionScreenHandler> GEM_infusion_SCREEN_HANDLER =
-            register("gem_infusion_block", GemInfusionScreenHandler::new, GemPFEnergyData.PACKET_CODEC);
+            register("gem_infusion_block", GemInfusionScreenHandler::new, GemInfusionDataSynchronizer.PACKET_CODEC);
 
     private static <S extends ScreenHandler, D extends CustomPayload> ExtendedScreenHandlerType<S, D> register(String id, ExtendedScreenHandlerType.ExtendedFactory<S, D> factory, PacketCodec<? super RegistryByteBuf, D> packetCodec) {
         return Registry.register(Registries.SCREEN_HANDLER, MoreOresModInitializer.getId(id), new ExtendedScreenHandlerType<>(factory, packetCodec));

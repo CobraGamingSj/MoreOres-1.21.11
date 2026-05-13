@@ -9,12 +9,15 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
+import java.sql.Time;
+import java.util.Timer;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
-import static net.cobra.moreores.MoreOresModInitializer.getId;
-import static net.cobra.moreores.MoreOresModInitializer.setRegistryKey;
+import static net.cobra.moreores.MoreOresModInitializer.*;
 
 public class ModItems {
 
@@ -57,7 +60,7 @@ public class ModItems {
     public static final Item LIMESTONE = register("limestone", s -> new GemItem(s, "limestone"));
     public static final Item QUARTSIDIAN = register("quartsidian", s -> new GemItem(s, "quartsidian"));
     public static final Item ALEXANDRITE = register("alexandrite", s -> new GemItem(s, "alexandrite"));
-    public static final Item ORANGE_ZIRCON = register("orange_zircon", s -> new GemItem(s, "painite"));
+    public static final Item ORANGE_ZIRCON = register("orange_zircon", s -> new GemItem(s, "orange_zircon"));
     public static final Item OPAL = register("opal", s -> new GemItem(s, "opal"));
     public static final Item GRANDIDIERITE = register("grandidierite", s -> new GemItem(s, "grandidierite"));
     public static final Item RED_BERYL = register("red_beryl", s -> new GemItem(s, "beryl"));
@@ -208,7 +211,7 @@ public class ModItems {
     }
 
     public static Item register(String name, Function<Item.Settings, Item> item) {
-        return Registry.register(Registries.ITEM, MoreOresModInitializer.getId(name), item.apply(new Item.Settings().registryKey(MoreOresModInitializer.setRegistryKey(name))));
+        return Registry.register(Registries.ITEM, getId(name), item.apply(new Item.Settings().registryKey(setRegistryKey(name))));
     }
 
     public static Item registerSword(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
@@ -237,6 +240,21 @@ public class ModItems {
 //    }
 
     public static void register() {
-        MoreOresModInitializer.LOGGER.info("Loading ModItems for " + MoreOresModInitializer.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading ModItems for " + MoreOresModInitializer.MOD_ID + " mod");
+        int itemCount = 0;
+        for(Item item : Registries.ITEM) {
+            Identifier id = Registries.ITEM.getId(item);
+            if(item instanceof BlockItem) {
+                continue;
+            }
+            if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
+                if(item == GEM_DETECTOR) {
+                    continue;
+                }
+                itemCount++;
+                LOGGER.info("Registering Item: {}, for {} mod", id, MoreOresModInitializer.MOD_ID);
+            }
+        }
+        LOGGER.info("Registered {} Items for {} mod", itemCount, MoreOresModInitializer.MOD_ID);
     }
 }

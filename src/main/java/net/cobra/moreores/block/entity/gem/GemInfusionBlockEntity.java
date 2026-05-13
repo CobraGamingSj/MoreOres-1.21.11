@@ -2,6 +2,7 @@ package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.GemInfusionBlock;
 import net.cobra.moreores.block.ModBlocks;
+import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.GemInfusionScreenHandler;
@@ -38,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergyData> {
+public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemInfusionDataSynchronizer> {
 
     public static final int INGREDIENT_BEFORE_SLOT = 0;
     public static final int INGREDIENT_AFTER_SLOT = 1;
@@ -49,6 +50,7 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
     private long lastRemovedEnergyMilestone = 0;
 
     public int dustParticleCount = 0;
+    public int maxDust = 10000;
     private int dustTick;
 
     protected final PropertyDelegate propertyDelegate;
@@ -82,6 +84,10 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
                 return 3;
             }
         };
+    }
+
+    public void setDustCount(int dustCount) {
+        this.dustParticleCount = dustCount;
     }
 
     public long energyAmount() {
@@ -193,8 +199,8 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
 
 
     @Override
-    public GemPFEnergyData getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-        return new GemPFEnergyData(energyAmount(), this.pos);
+    public GemInfusionDataSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return new GemInfusionDataSynchronizer(energyAmount(), this.dustParticleCount, this.pos);
     }
 
     @Override
@@ -243,8 +249,8 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemPFEnergy
         }
 
         ItemStack stack = radiantDustStack();
-        if(dustParticleCount <= 0 && stack.isOf(ModItems.RADIANT_DUST)) {
-            dustParticleCount = 2000;
+        if(stack.isOf(ModItems.RADIANT_DUST) && dustParticleCount <= maxDust) {
+            dustParticleCount += 2000;
             stack.decrement(1);
             markDirty(world, pos, state);
         }

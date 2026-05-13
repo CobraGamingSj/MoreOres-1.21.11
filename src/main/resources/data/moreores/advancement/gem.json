@@ -231,12 +231,12 @@
         ]
       }
     },
-    "painite": {
+    "orange_zircon": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "moreores:painite"
+            "items": "moreores:orange_zircon"
           }
         ]
       }
@@ -328,7 +328,7 @@
       "alexandrite"
     ],
     [
-      "painite"
+      "orange_zircon"
     ],
     [
       "opal"

@@ -26,10 +26,16 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
+import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
+import net.minecraft.network.packet.s2c.play.SubtitleS2CPacket;
+import net.minecraft.network.packet.s2c.play.TitleFadeS2CPacket;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -129,6 +135,17 @@ public class MoreOresModInitializer implements ModInitializer {
 
     @Override
 	public void onInitialize() {
+
+
+		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+			ServerPlayerEntity player = handler.getPlayer();
+			String modVersion = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion().getFriendlyString();
+
+			player.addCommandTag("moreores_first_join");
+			player.networkHandler.sendPacket(new TitleS2CPacket(Text.literal("MoreOres+").formatted(Formatting.DARK_PURPLE, Formatting.BOLD)));
+			player.networkHandler.sendPacket(new SubtitleS2CPacket(Text.literal(modVersion).formatted(Formatting.YELLOW)));
+			player.networkHandler.sendPacket(new TitleFadeS2CPacket(20, 100, 20));
+		});
 
 
 		ServerMessageEvents.CHAT_MESSAGE.register((msg, sender, params) -> {

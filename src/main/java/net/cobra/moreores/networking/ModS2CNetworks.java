@@ -1,6 +1,7 @@
 package net.cobra.moreores.networking;
 
 import net.cobra.moreores.MoreOresModInitializer;
+import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
 import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.networking.block.data.GemPurifierFluidData;
 import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
@@ -14,6 +15,7 @@ public class ModS2CNetworks {
         ClientPlayNetworking.registerGlobalReceiver(GemPFEnergyData.ID, GemPFEnergyData::handlePacket);
         ClientPlayNetworking.registerGlobalReceiver(GemPurifierFluidData.ID, GemPurifierFluidData::handlePacket);
         ClientPlayNetworking.registerGlobalReceiver(GemPurifierDataSynchronizer.ID, GemPurifierDataSynchronizer::handlePacket);
+        ClientPlayNetworking.registerGlobalReceiver(GemInfusionDataSynchronizer.ID, GemInfusionDataSynchronizer::handlePacket);
     }
 
     public static void register() {

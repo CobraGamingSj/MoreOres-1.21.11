@@ -126,6 +126,14 @@ public class ModBlocks {
 
     public static void register() {
         MoreOresModInitializer.LOGGER.info("Loading ModBlocks for {} mod.", MoreOresModInitializer.MOD_ID);
+        int blockCount = 0;
+        for(Block block : Registries.BLOCK) {
+            Identifier id = Registries.BLOCK.getId(block);
+            if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
+                blockCount++;
+                MoreOresModInitializer.LOGGER.info("Registering Block: {}, for {} mod", id, MoreOresModInitializer.MOD_ID);
+            }
+        }
+        MoreOresModInitializer.LOGGER.info("Registered {} Blocks for {} mod", blockCount, MoreOresModInitializer.MOD_ID);
     }
-
 }
