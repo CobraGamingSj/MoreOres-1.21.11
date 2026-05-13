@@ -1,8 +1,8 @@
 package net.cobra.moreores.networking;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
-import net.cobra.moreores.networking.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
+import net.cobra.moreores.networking.block.data.PolishingStateDataPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 import static net.cobra.moreores.MoreOresModInitializer.LOGGER;
@@ -10,8 +10,8 @@ import static net.cobra.moreores.MoreOresModInitializer.LOGGER;
 public class ModC2SNetworks {
 
     public static void registerServerC2S() {
-        ServerPlayNetworking.registerGlobalReceiver(GemPurifierButtonClick.ID, GemPurifierButtonClick::handle);
-        ServerPlayNetworking.registerGlobalReceiver(PolishingStateData.ID, PolishingStateData::handle);
+        ServerPlayNetworking.registerGlobalReceiver(GemPurifierButtonClickPayload.ID, GemPurifierButtonClickPayload::handle);
+        ServerPlayNetworking.registerGlobalReceiver(PolishingStateDataPayload.ID, PolishingStateDataPayload::handle);
     }
 
     public static void register() {

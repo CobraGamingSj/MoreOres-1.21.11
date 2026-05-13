@@ -8,8 +8,8 @@ import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.networking.ModC2SNetworks;
 import net.cobra.moreores.networking.ModS2CNetworks;
 import net.cobra.moreores.networking.ModS2CPayloadRegistry;
-import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
-import net.cobra.moreores.networking.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
+import net.cobra.moreores.networking.block.data.PolishingStateDataPayload;
 import net.cobra.moreores.recipe.GemInfusionRecipe;
 import net.cobra.moreores.recipe.GemPurifierRecipe;
 import net.cobra.moreores.recipe.book.ModRecipeBookCategories;
@@ -32,7 +32,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
-import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
 import net.minecraft.network.packet.s2c.play.SubtitleS2CPacket;
 import net.minecraft.network.packet.s2c.play.TitleFadeS2CPacket;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
@@ -380,8 +379,8 @@ public class MoreOresModInitializer implements ModInitializer {
 		ModS2CNetworks.register();
 		ModC2SNetworks.register();
 		ModS2CPayloadRegistry.registerS2CPackets();
-		PayloadTypeRegistry.playC2S().register(GemPurifierButtonClick.ID, GemPurifierButtonClick.PACKET_CODEC);
-		PayloadTypeRegistry.playC2S().register(PolishingStateData.ID, PolishingStateData.CODEC);
+		PayloadTypeRegistry.playC2S().register(GemPurifierButtonClickPayload.ID, GemPurifierButtonClickPayload.PACKET_CODEC);
+		PayloadTypeRegistry.playC2S().register(PolishingStateDataPayload.ID, PolishingStateDataPayload.CODEC);
 		ModC2SNetworks.registerServerC2S();
 
 

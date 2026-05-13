@@ -12,14 +12,14 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
-public record GemPurifierButtonClick(int buttonID, BlockPos pos) implements CustomPayload {
-    public static final Id<GemPurifierButtonClick> ID = new Id<>(MoreOresModInitializer.getId("button_click"));
+public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implements CustomPayload {
+    public static final Id<GemPurifierButtonClickPayload> ID = new Id<>(MoreOresModInitializer.getId("button_click"));
 
-    public static final PacketCodec<RegistryByteBuf, GemPurifierButtonClick> PACKET_CODEC =
+    public static final PacketCodec<RegistryByteBuf, GemPurifierButtonClickPayload> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.VAR_INT, GemPurifierButtonClick::buttonID,
-                    BlockPos.PACKET_CODEC, GemPurifierButtonClick::pos,
-                    GemPurifierButtonClick::new
+                    PacketCodecs.VAR_INT, GemPurifierButtonClickPayload::buttonID,
+                    BlockPos.PACKET_CODEC, GemPurifierButtonClickPayload::pos,
+                    GemPurifierButtonClickPayload::new
             );
 
     public void handle(ServerPlayNetworking.Context context) {

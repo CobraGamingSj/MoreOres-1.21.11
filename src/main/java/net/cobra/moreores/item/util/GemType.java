@@ -20,7 +20,20 @@ public enum GemType implements StringIdentifiable {
     WHITE_TOPAZ("white_topaz", ModItems.WHITE_TOPAZ, ModBlocks.WHITE_TOPAZ_BLOCK.asItem()),
     PERIDOT("peridot", ModItems.PERIDOT, ModBlocks.PERIDOT_BLOCK.asItem()),
     JADE("jade", ModItems.JADE, ModBlocks.JADE_BLOCK.asItem()),
-    PYROPE("pyrope", ModItems.PYROPE, ModBlocks.PYROPE_BLOCK.asItem());
+    PYROPE("pyrope", ModItems.PYROPE, ModBlocks.PYROPE_BLOCK.asItem()),
+
+    CRIMSON_GARNET("crimson_garnet", ModItems.CRIMSON_GARNET, ModBlocks.CRIMSON_GARNET_BLOCK.asItem()),
+    RADIANT_AMETHYST("radiant_amethyst", ModItems.RADIANT_AMETHYST, ModBlocks.RADIANT_AMETHYST_BLOCK.asItem()),
+    CRYSTALLITE("crystallite", ModItems.CRYSTALLITE, ModBlocks.CRYSTALLITE_BLOCK.asItem()),
+    ALEXANDRITE("alexandrite", ModItems.ALEXANDRITE, ModBlocks.ALEXANDRITE_BLOCK.asItem()),
+    LIMESTONE("limestone", ModItems.LIMESTONE, ModBlocks.LIMESTONE_BLOCK.asItem()),
+    MOONSTONE("moonstone", ModItems.MOONSTONE, ModBlocks.MOONSTONE_BLOCK.asItem()),
+    QUARTSIDIAN("quartsidian", ModItems.QUARTSIDIAN, ModBlocks.QUARTSIDIAN_BLOCK.asItem()),
+    ORANGE_ZIRCON("orange_zircon", ModItems.ORANGE_ZIRCON, ModBlocks.ORANGE_ZIRCON_BLOCK.asItem()),
+    OPAL("opal", ModItems.OPAL, ModBlocks.OPAL_BLOCK.asItem()),
+    GRANDIDIERITE("grandidierite", ModItems.GRANDIDIERITE, ModBlocks.GRANDIDIERITE_BLOCK.asItem()),
+    RED_BERYL("red_beryl", ModItems.RED_BERYL, ModBlocks.RED_BERYL_BLOCK.asItem()),
+    KASHMIR_SAPPHIRE("kashmir_sapphire", ModItems.KASHMIR_SAPPHIRE, ModBlocks.KASHMIR_SAPPHIRE_BLOCK.asItem());
 
     public static final Codec<GemType> CODEC = Codec.STRING.xmap(
             s -> GemType.valueOf(s.toUpperCase()),

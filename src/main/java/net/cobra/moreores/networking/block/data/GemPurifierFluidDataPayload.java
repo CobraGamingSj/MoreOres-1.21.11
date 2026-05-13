@@ -12,8 +12,8 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 
-public record GemPurifierFluidData(FluidVariant var, long fluid, BlockPos blockPos) implements CustomPayload {
-    public static final Id<GemPurifierFluidData> ID = new Id<>(MoreOresModInitializer.getId("pos_fluid"));
+public record GemPurifierFluidDataPayload(FluidVariant var, long fluid, BlockPos blockPos) implements CustomPayload {
+    public static final Id<GemPurifierFluidDataPayload> ID = new Id<>(MoreOresModInitializer.getId("pos_fluid"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;
@@ -28,12 +28,12 @@ public record GemPurifierFluidData(FluidVariant var, long fluid, BlockPos blockP
         }
     }
 
-    public static final PacketCodec<RegistryByteBuf, GemPurifierFluidData> PACKET_CODEC =
+    public static final PacketCodec<RegistryByteBuf, GemPurifierFluidDataPayload> PACKET_CODEC =
             PacketCodec.tuple(
-                    FluidVariant.PACKET_CODEC, GemPurifierFluidData::var,
-                    PacketCodecs.LONG, GemPurifierFluidData::fluid,
-                    BlockPos.PACKET_CODEC, GemPurifierFluidData::blockPos,
-                    GemPurifierFluidData::new
+                    FluidVariant.PACKET_CODEC, GemPurifierFluidDataPayload::var,
+                    PacketCodecs.LONG, GemPurifierFluidDataPayload::fluid,
+                    BlockPos.PACKET_CODEC, GemPurifierFluidDataPayload::blockPos,
+                    GemPurifierFluidDataPayload::new
             );
 
     @Override

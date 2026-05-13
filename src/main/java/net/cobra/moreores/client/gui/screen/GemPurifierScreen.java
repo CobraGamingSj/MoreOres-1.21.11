@@ -1,25 +1,21 @@
 package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.networking.block.data.PolishingStateData;
 import net.cobra.moreores.client.gui.widget.FluidWidget;
 import net.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.input.KeyInput;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {

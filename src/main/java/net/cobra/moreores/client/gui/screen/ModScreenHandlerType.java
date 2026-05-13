@@ -2,7 +2,6 @@ package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.MoreOresModInitializer;
 import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
-import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.network.RegistryByteBuf;

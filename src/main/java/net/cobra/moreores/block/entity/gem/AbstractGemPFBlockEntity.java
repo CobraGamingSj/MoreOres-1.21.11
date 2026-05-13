@@ -5,7 +5,7 @@ import net.cobra.moreores.block.entity.ImplementedInventory;
 import net.cobra.moreores.block.entity.TickableBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.item.util.GemType;
-import net.cobra.moreores.networking.block.data.GemPFEnergyData;
+import net.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -14,6 +14,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.recipe.ServerRecipeManager;
@@ -46,7 +47,7 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
             markDirty();
 
             for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPFEnergyData(this.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPFEnergyDataPayload(this.amount, getPos()));
             }
         }
     };
@@ -81,19 +82,21 @@ public abstract class AbstractGemPFBlockEntity<P extends CustomPayload> extends 
     }
 
     public GemType detectGem(ItemStack stack) {
-        if (stack.isOf(ModItems.RUBY) || stack.isOf(ModBlocks.RUBY_BLOCK.asItem())) return GemType.RUBY;
-        if (stack.isOf(ModItems.SAPPHIRE) || stack.isOf(ModBlocks.SAPPHIRE_BLOCK.asItem())) return GemType.SAPPHIRE;
-        if (stack.isOf(ModItems.GREEN_SAPPHIRE) || stack.isOf(ModBlocks.GREEN_SAPPHIRE_ORE.asItem())) return GemType.GREEN_SAPPHIRE;
-        if (stack.isOf(ModItems.BLUE_GARNET) || stack.isOf(ModBlocks.BLUE_GARNET_BLOCK.asItem())) return GemType.BLUE_GARNET;
-        if (stack.isOf(ModItems.PINK_GARNET) || stack.isOf(ModBlocks.PINK_GARNET_BLOCK.asItem())) return GemType.PINK_GARNET;
-        if (stack.isOf(ModItems.GREEN_GARNET) || stack.isOf(ModBlocks.GREEN_GARNET_BLOCK.asItem())) return GemType.GREEN_GARNET;
-        if (stack.isOf(ModItems.KYAWTHUITE) || stack.isOf(ModBlocks.KYAWTHUITE_BLOCK.asItem())) return GemType.KYAWTHUITE;
-        if (stack.isOf(ModItems.TOPAZ) || stack.isOf(ModBlocks.TOPAZ_BLOCK.asItem())) return GemType.TOPAZ;
-        if (stack.isOf(ModItems.WHITE_TOPAZ) || stack.isOf(ModBlocks.WHITE_TOPAZ_BLOCK.asItem())) return GemType.WHITE_TOPAZ;
-        if (stack.isOf(ModItems.PERIDOT) || stack.isOf(ModBlocks.PERIDOT_BLOCK.asItem())) return GemType.PERIDOT;
-        if (stack.isOf(ModItems.JADE) || stack.isOf(ModBlocks.JADE_BLOCK.asItem())) return GemType.JADE;
-        if (stack.isOf(ModItems.PYROPE) || stack.isOf(ModBlocks.PYROPE_BLOCK.asItem())) return GemType.PYROPE;
-        return GemType.EMPTY;
+        return switch (stack.getItem()) {
+            case Item i when i == ModItems.RUBY || i == ModBlocks.RUBY_BLOCK.asItem() -> GemType.RUBY;
+            case Item i when i == ModItems.SAPPHIRE || i == ModBlocks.SAPPHIRE_BLOCK.asItem() -> GemType.SAPPHIRE;
+            case Item i when i == ModItems.GREEN_SAPPHIRE || i == ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem() -> GemType.GREEN_SAPPHIRE;
+            case Item i when i == ModItems.BLUE_GARNET || i == ModBlocks.BLUE_GARNET_BLOCK.asItem() -> GemType.BLUE_GARNET;
+            case Item i when i == ModItems.PINK_GARNET || i == ModBlocks.PINK_GARNET_BLOCK.asItem() -> GemType.PINK_GARNET;
+            case Item i when i == ModItems.GREEN_GARNET || i == ModBlocks.GREEN_GARNET_BLOCK.asItem() -> GemType.GREEN_GARNET;
+            case Item i when i == ModItems.KYAWTHUITE || i == ModBlocks.KYAWTHUITE_BLOCK.asItem() -> GemType.KYAWTHUITE;
+            case Item i when i == ModItems.TOPAZ || i == ModBlocks.TOPAZ_BLOCK.asItem() -> GemType.TOPAZ;
+            case Item i when i == ModItems.WHITE_TOPAZ || i == ModBlocks.WHITE_TOPAZ_BLOCK.asItem() -> GemType.WHITE_TOPAZ;
+            case Item i when i == ModItems.PERIDOT || i == ModBlocks.PERIDOT_BLOCK.asItem() -> GemType.PERIDOT;
+            case Item i when i == ModItems.JADE || i == ModBlocks.JADE_BLOCK.asItem() -> GemType.JADE;
+            case Item i when i == ModItems.PYROPE || i == ModBlocks.PYROPE_BLOCK.asItem() -> GemType.PYROPE;
+            default -> GemType.EMPTY;
+         };
     }
 
     public GemType getGem() {

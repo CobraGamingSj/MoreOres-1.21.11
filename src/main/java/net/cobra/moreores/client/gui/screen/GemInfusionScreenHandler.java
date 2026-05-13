@@ -2,7 +2,6 @@ package net.cobra.moreores.client.gui.screen;
 
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
-import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.gem.GemInfusionBlockEntity;
 import net.cobra.moreores.item.ModItems;
 import net.cobra.moreores.registry.ModItemTags;

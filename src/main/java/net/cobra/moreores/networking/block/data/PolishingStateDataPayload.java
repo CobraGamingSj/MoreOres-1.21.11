@@ -9,13 +9,13 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-public record PolishingStateData(BlockPos blockPos, String action) implements CustomPayload {
-    public static final Id<PolishingStateData> ID = new Id<>(Identifier.of(MoreOresModInitializer.MOD_ID, "polishing_state"));
+public record PolishingStateDataPayload(BlockPos blockPos, String action) implements CustomPayload {
+    public static final Id<PolishingStateDataPayload> ID = new Id<>(Identifier.of(MoreOresModInitializer.MOD_ID, "polishing_state"));
 
-    public static final PacketCodec<RegistryByteBuf, PolishingStateData> CODEC = PacketCodec.of((payload, buf) -> {
+    public static final PacketCodec<RegistryByteBuf, PolishingStateDataPayload> CODEC = PacketCodec.of((payload, buf) -> {
         buf.writeBlockPos(payload.blockPos);
         buf.writeString(payload.action);
-    }, buf -> new PolishingStateData(buf.readBlockPos(), buf.readString()));
+    }, buf -> new PolishingStateDataPayload(buf.readBlockPos(), buf.readString()));
 
     public void handle(ServerPlayNetworking.Context context) {
 

@@ -2,7 +2,7 @@ package net.cobra.moreores.block.entity.gem;
 
 import net.cobra.moreores.block.GemPurifierBlock;
 import net.cobra.moreores.block.ModBlocks;
-import net.cobra.moreores.networking.block.data.GemPurifierFluidData;
+import net.cobra.moreores.networking.block.data.GemPurifierFluidDataPayload;
 import net.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.item.util.GemType;
@@ -67,7 +67,7 @@ public class GemPurifierBlockEntity extends AbstractGemPFBlockEntity<GemPurifier
         protected void onFinalCommit() {
             markDirty();
             for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPurifierFluidData(fluidStorage.variant, fluidStorage.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemPurifierFluidDataPayload(fluidStorage.variant, fluidStorage.amount, getPos()));
             }
         }
     };

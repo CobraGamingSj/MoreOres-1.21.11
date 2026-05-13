@@ -54,7 +54,8 @@ public class GemInfusionRecipe implements Recipe<GemInfusionRecipeInput> {
     @Override
     public boolean matches(GemInfusionRecipeInput input, World world) {
         if (world.isClient()) return false;
-        return this.ingredientBefore.test(input.inputBefore()) && this.ingredientAfter.test(input.inputAfter());
+        return this.ingredientBefore.test(input.inputBefore()) && this.ingredientAfter.test(input.inputAfter()) ||
+                this.ingredientAfter.test(input.inputBefore()) && this.ingredientBefore.test(input.inputAfter());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package net.cobra.moreores.client.gui.screen;
 
-import net.cobra.moreores.networking.block.data.PolishingStateData;
+import net.cobra.moreores.networking.block.data.PolishingStateDataPayload;
 import net.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
@@ -78,7 +78,7 @@ public abstract class AbstractGemPFScreen<S extends AbstractGemPFScreenHandler> 
     }
 
     private void sendPolishControlPacket(String action) {
-        ClientPlayNetworking.send(new PolishingStateData(handler.getPos(), action));
+        ClientPlayNetworking.send(new PolishingStateDataPayload(handler.getPos(), action));
     }
 
     protected abstract void renderEnergyHandler(DrawContext context, int x, int y);

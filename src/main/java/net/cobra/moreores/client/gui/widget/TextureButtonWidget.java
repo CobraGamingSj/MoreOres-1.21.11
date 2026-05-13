@@ -1,6 +1,6 @@
 package net.cobra.moreores.client.gui.widget;
 
-import net.cobra.moreores.networking.block.data.GemPurifierButtonClick;
+import net.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
@@ -26,7 +26,7 @@ public class TextureButtonWidget extends ButtonWidget {
 
     @Override
     public void onPress(AbstractInput input) {
-        ClientPlayNetworking.send(new GemPurifierButtonClick(buttonId, pos));
+        ClientPlayNetworking.send(new GemPurifierButtonClickPayload(buttonId, pos));
     }
 
     @Override

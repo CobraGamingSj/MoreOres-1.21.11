@@ -3,7 +3,6 @@ package net.cobra.moreores.block.entity.gem;
 import net.cobra.moreores.block.GemInfusionBlock;
 import net.cobra.moreores.block.ModBlocks;
 import net.cobra.moreores.networking.block.data.GemInfusionDataSynchronizer;
-import net.cobra.moreores.networking.block.data.GemPFEnergyData;
 import net.cobra.moreores.block.entity.ModBlockEntityType;
 import net.cobra.moreores.client.gui.screen.GemInfusionScreenHandler;
 import net.cobra.moreores.item.ModItems;
@@ -228,6 +227,23 @@ public class GemInfusionBlockEntity extends AbstractGemPFBlockEntity<GemInfusion
         return main;
     }
 
+    @Override
+    public GemType detectGem(ItemStack stack) {
+        return switch (stack.getItem()) {
+            case Item i when i == ModItems.CRIMSON_GARNET || i == ModBlocks.CRIMSON_GARNET_BLOCK.asItem() -> GemType.CRIMSON_GARNET;
+            case Item i when i == ModItems.RADIANT_AMETHYST || i == ModBlocks.RADIANT_AMETHYST_BLOCK.asItem() -> GemType.RADIANT_AMETHYST;
+            case Item i when i == ModItems.CRYSTALLITE || i == ModBlocks.CRYSTALLITE_BLOCK.asItem() -> GemType.CRYSTALLITE;
+            case Item i when i == ModItems.LIMESTONE || i == ModBlocks.LIMESTONE_BLOCK.asItem() -> GemType.LIMESTONE;
+            case Item i when i == ModItems.MOONSTONE || i == ModBlocks.MOONSTONE_BLOCK.asItem() -> GemType.MOONSTONE;
+            case Item i when i == ModItems.QUARTSIDIAN || i == ModBlocks.QUARTSIDIAN_BLOCK.asItem() -> GemType.QUARTSIDIAN;
+            case Item i when i == ModItems.ORANGE_ZIRCON || i == ModBlocks.ORANGE_ZIRCON_BLOCK.asItem() -> GemType.ORANGE_ZIRCON;
+            case Item i when i == ModItems.OPAL || i == ModBlocks.OPAL_BLOCK.asItem() -> GemType.OPAL;
+            case Item i when i == ModItems.GRANDIDIERITE || i == ModBlocks.GRANDIDIERITE_BLOCK.asItem() -> GemType.GRANDIDIERITE;
+            case Item i when i == ModItems.RED_BERYL || i == ModBlocks.RED_BERYL_BLOCK.asItem() -> GemType.RED_BERYL;
+            case Item i when i == ModItems.KASHMIR_SAPPHIRE || i == ModBlocks.KASHMIR_SAPPHIRE_BLOCK.asItem() -> GemType.KASHMIR_SAPPHIRE;
+            default -> GemType.EMPTY;
+        };
+    }
 
     // Tick Method
     // Logic per tick

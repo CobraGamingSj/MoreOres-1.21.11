@@ -11,8 +11,8 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 
-public record GemPFEnergyData(long energy, BlockPos blockPos) implements CustomPayload {
-    public static final Id<GemPFEnergyData> ID = new Id<>(MoreOresModInitializer.getId("pos_energy"));
+public record GemPFEnergyDataPayload(long energy, BlockPos blockPos) implements CustomPayload {
+    public static final Id<GemPFEnergyDataPayload> ID = new Id<>(MoreOresModInitializer.getId("pos_energy"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;
@@ -27,11 +27,11 @@ public record GemPFEnergyData(long energy, BlockPos blockPos) implements CustomP
         }
     }
 
-    public static final PacketCodec<RegistryByteBuf, GemPFEnergyData> PACKET_CODEC =
+    public static final PacketCodec<RegistryByteBuf, GemPFEnergyDataPayload> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.LONG, GemPFEnergyData::energy,
-                    BlockPos.PACKET_CODEC, GemPFEnergyData::blockPos,
-                    GemPFEnergyData::new
+                    PacketCodecs.LONG, GemPFEnergyDataPayload::energy,
+                    BlockPos.PACKET_CODEC, GemPFEnergyDataPayload::blockPos,
+                    GemPFEnergyDataPayload::new
             );
 
     @Override
