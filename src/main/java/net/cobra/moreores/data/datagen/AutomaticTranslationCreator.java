@@ -64,7 +64,7 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
 
                 String path = id.getPath();
 
-                String translatedName = formatName(path);
+                String translatedName = MoreOresModInitializer.formatName(path);
 
                 translationBuilder.add(item, translatedName);
             }
@@ -77,22 +77,5 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, "Ruby Upgrade");
         translationBuilder.add(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, "Radiant Upgrade");
         translationBuilder.add(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, "Guardian Armor Trim");
-    }
-
-    private String formatName(String path) {
-        String[] words = path.split("_");
-        StringBuilder builder = new StringBuilder();
-
-        for(int i = 0; i < words.length; i++) {
-            String word = words[i];
-
-            builder.append(Character.toUpperCase(word.charAt(0)))
-                    .append(word.substring(1));
-
-            if(i < words.length - 1) {
-                builder.append(" ");
-            }
-        }
-        return builder.toString();
     }
 }
