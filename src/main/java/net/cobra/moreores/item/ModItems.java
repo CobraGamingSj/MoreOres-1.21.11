@@ -12,10 +12,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
-import java.sql.Time;
-import java.util.Timer;
 import java.util.function.Function;
-import java.util.logging.Logger;
 
 import static net.cobra.moreores.MoreOresModInitializer.*;
 
@@ -66,63 +63,63 @@ public class ModItems {
     public static final Item RED_BERYL = register("red_beryl", s -> new GemItem(s, "beryl"));
     public static final Item KASHMIR_SAPPHIRE = register("kashmir_sapphire", s -> new GemItem(s, "kashmir_sapphire"));
 
-    public static final Item ENERGY_INGOT = register("energy_ingot", new EnergyIngotItem(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("energy_ingot")))));
+    public static final Item ENERGY_INGOT = register("energy_ingot", new EnergyIngotItem(new Item.Settings().fireproof().rarity(Rarity.RARE).registryKey(RegistryKey.of(RegistryKeys.ITEM, id("energy_ingot")))));
 
 
     //  Ruby Tools & Weapons
-    public static final Item RUBY_SWORD = register("ruby_sword", new Item(new Item.Settings().sword(ModToolMaterials.RUBY, 6, -2.1f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_sword")))));
-    public static final Item RUBY_PICKAXE = register("ruby_pickaxe", new Item(new Item.Settings().pickaxe(ModToolMaterials.RUBY,  2, -3.0f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_pickaxe")))));
-    public static final Item RUBY_SHOVEL = register("ruby_shovel", new ShovelItem(ModToolMaterials.RUBY,  2.5F, -3.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_shovel")))));
-    public static final Item RUBY_AXE = register("ruby_axe", new AxeItem(ModToolMaterials.RUBY,  6.0F, -2.1F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_axe")))));
-    public static final Item RUBY_HOE = register("ruby_hoe", new HoeItem(ModToolMaterials.RUBY,  -5.0F, 0.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_hoe")))));
+    public static final Item RUBY_SWORD = register("ruby_sword", new Item(new Item.Settings().sword(ModToolMaterials.RUBY, 6, -2.1f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_sword")))));
+    public static final Item RUBY_PICKAXE = register("ruby_pickaxe", new Item(new Item.Settings().pickaxe(ModToolMaterials.RUBY,  2, -3.0f).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_pickaxe")))));
+    public static final Item RUBY_SHOVEL = register("ruby_shovel", new ShovelItem(ModToolMaterials.RUBY,  2.5F, -3.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_shovel")))));
+    public static final Item RUBY_AXE = register("ruby_axe", new AxeItem(ModToolMaterials.RUBY,  6.0F, -2.1F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_axe")))));
+    public static final Item RUBY_HOE = register("ruby_hoe", new HoeItem(ModToolMaterials.RUBY,  -5.0F, 0.0F, new Item.Settings().fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_hoe")))));
     public static final Item RUBY_SPEAR = register("ruby_spear", new Item(new Item.Settings().spear(ModToolMaterials.RUBY,  1.2F, 1.3F, 0.35F,
                     2.0F, 6.5F, 5.0F, 5.1F, 8.0F, 4.6F)
-            .fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_spear")))));
+            .fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_spear")))));
 
 
     //Ruby Armor
     public static final Item RUBY_HELMET = register(
             "ruby_helmet",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.HELMET).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_helmet"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.HELMET).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_helmet"))))
     );
     public static final Item RUBY_CHESTPLATE = register(
             "ruby_chestplate",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.CHESTPLATE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_chestplate"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.CHESTPLATE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_chestplate"))))
     );
     public static final Item RUBY_LEGGINGS = register(
             "ruby_leggings",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.LEGGINGS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_leggings"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.LEGGINGS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_leggings"))))
     );
     public static final Item RUBY_BOOTS = register(
             "ruby_boots",
-            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.BOOTS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_boots"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.RUBY, EquipmentType.BOOTS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_boots"))))
     );
     public static final Item RUBY_NAUTILUS_ARMOR = register(
             "ruby_nautilus_armor",
-            new Item(new Item.Settings().nautilusArmor(ModArmorMaterials.RUBY).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("ruby_nautilus_armor"))))
+            new Item(new Item.Settings().nautilusArmor(ModArmorMaterials.RUBY).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("ruby_nautilus_armor"))))
     );
 
 
 //    Sapphire Armor
     public static final Item SAPPHIRE_HELMET = register(
             "sapphire_helmet",
-            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.HELMET).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_helmet"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.HELMET).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("sapphire_helmet"))))
     );
     public static final Item SAPPHIRE_CHESTPLATE = register(
             "sapphire_chestplate",
-            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.CHESTPLATE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_chestplate"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.CHESTPLATE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("sapphire_chestplate"))))
     );
     public static final Item SAPPHIRE_LEGGINGS = register(
             "sapphire_leggings",
-            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.LEGGINGS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_leggings"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.LEGGINGS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("sapphire_leggings"))))
     );
     public static final Item SAPPHIRE_BOOTS = register(
             "sapphire_boots",
-            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.BOOTS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_boots"))))
+            new Item(new Item.Settings().armor(ModArmorMaterials.SAPPHIRE, EquipmentType.BOOTS).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("sapphire_boots"))))
     );
     public static final Item SAPPHIRE_NAUTILUS_ARMOR = register(
             "sapphire_nautilus_armor",
-            new Item(new Item.Settings().nautilusArmor(ModArmorMaterials.SAPPHIRE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_nautilus_armor"))))
+            new Item(new Item.Settings().nautilusArmor(ModArmorMaterials.SAPPHIRE).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("sapphire_nautilus_armor"))))
     );
 
 
@@ -167,7 +164,7 @@ public class ModItems {
             s -> new Item(s.fireproof()),
             3.5F, -3.0F, ModToolMaterials.SAPPHIRE);
     public static final Item SAPPHIRE_SPEAR = register("sapphire_spear", new Item(new Item.Settings().spear(ModToolMaterials.SAPPHIRE, 1.25F, 1.4F,
-            0.3F, 1.5F, 6.0F, 4.5F, 5.1F, 7.65F, 4.6F).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, getId("sapphire_spear")))));
+            0.3F, 1.5F, 6.0F, 4.5F, 5.1F, 7.65F, 4.6F).fireproof().registryKey(RegistryKey.of(RegistryKeys.ITEM, id("sapphire_spear")))));
 
 
     //    Radiant Tools & Weapons
@@ -207,31 +204,31 @@ public class ModItems {
             s -> SmithingTemplateItem.of(s.rarity(Rarity.RARE)));
 
     public static Item register(String id, Item item) {
-        return Registry.register(Registries.ITEM, getId(id), item);
+        return Registry.register(Registries.ITEM, id(id), item);
     }
 
     public static Item register(String name, Function<Item.Settings, Item> item) {
-        return Registry.register(Registries.ITEM, getId(name), item.apply(new Item.Settings().registryKey(setRegistryKey(name))));
+        return Registry.register(Registries.ITEM, id(name), item.apply(new Item.Settings().registryKey(itemKey(name))));
     }
 
     public static Item registerSword(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).sword(material, attackDamage, attackSpeed)));
+        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).sword(material, attackDamage, attackSpeed)));
     }
 
     public static Item registerPickaxe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).pickaxe(material, attackDamage, attackSpeed)));
+        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).pickaxe(material, attackDamage, attackSpeed)));
     }
 
     public static Item registerAxe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).axe(material, attackDamage, attackSpeed)));
+        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).axe(material, attackDamage, attackSpeed)));
     }
 
     public static Item registerHoe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).hoe(material, attackDamage, attackSpeed)));
+        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).hoe(material, attackDamage, attackSpeed)));
     }
 
     public static Item registerShovel(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(setRegistryKey(name)).shovel(material, attackDamage, attackSpeed)));
+        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).shovel(material, attackDamage, attackSpeed)));
     }
 
 //    public static Item registerSpear(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {

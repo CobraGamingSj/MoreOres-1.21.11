@@ -16,7 +16,6 @@ import net.minecraft.util.Identifier;
 
 public class VanillaLootTableModifier {
     private static final RegistryKey<LootTable> JUNGLE_PYRAMID_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/jungle_temple"));
-    private static final RegistryKey<LootTable> PLAINS_VILLAGE_HOUSE_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/village_plains_house"));
     private static final RegistryKey<LootTable> PLAINS_VILLAGE_TOOLSMITH_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of("minecraft", "chests/village/village_toolsmith"));
     private static final RegistryKey<LootTable> ELDER_GUARDIAN_KEY = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.ofVanilla("entities/elder_guardian"));
 

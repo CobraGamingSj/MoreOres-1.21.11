@@ -9,7 +9,7 @@ import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
 
-public class CustomTrades {
+public class VillagerTrades {
 
     public static void register() {
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.JEWELLER, 1, factories -> {

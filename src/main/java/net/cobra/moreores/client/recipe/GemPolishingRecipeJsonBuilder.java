@@ -40,7 +40,7 @@ public class GemPolishingRecipeJsonBuilder {
     }
 
     public void offerTo(RecipeExporter exporter, String name) {
-        RegistryKey<Recipe<?>> recipeId = RegistryKey.of(RegistryKeys.RECIPE, MoreOresModInitializer.getId(name + "_polishing"));
+        RegistryKey<Recipe<?>> recipeId = RegistryKey.of(RegistryKeys.RECIPE, MoreOresModInitializer.id(name + "_polishing"));
         this.validate(recipeId);
         Advancement.Builder builder = exporter.getAdvancementBuilder()
                 .criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId))

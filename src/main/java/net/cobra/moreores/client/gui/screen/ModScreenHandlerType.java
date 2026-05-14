@@ -22,7 +22,7 @@ public class ModScreenHandlerType {
             register("gem_infusion_block", GemInfusionScreenHandler::new, GemInfusionDataSynchronizer.PACKET_CODEC);
 
     private static <S extends ScreenHandler, D extends CustomPayload> ExtendedScreenHandlerType<S, D> register(String id, ExtendedScreenHandlerType.ExtendedFactory<S, D> factory, PacketCodec<? super RegistryByteBuf, D> packetCodec) {
-        return Registry.register(Registries.SCREEN_HANDLER, MoreOresModInitializer.getId(id), new ExtendedScreenHandlerType<>(factory, packetCodec));
+        return Registry.register(Registries.SCREEN_HANDLER, MoreOresModInitializer.id(id), new ExtendedScreenHandlerType<>(factory, packetCodec));
     }
 
     public static void register() {

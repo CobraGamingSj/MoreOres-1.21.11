@@ -12,7 +12,7 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 
 public record GemPFEnergyDataPayload(long energy, BlockPos blockPos) implements CustomPayload {
-    public static final Id<GemPFEnergyDataPayload> ID = new Id<>(MoreOresModInitializer.getId("pos_energy"));
+    public static final Id<GemPFEnergyDataPayload> ID = new Id<>(MoreOresModInitializer.id("pos_energy"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;

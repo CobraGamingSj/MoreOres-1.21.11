@@ -14,6 +14,6 @@ public interface ModEquipmentAssetKeys {
     RegistryKey<EquipmentAsset> RADIANT = register("radiant");
 
     static RegistryKey<EquipmentAsset> register(String id) {
-        return RegistryKey.of(REGISTRY_KEY, MoreOresModInitializer.getId(id));
+        return RegistryKey.of(REGISTRY_KEY, MoreOresModInitializer.id(id));
     }
 }

@@ -11,7 +11,6 @@ import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -29,7 +28,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                         ModItems.RUBY, // The display icon
                         Text.translatable("advancement.moreores.gems"), // The title
                         Text.translatable("advancement.moreores.gems.desc"), // The description
-                        MoreOresModInitializer.getId("block/radiant_block"), // Background image used
+                        MoreOresModInitializer.id("block/radiant_block"), // Background image used
                         AdvancementFrame.TASK,
                         true,
                         true,
@@ -56,7 +55,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                         ModItems.RUBY_CHESTPLATE,
                         Text.translatable("advancement.moreores.ruby_armor").formatted(Formatting.DARK_AQUA),
                         Text.translatable("advancement.moreores.ruby_armor.desc"),
-                        MoreOresModInitializer.getId("block/radiant_block"),
+                        MoreOresModInitializer.id("block/radiant_block"),
                         AdvancementFrame.GOAL,
                         true,
                         true,
@@ -71,7 +70,7 @@ public class AdvancementGen extends FabricAdvancementProvider {
                         ModItems.RADIANT_SWORD,
                         Text.translatable("advancement.moreores.radiant_sword").formatted(Formatting.DARK_PURPLE),
                         Text.translatable("advancement.moreores.radiant_sword.desc"),
-                        MoreOresModInitializer.getId("block/radiant_block"),
+                        MoreOresModInitializer.id("block/radiant_block"),
                         AdvancementFrame.CHALLENGE,
                         true,
                         true,

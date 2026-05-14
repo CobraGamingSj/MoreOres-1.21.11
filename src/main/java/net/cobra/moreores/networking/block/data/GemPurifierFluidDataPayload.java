@@ -13,7 +13,7 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 
 public record GemPurifierFluidDataPayload(FluidVariant var, long fluid, BlockPos blockPos) implements CustomPayload {
-    public static final Id<GemPurifierFluidDataPayload> ID = new Id<>(MoreOresModInitializer.getId("pos_fluid"));
+    public static final Id<GemPurifierFluidDataPayload> ID = new Id<>(MoreOresModInitializer.id("pos_fluid"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;

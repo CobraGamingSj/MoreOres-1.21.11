@@ -13,7 +13,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
 public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implements CustomPayload {
-    public static final Id<GemPurifierButtonClickPayload> ID = new Id<>(MoreOresModInitializer.getId("button_click"));
+    public static final Id<GemPurifierButtonClickPayload> ID = new Id<>(MoreOresModInitializer.id("button_click"));
 
     public static final PacketCodec<RegistryByteBuf, GemPurifierButtonClickPayload> PACKET_CODEC =
             PacketCodec.tuple(

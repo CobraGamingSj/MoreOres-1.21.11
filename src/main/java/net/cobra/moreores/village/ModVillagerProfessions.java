@@ -18,21 +18,21 @@ public class ModVillagerProfessions {
     public static final RegistryKey<PointOfInterestType> JEWEL_POI = poiKey("jewel_poi");
     public static final PointOfInterestType JEWEL = registerPoi("jewel_poi", ModBlocks.GEM_PURIFIER_BLOCK);
 
-    public static final RegistryKey<VillagerProfession> JEWELLER = RegistryKey.of(RegistryKeys.VILLAGER_PROFESSION, MoreOresModInitializer.getId("jeweller"));
+    public static final RegistryKey<VillagerProfession> JEWELLER = RegistryKey.of(RegistryKeys.VILLAGER_PROFESSION, MoreOresModInitializer.id("jeweller"));
     public static final VillagerProfession JEWELLER_KEY = registerProfession("jeweller", JEWEL_POI);
 
     private static VillagerProfession registerProfession(String id, RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registries.VILLAGER_PROFESSION, MoreOresModInitializer.getId(id),
+        return Registry.register(Registries.VILLAGER_PROFESSION, MoreOresModInitializer.id(id),
                 new VillagerProfession(Text.literal("Jeweller"), entry -> entry.matchesKey(type), entry -> entry.matchesKey(type),
                         ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_SHEPHERD));
     }
 
     private static PointOfInterestType registerPoi(String id, Block block) {
-        return PointOfInterestHelper.register(MoreOresModInitializer.getId(id), 1, 1, block);
+        return PointOfInterestHelper.register(MoreOresModInitializer.id(id), 1, 1, block);
     }
 
     private static RegistryKey<PointOfInterestType> poiKey(String id) {
-        return RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, MoreOresModInitializer.getId(id));
+        return RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, MoreOresModInitializer.id(id));
     }
 
     public static void register() {

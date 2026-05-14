@@ -30,23 +30,23 @@ public class ModSmithingTemplateItem extends Item {
     }
     public static final Formatting TITLE_FORMATTING = Formatting.GRAY;
     public static final Formatting DESCRIPTION_FORMATTING = Formatting.BLUE;
-    public static final Text INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.ingredients"))).formatted(TITLE_FORMATTING);
-    public static final Text APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.applies_to"))).formatted(TITLE_FORMATTING);
-    private static final Text RUBY_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", MoreOresModInitializer.getId("ruby_upgrade"))).formatted(TITLE_FORMATTING);
-    private static final Text RADIANT_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", MoreOresModInitializer.getId("radiant_upgrade"))).formatted(TITLE_FORMATTING);
+    public static final Text INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.ingredients"))).formatted(TITLE_FORMATTING);
+    public static final Text APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.applies_to"))).formatted(TITLE_FORMATTING);
+    private static final Text RUBY_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", MoreOresModInitializer.id("ruby_upgrade"))).formatted(TITLE_FORMATTING);
+    private static final Text RADIANT_UPGRADE_TEXT = Text.translatable(Util.createTranslationKey("upgrade", MoreOresModInitializer.id("radiant_upgrade"))).formatted(TITLE_FORMATTING);
     private static final Text ARMOR_TRIM_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.applies_to"))).formatted(DESCRIPTION_FORMATTING);
     private static final Text ARMOR_TRIM_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.ingredients"))).formatted(DESCRIPTION_FORMATTING);
     private static final Text ARMOR_TRIM_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.base_slot_description")));
     private static final Text ARMOR_TRIM_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", Identifier.ofVanilla("smithing_template.armor_trim.additions_slot_description")));
-    private static final Text RUBY_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.ruby_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
-    private static final Text RUBY_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.ruby_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
-    private static final Text RUBY_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.netherite_upgrade.base_slot_description")));
-    private static final Text RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.netherite_upgrade.additions_slot_description")));
+    private static final Text RUBY_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.ruby_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RUBY_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.ruby_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RUBY_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.netherite_upgrade.base_slot_description")));
+    private static final Text RUBY_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.netherite_upgrade.additions_slot_description")));
 
-    private static final Text RADIANT_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
-    private static final Text RADIANT_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
-    private static final Text RADIANT_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.base_slot_description")));
-    private static final Text RADIANT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.getId("smithing_template.radiant_upgrade.additions_slot_description")));
+    private static final Text RADIANT_UPGRADE_APPLIES_TO_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.radiant_upgrade.applies_to"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RADIANT_UPGRADE_INGREDIENTS_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.radiant_upgrade.ingredients"))).formatted(DESCRIPTION_FORMATTING);
+    private static final Text RADIANT_UPGRADE_BASE_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.radiant_upgrade.base_slot_description")));
+    private static final Text RADIANT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION_TEXT = Text.translatable(Util.createTranslationKey("item", MoreOresModInitializer.id("smithing_template.radiant_upgrade.additions_slot_description")));
 
     private static final Identifier EMPTY_ARMOR_SLOT_HELMET_TEXTURE = Identifier.ofVanilla("item/empty_armor_slot_helmet");
     private static final Identifier EMPTY_ARMOR_SLOT_CHESTPLATE_TEXTURE = Identifier.ofVanilla("item/empty_armor_slot_chestplate");

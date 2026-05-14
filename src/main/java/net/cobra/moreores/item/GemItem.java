@@ -4,7 +4,6 @@ import net.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -16,7 +15,7 @@ import java.util.function.Consumer;
 
 public class GemItem extends Item {
     public GemItem(Settings settings, String name) {
-        super(settings.rarity(Rarity.RARE).fireproof().trimMaterial(RegistryKey.of(RegistryKeys.TRIM_MATERIAL, MoreOresModInitializer.getId(name))));
+        super(settings.rarity(Rarity.RARE).fireproof().trimMaterial(RegistryKey.of(RegistryKeys.TRIM_MATERIAL, MoreOresModInitializer.id(name))));
     }
 
     @Override

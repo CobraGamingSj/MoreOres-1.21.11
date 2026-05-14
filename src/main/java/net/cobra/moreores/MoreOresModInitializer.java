@@ -17,7 +17,7 @@ import net.cobra.moreores.recipe.display.GemInfusionRecipeDisplay;
 import net.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import net.cobra.moreores.registry.BirthdayRewardState;
 import net.cobra.moreores.sound.ModBlockSoundGroup;
-import net.cobra.moreores.util.CustomTrades;
+import net.cobra.moreores.util.VillagerTrades;
 import net.cobra.moreores.util.VanillaLootTableModifier;
 import net.cobra.moreores.village.ModVillagerProfessions;
 import net.cobra.moreores.world.gen.WorldGeneration;
@@ -54,12 +54,12 @@ public class MoreOresModInitializer implements ModInitializer {
 	public static final String ID = "minecraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static Identifier getId(String id) {
+	public static Identifier id(String id) {
 		return Identifier.of(MOD_ID, id);
 	}
 
-	public static RegistryKey<Item> setRegistryKey(String registryKey) {
-		return RegistryKey.of(RegistryKeys.ITEM, getId(registryKey));
+	public static RegistryKey<Item> itemKey(String registryKey) {
+		return RegistryKey.of(RegistryKeys.ITEM, id(registryKey));
 	}
 
 	public static String formatName(String path) {
@@ -79,12 +79,8 @@ public class MoreOresModInitializer implements ModInitializer {
 		return builder.toString();
 	}
 
-	private static RegistryKey<Block> blockKey(String registryKey) {
-		return RegistryKey.of(RegistryKeys.BLOCK, getId(registryKey));
-	}
-
-	public static RegistryKey<Recipe<?>> setRecipeKey(String recipeName) {
-		return RegistryKey.of(RegistryKeys.RECIPE, getId(recipeName));
+	public static RegistryKey<Recipe<?>> recipeKey(String recipeName) {
+		return RegistryKey.of(RegistryKeys.RECIPE, id(recipeName));
 	}
 
 
@@ -146,7 +142,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			}).build();
 
     public static RegistryKey<Block> setBlockKey(String id) {
-		return RegistryKey.of(RegistryKeys.BLOCK, getId(id));
+		return RegistryKey.of(RegistryKeys.BLOCK, id(id));
     }
 
     @Override
@@ -173,13 +169,13 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		// Gemstones Item Group Registry
-		Registry.register(Registries.ITEM_GROUP, getId("gemstones"), GEMSTONES);
+		Registry.register(Registries.ITEM_GROUP, id("gemstones"), GEMSTONES);
 
 
 		// Fuel Registry
 		FuelRegistryEvents.BUILD.register(((builder, context) -> {
-			builder.add(ModItems.ENERGY_INGOT, 25000);
-			builder.add(ModBlocks.ENERGY_BLOCK, 24500);
+			builder.add(ModItems.ENERGY_INGOT, 24500);
+			builder.add(ModBlocks.ENERGY_BLOCK, 27500);
 		}));
 
 
@@ -199,6 +195,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			ingredientsEventEntries.addAfter(ModItems.RAW_PYROPE, ModItems.RAW_JADE);
 
 			ingredientsEventEntries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE);
+			ingredientsEventEntries.addAfter(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE);
 			ingredientsEventEntries.addAfter(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE);
 			ingredientsEventEntries.addBefore(Items.NETHERITE_INGOT, ModItems.ENERGY_INGOT);
 			ingredientsEventEntries.addAfter(Items.BLAZE_POWDER, ModItems.RADIANT_DUST);
@@ -368,7 +365,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 
 		//CustomTrades
-		CustomTrades.register();
+		VillagerTrades.register();
 
 
 		//ModifyVanillaLootTables
@@ -403,8 +400,8 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModRecipeBookCategories Registry
 		ModRecipeBookCategories.register();
-        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.getId("gem_polishing"), GemPolishingRecipeDisplay.SERIALIZER);
-        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.getId("gem_infusion"), GemInfusionRecipeDisplay.SERIALIZER);
+        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.id("gem_polishing"), GemPolishingRecipeDisplay.SERIALIZER);
+        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.id("gem_infusion"), GemInfusionRecipeDisplay.SERIALIZER);
 
 
 		//EnchantmentEffects Registry
@@ -412,7 +409,7 @@ public class MoreOresModInitializer implements ModInitializer {
 	}
 
 
-	private static void giveBirthdayRewards(ServerPlayerEntity serverPlayer) {
+	public static void giveBirthdayRewards(ServerPlayerEntity serverPlayer) {
 		ServerWorld world = serverPlayer.getEntityWorld();
 		BirthdayRewardState state = BirthdayRewardState.get(world);
 

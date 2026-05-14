@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 
 public record GemPurifierDataSynchronizer(long energy, FluidVariant fluidVariant, long fluid, BlockPos blockPos) implements CustomPayload {
 
-    public static final Id<GemPurifierDataSynchronizer> ID = new Id<>(MoreOresModInitializer.getId("pos_sync"));
+    public static final Id<GemPurifierDataSynchronizer> ID = new Id<>(MoreOresModInitializer.id("pos_sync"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;

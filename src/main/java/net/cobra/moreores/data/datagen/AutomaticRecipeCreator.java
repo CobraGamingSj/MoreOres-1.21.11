@@ -182,7 +182,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         String path = id.getPath();
                         if(path.endsWith("_block")) {
                             String itemName = path.replace("_block", "");
-                            Item item = Registries.ITEM.get(MoreOresModInitializer.getId(itemName));
+                            Item item = Registries.ITEM.get(MoreOresModInitializer.id(itemName));
                             if(block.getDefaultState().isOf(ModBlocks.RADIANT_BLOCK)) {
                                 createShaped(RecipeCategory.MISC, ModItems.RADIANT, 1)
                                         .pattern("aaa")
@@ -192,7 +192,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                                         .input('b', Items.DIAMOND)
                                         .criterion(hasItem(ModBlocks.RUBY_BLOCK), conditionsFromItem(ModBlocks.RUBY_BLOCK))
                                         .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
-                                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RADIANT) + "_from_ruby"));
+                                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RADIANT) + "_from_ruby"));
                                 offerReversibleCompactingRecipes(RecipeCategory.MISC, ModItems.RADIANT, RecipeCategory.MISC, ModBlocks.RADIANT_BLOCK);
                                 continue;
                             }
@@ -205,12 +205,12 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                                         .input('b', Blocks.TNT)
                                         .criterion(hasItem(ModItems.RADIANT), conditionsFromItem(ModItems.RADIANT))
                                         .criterion(hasItem(Blocks.TNT), conditionsFromItem(Blocks.TNT))
-                                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModBlocks.ENERGY_BLOCK) + "_from_radiant"));
+                                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModBlocks.ENERGY_BLOCK) + "_from_radiant"));
 
                                 createShapeless(RecipeCategory.MISC, ModItems.ENERGY_INGOT, 9)
                                         .criterion(hasItem(ModBlocks.ENERGY_BLOCK), conditionsFromItem(ModItems.ENERGY_INGOT))
                                         .input(ModItems.ENERGY_INGOT)
-                                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.ENERGY_INGOT)));
+                                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.ENERGY_INGOT)));
                                 continue;
                             }
 
@@ -233,7 +233,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                             .input('b', inputItem)
                             .criterion(hasItem(ModItems.SAPPHIRE),  conditionsFromItem(ModItems.SAPPHIRE))
                             .criterion(hasItem(inputItem), conditionsFromItem(inputItem))
-                            .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(outputItem)));
+                            .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(outputItem)));
                 }
 
                 for (Map.Entry<Item, SmithingData> entry : SMITHING_DATA.entrySet()) {
@@ -247,7 +247,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                             ? RecipeCategory.TOOLS : RecipeCategory.COMBAT;
                     SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItem(template), Ingredient.ofItem(baseItem), ingredientFromTag(tag), category, result)
                             .criterion(hasItem(ModItems.RUBY), conditionsFromTag(tag))
-                            .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(result) + "_smithing"));
+                            .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(result) + "_smithing"));
                 }
 
                 for (var entry: SMELTABLES.entrySet()) {
@@ -329,7 +329,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .input('b', ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)
                         .input('c', Blocks.STONE)
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
-                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE) + "_duplication"));
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE) + "_duplication"));
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, 2)
                         .pattern("aba")
@@ -339,7 +339,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .input('b', ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)
                         .input('c', ModBlocks.RUBY_BLOCK)
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
-                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE) + "_duplication"));
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE) + "_duplication"));
 
                 createShaped(RecipeCategory.MISC, ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)
                         .pattern("aba")
@@ -350,7 +350,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .input('c', ModItems.RUBY)
                         .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
                         .criterion(hasItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)));
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE)));
 
                 createShaped(RecipeCategory.MISC, ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)
                         .pattern("aba")
@@ -361,7 +361,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .input('c', ModItems.SAPPHIRE)
                         .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
                         .criterion(hasItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))
-                        .offerTo(exporter, MoreOresModInitializer.setRecipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)));
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)));
             }
         };
     }

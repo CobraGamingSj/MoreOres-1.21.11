@@ -100,7 +100,7 @@ public class ModBlocks {
 
     public static Block register(String id, Block block) {
         registerBlockItem(id, block);
-        Identifier ID = MoreOresModInitializer.getId(id);
+        Identifier ID = MoreOresModInitializer.id(id);
 
         return Registry.register(Registries.BLOCK, ID, block);
     }
@@ -110,16 +110,16 @@ public class ModBlocks {
     }
 
     public static Block registerSolidBlock(String id, Function<AbstractBlock.Settings, Block> blockFunction, float strength, float resistance) {
-        Identifier ID = MoreOresModInitializer.getId(id);
+        Identifier ID = MoreOresModInitializer.id(id);
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.setBlockKey(id)).strength(strength, resistance);
         Block block = Registry.register(Registries.BLOCK, ID, blockFunction.apply(settings));
-        Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(MoreOresModInitializer.setRegistryKey(id)).useBlockPrefixedTranslationKey()));
+        Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(MoreOresModInitializer.itemKey(id)).useBlockPrefixedTranslationKey()));
 
         return block;
     }
 
     public static void registerBlockItem(String id, Block block) {
-        Identifier ID = MoreOresModInitializer.getId(id);
+        Identifier ID = MoreOresModInitializer.id(id);
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, ID);
         Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(key).useBlockPrefixedTranslationKey()));
     }
