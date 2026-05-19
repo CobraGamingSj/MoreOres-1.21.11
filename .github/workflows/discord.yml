@@ -17,9 +17,9 @@ jobs:
           MODRINTH_URL="https://modrinth.com/mod/moreores+/version/$VERSION"
           CURSEFORGE_URL="https://www.curseforge.com/minecraft/mc-mods/moreores-plus-fabric/files"
 
-          MESSAGE="New version released : $VERSION
+          MESSAGE="New version released: $VERSION
 
-          Modrinth: $MODRINTH_URL
+          Modrinth: "https://modrinth.com/mod/moreores+/version/$VERSION"
           CurseForge: $CURSEFORGE_URL"
 
           curl -H "Content-Type: application/json" \
