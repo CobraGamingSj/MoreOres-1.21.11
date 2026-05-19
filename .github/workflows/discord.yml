@@ -11,18 +11,13 @@ jobs:
     steps:
       - name: Send Discord Release Msg
         run: |
-          
-          VERSION=${GITHUB_REF_NAME#v}
+          VERSION="${GITHUB_REF_NAME#v}"
 
-          MODRINTH_URL="https://modrinth.com/mod/moreores+/version/$VERSION"
-          CURSEFORGE_URL="https://www.curseforge.com/minecraft/mc-mods/moreores-plus-fabric/files"
+          MESSAGE="New release published: $VERSION\n\nGitHub Release:\n${{ github.event.release.html_url }}\n\nModrinth:\nhttps://modrinth.com/mod/moreores+/versions/$VERSION\n\nCurseForge:\nhttps://www.curseforge.com/minecraft/mc-mods/moreores-plus-fabric/files"
 
-          MESSAGE="New version released: $VERSION
-
-          Modrinth: "https://modrinth.com/mod/moreores+/version/$VERSION"
-          CurseForge: $CURSEFORGE_URL"
+          PAYLOAD=$(jq -n --arg content "$MESSAGE" '{content: $content}')
 
           curl -H "Content-Type: application/json" \
-          -X POST \
-          -d "{\"content\":\"$MESSAGE\"}" \
-          ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+            -X POST \
+            -d "$PAYLOAD" \
+            "${{ secrets.DISCORD_RELEASE_WEBHOOK }}"
