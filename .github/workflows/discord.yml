@@ -17,47 +17,27 @@ jobs:
 
           VERSION="${GITHUB_REF_NAME#v}"
 
-          RESPONSE=$(curl -s "https://api.modrinth.com/v2/project/moreores+/version")
+          # IMPORTANT: fix this if your slug is different
+          PROJECT="moreores"
 
-          CHANGELOG=$(echo "$RESPONSE" | python3 - <<'EOF'
-  import sys, json
-  
-  data = json.load(sys.stdin)
-  
-  # take latest version
-  latest = data[0]
-  
-  print(latest.get("changelog") or "No changelog provided.")
-  EOF
-  )
-  
-  MODRINTH_VERSION=$(echo "$RESPONSE" | python3 - <<'EOF'
-  import sys, json
-  
-  data = json.load(sys.stdin)
-  print(data[0]["version_number"])
-  EOF
-  )
-  
-  MODRINTH_URL="https://modrinth.com/mod/moreores+/version/${MODRINTH_VERSION}"
-  
-  PAYLOAD=$(python3 - <<EOF
-  import json
+          DATA=$(curl -s "https://api.modrinth.com/v2/project/${PROJECT}/version")
 
-content = f"""**New Release: {VERSION}**
+          CHANGELOG=$(echo "$DATA" | jq -r '.[0].changelog // "No changelog provided."')
+          MOD_VERSION=$(echo "$DATA" | jq -r '.[0].version_number')
 
-  **Modrinth Version:** {MODRINTH_VERSION}
-  
-  **Changelog:**
-  {CHANGELOG}
-  
-  **Modrinth:**
-  {MODRINTH_URL}
-  """
+          MODRINTH_URL="https://modrinth.com/mod/${PROJECT}/version/${MOD_VERSION}"
 
-print(json.dumps({"content": content}))
-  EOF
-  )
+          PAYLOAD=$(jq -n \
+            --arg content "**New Release: $VERSION
+
+Modrinth Version: $MOD_VERSION
+
+Changelog:
+  $CHANGELOG
+
+Modrinth:
+  $MODRINTH_URL**" \
+  '{content: $content}')
 
 curl -H "Content-Type: application/json" \
   -X POST \
