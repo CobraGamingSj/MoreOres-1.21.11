@@ -1,0 +1,18 @@
+name: Discord Bug Report Notifications
+on:
+  issues:
+    types: [opened, closed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Issue Msg
+        run: |
+          MESSAGE="Issue #${{ github.event.issue.number }} ${{ github.event.action }}: ${{ github.event.issuse.title }}"
+          
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\"content\":"$MESSAGE\"}" \
+          ${{ secrets.DISCORD_BUG_REPORT_WEBHOOK }}
