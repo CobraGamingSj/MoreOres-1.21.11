@@ -1,19 +1,19 @@
-name: Discord Bug Report Notifications
+name: Discord Release Notifications
 
 on:
-  issues:
-    types: [opened, closed]
+  release:
+    types: [published]
 
 jobs:
   notify:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Discord Issue Msg
+      - name: Send Discord Release Msg
         run: |
-          MESSAGE="Issue #${{ github.event.issue.number }} ${{ github.event.action }}: ${{ github.event.issue.title }} - ${{ github.event.issue.html_url }}"
+          MESSAGE="New version released ${{ github.event.release.name }} - ${{ github.event.release.html_url }}"
 
           curl -H "Content-Type: application/json" \
           -X POST \
           -d "{\"content\":\"$MESSAGE\"}" \
-          ${{ secrets.DISCORD_BUG_REPORT_WEBHOOK }}
+          ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
