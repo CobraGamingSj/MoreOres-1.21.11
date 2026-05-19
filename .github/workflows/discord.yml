@@ -13,11 +13,21 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
 
-          MESSAGE="New release published: $VERSION\n\nGitHub Release:\n${{ github.event.release.html_url }}\n\nModrinth:\nhttps://modrinth.com/mod/moreores+/versions/$VERSION\n\nCurseForge:\nhttps://www.curseforge.com/minecraft/mc-mods/moreores-plus-fabric/files"
+          MESSAGE=$(cat <<EOF
+          New release published in ${{ github.repository }}: $VERSION
 
-          PAYLOAD=$(jq -n --arg content "$MESSAGE" '{content: $content}')
+          GitHub Release:
+          ${{ github.event.release.html_url }}
+
+          Modrinth:
+          https://modrinth.com/mod/moreores+/version/${VERSION}
+
+          CurseForge:
+          https://www.curseforge.com/minecraft-mc-mods/moreores/files
+          EOF
+          )
 
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "$PAYLOAD" \
+            -d "{\"content\": $(echo "$MESSAGE" | jq -Rs .)}" \
             "${{ secrets.DISCORD_RELEASE_WEBHOOK }}"
