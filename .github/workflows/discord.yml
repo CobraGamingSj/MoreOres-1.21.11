@@ -9,25 +9,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Discord Release Msg
+      - name: Send Discord Release Msg (Modrinth changelog)
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
         run: |
+          set -e
+
           VERSION="${GITHUB_REF_NAME#v}"
 
-          MESSAGE=$(cat <<EOF
-          New release published in ${{ github.repository }}: $VERSION
+          RESPONSE=$(curl -s "https://api.modrinth.com/v2/project/moreores+/version")
 
-          GitHub Release:
-          ${{ github.event.release.html_url }}
+          CHANGELOG=$(echo "$RESPONSE" | python3 - <<'EOF'
+  import sys, json
+  
+  data = json.load(sys.stdin)
+  
+  # take latest version
+  latest = data[0]
+  
+  print(latest.get("changelog") or "No changelog provided.")
+  EOF
+  )
+  
+  MODRINTH_VERSION=$(echo "$RESPONSE" | python3 - <<'EOF'
+  import sys, json
+  
+  data = json.load(sys.stdin)
+  print(data[0]["version_number"])
+  EOF
+  )
+  
+  MODRINTH_URL="https://modrinth.com/mod/moreores+/version/${MODRINTH_VERSION}"
+  
+  PAYLOAD=$(python3 - <<EOF
+  import json
 
-          Modrinth:
-          https://modrinth.com/mod/moreores+/version/${VERSION}
+content = f"""**New Release: {VERSION}**
 
-          CurseForge:
-          https://www.curseforge.com/minecraft-mc-mods/moreores/files
-          EOF
-          )
+  **Modrinth Version:** {MODRINTH_VERSION}
+  
+  **Changelog:**
+  {CHANGELOG}
+  
+  **Modrinth:**
+  {MODRINTH_URL}
+  """
 
-          curl -H "Content-Type: application/json" \
-            -X POST \
-            -d "{\"content\": $(echo "$MESSAGE" | jq -Rs .)}" \
-            "${{ secrets.DISCORD_RELEASE_WEBHOOK }}"
+print(json.dumps({"content": content}))
+  EOF
+  )
+
+curl -H "Content-Type: application/json" \
+  -X POST \
+  -d "$PAYLOAD" \
+  "$WEBHOOK"
