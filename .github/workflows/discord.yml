@@ -11,7 +11,16 @@ jobs:
     steps:
       - name: Send Discord Release Msg
         run: |
-          MESSAGE="New version released ${{ github.event.release.name }} - ${{ github.event.release.html_url }}"
+          
+          VERSION=${GITHUB_REF_NAME#v}
+
+          MODRINTH_URL="https://modrinth.com/mod/moreores+/version/$VERSION"
+          CURSEFORGE_URL="https://www.curseforge.com/minecraft/mc-mods/moreores-plus-fabric/files"
+
+          MESSAGE="New version released : $VERSION
+
+          Modrinth: $MODRINTH_URL
+          CurseForge: $CURSEFORGE_URL"
 
           curl -H "Content-Type: application/json" \
           -X POST \
