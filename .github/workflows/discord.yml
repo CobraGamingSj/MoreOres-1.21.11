@@ -9,37 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Discord Release Msg (Modrinth changelog)
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+      - name: Send Discord Release Msg
         run: |
-          set -e
+          
+          MESSAGE="New version released: ${{ github.event.release.name }} - ${{ github.event.release.html_url }}"
 
-          VERSION="${GITHUB_REF_NAME#v}"
-
-          # IMPORTANT: fix this if your slug is different
-          PROJECT="moreores"
-
-          DATA=$(curl -s "https://api.modrinth.com/v2/project/${PROJECT}/version")
-
-          CHANGELOG=$(echo "$DATA" | jq -r '.[0].changelog // "No changelog provided."')
-          MOD_VERSION=$(echo "$DATA" | jq -r '.[0].version_number')
-
-          MODRINTH_URL="https://modrinth.com/mod/${PROJECT}/version/${MOD_VERSION}"
-
-          PAYLOAD=$(jq -n \
-            --arg content "**New Release: $VERSION
-
-Modrinth Version: $MOD_VERSION
-
-Changelog:
-  $CHANGELOG
-
-Modrinth:
-  $MODRINTH_URL**" \
-  '{content: $content}')
-
-curl -H "Content-Type: application/json" \
-  -X POST \
-  -d "$PAYLOAD" \
-  "$WEBHOOK"
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\"content\":\"$MESSAGE\"}" \
+          ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
