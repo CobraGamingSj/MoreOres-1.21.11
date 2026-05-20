@@ -1,12 +1,16 @@
-package net.cobra.moreores.block;
+package org.cobra.moreores.block;
 
 import com.mojang.serialization.MapCodec;
-import net.cobra.moreores.MoreOresModInitializer;
-import net.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
-import net.cobra.moreores.block.entity.TickableBlockEntity;
-import net.cobra.moreores.item.util.GemType;
-import net.cobra.moreores.item.ModItems;
-import net.cobra.moreores.registry.ModItemTags;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.util.Window;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
+import org.cobra.moreores.block.entity.TickableBlockEntity;
+import org.cobra.moreores.item.util.GemType;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.networking.block.data.GemPurifierBlockData;
+import org.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -32,6 +36,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
 
 public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
@@ -89,7 +94,7 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
                     world.scheduleBlockTick(pos, this, 4);
                 } else {
                     world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
-                    MoreOresModInitializer.LOGGER.info("Receiving Redstone Signal at BlockPos: '{}'", pos);
+                    MoreOresModInitializer.LOGGER.info("Receiving Redstone Signal at [{}, {}, {}]", pos.getX(), pos.getY(), pos.getZ());
                 }
             }
         }
@@ -112,62 +117,19 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-
-        if(MinecraftClient.getInstance().isAltPressed()) {
-
-            ItemStack heldStack = player.getStackInHand(Hand.MAIN_HAND);
-
-            if(!heldStack.isEmpty() && world.getBlockEntity(pos) instanceof GemPurifierBlockEntity be) {
-                ItemStack energyStack = be.getStack(GemPurifierBlockEntity.ENERGY_SOURCE_SLOT);
-                ItemStack fluidStack = be.getStack(GemPurifierBlockEntity.WATER_SOURCE_SLOT);
-                ItemStack inputStack = be.getStack(GemPurifierBlockEntity.INGREDIENT_SLOT);
-
-                if(!world.isClient()) {
-                    if((heldStack.getItem() == ModItems.ENERGY_INGOT || heldStack.getItem() == ModBlocks.ENERGY_BLOCK.asItem())) {
-                        if(energyStack.isEmpty()) {
-                            be.setStack(GemPurifierBlockEntity.ENERGY_SOURCE_SLOT, heldStack.copyWithCount(heldStack.getCount()));
-                            heldStack.decrement(heldStack.getCount());
-                        } else if (ItemStack.areItemsEqual(energyStack, heldStack) && energyStack.getCount() < energyStack.getMaxCount()) {
-                            energyStack.increment(heldStack.getCount());
-                            heldStack.decrement(heldStack.getCount());
-                            be.markDirty();
-                        }
-                    }
-
-                    if(heldStack.isOf(Items.WATER_BUCKET)) {
-                        if(fluidStack.isEmpty()) {
-                            be.setStack(GemPurifierBlockEntity.WATER_SOURCE_SLOT, heldStack.copy());
-                            heldStack.decrement(1);
-                        } else if (ItemStack.areItemsEqual(fluidStack, heldStack)) {
-                            fluidStack.increment(heldStack.getCount());
-                            heldStack.decrement(heldStack.getCount());
-                            be.markDirty();
-                        }
-                    }
-
-                    if(heldStack.isIn(ModItemTags.RAW_GEMSTONE)) {
-                        if(inputStack.isEmpty()) {
-                            be.setStack(GemPurifierBlockEntity.INGREDIENT_SLOT, heldStack.copyWithCount(heldStack.getCount()));
-                            heldStack.decrement(heldStack.getCount());
-                        } else if (ItemStack.areItemsEqual(inputStack, heldStack)) {
-                            inputStack.increment(heldStack.getCount());
-                            heldStack.decrement(heldStack.getCount());
-                            be.markDirty();
-                        }
-                    }
-                }
-                return ActionResult.SUCCESS;
+        if(world.isClient()) {
+            Window handle = MinecraftClient.getInstance().getWindow();
+            boolean alt = InputUtil.isKeyPressed(handle, GLFW.GLFW_KEY_LEFT_ALT);
+            if(alt) {
+                ClientPlayNetworking.send(new GemPurifierBlockData(GLFW.GLFW_KEY_LEFT_ALT, pos));
+                return ActionResult.CONSUME;
             }
-        }
-
-        if(!world.isClient()){
+        } else {
             NamedScreenHandlerFactory screenHandlerFactory = ((GemPurifierBlockEntity) world.getBlockEntity(pos));
-
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
             }
         }
-
         return ActionResult.SUCCESS;
     }
 
