@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_crystallizing",
+  "gemAfter": "moreores:radiant",
+  "gemBefore": "moreores:sapphire_block",
+  "infusedGem": {
+    "count": 1,
+    "id": "moreores:kashmir_sapphire_block"
+  }
+}

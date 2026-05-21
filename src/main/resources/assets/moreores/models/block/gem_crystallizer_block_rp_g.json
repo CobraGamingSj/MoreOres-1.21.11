@@ -1,0 +1,6 @@
+{
+	"parent": "moreores:block/gem_crystallizer_block_rp",
+	"textures": {
+		"body": "moreores:block/gem_crystallizer/body_rp_gem"
+	}
+}

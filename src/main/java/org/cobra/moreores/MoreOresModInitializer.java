@@ -1,5 +1,6 @@
 package org.cobra.moreores;
 
+import net.cobra.api.talents.util.Talent;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
 import org.cobra.moreores.client.gui.screen.ModScreenHandlerType;
@@ -8,13 +9,14 @@ import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.ModC2SNetworks;
 import org.cobra.moreores.networking.ModS2CNetworks;
 import org.cobra.moreores.networking.ModS2CPayloadRegistry;
+import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
 import org.cobra.moreores.networking.block.data.GemPurifierBlockData;
 import org.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
 import org.cobra.moreores.networking.block.data.PolishingStateDataPayload;
-import org.cobra.moreores.recipe.GemInfusionRecipe;
+import org.cobra.moreores.recipe.GemCrystallizerRecipe;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
 import org.cobra.moreores.recipe.book.ModRecipeBookCategories;
-import org.cobra.moreores.recipe.display.GemInfusionRecipeDisplay;
+import org.cobra.moreores.recipe.display.GemCrystallizingRecipeDisplay;
 import org.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
 import org.cobra.moreores.registry.BirthdayRewardState;
 import org.cobra.moreores.sound.ModBlockSoundGroup;
@@ -305,7 +307,7 @@ public class MoreOresModInitializer implements ModInitializer {
 			functionalEventEntries.addAfter(Blocks.BLAST_FURNACE, ModBlocks.ENERGY_BLOCK);
 			functionalEventEntries.addAfter(Blocks.REDSTONE_LAMP, ModBlocks.RUBY_LAMP);
 			functionalEventEntries.addAfter(Blocks.SMITHING_TABLE, ModBlocks.GEM_PURIFIER_BLOCK);
-			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GEM_INFUSION_BLOCK);
+			functionalEventEntries.addAfter(ModBlocks.GEM_PURIFIER_BLOCK, ModBlocks.GE_CRYSTALLIZER_BLOCK);
 		});
 
 
@@ -383,10 +385,10 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//ModRecipes Registry
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Type.ID), GemPurifierRecipe.Type.INSTANCE);
-        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemInfusionRecipe.Type.ID), GemInfusionRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, GemCrystallizerRecipe.Type.ID), GemCrystallizerRecipe.Type.INSTANCE);
         LOGGER.info("Loading ModRecipeType for " + MOD_ID + " mod.");
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemPurifierRecipe.Serializer.ID), GemPurifierRecipe.Serializer.INSTANCE);
-        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemInfusionRecipe.Serializer.ID), GemInfusionRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(MoreOresModInitializer.MOD_ID, GemCrystallizerRecipe.Serializer.ID), GemCrystallizerRecipe.Serializer.INSTANCE);
         LOGGER.info("Loading ModRecipeSerializer for" + MOD_ID + " mod.");
 
 
@@ -397,13 +399,14 @@ public class MoreOresModInitializer implements ModInitializer {
 		PayloadTypeRegistry.playC2S().register(GemPurifierButtonClickPayload.ID, GemPurifierButtonClickPayload.PACKET_CODEC);
 		PayloadTypeRegistry.playC2S().register(PolishingStateDataPayload.ID, PolishingStateDataPayload.PACKET_CODEC);
 		PayloadTypeRegistry.playC2S().register(GemPurifierBlockData.ID, GemPurifierBlockData.PACKET_CODEC);
+		PayloadTypeRegistry.playC2S().register(GemCrystallizerBlockData.ID, GemCrystallizerBlockData.PACKET_CODEC);
 		ModC2SNetworks.registerServerC2S();
 
 
 		//ModRecipeBookCategories Registry
 		ModRecipeBookCategories.register();
         Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.id("gem_polishing"), GemPolishingRecipeDisplay.SERIALIZER);
-        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.id("gem_infusion"), GemInfusionRecipeDisplay.SERIALIZER);
+        Registry.register(Registries.RECIPE_DISPLAY, MoreOresModInitializer.id("gem_crystallizer"), GemCrystallizingRecipeDisplay.SERIALIZER);
 
 
 		//EnchantmentEffects Registry

@@ -1,9 +1,0 @@
-{
-  "type": "moreores:gem_infusing",
-  "gemAfter": "moreores:radiant",
-  "gemBefore": "moreores:jade",
-  "infusedGem": {
-    "count": 1,
-    "id": "moreores:grandidierite"
-  }
-}

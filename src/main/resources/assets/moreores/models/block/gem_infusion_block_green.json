@@ -1,6 +1,0 @@
-{
-	"parent": "moreores:block/gem_infusion_block_g",
-	"textures": {
-		"output_tray": "moreores:block/output_tray/ot_tray_green"
-	}
-}

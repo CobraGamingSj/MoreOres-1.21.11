@@ -18,13 +18,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.cobra.moreores.MoreOresModInitializer"
+      "org.cobra.moreores.MoreOresModInitializer"
     ],
     "client": [
-      "net.cobra.moreores.client.MoreOresClientModInitializer"
+      "org.cobra.moreores.client.MoreOresClientModInitializer"
     ],
     "fabric-datagen": [
-      "net.cobra.moreores.MoreOresDataGenerator"
+      "org.cobra.moreores.MoreOresDataGenerator"
     ]
   },
   "mixins": [
@@ -34,6 +34,7 @@
       "fabricloader": ">=0.13.0",
 		"minecraft": "~1.21.11",
 		"java": ">=21",
-		"fabric-api": ">=0.139.4+1.21.11"
+		"fabric-api": ">=0.139.4+1.21.11",
+        "talents-api": "${talents_version}"
 	}
 }

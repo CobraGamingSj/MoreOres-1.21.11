@@ -1,9 +1,0 @@
-{
-  "type": "moreores:gem_infusing",
-  "gemAfter": "moreores:radiant",
-  "gemBefore": "moreores:pyrope_block",
-  "infusedGem": {
-    "count": 1,
-    "id": "moreores:red_beryl_block"
-  }
-}

@@ -1,0 +1,166 @@
+{
+  "variants": {
+
+    "facing=north,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=crystallite": { "model": "moreores:block/gem_crystallizer_block_crystallite", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=crystallite":  { "model": "moreores:block/gem_crystallizer_block_rp_crystallite", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=crimson_garnet": { "model": "moreores:block/gem_crystallizer_block_crimson_garnet", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=crimson_garnet":  { "model": "moreores:block/gem_crystallizer_block_rp_crimson_garnet", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=radiant_amethyst": { "model": "moreores:block/gem_crystallizer_block_radiant_amethyst", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=radiant_amethyst":  { "model": "moreores:block/gem_crystallizer_block_rp_radiant_amethyst", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=limestone": { "model": "moreores:block/gem_crystallizer_block_limestone", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=limestone":  { "model": "moreores:block/gem_crystallizer_block_rp_limestone", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=quartsidian": { "model": "moreores:block/gem_crystallizer_block_quartsidian", "y": 90 },
+    "facing=north,redstone_powered=true,is_crystallizing=quartsidian":  { "model": "moreores:block/gem_crystallizer_block_rp_quartsidian", "y": 90 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=orange_zircon": { "model": "moreores:block/gem_crystallizer_block_orange", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=orange_zircon":  { "model": "moreores:block/gem_crystallizer_block_rp_orange", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=moonstone": { "model": "moreores:block/gem_crystallizer_block_moonstone", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=moonstone":  { "model": "moreores:block/gem_crystallizer_block_rp_moonstone", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c", "y": 180 },
+
+    "facing=north,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl", "y": 180 }
+
+  ,
+
+    "facing=south,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block"},
+    "facing=south,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red"},
+    "facing=south,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire"},
+    "facing=south,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=crystallite": { "model": "moreores:block/gem_crystallizer_block_crystallite"},
+    "facing=south,redstone_powered=true,is_crystallizing=crystallite":  { "model": "moreores:block/gem_crystallizer_block_rp_crystallite"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=crimson_garnet": { "model": "moreores:block/gem_crystallizer_block_crimson_garnet"},
+    "facing=south,redstone_powered=true,is_crystallizing=crimson_garnet":  { "model": "moreores:block/gem_crystallizer_block_rp_crimson_garnet"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=radiant_amethyst": { "model": "moreores:block/gem_crystallizer_block_radiant_amethyst"},
+    "facing=south,redstone_powered=true,is_crystallizing=radiant_amethyst":  { "model": "moreores:block/gem_crystallizer_block_rp_radiant_amethyst"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=limestone": { "model": "moreores:block/gem_crystallizer_block_limestone"},
+    "facing=south,redstone_powered=true,is_crystallizing=limestone":  { "model": "moreores:block/gem_crystallizer_block_rp_limestone"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=quartsidian": { "model": "moreores:block/gem_crystallizer_block_quartsidian", "y": 90 },
+    "facing=south,redstone_powered=true,is_crystallizing=quartsidian":  { "model": "moreores:block/gem_crystallizer_block_rp_quartsidian", "y": 90 },
+
+    "facing=south,redstone_powered=false,is_crystallizing=orange_zircon": { "model": "moreores:block/gem_crystallizer_block_orange"},
+    "facing=south,redstone_powered=true,is_crystallizing=orange_zircon":  { "model": "moreores:block/gem_crystallizer_block_rp_orange"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=moonstone": { "model": "moreores:block/gem_crystallizer_block_moonstone"},
+    "facing=south,redstone_powered=true,is_crystallizing=moonstone":  { "model": "moreores:block/gem_crystallizer_block_rp_moonstone"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal"},
+    "facing=south,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c"},
+    "facing=south,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c"},
+
+    "facing=south,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl"},
+    "facing=south,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl"}
+
+  ,
+
+    "facing=east,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=crystallite": { "model": "moreores:block/gem_crystallizer_block_crystallite", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=crystallite":  { "model": "moreores:block/gem_crystallizer_block_rp_crystallite", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=crimson_garnet": { "model": "moreores:block/gem_crystallizer_block_crimson_garnet", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=crimson_garnet":  { "model": "moreores:block/gem_crystallizer_block_rp_crimson_garnet", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=radiant_amethyst": { "model": "moreores:block/gem_crystallizer_block_radiant_amethyst", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=radiant_amethyst":  { "model": "moreores:block/gem_crystallizer_block_rp_radiant_amethyst", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=limestone": { "model": "moreores:block/gem_crystallizer_block_limestone", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=limestone":  { "model": "moreores:block/gem_crystallizer_block_rp_limestone", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=quartsidian": { "model": "moreores:block/gem_crystallizer_block_quartsidian", "y": 90 },
+    "facing=east,redstone_powered=true,is_crystallizing=quartsidian":  { "model": "moreores:block/gem_crystallizer_block_rp_quartsidian", "y": 90 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=orange_zircon": { "model": "moreores:block/gem_crystallizer_block_orange", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=orange_zircon":  { "model": "moreores:block/gem_crystallizer_block_rp_orange", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=moonstone": { "model": "moreores:block/gem_crystallizer_block_moonstone", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=moonstone":  { "model": "moreores:block/gem_crystallizer_block_rp_moonstone", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c", "y": 270 },
+
+    "facing=east,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl", "y": 270 }
+
+  ,
+
+    "facing=west,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=crystallite": { "model": "moreores:block/gem_crystallizer_block_crystallite", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=crystallite":  { "model": "moreores:block/gem_crystallizer_block_rp_crystallite", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=crimson_garnet": { "model": "moreores:block/gem_crystallizer_block_crimson_garnet", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=crimson_garnet":  { "model": "moreores:block/gem_crystallizer_block_rp_crimson_garnet", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=radiant_amethyst": { "model": "moreores:block/gem_crystallizer_block_radiant_amethyst", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=radiant_amethyst":  { "model": "moreores:block/gem_crystallizer_block_rp_radiant_amethyst", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=limestone": { "model": "moreores:block/gem_crystallizer_block_limestone", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=limestone":  { "model": "moreores:block/gem_crystallizer_block_rp_limestone", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=quartsidian": { "model": "moreores:block/gem_crystallizer_block_quartsidian", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=quartsidian":  { "model": "moreores:block/gem_crystallizer_block_rp_quartsidian", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=orange_zircon": { "model": "moreores:block/gem_crystallizer_block_orange", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=orange_zircon":  { "model": "moreores:block/gem_crystallizer_block_rp_orange", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=moonstone": { "model": "moreores:block/gem_crystallizer_block_moonstone", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=moonstone":  { "model": "moreores:block/gem_crystallizer_block_rp_moonstone", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c", "y": 90 },
+
+    "facing=west,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl", "y": 90 }
+  }
+}

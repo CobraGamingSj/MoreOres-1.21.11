@@ -1,0 +1,9 @@
+{
+  "type": "moreores:gem_crystallizing",
+  "gemAfter": "moreores:radiant",
+  "gemBefore": "moreores:green_garnet",
+  "infusedGem": {
+    "count": 1,
+    "id": "moreores:limestone"
+  }
+}

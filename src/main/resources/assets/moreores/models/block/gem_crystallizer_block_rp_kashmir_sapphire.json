@@ -1,0 +1,6 @@
+{
+	"parent": "moreores:block/gem_crystallizer_block_rp_g",
+	"textures": {
+		"output_tray": "moreores:block/output_tray/ot_tray_kashmir_sapphire"
+	}
+}

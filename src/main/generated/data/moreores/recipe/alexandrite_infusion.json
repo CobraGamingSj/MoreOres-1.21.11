@@ -1,9 +1,0 @@
-{
-  "type": "moreores:gem_infusing",
-  "gemAfter": "moreores:radiant",
-  "gemBefore": "moreores:ruby",
-  "infusedGem": {
-    "count": 1,
-    "id": "moreores:alexandrite"
-  }
-}

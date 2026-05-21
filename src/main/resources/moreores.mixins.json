@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.cobra.moreores.mixin",
+  "package": "org.cobra.moreores.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AnvilScreenHandlerMixin",

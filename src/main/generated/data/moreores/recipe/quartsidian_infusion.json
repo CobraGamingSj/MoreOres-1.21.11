@@ -1,9 +1,0 @@
-{
-  "type": "moreores:gem_infusing",
-  "gemAfter": "minecraft:obsidian",
-  "gemBefore": "minecraft:quartz",
-  "infusedGem": {
-    "count": 1,
-    "id": "moreores:quartsidian"
-  }
-}

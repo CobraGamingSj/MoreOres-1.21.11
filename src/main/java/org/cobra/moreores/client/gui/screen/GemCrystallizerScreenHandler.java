@@ -1,0 +1,197 @@
+package org.cobra.moreores.client.gui.screen;
+
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
+import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.registry.ModItemTags;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
+
+public class GemCrystallizerScreenHandler extends AbstractGemPFScreenHandler {
+    private final Inventory inventory;
+    private final ScreenHandlerContext context;
+    private final PropertyDelegate propertyDelegate;
+    public final GemCrystallizeBlockEntity blockEntity;
+
+    public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, GemCrystallizerDataSynchronizer data) {
+        this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
+                new ArrayPropertyDelegate(3));
+    }
+
+    public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
+        super(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, syncId, entity.getPos());
+        checkSize((Inventory) entity, 10);
+
+        this.inventory = (Inventory) entity;
+        this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
+        this.propertyDelegate = delegate;
+        this.blockEntity = (GemCrystallizeBlockEntity) entity;
+
+        this.addSlot(new Slot(inventory, 0, 47, 22) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
+                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
+            }
+        }); // Input Before
+
+        this.addSlot(new Slot(inventory, 1, 87, 22) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
+                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE) || stack.isOf(Blocks.OBSIDIAN.asItem());
+            }
+        }); // Input After
+
+        this.addSlot(new Slot(inventory, 2, 67, 72) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE_BLOCKS);
+            }
+        }); // Result
+        this.addSlot(new Slot(inventory, 3, 13, 21) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+            }
+        }); // Energy Input
+
+        this.addSlot(new Slot(inventory, 4, 39, 59) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return stack.isOf(ModItems.RADIANT_DUST);
+            }
+        }); // Radiant Slot
+
+        addSecondAdditionalInventory(inventory);
+
+        addPlayerGenericInventory(playerInventory);
+        addPlayerHotbarInventory(playerInventory);
+
+        addProperties(delegate);
+    }
+
+    @Override
+    public void addSecondAdditionalInventory(Inventory playerInventory) {
+        for (int i = 0; i < 5; ++i) {
+            this.addSlot(new Slot(playerInventory, 5 + i, 179, 97 + i * 18));
+        }
+    }
+
+    public boolean isPolishing() {
+        return propertyDelegate.get(0) > 0;
+    }
+
+    public int getDustCount() {
+        return propertyDelegate.get(2);
+    }
+
+    public int progressGetter() {
+        int progress = this.propertyDelegate.get(0); //Progress
+        int maxProgress = this.propertyDelegate.get(1); //Max Progress
+        int progressArrowSize = 28; //Height of progress arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize/ maxProgress : 0;
+    }
+
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int invSlot) {
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(invSlot);
+
+        if(slot.hasStack()) {
+            ItemStack originalStack = slot.getStack();
+            stack = originalStack.copy();
+
+            if(invSlot == 2) {
+                if(!this.insertItem(originalStack, 18, 54, true)) {
+                    return ItemStack.EMPTY;
+                }
+                slot.onQuickTransfer(originalStack, stack);
+            } else if(invSlot >= 18 && invSlot < 54) {
+                if(isValidInput(originalStack)) {
+                    if(!this.insertItem(originalStack, 0, 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (isValidEnergyItem(originalStack)) {
+                    if(!this.insertItem(originalStack, 2, 3, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (isRadiantDust(originalStack)) {
+                    if(!this.insertItem(originalStack, 4, 5, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else {
+                    if(!this.insertItem(originalStack, 6, 18, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+            } else {
+                if(!this.insertItem(originalStack, 18, 54, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if(originalStack.isEmpty()) {
+                slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
+            }
+        }
+        return stack;
+    }
+
+    private boolean isValidInput(ItemStack stack) {
+        return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
+                stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
+    }
+
+    private boolean isValidEnergyItem(ItemStack stack) {
+        return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+    }
+
+    private boolean isRadiantDust(ItemStack stack) {
+        return stack.isOf(ModItems.RADIANT_DUST);
+    }
+
+    @Override
+    public boolean canUse(PlayerEntity player) {
+        return canUse(this.context, player, ModBlocks.GE_CRYSTALLIZER_BLOCK);
+    }
+
+    @Override
+    public BlockEntity getBlockEntity(BlockPos pos, BlockState state, World world) {
+        return this.blockEntity;
+    }
+
+    public long getEnergy() {
+        return this.blockEntity.energyAmount();
+    }
+
+    public long getEnergyCap() {
+        return this.blockEntity.energyStorage.getCapacity();
+    }
+
+    public float getEnergyPercent() {
+        SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage;
+        long energy = energyStorage.getAmount();
+        long maxEnergy = energyStorage.getCapacity();
+        if (maxEnergy == 0 || energy == 0)
+            return 0.0F;
+
+        return MathHelper.clamp((float) energy / (float) maxEnergy, 0.0F, 1.0F);
+    }
+}

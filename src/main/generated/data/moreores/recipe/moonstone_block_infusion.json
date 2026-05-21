@@ -1,9 +1,0 @@
-{
-  "type": "moreores:gem_infusing",
-  "gemAfter": "moreores:radiant",
-  "gemBefore": "moreores:white_topaz_block",
-  "infusedGem": {
-    "count": 1,
-    "id": "moreores:moonstone_block"
-  }
-}
