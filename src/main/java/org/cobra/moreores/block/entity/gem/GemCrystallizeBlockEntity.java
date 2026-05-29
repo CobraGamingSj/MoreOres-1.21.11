@@ -150,7 +150,7 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
 
     @Override
     public Text getDisplayName() {
-        return ModBlocks.GE_CRYSTALLIZER_BLOCK.getName();
+        return ModBlocks.GEM_CRYSTALLIZER_BLOCK.getName();
     }
 
     @Nullable

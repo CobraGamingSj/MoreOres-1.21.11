@@ -19,7 +19,7 @@ public class ModBlockEntityType {
             register("gem_purifier_block", FabricBlockEntityTypeBuilder.create(GemPurifierBlockEntity::new, ModBlocks.GEM_PURIFIER_BLOCK));
 
     public static final BlockEntityType<GemCrystallizeBlockEntity> GEM_CRYSTALLIZE_BLOCK_ENTITY =
-            register("gem_crystallizer_block", FabricBlockEntityTypeBuilder.create(GemCrystallizeBlockEntity::new, ModBlocks.GE_CRYSTALLIZER_BLOCK));
+            register("gem_crystallizer_block", FabricBlockEntityTypeBuilder.create(GemCrystallizeBlockEntity::new, ModBlocks.GEM_CRYSTALLIZER_BLOCK));
 
     private static <BE extends BlockEntity> BlockEntityType<BE> register(String id, FabricBlockEntityTypeBuilder<BE> factory) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, id), factory.build());

@@ -75,7 +75,7 @@ public class GemCrystallizerRecipe implements Recipe<GemInfusionRecipeInput> {
                         Ingredient.toDisplay(Optional.of(this.ingredientBefore)),
                         Ingredient.toDisplay(Optional.of(this.ingredientAfter)),
                         new SlotDisplay.StackSlotDisplay(this.output),
-                        new SlotDisplay.ItemSlotDisplay(ModBlocks.GE_CRYSTALLIZER_BLOCK.asItem())
+                        new SlotDisplay.ItemSlotDisplay(ModBlocks.GEM_CRYSTALLIZER_BLOCK.asItem())
                 )
         );
     }

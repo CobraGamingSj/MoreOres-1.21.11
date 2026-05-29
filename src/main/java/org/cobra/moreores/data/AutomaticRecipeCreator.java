@@ -1,4 +1,4 @@
-package org.cobra.moreores.data.datagen;
+package org.cobra.moreores.data;
 
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
@@ -176,7 +176,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                     Identifier id = Registries.BLOCK.getId(block);
 
                     if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
-                        if(block.getDefaultState().isOf(ModBlocks.GE_CRYSTALLIZER_BLOCK) || block.getDefaultState().isOf(ModBlocks.GEM_PURIFIER_BLOCK)) {
+                        if(block.getDefaultState().isOf(ModBlocks.GEM_CRYSTALLIZER_BLOCK) || block.getDefaultState().isOf(ModBlocks.GEM_PURIFIER_BLOCK)) {
                             continue;
                         }
                         String path = id.getPath();
@@ -279,7 +279,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                 offerBlasting(List.of(ModItems.RUBY), RecipeCategory.MISC, Items.NETHERITE_INGOT, 0.15f, 450, "netherite");
 
                 createShaped(
-                        RecipeCategory.REDSTONE, ModBlocks.GE_CRYSTALLIZER_BLOCK
+                        RecipeCategory.REDSTONE, ModBlocks.GEM_CRYSTALLIZER_BLOCK
                 )
                         .pattern("aba")
                                 .pattern("cdc")
@@ -289,7 +289,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .input('c', Ingredient.ofItems(Blocks.IRON_BLOCK.asItem()))
                         .input('d', Ingredient.ofItems(ModBlocks.GEM_PURIFIER_BLOCK.asItem()))
                         .criterion(hasItem(ModBlocks.GEM_PURIFIER_BLOCK.asItem()), conditionsFromItem(ModBlocks.GEM_PURIFIER_BLOCK.asItem()))
-                        .offerTo(exporter, getRecipeName(ModBlocks.GE_CRYSTALLIZER_BLOCK.asItem()));
+                        .offerTo(exporter, getRecipeName(ModBlocks.GEM_CRYSTALLIZER_BLOCK.asItem()));
 
                 offerSmithingTrimRecipe(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE,
                         ModArmorTrimPatterns.GUARDIAN, RegistryKey.of(RegistryKeys.RECIPE, Identifier.ofVanilla(getItemPath(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE) + "_smithing_trim")));

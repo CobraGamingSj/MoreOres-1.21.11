@@ -1,4 +1,4 @@
-package org.cobra.moreores.data.datagen;
+package org.cobra.moreores.data;
 
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
@@ -38,7 +38,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                                     new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOnIdentifier)).build()),
                                     new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOffIdentifier)).build()))));
                     continue;
-                } else if (block == ModBlocks.GE_CRYSTALLIZER_BLOCK || block == ModBlocks.GEM_PURIFIER_BLOCK) {
+                } else if (block == ModBlocks.GEM_CRYSTALLIZER_BLOCK || block == ModBlocks.GEM_PURIFIER_BLOCK) {
                     continue;
                 }
                 blockStateModelGenerator.registerSimpleCubeAll(block);

@@ -1,7 +1,6 @@
 package org.cobra.moreores;
 
-import org.cobra.moreores.data.datagen.*;
-import org.cobra.moreores.data.datagen.*;
+import org.cobra.moreores.data.*;
 import org.cobra.moreores.enchantment.ModEnchantments;
 import org.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
 import org.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;

@@ -169,7 +169,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemPFScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return canUse(this.context, player, ModBlocks.GE_CRYSTALLIZER_BLOCK);
+        return canUse(this.context, player, ModBlocks.GEM_CRYSTALLIZER_BLOCK);
     }
 
     @Override

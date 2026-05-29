@@ -1,4 +1,4 @@
-package org.cobra.moreores.data.datagen;
+package org.cobra.moreores.data;
 
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.item.ModItems;

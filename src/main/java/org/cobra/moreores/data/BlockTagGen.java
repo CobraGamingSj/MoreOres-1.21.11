@@ -1,4 +1,4 @@
-package org.cobra.moreores.data.datagen;
+package org.cobra.moreores.data;
 
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.registry.ModBlockTags;
@@ -19,7 +19,7 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.ENERGY_BLOCK)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK)
-                .add(ModBlocks.GE_CRYSTALLIZER_BLOCK)
+                .add(ModBlocks.GEM_CRYSTALLIZER_BLOCK)
                 .add(ModBlocks.RUBY_BLOCK)
                 .add(ModBlocks.RADIANT_BLOCK)
                 .add(ModBlocks.RUBY_ORE)
@@ -68,11 +68,23 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
-                .add(ModBlocks.RAW_JADE_BLOCK);
+                .add(ModBlocks.RAW_JADE_BLOCK)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK)
-                .add(ModBlocks.GE_CRYSTALLIZER_BLOCK)
+                .add(ModBlocks.GEM_CRYSTALLIZER_BLOCK)
                 .add(ModBlocks.ENERGY_BLOCK)
                 .add(ModBlocks.RUBY_BLOCK)
                 .add(ModBlocks.RADIANT_BLOCK)
@@ -122,7 +134,19 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
-                .add(ModBlocks.RAW_JADE_BLOCK);
+                .add(ModBlocks.RAW_JADE_BLOCK)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_STONE_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -175,8 +199,20 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
                 .add(ModBlocks.RAW_JADE_BLOCK)
-                .add(ModBlocks.GE_CRYSTALLIZER_BLOCK)
-                .add(ModBlocks.GEM_PURIFIER_BLOCK);
+                .add(ModBlocks.GEM_CRYSTALLIZER_BLOCK)
+                .add(ModBlocks.GEM_PURIFIER_BLOCK)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -228,7 +264,19 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
-                .add(ModBlocks.RAW_JADE_BLOCK);
+                .add(ModBlocks.RAW_JADE_BLOCK)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_GOLD_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -280,7 +328,19 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
-                .add(ModBlocks.RAW_JADE_BLOCK);
+                .add(ModBlocks.RAW_JADE_BLOCK)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
 
         valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -332,7 +392,19 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.RAW_WHITE_TOPAZ_BLOCK)
                 .add(ModBlocks.RAW_PERIDOT_BLOCK)
                 .add(ModBlocks.RAW_PYROPE_BLOCK)
-                .add(ModBlocks.RAW_JADE_BLOCK);
+                .add(ModBlocks.RAW_JADE_BLOCK)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
 
         valueLookupBuilder(ModBlockTags.NEEDS_RUBY_TOOL)
         ;

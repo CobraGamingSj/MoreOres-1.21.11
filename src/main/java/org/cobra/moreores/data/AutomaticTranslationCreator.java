@@ -1,4 +1,4 @@
-package org.cobra.moreores.data.datagen;
+package org.cobra.moreores.data;
 
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
@@ -58,7 +58,7 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
             if (id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
 
                 if(item == ModItems.RADIANT || item == ModItems.RADIANT_DUST || item == ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE || item == ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE ||
-                item == ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE || item == ModBlocks.GE_CRYSTALLIZER_BLOCK.asItem() || item == ModBlocks.GEM_PURIFIER_BLOCK.asItem()) {
+                item == ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE || item == ModBlocks.GEM_CRYSTALLIZER_BLOCK.asItem() || item == ModBlocks.GEM_PURIFIER_BLOCK.asItem()) {
                     continue;
                 }
 
@@ -73,7 +73,7 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.RADIANT, "§1Radiant§r");
         translationBuilder.add(ModItems.RADIANT_DUST, "§2Radiant Dust§r");
         translationBuilder.add(ModBlocks.GEM_PURIFIER_BLOCK, "Gem Purifier");
-        translationBuilder.add(ModBlocks.GE_CRYSTALLIZER_BLOCK, "Gem Infusion");
+        translationBuilder.add(ModBlocks.GEM_CRYSTALLIZER_BLOCK, "Gem Infusion");
         translationBuilder.add(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, "Ruby Upgrade");
         translationBuilder.add(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, "Radiant Upgrade");
         translationBuilder.add(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, "Guardian Armor Trim");
