@@ -453,29 +453,4 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
         }
         energyState = EnergyState.EXTRACTING;
     }
-
-    public void startPolish() {
-        if(polishingInfusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
-            polishingInfusionState = PolishingInfusionState.RUNNING;
-        }
-    }
-
-    public void pausePolish() {
-        if(polishingInfusionState.isRunning()) {
-            polishingInfusionState = PolishingInfusionState.PAUSED;
-        }
-    }
-
-    public void resumePolish() {
-        if(polishingInfusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
-            polishingInfusionState = PolishingInfusionState.RUNNING;
-        }
-    }
-
-    public void stopPolish() {
-        if(!polishingInfusionState.isIdle()) {
-            polishingInfusionState = PolishingInfusionState.IDLE;
-            resetProgress();
-        }
-    }
 }

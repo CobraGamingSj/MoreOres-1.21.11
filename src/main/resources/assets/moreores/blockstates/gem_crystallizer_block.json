@@ -34,8 +34,8 @@
     "facing=north,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal", "y": 180 },
     "facing=north,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c", "y": 180 },
-    "facing=north,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c", "y": 180 },
+    "facing=north,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_c", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_c", "y": 180 },
 
     "facing=north,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl", "y": 180 },
     "facing=north,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl", "y": 180 }
@@ -75,8 +75,8 @@
     "facing=south,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal"},
     "facing=south,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal"},
 
-    "facing=south,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c"},
-    "facing=south,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c"},
+    "facing=south,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_c"},
+    "facing=south,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_c"},
 
     "facing=south,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl"},
     "facing=south,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl"}
@@ -116,8 +116,8 @@
     "facing=east,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal", "y": 270 },
     "facing=east,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c", "y": 270 },
-    "facing=east,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c", "y": 270 },
+    "facing=east,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_c", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_c", "y": 270 },
 
     "facing=east,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl", "y": 270 },
     "facing=east,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl", "y": 270 }
@@ -157,8 +157,8 @@
     "facing=west,redstone_powered=false,is_crystallizing=opal": { "model": "moreores:block/gem_crystallizer_block_opal", "y": 90 },
     "facing=west,redstone_powered=true,is_crystallizing=opal":  { "model": "moreores:block/gem_crystallizer_block_rp_opal", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_green_c", "y": 90 },
-    "facing=west,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_green_c", "y": 90 },
+    "facing=west,redstone_powered=false,is_crystallizing=grandidierite": { "model": "moreores:block/gem_crystallizer_block_c", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=grandidierite":  { "model": "moreores:block/gem_crystallizer_block_rp_c", "y": 90 },
 
     "facing=west,redstone_powered=false,is_crystallizing=red_beryl": { "model": "moreores:block/gem_crystallizer_block_red_beryl", "y": 90 },
     "facing=west,redstone_powered=true,is_crystallizing=red_beryl":  { "model": "moreores:block/gem_crystallizer_block_rp_red_beryl", "y": 90 }
