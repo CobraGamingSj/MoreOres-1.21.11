@@ -1,9 +1,5 @@
 package org.cobra.moreores.data;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.block.RubyLampBlock;
-import org.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
@@ -16,7 +12,11 @@ import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.Pool;
+import net.minecraft.util.collection.WeightedPool;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.block.RubyLampBlock;
+import org.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
 
 public class AutomaticModelGenerator extends FabricModelProvider {
     public AutomaticModelGenerator(FabricDataOutput output) {
@@ -35,8 +35,8 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                     Identifier lampOnIdentifier = blockStateModelGenerator.createSubModel(ModBlocks.RUBY_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
                     blockStateModelGenerator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(ModBlocks.RUBY_LAMP)
                             .with(BlockStateModelGenerator.createBooleanModelMap(RubyLampBlock.LIT,
-                                    new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOnIdentifier)).build()),
-                                    new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOffIdentifier)).build()))));
+                                    new WeightedVariant(WeightedPool.<ModelVariant>builder().add(new ModelVariant(lampOnIdentifier)).build()),
+                                    new WeightedVariant(WeightedPool.<ModelVariant>builder().add(new ModelVariant(lampOffIdentifier)).build()))));
                     continue;
                 } else if (block == ModBlocks.GEM_CRYSTALLIZER_BLOCK || block == ModBlocks.GEM_PURIFIER_BLOCK) {
                     continue;
