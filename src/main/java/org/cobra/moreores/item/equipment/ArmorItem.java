@@ -12,8 +12,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.server.world.ServerWorld;
+import org.cobra.moreores.MoreOresModInitializer;
 import org.jspecify.annotations.Nullable;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -36,15 +38,32 @@ public class ArmorItem extends Item {
         }
         if(entity instanceof PlayerEntity player) {
             if(hasFullSuitOfArmorOn(player)) {
+                if(player.fallDistance >= 5) {
+                    int duration = (int) player.fallDistance;
+                    int maxDuration = 10;
+                    duration = Math.max(duration, maxDuration);
+                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, duration, 2, false, false, false));
+                    if(slot == EquipmentSlot.FEET) {
+                        ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
+                        MoreOresModInitializer.LOGGER.info("Fall distance is {}", player.fallDistance);
+                        boots.damage((int) player.fallDistance / 2, player);
+                        MoreOresModInitializer.LOGGER.info("Method called, current damage {}", stack.getDamage());
+                    }
+                } else {
+                    player.removeStatusEffect(StatusEffects.SLOW_FALLING);
+                }
                 evaluateArmorEffects(player);
             } else {
                 player.removeStatusEffect(StatusEffects.REGENERATION);
                 player.removeStatusEffect(StatusEffects.HEALTH_BOOST);
+                player.removeStatusEffect(StatusEffects.SLOW_FALLING);
             }
         }
         super.inventoryTick(stack, world, entity, slot);
     }
 
+    
+    
     private void evaluateArmorEffects(PlayerEntity player) {
         for (Map.Entry<ArmorMaterial, List<StatusEffectInstance>> entry : ARMOR_EFFECTS.entrySet()) {
             ArmorMaterial mapArmorMaterial = entry.getKey();
