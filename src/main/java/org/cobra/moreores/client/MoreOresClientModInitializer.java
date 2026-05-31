@@ -1,7 +1,10 @@
 package org.cobra.moreores.client;
 
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.render.entity.EntityRendererFactories;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreen;
@@ -9,6 +12,9 @@ import org.cobra.moreores.client.gui.screen.GemPurifierScreen;
 import org.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import org.cobra.moreores.client.render.block.entity.GemInfusionBlockEntityRenderer;
 import org.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
+import org.cobra.moreores.client.render.item.entity.GemArrowEntityRenderer;
+import org.cobra.moreores.client.render.item.model.GemArrowEntityModel;
+import org.cobra.moreores.entity.ModEntityTypes;
 import org.cobra.moreores.networking.ModS2CNetworks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
@@ -37,5 +43,7 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
 
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER_BLOCK_ENTITY, GemPurifierBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_CRYSTALLIZE_BLOCK_ENTITY, GemInfusionBlockEntityRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(GemArrowEntityModel.ARROW, GemArrowEntityModel::getTexturedModelData);
+        EntityRendererFactories.register(ModEntityTypes.GEM_ARROW_ENTITY, GemArrowEntityRenderer::new);
     }
 }
