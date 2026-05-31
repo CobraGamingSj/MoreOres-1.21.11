@@ -40,14 +40,10 @@ public class ArmorItem extends Item {
             if(hasFullSuitOfArmorOn(player)) {
                 if(player.fallDistance >= 5) {
                     int duration = (int) player.fallDistance;
-                    int maxDuration = 10;
-                    duration = Math.max(duration, maxDuration);
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, duration, 2, false, false, false));
                     if(slot == EquipmentSlot.FEET) {
                         ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
-                        MoreOresModInitializer.LOGGER.info("Fall distance is {}", player.fallDistance);
                         boots.damage((int) player.fallDistance / 2, player);
-                        MoreOresModInitializer.LOGGER.info("Method called, current damage {}", stack.getDamage());
                     }
                 } else {
                     player.removeStatusEffect(StatusEffects.SLOW_FALLING);

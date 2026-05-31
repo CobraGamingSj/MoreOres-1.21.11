@@ -36,6 +36,7 @@ import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
 import org.cobra.moreores.networking.block.data.GemPurifierBlockData;
 import org.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
 import org.cobra.moreores.networking.block.data.PolishingStateDataPayload;
+import org.cobra.moreores.networking.item.EnergyIngotC2SPayload;
 import org.cobra.moreores.recipe.GemCrystallizerRecipe;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
 import org.cobra.moreores.recipe.book.ModRecipeBookCategories;
@@ -399,6 +400,7 @@ public class MoreOresModInitializer implements ModInitializer {
 		PayloadTypeRegistry.playC2S().register(PolishingStateDataPayload.ID, PolishingStateDataPayload.PACKET_CODEC);
 		PayloadTypeRegistry.playC2S().register(GemPurifierBlockData.ID, GemPurifierBlockData.PACKET_CODEC);
 		PayloadTypeRegistry.playC2S().register(GemCrystallizerBlockData.ID, GemCrystallizerBlockData.PACKET_CODEC);
+		PayloadTypeRegistry.playC2S().register(EnergyIngotC2SPayload.ID, EnergyIngotC2SPayload.PACKET_CODEC);
 		ModC2SNetworks.registerServerC2S();
 
 

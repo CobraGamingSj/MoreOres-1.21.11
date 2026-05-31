@@ -18,7 +18,7 @@ repositories {
 	// for more information about repositories.
 //    maven { url "<https://maven.shedaniel.me/>" }
 	maven {
-		url = uri("https://maven.pkg.github.com/CobraGamingSj/TalentsAPI-1.21.11")
+		url = uri("https://maven.pkg.github.com/CobraGamingSj/TalentsAPI")
 		credentials {
 			username = project.findProperty("gpr.user")
 			password = project.findProperty("gpr.key")
@@ -45,7 +45,7 @@ dependencies {
 //    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
     include modApi("teamreborn:energy:${project.energy_version}")
-//	modImplementation "org.cobra.api:talents-api:${project.talents_api_version}"
+	modImplementation "org.cobra.api:talents-api:${project.talents_api_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
