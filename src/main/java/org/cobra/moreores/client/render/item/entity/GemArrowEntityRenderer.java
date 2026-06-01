@@ -22,4 +22,9 @@ public class GemArrowEntityRenderer extends ProjectileEntityRenderer<GemArrowEnt
     public ProjectileEntityRenderState createRenderState() {
         return new ProjectileEntityRenderState();
     }
+
+    @Override
+    public void updateRenderState(GemArrowEntity persistentProjectileEntity, ProjectileEntityRenderState projectileEntityRenderState, float f) {
+        super.updateRenderState(persistentProjectileEntity, projectileEntityRenderState, f);
+    }
 }

@@ -2,8 +2,11 @@ package org.cobra.moreores.item;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.item.consume.UseAction;
 import net.minecraft.server.world.ServerWorld;
@@ -13,6 +16,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import org.cobra.moreores.entity.GemArrowEntity;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;

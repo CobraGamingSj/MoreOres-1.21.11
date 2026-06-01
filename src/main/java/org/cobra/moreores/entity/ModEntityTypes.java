@@ -14,7 +14,7 @@ public class ModEntityTypes {
     
     public static final EntityType<GemArrowEntity> GEM_ARROW_ENTITY = Registry.register(Registries.ENTITY_TYPE,
             MoreOresModInitializer.id("gem_arrow"),
-            EntityType.Builder.create(GemArrowEntity::new, SpawnGroup.CREATURE)
-                    .dimensions(1f, 2.5f).build(GEM_ARROW));
+            EntityType.Builder.create(GemArrowEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5f, 0.5f).maxTrackingRange(4).dropsNothing().trackingTickInterval(20).eyeHeight(0.13f).build(GEM_ARROW));
     
 }
