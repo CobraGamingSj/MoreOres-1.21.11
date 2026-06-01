@@ -57,8 +57,6 @@ public class ArmorItem extends Item {
         }
         super.inventoryTick(stack, world, entity, slot);
     }
-
-    
     
     private void evaluateArmorEffects(PlayerEntity player) {
         for (Map.Entry<ArmorMaterial, List<StatusEffectInstance>> entry : ARMOR_EFFECTS.entrySet()) {
@@ -103,7 +101,9 @@ public class ArmorItem extends Item {
         EquippableComponent equippableComponentBreastplate = chestplate.getComponents().get(DataComponentTypes.EQUIPPABLE);
         EquippableComponent equippableComponentHelmet = helmet.getComponents().get(DataComponentTypes.EQUIPPABLE);
 
-        return equippableComponentBoots.assetId().get().equals(material.assetId()) && equippableComponentLeggings.assetId().get().equals(material.assetId()) &&
-                equippableComponentBreastplate.assetId().get().equals(material.assetId()) && equippableComponentHelmet.assetId().get().equals(material.assetId());
+        return equippableComponentBoots.assetId().get().equals(material.assetId()) &&
+                equippableComponentLeggings.assetId().get().equals(material.assetId()) &&
+                equippableComponentBreastplate.assetId().get().equals(material.assetId()) &&
+                equippableComponentHelmet.assetId().get().equals(material.assetId());
     }
 }

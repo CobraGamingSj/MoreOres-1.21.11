@@ -8,6 +8,7 @@ import net.minecraft.client.render.model.json.ModelVariant;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
@@ -16,6 +17,8 @@ import net.minecraft.util.collection.WeightedPool;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.RubyLampBlock;
+import org.cobra.moreores.item.GemBowItem;
+import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
 
 public class AutomaticModelGenerator extends FabricModelProvider {
@@ -112,6 +115,13 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                         continue;
                     }
                 }
+                
+                if(item instanceof GemBowItem bow) {
+                    itemModelGenerator.upload(bow, Models.BOW);
+                    itemModelGenerator.registerBow(bow);
+                    continue;
+                }
+                
                 if(!handheld) itemModelGenerator.register(item, Models.GENERATED);
             }
         }
