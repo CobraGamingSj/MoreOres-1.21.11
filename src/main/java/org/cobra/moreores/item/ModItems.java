@@ -203,7 +203,7 @@ public class ModItems {
     public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = register("guardian_armor_trim_smithing_template",
             s -> SmithingTemplateItem.of(s.rarity(Rarity.RARE)));
 
-    public static final Item GEM_BOW = register("gem_bow", GemBowItem::new);
+    public static final Item GEM_BOW = register("gem_bow", s -> new GemBowItem(s.maxDamage(1024).enchantable(2)));
     public static final Item GEM_ARROW = register("gem_arrow", GemArrowItem::new);
     
     public static Item register(String id, Item item) {

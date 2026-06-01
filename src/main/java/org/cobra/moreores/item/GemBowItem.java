@@ -16,15 +16,16 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.entity.GemArrowEntity;
+import org.cobra.moreores.entity.ModEntityTypes;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.Stack;
 import java.util.function.Predicate;
 
 public class GemBowItem extends RangedWeaponItem {
-    public static final Predicate<ItemStack> ARROW = itemStack -> itemStack.isOf(ModItems.GEM_ARROW);
+    public static final Predicate<ItemStack> GEM_ARROW = itemStack -> itemStack.isOf(ModItems.GEM_ARROW);
 
     public GemBowItem(Settings settings) {
         super(settings);
@@ -32,12 +33,23 @@ public class GemBowItem extends RangedWeaponItem {
 
     @Override
     public Predicate<ItemStack> getProjectiles() {
-        return ARROW;
+        return GEM_ARROW;
     }
 
     @Override
     public int getRange() {
-        return 30;
+        return 60;
+    }
+
+    @Override
+    protected ProjectileEntity createArrowEntity(World world, LivingEntity shooter, ItemStack weaponStack, ItemStack projectileStack, boolean critical) {
+//        GemArrowItem gemArrow = projectileStack.getItem() instanceof GemArrowItem gemArrowItem ? gemArrowItem : (GemArrowItem) ModItems.GEM_ARROW;
+//        GemArrowEntity persistentProjectileEntity = gemArrow.createArrow(world);
+//        if (critical) {
+//            persistentProjectileEntity.setCritical(true);
+//        }
+
+        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
     }
 
     @Override
@@ -106,5 +118,6 @@ public class GemBowItem extends RangedWeaponItem {
     @Override
     protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
         projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw() + yaw, 0.0F, speed, divergence);
+        MoreOresModInitializer.LOGGER.info("Arrow shot: {}", projectile.getName().getString());
     }
 }

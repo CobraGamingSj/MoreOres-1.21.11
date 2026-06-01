@@ -25,5 +25,8 @@ public class GemArrowItem extends Item implements ProjectileItem {
         gemArrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
         return gemArrowEntity;
     }
-    
+
+//    public GemArrowEntity createArrow(World world) {
+//        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
+//    }
 }

@@ -51,6 +51,7 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
         translationBuilder.add("trim_material.moreores.radiant",  "Radiant Material");
         translationBuilder.add("trim_material.moreores.pyrope",  "Pyrope Material");
         translationBuilder.add("trim_material.moreores.jade",  "Jade Material");
+        translationBuilder.add("entity.moreores.gem_arrow",  "Gem Arrow");
 
         for (Item item :  Registries.ITEM) {
             Identifier id = Registries.ITEM.getId(item);
@@ -73,7 +74,7 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.RADIANT, "§1Radiant§r");
         translationBuilder.add(ModItems.RADIANT_DUST, "§2Radiant Dust§r");
         translationBuilder.add(ModBlocks.GEM_PURIFIER_BLOCK, "Gem Purifier");
-        translationBuilder.add(ModBlocks.GEM_CRYSTALLIZER_BLOCK, "Gem Infusion");
+        translationBuilder.add(ModBlocks.GEM_CRYSTALLIZER_BLOCK, "Gem Crystallizer");
         translationBuilder.add(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE, "Ruby Upgrade");
         translationBuilder.add(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE, "Radiant Upgrade");
         translationBuilder.add(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE, "Guardian Armor Trim");

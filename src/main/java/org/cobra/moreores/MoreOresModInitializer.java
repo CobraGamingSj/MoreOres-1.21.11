@@ -258,6 +258,8 @@ public class MoreOresModInitializer implements ModInitializer {
             combatEventEntries.addAfter(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR);
             combatEventEntries.addAfter(Items.NETHERITE_NAUTILUS_ARMOR, ModItems.RUBY_NAUTILUS_ARMOR);
             combatEventEntries.addAfter(ModItems.RUBY_NAUTILUS_ARMOR, ModItems.SAPPHIRE_NAUTILUS_ARMOR);
+			combatEventEntries.addAfter(Items.BOW, ModItems.GEM_BOW);
+			combatEventEntries.addAfter(Items.ARROW, ModItems.GEM_ARROW);
 		});
 
 

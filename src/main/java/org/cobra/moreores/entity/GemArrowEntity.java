@@ -2,6 +2,8 @@ package org.cobra.moreores.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,9 +27,10 @@ public class GemArrowEntity extends PersistentProjectileEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         Entity entity = entityHitResult.getEntity();
-        if(entity instanceof PlayerEntity player) {
-            player.damage((ServerWorld) player.getEntityWorld(), entity.getDamageSources().arrow(this, null), 2);
-        }
+        entity.damage((ServerWorld) entity.getEntityWorld(), entity.getDamageSources().arrow(this, null), 200);
+        LightningEntity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, entity.getEntityWorld());
+        lightningEntity.setPos(entity.getX(), entity.getY(), entity.getZ());
+        entity.getEntityWorld().spawnEntity(lightningEntity);
         super.onEntityHit(entityHitResult);
     }
 }
