@@ -43,13 +43,14 @@ public class GemBowItem extends RangedWeaponItem {
 
     @Override
     protected ProjectileEntity createArrowEntity(World world, LivingEntity shooter, ItemStack weaponStack, ItemStack projectileStack, boolean critical) {
-//        GemArrowItem gemArrow = projectileStack.getItem() instanceof GemArrowItem gemArrowItem ? gemArrowItem : (GemArrowItem) ModItems.GEM_ARROW;
-//        GemArrowEntity persistentProjectileEntity = gemArrow.createArrow(world);
-//        if (critical) {
-//            persistentProjectileEntity.setCritical(true);
-//        }
+        GemArrowItem gemArrow = projectileStack.getItem() instanceof GemArrowItem gemArrowItem ? gemArrowItem : (GemArrowItem) ModItems.GEM_ARROW;
+        GemArrowEntity persistentProjectileEntity = gemArrow.createArrow(world);
+        if (critical) {
+            persistentProjectileEntity.setCritical(true);
+        }
 
-        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
+//        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
+        return persistentProjectileEntity;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package org.cobra.moreores.item;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
@@ -12,7 +10,6 @@ import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import org.cobra.moreores.entity.GemArrowEntity;
 import org.cobra.moreores.entity.ModEntityTypes;
-import org.jspecify.annotations.Nullable;
 
 public class GemArrowItem extends Item implements ProjectileItem {
     public GemArrowItem(Item.Settings settings) {
@@ -26,7 +23,7 @@ public class GemArrowItem extends Item implements ProjectileItem {
         return gemArrowEntity;
     }
 
-//    public GemArrowEntity createArrow(World world) {
-//        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
-//    }
+    public GemArrowEntity createArrow(World world) {
+        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
+    }
 }
