@@ -258,7 +258,7 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                     offerBlasting(List.of(input), RecipeCategory.MISC, output, .15f, defaultBlastingTime, output.toString());
                 }
 
-                for(var entry : GEM_POLISHABLES.entrySet()) {
+                for (var entry : GEM_POLISHABLES.entrySet()) {
                     var input = entry.getKey();
                     var result = entry.getValue();
 
@@ -282,10 +282,10 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         RecipeCategory.REDSTONE, ModBlocks.GEM_CRYSTALLIZER_BLOCK
                 )
                         .pattern("aba")
-                                .pattern("cdc")
-                                        .pattern("ccc")
-                                                .input('a', Items.REDSTONE)
-                                                        .input('b', Ingredient.ofItems(ModItems.ENERGY_INGOT, ModBlocks.ENERGY_BLOCK.asItem()))
+                        .pattern("cdc")
+                        .pattern("ccc")
+                        .input('a', Items.REDSTONE)
+                        .input('b', Ingredient.ofItems(ModItems.ENERGY_INGOT, ModBlocks.ENERGY_BLOCK.asItem()))
                         .input('c', Ingredient.ofItems(Blocks.IRON_BLOCK.asItem()))
                         .input('d', Ingredient.ofItems(ModBlocks.GEM_PURIFIER_BLOCK.asItem()))
                         .criterion(hasItem(ModBlocks.GEM_PURIFIER_BLOCK.asItem()), conditionsFromItem(ModBlocks.GEM_PURIFIER_BLOCK.asItem()))

@@ -7,11 +7,11 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.PointOfInterestTypeTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.poi.PointOfInterestType;
+import org.cobra.moreores.MoreOresModInitializer;
 
 import java.util.concurrent.CompletableFuture;
 
 public class PointOfInterestTypeTagGen extends TagProvider<PointOfInterestType> {
-    private static final String ID = "moreores";
     private static final String JEWEL_KEY = "jewel_poi";
 
     public PointOfInterestTypeTagGen(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture) {
@@ -21,6 +21,6 @@ public class PointOfInterestTypeTagGen extends TagProvider<PointOfInterestType> 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
         this.getTagBuilder(PointOfInterestTypeTags.ACQUIRABLE_JOB_SITE)
-                .addOptional(Identifier.of(ID, JEWEL_KEY));
+                .addOptional(MoreOresModInitializer.id(JEWEL_KEY));
     }
 }
