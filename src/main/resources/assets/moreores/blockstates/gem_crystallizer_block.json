@@ -4,8 +4,8 @@
     "facing=north,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block", "y": 180 },
     "facing=north,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp", "y": 180 },
 
-    "facing=north,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red", "y": 180 },
-    "facing=north,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red", "y": 180 },
+    "facing=north,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_alexandrite", "y": 180 },
+    "facing=north,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_alexandrite", "y": 180 },
 
     "facing=north,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire", "y": 180 },
     "facing=north,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire", "y": 180 },
@@ -45,8 +45,8 @@
     "facing=south,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block"},
     "facing=south,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp"},
 
-    "facing=south,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red"},
-    "facing=south,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red"},
+    "facing=south,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_alexandrite"},
+    "facing=south,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_alexandrite"},
 
     "facing=south,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire"},
     "facing=south,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire"},
@@ -86,8 +86,8 @@
     "facing=east,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block", "y": 270 },
     "facing=east,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp", "y": 270 },
 
-    "facing=east,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red", "y": 270 },
-    "facing=east,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red", "y": 270 },
+    "facing=east,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_alexandrite", "y": 270 },
+    "facing=east,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_alexandrite", "y": 270 },
 
     "facing=east,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire", "y": 270 },
     "facing=east,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire", "y": 270 },
@@ -127,8 +127,8 @@
     "facing=west,redstone_powered=false,is_crystallizing=empty": { "model": "moreores:block/gem_crystallizer_block", "y": 90 },
     "facing=west,redstone_powered=true,is_crystallizing=empty":  { "model": "moreores:block/gem_crystallizer_block_rp", "y": 90 },
 
-    "facing=west,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_red", "y": 90 },
-    "facing=west,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_red", "y": 90 },
+    "facing=west,redstone_powered=false,is_crystallizing=alexandrite": { "model": "moreores:block/gem_crystallizer_block_alexandrite", "y": 90 },
+    "facing=west,redstone_powered=true,is_crystallizing=alexandrite":  { "model": "moreores:block/gem_crystallizer_block_rp_alexandrite", "y": 90 },
 
     "facing=west,redstone_powered=false,is_crystallizing=kashmir_sapphire": { "model": "moreores:block/gem_crystallizer_block_kashmir_sapphire", "y": 90 },
     "facing=west,redstone_powered=true,is_crystallizing=kashmir_sapphire":  { "model": "moreores:block/gem_crystallizer_block_rp_kashmir_sapphire", "y": 90 },

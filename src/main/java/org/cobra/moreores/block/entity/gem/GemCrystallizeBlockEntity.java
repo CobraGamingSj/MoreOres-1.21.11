@@ -271,7 +271,7 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
         if(polishingInfusionState == PolishingInfusionState.RUNNING) {
             energyState = EnergyState.EXTRACTING;
             markDirty(world, pos, state);
-            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy()) {
+            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && dustParticleCount >= 15) {
                 this.increaseProgress();
                 this.extractEnergy();
                 if(dustTick >= 20 && dustParticleCount > 0) {
