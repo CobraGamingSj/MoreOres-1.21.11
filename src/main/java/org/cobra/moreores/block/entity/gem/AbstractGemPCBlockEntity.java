@@ -4,7 +4,10 @@ import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ImplementedInventory;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.item.util.GemType;
+import org.cobra.moreores.item.util.GemCategory;
+import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.IGem;
+import org.cobra.moreores.item.util.impl.PurifyingGems;
 import org.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -30,7 +33,7 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
     protected final DefaultedList<ItemStack> main;
     protected PolishingInfusionState polishingInfusionState = PolishingInfusionState.IDLE;
     protected EnergyState energyState = EnergyState.IDLE;
-    protected GemType gemType = GemType.EMPTY;
+    protected IGem gemType = IGem.EMPTY;
 
     public int initialProgress = 0;
 
@@ -60,50 +63,51 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
     public abstract int getInitialProgress();
 
     @Override
-    protected void writeData(WriteView view) {
+    public void writeData(WriteView view) {
         super.writeData(view);
         Inventories.writeData(view, main);
         view.putInt("Progress", initialProgress);
         view.putLong("Energy", energyStorage.amount);
         view.putNullable("PolishingState", PolishingInfusionState.CODEC, polishingInfusionState);
         view.putNullable("EnergyState", EnergyState.CODEC, energyState);
-        view.putNullable("GemType", GemType.CODEC, gemType);
     }
 
     @Override
-    protected void readData(ReadView view) {
+    public void readData(ReadView view) {
         super.readData(view);
         Inventories.readData(view, main);
         initialProgress = view.getInt("Progress", 0);
         energyStorage.amount = view.getLong("Energy", 0);
         polishingInfusionState = view.read("PolishingState", PolishingInfusionState.CODEC).orElse(PolishingInfusionState.IDLE);
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
-        gemType = view.read("GemType", GemType.CODEC).orElse(GemType.EMPTY);
     }
 
-    public GemType detectGem(ItemStack stack) {
-        return switch (stack.getItem()) {
-            case Item i when i == ModItems.RUBY || i == ModBlocks.RUBY_BLOCK.asItem() -> GemType.RUBY;
-            case Item i when i == ModItems.SAPPHIRE || i == ModBlocks.SAPPHIRE_BLOCK.asItem() -> GemType.SAPPHIRE;
-            case Item i when i == ModItems.GREEN_SAPPHIRE || i == ModBlocks.GREEN_SAPPHIRE_BLOCK.asItem() -> GemType.GREEN_SAPPHIRE;
-            case Item i when i == ModItems.BLUE_GARNET || i == ModBlocks.BLUE_GARNET_BLOCK.asItem() -> GemType.BLUE_GARNET;
-            case Item i when i == ModItems.PINK_GARNET || i == ModBlocks.PINK_GARNET_BLOCK.asItem() -> GemType.PINK_GARNET;
-            case Item i when i == ModItems.GREEN_GARNET || i == ModBlocks.GREEN_GARNET_BLOCK.asItem() -> GemType.GREEN_GARNET;
-            case Item i when i == ModItems.KYAWTHUITE || i == ModBlocks.KYAWTHUITE_BLOCK.asItem() -> GemType.KYAWTHUITE;
-            case Item i when i == ModItems.TOPAZ || i == ModBlocks.TOPAZ_BLOCK.asItem() -> GemType.TOPAZ;
-            case Item i when i == ModItems.WHITE_TOPAZ || i == ModBlocks.WHITE_TOPAZ_BLOCK.asItem() -> GemType.WHITE_TOPAZ;
-            case Item i when i == ModItems.PERIDOT || i == ModBlocks.PERIDOT_BLOCK.asItem() -> GemType.PERIDOT;
-            case Item i when i == ModItems.JADE || i == ModBlocks.JADE_BLOCK.asItem() -> GemType.JADE;
-            case Item i when i == ModItems.PYROPE || i == ModBlocks.PYROPE_BLOCK.asItem() -> GemType.PYROPE;
-            default -> GemType.EMPTY;
-         };
+    public IGem detectGem(ItemStack stack) {
+        Item item = stack.getItem();
+        for (PurifyingGems gems : PurifyingGems.values()) {
+            for (Item item1 : gems.items()) {
+                if(item1 == item) {
+                    return gems;
+                }
+            }
+        }
+        for (CrystallizationGems gems : CrystallizationGems.values()) {
+            for(Item item1 : gems.items()) {
+                if(item1 == item) {
+                    return gems;
+                }
+            }
+        }
+        return IGem.EMPTY;
     }
 
-    public GemType getGem() {
+    public abstract GemCategory category();
+    
+    public IGem getGem() {
         return detectGem(resultStack());
     }
 
-    public void setGem(GemType gem) {
+    public void setGem(IGem gem) {
         gemType = gem;
     }
 

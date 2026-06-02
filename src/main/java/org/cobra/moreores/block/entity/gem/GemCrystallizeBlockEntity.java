@@ -2,11 +2,13 @@ package org.cobra.moreores.block.entity.gem;
 
 import org.cobra.moreores.block.GemCrystallizerBlock;
 import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.item.util.GemCategory;
+import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.IGem;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
 import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.item.util.GemType;
 import org.cobra.moreores.recipe.GemCrystallizerRecipe;
 import org.cobra.moreores.recipe.input.GemInfusionRecipeInput;
 import org.cobra.moreores.registry.ModItemTags;
@@ -110,17 +112,19 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
     }
 
     @Override
-    protected void writeData(WriteView view) {
+    public void writeData(WriteView view) {
         super.writeData(view);
         view.putInt("DustCount", dustParticleCount);
         view.putInt("DustTick", dustTick);
+        view.putNullable("GemType", CrystallizationGems.CODEC, getGem());
     }
 
     @Override
-    protected void readData(ReadView view) {
+    public void readData(ReadView view) {
         super.readData(view);
         dustParticleCount = view.getInt("DustCount", 0);
         dustTick = view.getInt("DustTick", 0);
+        gemType = view.read("GemType", CrystallizationGems.CODEC).orElse(CrystallizationGems.EMPTY);
     }
 
     @Override
@@ -227,25 +231,11 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
         return main;
     }
 
-    @Override
-    public GemType detectGem(ItemStack stack) {
-        return switch (stack.getItem()) {
-            case Item i when i == ModItems.CRIMSON_GARNET || i == ModBlocks.CRIMSON_GARNET_BLOCK.asItem() -> GemType.CRIMSON_GARNET;
-            case Item i when i == ModItems.ALEXANDRITE || i == ModBlocks.ALEXANDRITE_BLOCK.asItem() -> GemType.ALEXANDRITE;
-            case Item i when i == ModItems.RADIANT_AMETHYST || i == ModBlocks.RADIANT_AMETHYST_BLOCK.asItem() -> GemType.RADIANT_AMETHYST;
-            case Item i when i == ModItems.CRYSTALLITE || i == ModBlocks.CRYSTALLITE_BLOCK.asItem() -> GemType.CRYSTALLITE;
-            case Item i when i == ModItems.LIMESTONE || i == ModBlocks.LIMESTONE_BLOCK.asItem() -> GemType.LIMESTONE;
-            case Item i when i == ModItems.MOONSTONE || i == ModBlocks.MOONSTONE_BLOCK.asItem() -> GemType.MOONSTONE;
-            case Item i when i == ModItems.QUARTSIDIAN || i == ModBlocks.QUARTSIDIAN_BLOCK.asItem() -> GemType.QUARTSIDIAN;
-            case Item i when i == ModItems.ORANGE_ZIRCON || i == ModBlocks.ORANGE_ZIRCON_BLOCK.asItem() -> GemType.ORANGE_ZIRCON;
-            case Item i when i == ModItems.OPAL || i == ModBlocks.OPAL_BLOCK.asItem() -> GemType.OPAL;
-            case Item i when i == ModItems.GRANDIDIERITE || i == ModBlocks.GRANDIDIERITE_BLOCK.asItem() -> GemType.GRANDIDIERITE;
-            case Item i when i == ModItems.RED_BERYL || i == ModBlocks.RED_BERYL_BLOCK.asItem() -> GemType.RED_BERYL;
-            case Item i when i == ModItems.KASHMIR_SAPPHIRE || i == ModBlocks.KASHMIR_SAPPHIRE_BLOCK.asItem() -> GemType.KASHMIR_SAPPHIRE;
-            default -> GemType.EMPTY;
-        };
-    }
 
+    @Override
+    public GemCategory category() {
+        return GemCategory.CRYSTALLIZATION;
+    }
 
 
     // Tick Method
@@ -258,7 +248,7 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
 
         dustTick++;
 
-        GemType newGem = getGem();
+        IGem newGem = getGem();
 
         if (newGem != this.gemType) {
             setGem(newGem);
@@ -320,6 +310,17 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
         markDirty(world, pos, state);
     }
 
+    @Override
+    public CrystallizationGems getGem() {
+        IGem gem = super.getGem();
+        if(gem instanceof CrystallizationGems c) {
+            return c;
+        }
+        return CrystallizationGems.EMPTY;
+    }
+    
+    
+    
     private void changeState() {
         BlockState state = getCachedState();
 
@@ -330,12 +331,7 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
             world.setBlockState(pos, state, Block.NOTIFY_ALL);
         }
     }
-
-    @Override
-    public GemType getGem() {
-        return detectGem(resultStack());
-    }
-
+    
     protected void checkForEnoughEnergyAndRemoveItem() {
         long energy = this.energyStorage.amount;
 

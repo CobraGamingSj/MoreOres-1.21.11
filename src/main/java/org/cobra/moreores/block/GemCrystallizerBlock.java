@@ -7,10 +7,9 @@ import net.minecraft.client.util.Window;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.item.util.GemType;
+import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.IGem;
 import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
-import org.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -18,7 +17,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -41,7 +39,7 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
-    public static final EnumProperty<GemType> IS_POLISHING = EnumProperty.of("is_crystallizing", GemType.class);
+    public static final EnumProperty<CrystallizationGems> IS_POLISHING = EnumProperty.of("is_crystallizing", CrystallizationGems.class);
     public static final MapCodec<GemCrystallizerBlock> CODEC = GemCrystallizerBlock.createCodec(GemCrystallizerBlock::new);
 
     @Override
@@ -52,13 +50,13 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     protected GemCrystallizerBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
-                .with(IS_POLISHING, GemType.EMPTY));
+                .with(IS_POLISHING, CrystallizationGems.EMPTY));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(IS_POLISHING, GemType.EMPTY);
+                .with(IS_POLISHING, CrystallizationGems.EMPTY);
     }
 
     @Override

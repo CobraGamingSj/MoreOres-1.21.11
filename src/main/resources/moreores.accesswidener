@@ -5,3 +5,4 @@ accessible method net/minecraft/client/gui/DrawContext drawTexturedQuad (Lcom/mo
 accessible method net/minecraft/client/texture/NativeImage getColor (II)I
 
 accessible method net/minecraft/util/function/ValueLists createIndexToValueFunction (Ljava/util/function/ToIntFunction;[Ljava/lang/Object;)Ljava/util/function/IntFunction;
+accessible class net/minecraft/state/property/EnumProperty

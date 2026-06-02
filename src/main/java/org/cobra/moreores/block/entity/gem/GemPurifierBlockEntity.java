@@ -2,10 +2,12 @@ package org.cobra.moreores.block.entity.gem;
 
 import org.cobra.moreores.block.GemPurifierBlock;
 import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.item.util.GemCategory;
+import org.cobra.moreores.item.util.impl.IGem;
+import org.cobra.moreores.item.util.impl.PurifyingGems;
 import org.cobra.moreores.networking.block.data.GemPurifierFluidDataPayload;
 import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
-import org.cobra.moreores.item.util.GemType;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
 import org.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
@@ -166,19 +168,21 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
     }
 
     @Override
-    protected void writeData(WriteView view) {
+    public void writeData(WriteView view) {
         super.writeData(view);
         view.putLong("gem_purifier.water", fluidStorage.amount);
         view.putNullable("gem_purifier.fluid.variant", FluidVariant.CODEC, fluidStorage.variant);
         view.putNullable("WaterState", WaterFluidState.CODEC, waterState);
+        view.putNullable("GemType", PurifyingGems.CODEC, getGem());
     }
 
     @Override
-    protected void readData(ReadView view) {
+    public void readData(ReadView view) {
         super.readData(view);
         fluidStorage.amount = view.getLong("gem_purifier.water", 0);
         fluidStorage.variant = view.read("gem_purifier.fluid.variant", FluidVariant.CODEC).orElse(FluidVariant.blank());
         waterState = view.read("WaterState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
+        gemType = view.read("GemType", PurifyingGems.CODEC).orElse(PurifyingGems.EMPTY);
     }
 
     @Override
@@ -213,6 +217,10 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
         return false;
     }
 
+    @Override
+    public GemCategory category() {
+        return GemCategory.PURIFYING;
+    }
 
     @Override
     public GemPurifierDataSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
@@ -253,7 +261,7 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
             return;
         }
 
-        GemType newGem = getGem();
+        IGem newGem = getGem();
 
         if (newGem != this.gemType) {
             setGem(newGem);
@@ -299,6 +307,15 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
         checkForEnoughEnergyAndRemoveItem();
         checkForEnoughWaterAndRemoveBucket();
         markDirty(world, pos, state);
+    }
+
+    @Override
+    public PurifyingGems getGem() {
+        IGem gem = super.getGem();
+        if(gem instanceof PurifyingGems p) {
+            return p;
+        }
+        return PurifyingGems.EMPTY;
     }
 
     private void changeState() {
