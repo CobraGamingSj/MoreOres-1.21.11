@@ -118,7 +118,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(Items.DIAMOND)
                 .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.ORANGE_ZIRCON,
                         ModItems.OPAL, ModItems.QUARTSIDIAN, ModItems.KASHMIR_SAPPHIRE, ModItems.RADIANT_AMETHYST,
-                        ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE);
+                        ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE, ModItems.CRYSTAL_OF_ECLIPSE);
 
         valueLookupBuilder(ModItemTags.GEMSTONE_BLOCKS)
                 .add(ModBlocks.RUBY_BLOCK.asItem(),
@@ -166,7 +166,7 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GEM_ARROW);
         
         valueLookupBuilder(ItemTags.BOW_ENCHANTABLE)
-                .add(ModItems.GEM_BOW);
+                .add(ModItems.RADIANT_BOW);
         
         valueLookupBuilder(ModItemTags.METAL)
                 .add(Items.IRON_INGOT)

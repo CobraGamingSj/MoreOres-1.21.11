@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/bow",
   "textures": {
-    "layer0": "moreores:item/gem_bow"
+    "layer0": "moreores:item/radiant_bow"
   }
 }

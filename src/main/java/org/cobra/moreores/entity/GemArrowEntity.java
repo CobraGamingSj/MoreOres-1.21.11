@@ -36,10 +36,11 @@ public class GemArrowEntity extends PersistentProjectileEntity {
             return;
         }
         
-        entity.damage((ServerWorld) entity.getEntityWorld(), entity.getDamageSources().arrow(this, null), 200);
+        entity.damage((ServerWorld) entity.getEntityWorld(), entity.getDamageSources().arrow(this, null), 20);
         LightningEntity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, entity.getEntityWorld());
         lightningEntity.setPos(entity.getX(), entity.getY(), entity.getZ());
         entity.getEntityWorld().spawnEntity(lightningEntity);
+        this.discard();
         super.onEntityHit(entityHitResult);
     }
 }

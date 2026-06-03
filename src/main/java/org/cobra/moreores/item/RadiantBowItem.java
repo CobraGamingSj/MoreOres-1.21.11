@@ -2,11 +2,8 @@ package org.cobra.moreores.item;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.item.consume.UseAction;
 import net.minecraft.server.world.ServerWorld;
@@ -14,20 +11,20 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.entity.GemArrowEntity;
-import org.cobra.moreores.entity.ModEntityTypes;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-public class GemBowItem extends RangedWeaponItem {
+public class RadiantBowItem extends RangedWeaponItem {
     public static final Predicate<ItemStack> GEM_ARROW = itemStack -> itemStack.isOf(ModItems.GEM_ARROW);
 
-    public GemBowItem(Settings settings) {
+    public RadiantBowItem(Settings settings) {
         super(settings);
     }
 
@@ -38,7 +35,12 @@ public class GemBowItem extends RangedWeaponItem {
 
     @Override
     public int getRange() {
-        return 60;
+        return 120;
+    }
+
+    @Override
+    public int getItemBarColor(ItemStack stack) {
+        return Colors.CYAN;
     }
 
     @Override
@@ -49,7 +51,6 @@ public class GemBowItem extends RangedWeaponItem {
             persistentProjectileEntity.setCritical(true);
         }
 
-//        return new GemArrowEntity(ModEntityTypes.GEM_ARROW_ENTITY, world);
         return persistentProjectileEntity;
     }
 
@@ -119,6 +120,5 @@ public class GemBowItem extends RangedWeaponItem {
     @Override
     protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
         projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw() + yaw, 0.0F, speed, divergence);
-        MoreOresModInitializer.LOGGER.info("Arrow shot: {}", projectile.getName().getString());
     }
 }

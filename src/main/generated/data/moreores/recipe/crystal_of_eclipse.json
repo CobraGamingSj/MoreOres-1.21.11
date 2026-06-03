@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "moreores:eclipse_gem_crystals",
+    "A": "minecraft:sand"
+  },
+  "pattern": [
+    "###",
+    "#AA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "moreores:crystal_of_eclipse"
+  }
+}

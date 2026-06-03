@@ -39,7 +39,8 @@ public class AutomaticLootTableCreator extends FabricBlockLootTableProvider {
             Map.entry(ModBlocks.JADE_ORE, ModItems.RAW_JADE),
             Map.entry(ModBlocks.DEEPSLATE_JADE_ORE, ModItems.RAW_JADE),
             Map.entry(ModBlocks.PYROPE_ORE, ModItems.RAW_PYROPE),
-            Map.entry(ModBlocks.DEEPSLATE_PYROPE_ORE, ModItems.RAW_PYROPE)
+            Map.entry(ModBlocks.DEEPSLATE_PYROPE_ORE, ModItems.RAW_PYROPE),
+            Map.entry(ModBlocks.ECLIPSE_GEM_ORE, ModItems.ECLIPSE_GEM_CRYSTALS)
     );
 
     public AutomaticLootTableCreator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {

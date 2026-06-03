@@ -362,6 +362,56 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
                         .criterion(hasItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE), conditionsFromItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))
                         .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RADIANT_UPGRADE_SMITHING_TEMPLATE)));
+                
+                createShaped(RecipeCategory.MISC, ModItems.CRYSTAL_OF_ECLIPSE)
+                        .pattern("###")
+                        .pattern("#AA")
+                        .pattern("AAA")
+                        .input('#', ModItems.ECLIPSE_GEM_CRYSTALS)
+                        .input('A', Blocks.SAND)
+                        .criterion(hasItem(Blocks.SAND), conditionsFromItem(Blocks.SAND))
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.CRYSTAL_OF_ECLIPSE)));
+                
+                createShaped(RecipeCategory.MISC, ModItems.ECLIPSE_GEM)
+                        .pattern("abc")
+                        .pattern("def")
+                        .pattern("ghi")
+                        .input('a', ModItems.RADIANT_AMETHYST)
+                        .input('b', ModItems.MOONSTONE)
+                        .input('c', ModItems.LIMESTONE)
+                        .input('d', ModItems.QUARTSIDIAN)
+                        .input('e', ModItems.CRYSTAL_OF_ECLIPSE)
+                        .input('f', ModItems.ALEXANDRITE)
+                        .input('g', ModItems.ORANGE_ZIRCON)
+                        .input('h', ModItems.OPAL)
+                        .input('i', ModItems.GRANDIDIERITE)
+                        .criterion(hasItem(ModItems.CRYSTAL_OF_ECLIPSE), conditionsFromItem(ModItems.CRYSTAL_OF_ECLIPSE))
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.ECLIPSE_GEM)));
+                
+                createShaped(RecipeCategory.COMBAT, ModItems.RADIANT_BOW)
+                        .pattern(" ab")
+                        .pattern("a b")
+                        .pattern(" ab")
+                        .input('a', Items.STRING)
+                        .input('b', ModItems.ECLIPSE_GEM)
+                        .criterion(hasItem(ModItems.ECLIPSE_GEM), conditionsFromItem(ModItems.ECLIPSE_GEM))
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.RADIANT_BOW)));
+
+                createShaped(RecipeCategory.MISC, ModItems.GEM_ARROW, 32)
+                        .pattern("abc")
+                        .pattern("def")
+                        .pattern("ghi")
+                        .input('a', ModItems.RADIANT_AMETHYST)
+                        .input('b', ModItems.MOONSTONE)
+                        .input('c', ModItems.LIMESTONE)
+                        .input('d', ModItems.QUARTSIDIAN)
+                        .input('e', Items.ARROW)
+                        .input('f', ModItems.ALEXANDRITE)
+                        .input('g', ModItems.ORANGE_ZIRCON)
+                        .input('h', ModItems.OPAL)
+                        .input('i', ModItems.GRANDIDIERITE)
+                        .criterion(hasItem(Items.ARROW), conditionsFromItem(Items.ARROW))
+                        .offerTo(exporter, MoreOresModInitializer.recipeKey(getRecipeName(ModItems.GEM_ARROW)));
             }
         };
     }

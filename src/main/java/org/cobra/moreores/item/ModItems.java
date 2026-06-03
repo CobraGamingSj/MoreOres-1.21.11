@@ -203,8 +203,16 @@ public class ModItems {
     public static final Item GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE = register("guardian_armor_trim_smithing_template",
             s -> SmithingTemplateItem.of(s.rarity(Rarity.RARE)));
 
-    public static final Item GEM_BOW = register("gem_bow", s -> new GemBowItem(s.maxDamage(1024).enchantable(2)));
-    public static final Item GEM_ARROW = register("gem_arrow", GemArrowItem::new);
+    
+    // Bow & Arrow
+    public static final Item RADIANT_BOW = register("radiant_bow", s -> new RadiantBowItem(s.maxDamage(1024).enchantable(2).maxCount(1).fireproof().rarity(Rarity.RARE)));
+    public static final Item GEM_ARROW = register("gem_arrow", s -> new GemArrowItem(s.fireproof().rarity(Rarity.UNCOMMON)));
+    
+    
+    // Eclipse Gem
+    public static final Item ECLIPSE_GEM_CRYSTALS = register("eclipse_gem_crystals", s -> new Item(s.rarity(Rarity.UNCOMMON).fireproof()));
+    public static final Item CRYSTAL_OF_ECLIPSE = register("crystal_of_eclipse", settings -> new Item(settings.rarity(Rarity.RARE).fireproof()));
+    public static final Item ECLIPSE_GEM = register("eclipse_gem", settings -> new Item(settings.rarity(Rarity.EPIC).fireproof()));
     
     public static Item register(String id, Item item) {
         return Registry.register(Registries.ITEM, id(id), item);

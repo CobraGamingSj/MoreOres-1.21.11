@@ -98,6 +98,8 @@ public class ModBlocks {
     public static final Block PYROPE_ORE = register("pyrope_ore", new ExperienceDroppingBlock(UniformIntProvider.create(3, 5), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "pyrope_ore"))).requiresTool().strength(9.5f, 9.5f).strength(10.5f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
     public static final Block DEEPSLATE_PYROPE_ORE = register("deepslate_pyrope_ore", new ExperienceDroppingBlock(UniformIntProvider.create(3, 5), AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "deepslate_pyrope_ore"))).requiresTool().strength(10.0f, 10.0f).strength(11.0f).sounds(BlockSoundGroup.STONE).mapColor(MapColor.STONE_GRAY)));
 
+    public static final Block ECLIPSE_GEM_ORE = registerSolidBlock("eclipse_gem_ore", s -> new Block(s.mapColor(MapColor.STONE_GRAY).sounds(BlockSoundGroup.STONE)), 16f, 16f);
+    
     public static Block register(String id, Block block) {
         registerBlockItem(id, block);
         Identifier ID = MoreOresModInitializer.id(id);
@@ -111,7 +113,7 @@ public class ModBlocks {
 
     public static Block registerSolidBlock(String id, Function<AbstractBlock.Settings, Block> blockFunction, float strength, float resistance) {
         Identifier ID = MoreOresModInitializer.id(id);
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.setBlockKey(id)).strength(strength, resistance);
+        AbstractBlock.Settings settings = AbstractBlock.Settings.create().requiresTool().registryKey(MoreOresModInitializer.setBlockKey(id)).strength(strength, resistance);
         Block block = Registry.register(Registries.BLOCK, ID, blockFunction.apply(settings));
         Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(MoreOresModInitializer.itemKey(id)).useBlockPrefixedTranslationKey()));
 

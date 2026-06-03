@@ -80,7 +80,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OPAL_BLOCK)
                 .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
                 .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
-                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+                .add(ModBlocks.GRANDIDIERITE_BLOCK)
+                .add(ModBlocks.ECLIPSE_GEM_ORE);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK)
@@ -146,7 +147,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OPAL_BLOCK)
                 .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
                 .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
-                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+                .add(ModBlocks.GRANDIDIERITE_BLOCK)
+                .add(ModBlocks.ECLIPSE_GEM_ORE);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_STONE_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -212,7 +214,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OPAL_BLOCK)
                 .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
                 .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
-                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+                .add(ModBlocks.GRANDIDIERITE_BLOCK)
+                .add(ModBlocks.ECLIPSE_GEM_ORE);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -276,7 +279,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OPAL_BLOCK)
                 .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
                 .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
-                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+                .add(ModBlocks.GRANDIDIERITE_BLOCK)
+                .add(ModBlocks.ECLIPSE_GEM_ORE);
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_GOLD_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -340,7 +344,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OPAL_BLOCK)
                 .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
                 .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
-                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+                .add(ModBlocks.GRANDIDIERITE_BLOCK)
+                .add(ModBlocks.ECLIPSE_GEM_ORE);
 
         valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ENERGY_BLOCK)
@@ -404,7 +409,8 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OPAL_BLOCK)
                 .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
                 .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
-                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+                .add(ModBlocks.GRANDIDIERITE_BLOCK)
+                .add(ModBlocks.ECLIPSE_GEM_ORE);
 
         valueLookupBuilder(ModBlockTags.NEEDS_RUBY_TOOL)
         ;
