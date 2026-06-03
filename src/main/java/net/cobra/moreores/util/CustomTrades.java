@@ -15,7 +15,7 @@ public class CustomTrades {
     public static void register() {
 
         //? minecraft: >= 1.21.9 && minecraft: <=1.21.10 {
-        TradeOfferHelper.registerWanderingTraderOffers(factories -> {
+        /*TradeOfferHelper.registerWanderingTraderOffers(factories -> {
             factories.addAll(MoreOresModInitializer.getId("emerald_for_tomato_seeds"), (entity, random) -> createNewOffer(
                     Items.EMERALD, 3,
                     new ItemStack(ModItems.TOMATO_SEEDS),
@@ -204,10 +204,10 @@ public class CustomTrades {
                     6, 5, 0.5f
             ));
         });
-        //?}
+        *///?}
 
         //? if minecraft: >= 1.21.11 {
-        /*TradeOfferHelper.registerWanderingTraderOffers(factories -> {
+        TradeOfferHelper.registerWanderingTraderOffers(factories -> {
             factories.addAll(MoreOresModInitializer.getId("emerald_for_tomato_seeds"), (world, entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 3),
                     new ItemStack(ModItems.TOMATO_SEEDS),
@@ -396,7 +396,7 @@ public class CustomTrades {
                     6, 5, 0.5f
             ));
         });
-        *///?}
+        //?}
 
         MoreOresModInitializer.LOGGER.info("Loading CustomTrades for " + MoreOresModInitializer.MOD_ID + " mod.");
     }

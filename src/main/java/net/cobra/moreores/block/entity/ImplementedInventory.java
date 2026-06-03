@@ -5,24 +5,16 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
+//? if minecraft:>= 1.21.6 {
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
+//?}
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-/**
- * A simple {@code SidedInventory} implementation with only default methods + an item list getter.
- *
- * <h2>Reading and writing to tags</h2>
- * Use {@link Inventories#writeData(WriteView, DefaultedList)} (NbtCompound, DefaultedList)} and {@link Inventories#readData(ReadView, DefaultedList)} (NbtCompound, DefaultedList, RegistryWrapper.WrapperLookup)}
- * on {@linkplain #getItems() the item list}.
- *
- * License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>
- * @author Juuz
- */
 @FunctionalInterface
 public interface ImplementedInventory extends SidedInventory {
     /**

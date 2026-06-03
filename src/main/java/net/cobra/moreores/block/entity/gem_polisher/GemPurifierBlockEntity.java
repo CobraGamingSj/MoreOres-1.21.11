@@ -41,8 +41,10 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+//? if minecraft: >=1.21.6 {
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
+//?}
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -66,7 +68,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
 
             markDirty();
 
-            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+            for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
                 ServerPlayNetworking.send(user, new GemPurifierEnergyData(this.amount, getPos()));
             }
         }
@@ -85,7 +87,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         @Override
         protected void onFinalCommit() {
             markDirty();
-            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+            for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
                 ServerPlayNetworking.send(user, new GemPurifierFluidData(this.variant, this.amount, getPos()));
             }
         }
@@ -159,6 +161,7 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         return createNbt(registryLookup);
     }
 
+    //? if minecraft: >=1.21.6 {
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
@@ -184,7 +187,34 @@ public class GemPurifierBlockEntity extends BlockEntity implements ExtendedScree
         energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
         waterState = view.read("WaterFluidState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
     }
+    //?} else {
+    /*@Override
+    protected void writeNbt(NbtCompound view, RegistryWrapper.WrapperLookup registries) {
+        super.writeNbt(view, registries);
+        Inventories.writeNbt(view, inventory, registries);
+        view.putInt("gem_purifier.progress", initialProgress);
+        view.putLong("gem_purifier.fluid", energyStorage.amount);
+        view.putLong("gem_purifier.water", fluidStorage.amount);
+        view.putNullable("gem_purifier.fluid.variant", FluidVariant.CODEC, fluidStorage.variant);
+        view.putNullable("PolishingState", PolishingState.CODEC, polishingState);
+        view.putNullable("EnergyState", EnergyState.CODEC, energyState);
+        view.putNullable("WaterFluidState", WaterFluidState.CODEC, waterState);
+    }
 
+    @Override
+    protected void readNbt(NbtCompound view, RegistryWrapper.WrapperLookup registries) {
+        super.readNbt(view, registries);
+        Inventories.readNbt(view, inventory, registries);
+        initialProgress = view.getInt("gem_purifier.progress", 0);
+        energyStorage.amount = view.getLong("gem_purifier.fluid", 0);
+        fluidStorage.amount = view.getLong("gem_purifier.water", 0);
+        fluidStorage.variant = view.get("gem_purifier.fluid.variant", FluidVariant.CODEC).orElse(FluidVariant.blank());
+        polishingState = view.get("PolishingState", PolishingState.CODEC).orElse(PolishingState.IDLE);
+        energyState = view.get("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
+        waterState = view.get("WaterFluidState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
+    }
+    *///?}
+    
     @Override
     public Text getDisplayName() {
         return ModBlocks.GEM_PURIFIER_BLOCK.getName();

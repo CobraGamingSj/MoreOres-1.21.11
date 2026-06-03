@@ -12,7 +12,7 @@ import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.ModelVariant;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.Pool;
+import net.minecraft.util.collection.WeightedPool;
 
 public class ModelGen extends FabricModelProvider {
     public ModelGen(FabricDataOutput output) {
@@ -70,8 +70,8 @@ public class ModelGen extends FabricModelProvider {
         Identifier lampOnIdentifier = blockStateModelGenerator.createSubModel(ModBlocks.RUBY_LAMP, "_on", Models.CUBE_ALL, TextureMap::all);
         blockStateModelGenerator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(ModBlocks.RUBY_LAMP)
                 .with(BlockStateModelGenerator.createBooleanModelMap(RubyLampBlock.LIT,
-                        new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOnIdentifier)).build()),
-                                new WeightedVariant(Pool.<ModelVariant>builder().add(new ModelVariant(lampOffIdentifier)).build()))));
+                        new WeightedVariant(WeightedPool.<ModelVariant>builder().add(new ModelVariant(lampOnIdentifier)).build()),
+                                new WeightedVariant(WeightedPool.<ModelVariant>builder().add(new ModelVariant(lampOffIdentifier)).build()))));
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_RUBY_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_SAPPHIRE_BLOCK);
@@ -146,31 +146,31 @@ public class ModelGen extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RUBY_HOE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.RUBY_SHOVEL, Models.HANDHELD);
         //? if minecraft: >= 1.21.11 {
-        /*itemModelGenerator.register(ModItems.RUBY_SPEAR, Models.GENERATED);
-        *///?}
+        itemModelGenerator.register(ModItems.RUBY_SPEAR, Models.GENERATED);
+        //?}
         itemModelGenerator.register(ModItems.SAPPHIRE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_AXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_HOE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.SAPPHIRE_SHOVEL, Models.HANDHELD);
         //? if minecraft: >= 1.21.11 {
-        /*itemModelGenerator.register(ModItems.SAPPHIRE_SPEAR, Models.GENERATED);
-        *///?}
+        itemModelGenerator.register(ModItems.SAPPHIRE_SPEAR, Models.GENERATED);
+        //?}
 
         itemModelGenerator.registerArmor(ModItems.RUBY_HELMET, ModEquipmentAssetKeys.RUBY,  ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RUBY_CHESTPLATE, ModEquipmentAssetKeys.RUBY, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RUBY_LEGGINGS, ModEquipmentAssetKeys.RUBY,  ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RUBY_BOOTS, ModEquipmentAssetKeys.RUBY, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
         //? if minecraft: >= 1.21.11 {
-        /*itemModelGenerator.register(ModItems.RUBY_NAUTILUS_ARMOR, Models.GENERATED);
-        *///?}
+        itemModelGenerator.register(ModItems.RUBY_NAUTILUS_ARMOR, Models.GENERATED);
+        //?}
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_HELMET, ModEquipmentAssetKeys.SAPPHIRE, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_CHESTPLATE,  ModEquipmentAssetKeys.SAPPHIRE, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_LEGGINGS,  ModEquipmentAssetKeys.SAPPHIRE, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.SAPPHIRE_BOOTS, ModEquipmentAssetKeys.SAPPHIRE,  ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
         //? if minecraft: >= 1.21.11 {
-        /*itemModelGenerator.register(ModItems.SAPPHIRE_NAUTILUS_ARMOR, Models.GENERATED);
-        *///?}
+        itemModelGenerator.register(ModItems.SAPPHIRE_NAUTILUS_ARMOR, Models.GENERATED);
+        //?}
         itemModelGenerator.registerArmor(ModItems.RADIANT_HELMET, ModEquipmentAssetKeys.RADIANT, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RADIANT_CHESTPLATE, ModEquipmentAssetKeys.RADIANT, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
         itemModelGenerator.registerArmor(ModItems.RADIANT_LEGGINGS, ModEquipmentAssetKeys.RADIANT, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);

@@ -39,16 +39,16 @@ public class TextureButtonWidget extends ButtonWidget {
 
     //? if minecraft: >= 1.21.11 {
 
-    /*@Override
+    @Override
     public void drawIcon(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         renderIcon(context, mouseX, mouseY, deltaTicks);
     }
-    *///?} else if minecraft: >=1.21.9 && minecraft: <= 1.21.10 {
+    //?} else if minecraft: >=1.21.9 && minecraft: <= 1.21.10 {
 
-    @Override
+    /*@Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         super.renderWidget(context, mouseX, mouseY, deltaTicks);
         renderIcon(context, mouseX, mouseY, deltaTicks);
     }
-    //?}
+    *///?}
 }

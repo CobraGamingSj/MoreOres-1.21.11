@@ -177,9 +177,9 @@ public class MoreOresModInitializer implements ModInitializer {
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_CHESTPLATE, ModItems.SAPPHIRE_LEGGINGS);
 			combatEventEntries.addAfter(ModItems.SAPPHIRE_LEGGINGS, ModItems.SAPPHIRE_BOOTS);
 			//? if minecraft: >= 1.21.11 {
-			/*combatEventEntries.addAfter(Items.NETHERITE_SPEAR, ModItems.RUBY_SPEAR);
+			combatEventEntries.addAfter(Items.NETHERITE_SPEAR, ModItems.RUBY_SPEAR);
 			combatEventEntries.addAfter(ModItems.RUBY_SPEAR, ModItems.SAPPHIRE_SPEAR);
-			*///?} else {
+			//?} else {
 			//?}
 		});
 

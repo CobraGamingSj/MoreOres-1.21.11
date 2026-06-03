@@ -163,7 +163,7 @@ public class RecipeGen extends FabricRecipeProvider {
 
                 //? if minecraft: >= 1.21.11 {
 
-                /*SmithingTransformRecipeJsonBuilder.create(
+                SmithingTransformRecipeJsonBuilder.create(
                                 Ingredient.ofItem(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE),
                                 Ingredient.ofItem(Items.NETHERITE_SPEAR),
                                 this.ingredientFromTag(ModItemTags.RUBY_TOOL_MATERIALS),
@@ -181,7 +181,7 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion("has_ruby", conditionsFromTag(ModItemTags.RUBY_TOOL_MATERIALS))
                         .offerTo(exporter, getItemPath(ModItems.RUBY_NAUTILUS_ARMOR) + "_smithing");
 
-                *///?} else {
+                //?} else {
                 //?}
 
                 offerSmithingTrimRecipe(ModItems.GUARDIAN_ARMOR_TRIM_SMITHING_TEMPLATE,
@@ -481,7 +481,7 @@ public class RecipeGen extends FabricRecipeProvider {
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.RUBY_UPGRADE_SMITHING_TEMPLATE))));
 
                 //? if minecraft: >= 1.21.11 {
-                /*createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SPEAR, 1)
+                createShaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SPEAR, 1)
                         .pattern("bbb")
                         .pattern("bab")
                         .pattern("bbb")
@@ -500,7 +500,7 @@ public class RecipeGen extends FabricRecipeProvider {
                         .criterion(hasItem(ModItems.RUBY_NAUTILUS_ARMOR), conditionsFromItem(ModItems.RUBY_NAUTILUS_ARMOR))
                         .criterion(hasItem(ModItems.SAPPHIRE), conditionsFromItem(ModItems.SAPPHIRE))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModItems.SAPPHIRE_NAUTILUS_ARMOR))));
-                *///?}
+                //?}
             }
         };
     }
