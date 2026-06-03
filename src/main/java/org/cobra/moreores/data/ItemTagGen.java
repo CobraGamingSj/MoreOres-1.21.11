@@ -162,6 +162,12 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                         ModBlocks.RAW_JADE_BLOCK.asItem(),
                         ModBlocks.RAW_PYROPE_BLOCK.asItem());
 
+        valueLookupBuilder(ItemTags.ARROWS)
+                .add(ModItems.GEM_ARROW);
+        
+        valueLookupBuilder(ItemTags.BOW_ENCHANTABLE)
+                .add(ModItems.GEM_BOW);
+        
         valueLookupBuilder(ModItemTags.METAL)
                 .add(Items.IRON_INGOT)
                 .add(Items.COPPER_INGOT)
