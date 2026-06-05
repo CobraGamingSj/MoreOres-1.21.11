@@ -50,6 +50,7 @@ public class ModOrePlacedFeatures {
     public static final RegistryKey<PlacedFeature> ORE_PYROPE = ModPlacedFeatures.of("ore_pyrope");
     public static final RegistryKey<PlacedFeature> ORE_PYROPE_MEDIUM = ModPlacedFeatures.of("ore_pyrope_medium");
     public static final RegistryKey<PlacedFeature> ORE_PYROPE_LARGE = ModPlacedFeatures.of("ore_pyrope_large");
+    public static final RegistryKey<PlacedFeature> ORE_ECLIPSE_GEM = ModPlacedFeatures.of("ore_eclipse_gem");
 
     private static List<PlacementModifier> modifiers(PlacementModifier countModifier, PlacementModifier heightModifier) {
         return List.of(countModifier, SquarePlacementModifier.of(), heightModifier, BiomePlacementModifier.of());
@@ -98,6 +99,7 @@ public class ModOrePlacedFeatures {
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry50 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_PYROPE_SMALL);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry51 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_PYROPE_LARGE);
         RegistryEntry<ConfiguredFeature<?, ?>> registryEntry52 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_PYROPE_MEDIUM);
+        RegistryEntry<ConfiguredFeature<?, ?>> registryEntry53 = placedFeatureRegisterableRegistryLookup.getOrThrow(ModOreConfiguredFeatures.ORE_ECLIPSE_GEM);
 
         PlacedFeatures.register(
                 placedFeatureRegisterable,
@@ -293,6 +295,21 @@ public class ModOrePlacedFeatures {
                 ORE_PYROPE_LARGE,
                 registryEntry52,
                 modifiersWithRarity(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(72)))
+        );
+        PlacedFeatures.register(
+                placedFeatureRegisterable,
+                ORE_ECLIPSE_GEM,
+                registryEntry53,
+                List.of(
+                        CountPlacementModifier.of(3),
+                        RarityFilterPlacementModifier.of(8), // very rare in stone
+                        SquarePlacementModifier.of(),
+                        HeightRangePlacementModifier.trapezoid(
+                                YOffset.fixed(-20),
+                                YOffset.fixed(40)
+                        ),
+                        BiomePlacementModifier.of()
+                )
         );
     }
 }

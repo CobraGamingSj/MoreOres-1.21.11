@@ -49,6 +49,7 @@ public class ModOreConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_PYROPE_SMALL = ModConfiguredFeatures.of("ore_pyrope_small");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_PYROPE_MEDIUM = ModConfiguredFeatures.of("ore_pyrope_medium");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_PYROPE_LARGE = ModConfiguredFeatures.of("ore_pyrope_large");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_ECLIPSE_GEM = ModConfiguredFeatures.of("ore_eclipse_gem");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> featureRegisterable) {
         RuleTest ruleTest2 = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -102,6 +103,10 @@ public class ModOreConfiguredFeatures {
                 OreFeatureConfig.createTarget(ruleTest3, ModBlocks.DEEPSLATE_PYROPE_ORE.getDefaultState())
         );
 
+        List<OreFeatureConfig.Target> eclipseGemList = List.of(
+                OreFeatureConfig.createTarget(ruleTest2, ModBlocks.ECLIPSE_GEM_ORE.getDefaultState())
+        );
+        
         ConfiguredFeatures.register(featureRegisterable, ORE_RUBY_SMALL, Feature.ORE, new OreFeatureConfig(rubyList, 1, 0.699F));
         ConfiguredFeatures.register(featureRegisterable, ORE_RUBY_LARGE, Feature.ORE, new OreFeatureConfig(rubyList, 3, 0.69F));
         ConfiguredFeatures.register(featureRegisterable, ORE_RUBY_MEDIUM, Feature.ORE, new OreFeatureConfig(rubyList, 3, 0.61F));
@@ -136,5 +141,6 @@ public class ModOreConfiguredFeatures {
         ConfiguredFeatures.register(featureRegisterable, ORE_PYROPE_SMALL, Feature.ORE, new OreFeatureConfig(pyropeList, 2, 0.55F));
         ConfiguredFeatures.register(featureRegisterable, ORE_PYROPE_LARGE, Feature.ORE, new OreFeatureConfig(pyropeList, 4, 0.697F));
         ConfiguredFeatures.register(featureRegisterable, ORE_PYROPE_MEDIUM, Feature.ORE, new OreFeatureConfig(pyropeList, 3, 0.615F));
+        ConfiguredFeatures.register(featureRegisterable, ORE_ECLIPSE_GEM, Feature.ORE, new OreFeatureConfig(eclipseGemList, 3, 0.2F));
     }
 }

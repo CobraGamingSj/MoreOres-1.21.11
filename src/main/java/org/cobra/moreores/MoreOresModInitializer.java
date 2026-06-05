@@ -54,15 +54,14 @@ import org.slf4j.LoggerFactory;
 public class MoreOresModInitializer implements ModInitializer {
 
 	public static final String MOD_ID = "moreores";
-	public static final String ID = "minecraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static Identifier id(String id) {
 		return Identifier.of(MOD_ID, id);
 	}
 
-	public static RegistryKey<Item> itemKey(String registryKey) {
-		return RegistryKey.of(RegistryKeys.ITEM, id(registryKey));
+	public static RegistryKey<Item> itemKey(String id) {
+		return RegistryKey.of(RegistryKeys.ITEM, id(id));
 	}
 
 	public static String formatName(String path) {
@@ -82,8 +81,8 @@ public class MoreOresModInitializer implements ModInitializer {
 		return builder.toString();
 	}
 
-	public static RegistryKey<Recipe<?>> recipeKey(String recipeName) {
-		return RegistryKey.of(RegistryKeys.RECIPE, id(recipeName));
+	public static RegistryKey<Recipe<?>> recipeKey(String id) {
+		return RegistryKey.of(RegistryKeys.RECIPE, id(id));
 	}
 
 
@@ -144,7 +143,7 @@ public class MoreOresModInitializer implements ModInitializer {
 				entries.add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK);
 			}).build();
 
-    public static RegistryKey<Block> setBlockKey(String id) {
+    public static RegistryKey<Block> blockKey(String id) {
 		return RegistryKey.of(RegistryKeys.BLOCK, id(id));
     }
 

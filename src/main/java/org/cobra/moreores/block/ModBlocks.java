@@ -1,10 +1,10 @@
 package org.cobra.moreores.block;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.sound.ModBlockSoundGroup;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.MapColor;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -12,8 +12,13 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.sound.ModBlockSoundGroup;
 
 import java.util.function.Function;
+
+import static org.cobra.moreores.MoreOresModInitializer.id;
 
 public class ModBlocks {
 
@@ -102,9 +107,7 @@ public class ModBlocks {
     
     public static Block register(String id, Block block) {
         registerBlockItem(id, block);
-        Identifier ID = MoreOresModInitializer.id(id);
-
-        return Registry.register(Registries.BLOCK, ID, block);
+        return Registry.register(Registries.BLOCK, id(id), block);
     }
 
     public static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory) {
@@ -112,18 +115,12 @@ public class ModBlocks {
     }
 
     public static Block registerSolidBlock(String id, Function<AbstractBlock.Settings, Block> blockFunction, float strength, float resistance) {
-        Identifier ID = MoreOresModInitializer.id(id);
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create().requiresTool().registryKey(MoreOresModInitializer.setBlockKey(id)).strength(strength, resistance);
-        Block block = Registry.register(Registries.BLOCK, ID, blockFunction.apply(settings));
-        Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(MoreOresModInitializer.itemKey(id)).useBlockPrefixedTranslationKey()));
-
-        return block;
+        AbstractBlock.Settings settings = AbstractBlock.Settings.create().requiresTool().registryKey(MoreOresModInitializer.blockKey(id)).strength(strength, resistance);
+        return register(id, blockFunction.apply(settings));
     }
 
     public static void registerBlockItem(String id, Block block) {
-        Identifier ID = MoreOresModInitializer.id(id);
-        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, ID);
-        Registry.register(Registries.ITEM, ID, new BlockItem(block, new Item.Settings().registryKey(key).useBlockPrefixedTranslationKey()));
+        ModItems.register(id, settings -> new BlockItem(block, settings.useBlockPrefixedTranslationKey()));
     }
 
     public static void register() {
