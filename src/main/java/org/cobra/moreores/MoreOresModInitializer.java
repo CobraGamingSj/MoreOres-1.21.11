@@ -4,7 +4,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.fabricmc.loader.api.FabricLoader;
@@ -30,19 +29,15 @@ import org.cobra.moreores.client.gui.screen.ModScreenHandlerType;
 import org.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.ModC2SNetworks;
+import org.cobra.moreores.networking.ModC2SPayloadRegistry;
 import org.cobra.moreores.networking.ModS2CNetworks;
 import org.cobra.moreores.networking.ModS2CPayloadRegistry;
-import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
-import org.cobra.moreores.networking.block.data.GemPurifierBlockData;
-import org.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
-import org.cobra.moreores.networking.block.data.PolishingStateDataPayload;
-import org.cobra.moreores.networking.item.EnergyIngotC2SPayload;
 import org.cobra.moreores.recipe.GemCrystallizerRecipe;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
 import org.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import org.cobra.moreores.recipe.display.GemCrystallizingRecipeDisplay;
 import org.cobra.moreores.recipe.display.GemPolishingRecipeDisplay;
-import org.cobra.moreores.registry.BirthdayRewardState;
+import org.cobra.moreores.registry.RewardState;
 import org.cobra.moreores.sound.ModBlockSoundGroup;
 import org.cobra.moreores.util.VanillaLootTableModifier;
 import org.cobra.moreores.util.VillagerTrades;
@@ -397,11 +392,7 @@ public class MoreOresModInitializer implements ModInitializer {
 		ModS2CNetworks.register();
 		ModC2SNetworks.register();
 		ModS2CPayloadRegistry.registerS2CPackets();
-		PayloadTypeRegistry.playC2S().register(GemPurifierButtonClickPayload.ID, GemPurifierButtonClickPayload.PACKET_CODEC);
-		PayloadTypeRegistry.playC2S().register(PolishingStateDataPayload.ID, PolishingStateDataPayload.PACKET_CODEC);
-		PayloadTypeRegistry.playC2S().register(GemPurifierBlockData.ID, GemPurifierBlockData.PACKET_CODEC);
-		PayloadTypeRegistry.playC2S().register(GemCrystallizerBlockData.ID, GemCrystallizerBlockData.PACKET_CODEC);
-		PayloadTypeRegistry.playC2S().register(EnergyIngotC2SPayload.ID, EnergyIngotC2SPayload.PACKET_CODEC);
+		ModC2SPayloadRegistry.registerC2SPackets();
 		ModC2SNetworks.registerServerC2S();
 
 
@@ -418,7 +409,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
 	public static void giveBirthdayRewards(ServerPlayerEntity serverPlayer) {
 		ServerWorld world = serverPlayer.getEntityWorld();
-		BirthdayRewardState state = BirthdayRewardState.get(world);
+		RewardState state = RewardState.get(world);
 
 		if(state.hasClaimed(serverPlayer.getUuid())) {
 			serverPlayer.sendMessage(Text.literal("⚠️ You can claim the reward only once!").formatted(Formatting.RED));

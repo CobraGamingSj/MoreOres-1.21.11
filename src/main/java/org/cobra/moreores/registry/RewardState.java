@@ -10,15 +10,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class BirthdayRewardState extends PersistentState {
+public class RewardState extends PersistentState {
     private final Set<UUID> playerClaimedRewards = new HashSet<>();
-    public static final Codec<BirthdayRewardState> CODEC = RecordCodecBuilder.create(instance ->
+    public static final Codec<RewardState> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     Codec.list(Codec.STRING).fieldOf("players").forGetter(state ->
                             state.playerClaimedRewards.stream().map(UUID::toString).toList()
                     )
             ).apply(instance, list -> {
-                BirthdayRewardState state = new BirthdayRewardState();
+                RewardState state = new RewardState();
                 for (String s : list) {
                     state.playerClaimedRewards.add(UUID.fromString(s));
                 }
@@ -26,10 +26,10 @@ public class BirthdayRewardState extends PersistentState {
             })
     );
 
-    public static final PersistentStateType<BirthdayRewardState> TYPE =
+    public static final PersistentStateType<RewardState> TYPE =
             new PersistentStateType<>(
                     "moreores_birthday_rewards",
-                    BirthdayRewardState::new,
+                    RewardState::new,
                     CODEC,
                     null // Not required
             );
@@ -43,7 +43,7 @@ public class BirthdayRewardState extends PersistentState {
         markDirty();
     }
 
-    public static BirthdayRewardState get(ServerWorld world) {
+    public static RewardState get(ServerWorld world) {
        return world.getPersistentStateManager().getOrCreate(TYPE);
     }
 }
