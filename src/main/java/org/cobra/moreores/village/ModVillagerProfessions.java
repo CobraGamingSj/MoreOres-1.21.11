@@ -1,8 +1,6 @@
 package org.cobra.moreores.village;
 
 import com.google.common.collect.ImmutableSet;
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.ModBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
@@ -13,6 +11,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.ModBlocks;
 
 public class ModVillagerProfessions {
     public static final RegistryKey<PointOfInterestType> JEWEL_POI = poiKey("jewel_poi");

@@ -1,7 +1,5 @@
 package org.cobra.moreores.enchantment;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.enchantment.entity.effect.ThunderSummonEnchantmentEffect;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.enchantment.Enchantment;
@@ -11,6 +9,8 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.enchantment.entity.effect.ThunderSummonEnchantmentEffect;
 
 public class ModEnchantments {
 

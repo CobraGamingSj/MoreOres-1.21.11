@@ -1,13 +1,13 @@
 package org.cobra.moreores.data;
 
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.registry.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.registry.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 

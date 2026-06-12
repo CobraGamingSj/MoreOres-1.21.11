@@ -1,11 +1,11 @@
 package org.cobra.moreores.enchantment.entity.effect;
 
 import com.mojang.serialization.MapCodec;
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
 
 import static org.cobra.moreores.MoreOresModInitializer.LOGGER;
 

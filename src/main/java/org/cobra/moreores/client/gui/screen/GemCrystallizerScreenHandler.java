@@ -1,10 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
-import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -12,11 +7,18 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.*;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
+import org.cobra.moreores.registry.ModItemTags;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public class GemCrystallizerScreenHandler extends AbstractGemPFScreenHandler {

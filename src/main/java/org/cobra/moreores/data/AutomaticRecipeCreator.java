@@ -1,12 +1,5 @@
 package org.cobra.moreores.data;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.client.recipe.GemCrystallizerRecipeJsonBuilder;
-import org.cobra.moreores.client.recipe.GemPolishingRecipeJsonBuilder;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
-import org.cobra.moreores.registry.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
@@ -25,6 +18,13 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.client.recipe.GemCrystallizerRecipeJsonBuilder;
+import org.cobra.moreores.client.recipe.GemPolishingRecipeJsonBuilder;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
+import org.cobra.moreores.registry.ModItemTags;
 
 import java.util.List;
 import java.util.Map;

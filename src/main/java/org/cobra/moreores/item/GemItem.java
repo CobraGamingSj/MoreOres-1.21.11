@@ -1,6 +1,5 @@
 package org.cobra.moreores.item;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,6 +9,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Rarity;
+import org.cobra.moreores.MoreOresModInitializer;
 
 import java.util.function.Consumer;
 

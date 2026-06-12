@@ -1,6 +1,5 @@
 package org.cobra.moreores.item.equipment.trim;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.item.equipment.trim.ArmorTrimPattern;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -8,6 +7,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import org.cobra.moreores.MoreOresModInitializer;
 
 public class ModArmorTrimPatterns {
     public static final RegistryKey<ArmorTrimPattern> GUARDIAN = of("guardian");

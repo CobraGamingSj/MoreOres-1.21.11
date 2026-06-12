@@ -1,13 +1,13 @@
 package org.cobra.moreores.networking.block.data;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
 
 public record PolishingStateDataPayload(BlockPos blockPos, String action) implements CustomPayload {
     public static final Id<PolishingStateDataPayload> ID = new Id<>(Identifier.of(MoreOresModInitializer.MOD_ID, "polishing_state"));

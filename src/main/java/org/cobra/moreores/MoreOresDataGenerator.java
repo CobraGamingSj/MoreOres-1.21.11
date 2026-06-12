@@ -1,15 +1,15 @@
 package org.cobra.moreores;
 
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 import org.cobra.moreores.data.*;
 import org.cobra.moreores.enchantment.ModEnchantments;
 import org.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
 import org.cobra.moreores.item.equipment.trim.ModArmorTrimPatterns;
 import org.cobra.moreores.world.gen.feature.ModConfiguredFeatures;
 import org.cobra.moreores.world.gen.feature.ModPlacedFeatures;
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
 
 public class MoreOresDataGenerator implements DataGeneratorEntrypoint {
 	@Override

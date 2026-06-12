@@ -1,11 +1,11 @@
 package org.cobra.moreores.networking;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.networking.block.data.*;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.networking.block.data.*;
 
 import static org.cobra.moreores.MoreOresModInitializer.LOGGER;
 

@@ -1,13 +1,13 @@
 package org.cobra.moreores.util;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.village.ModVillagerProfessions;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.village.ModVillagerProfessions;
 
 public class VillagerTrades {
 

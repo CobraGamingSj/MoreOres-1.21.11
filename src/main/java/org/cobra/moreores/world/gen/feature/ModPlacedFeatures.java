@@ -1,11 +1,11 @@
 package org.cobra.moreores.world.gen.feature;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.PlacedFeature;
+import org.cobra.moreores.MoreOresModInitializer;
 
 public class ModPlacedFeatures {
 

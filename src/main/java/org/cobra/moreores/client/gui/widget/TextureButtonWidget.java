@@ -1,6 +1,5 @@
 package org.cobra.moreores.client.gui.widget;
 
-import org.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
@@ -9,6 +8,7 @@ import net.minecraft.client.input.AbstractInput;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import org.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
 
 public class TextureButtonWidget extends ButtonWidget {
     private final Identifier texture;

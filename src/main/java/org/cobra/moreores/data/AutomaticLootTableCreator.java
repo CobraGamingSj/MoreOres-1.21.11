@@ -1,8 +1,5 @@
 package org.cobra.moreores.data;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
@@ -10,6 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.item.ModItems;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;

@@ -1,8 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.client.gui.widget.FluidWidget;
-import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gl.RenderPipelines;
@@ -16,6 +13,9 @@ import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.client.gui.widget.FluidWidget;
+import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 
 @Environment(EnvType.CLIENT)
 public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {

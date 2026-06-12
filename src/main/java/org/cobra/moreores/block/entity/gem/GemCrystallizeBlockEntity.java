@@ -1,17 +1,5 @@
 package org.cobra.moreores.block.entity.gem;
 
-import org.cobra.moreores.block.GemCrystallizerBlock;
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.item.util.GemCategory;
-import org.cobra.moreores.item.util.impl.CrystallizationGems;
-import org.cobra.moreores.item.util.impl.IGem;
-import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
-import org.cobra.moreores.block.entity.ModBlockEntityType;
-import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.recipe.GemCrystallizerRecipe;
-import org.cobra.moreores.recipe.input.GemInfusionRecipeInput;
-import org.cobra.moreores.registry.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,6 +24,18 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.cobra.moreores.block.GemCrystallizerBlock;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.block.entity.ModBlockEntityType;
+import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.item.util.GemCategory;
+import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.IGem;
+import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
+import org.cobra.moreores.recipe.GemCrystallizerRecipe;
+import org.cobra.moreores.recipe.input.GemInfusionRecipeInput;
+import org.cobra.moreores.registry.ModItemTags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;

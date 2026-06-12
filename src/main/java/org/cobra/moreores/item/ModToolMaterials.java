@@ -1,8 +1,8 @@
 package org.cobra.moreores.item;
 
+import net.minecraft.item.ToolMaterial;
 import org.cobra.moreores.registry.ModBlockTags;
 import org.cobra.moreores.registry.ModItemTags;
-import net.minecraft.item.ToolMaterial;
 
 public class ModToolMaterials{
     public static final ToolMaterial RUBY = new ToolMaterial(ModBlockTags.INCORRECT_FOR_RUBY_TOOL, 2652, 14.0f, 8.0f, 15, ModItemTags.RUBY_TOOL_MATERIALS);

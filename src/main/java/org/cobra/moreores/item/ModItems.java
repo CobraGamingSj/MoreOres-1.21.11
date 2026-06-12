@@ -1,16 +1,17 @@
 package org.cobra.moreores.item;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.item.equipment.ArmorItem;
-import org.cobra.moreores.item.equipment.ModArmorMaterials;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.SmithingTemplateItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.item.equipment.ArmorItem;
+import org.cobra.moreores.item.equipment.ModArmorMaterials;
 
 import java.util.function.Function;
 

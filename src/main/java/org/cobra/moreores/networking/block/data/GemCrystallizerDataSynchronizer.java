@@ -1,8 +1,5 @@
 package org.cobra.moreores.networking.block.data;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
-import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.network.RegistryByteBuf;
@@ -10,6 +7,9 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
 public record GemCrystallizerDataSynchronizer(long energy, int dustCount, BlockPos blockPos) implements CustomPayload {
 

@@ -1,10 +1,10 @@
 package org.cobra.moreores.client.render.block.entity;
 
-import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.minecraft.client.render.block.entity.state.BlockEntityRenderState;
 import net.minecraft.client.render.item.ItemRenderState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 
 public class GemPurifierBlockEntityRenderState extends BlockEntityRenderState {
 

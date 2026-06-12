@@ -1,10 +1,10 @@
 package org.cobra.moreores.world.gen;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.world.gen.feature.ModOrePlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.gen.GenerationStep;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.world.gen.feature.ModOrePlacedFeatures;
 
 public class WorldGeneration {
     public static void generate() {

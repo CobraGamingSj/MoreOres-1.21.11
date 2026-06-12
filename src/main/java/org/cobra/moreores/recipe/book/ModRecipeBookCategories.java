@@ -1,10 +1,10 @@
 package org.cobra.moreores.recipe.book;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
 
 public class ModRecipeBookCategories {
 

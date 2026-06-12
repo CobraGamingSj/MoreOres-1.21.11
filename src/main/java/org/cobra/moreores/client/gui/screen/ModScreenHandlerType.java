@@ -1,8 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
-import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -11,6 +8,9 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
+import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 
 public class ModScreenHandlerType {
 

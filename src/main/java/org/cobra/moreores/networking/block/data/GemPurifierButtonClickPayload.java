@@ -1,9 +1,5 @@
 package org.cobra.moreores.networking.block.data;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
-import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
-import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -11,6 +7,10 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
+import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
+import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
 public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implements CustomPayload {
     public static final Id<GemPurifierButtonClickPayload> ID = new Id<>(MoreOresModInitializer.id("button_click"));

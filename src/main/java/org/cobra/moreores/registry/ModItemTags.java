@@ -1,10 +1,10 @@
 package org.cobra.moreores.registry;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
 
 public class ModItemTags {
 

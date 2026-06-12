@@ -1,6 +1,5 @@
 package org.cobra.moreores.item.equipment.trim;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.item.equipment.trim.ArmorTrimAssets;
 import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
 import net.minecraft.registry.Registerable;
@@ -11,6 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import org.cobra.moreores.MoreOresModInitializer;
 
 public class ModArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> RUBY = of("ruby");

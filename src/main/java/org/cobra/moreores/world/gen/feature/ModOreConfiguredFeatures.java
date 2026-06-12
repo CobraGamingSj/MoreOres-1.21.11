@@ -1,6 +1,5 @@
 package org.cobra.moreores.world.gen.feature;
 
-import org.cobra.moreores.block.ModBlocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.BlockTags;
@@ -10,6 +9,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import org.cobra.moreores.block.ModBlocks;
 
 import java.util.List;
 

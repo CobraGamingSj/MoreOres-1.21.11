@@ -1,6 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gl.RenderPipelines;
@@ -11,6 +10,7 @@ import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import org.cobra.moreores.MoreOresModInitializer;
 
 @Environment(EnvType.CLIENT)
 public class GemCrystallizerScreen extends AbstractGemPFScreen<GemCrystallizerScreenHandler> {

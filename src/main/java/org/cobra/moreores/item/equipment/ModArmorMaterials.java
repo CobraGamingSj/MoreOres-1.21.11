@@ -1,10 +1,10 @@
 package org.cobra.moreores.item.equipment;
 
-import org.cobra.moreores.registry.ModItemTags;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Util;
+import org.cobra.moreores.registry.ModItemTags;
 
 import java.util.EnumMap;
 

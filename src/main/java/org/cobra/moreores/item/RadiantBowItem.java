@@ -14,7 +14,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.entity.GemArrowEntity;
 import org.jspecify.annotations.Nullable;
 

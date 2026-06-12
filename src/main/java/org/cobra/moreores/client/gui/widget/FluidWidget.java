@@ -1,7 +1,5 @@
 package org.cobra.moreores.client.gui.widget;
 
-import org.cobra.moreores.client.gui.util.ScreenUtils;
-import org.cobra.moreores.util.FluidStack;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -19,6 +17,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
+import org.cobra.moreores.client.gui.util.ScreenUtils;
+import org.cobra.moreores.util.FluidStack;
 
 import java.util.List;
 import java.util.function.Consumer;

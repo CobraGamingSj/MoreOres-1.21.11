@@ -1,10 +1,10 @@
 package org.cobra.moreores.item.equipment;
 
-import org.cobra.moreores.MoreOresModInitializer;
 import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
 
 public interface ModEquipmentAssetKeys {
     RegistryKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));

@@ -1,14 +1,5 @@
 package org.cobra.moreores.block.entity.gem;
 
-import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.block.entity.ImplementedInventory;
-import org.cobra.moreores.block.entity.TickableBlockEntity;
-import org.cobra.moreores.item.ModItems;
-import org.cobra.moreores.item.util.GemCategory;
-import org.cobra.moreores.item.util.impl.CrystallizationGems;
-import org.cobra.moreores.item.util.impl.IGem;
-import org.cobra.moreores.item.util.impl.PurifyingGems;
-import org.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -27,6 +18,15 @@ import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.block.entity.ImplementedInventory;
+import org.cobra.moreores.block.entity.TickableBlockEntity;
+import org.cobra.moreores.item.ModItems;
+import org.cobra.moreores.item.util.GemCategory;
+import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.IGem;
+import org.cobra.moreores.item.util.impl.PurifyingGems;
+import org.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<P>, ImplementedInventory, TickableBlockEntity {

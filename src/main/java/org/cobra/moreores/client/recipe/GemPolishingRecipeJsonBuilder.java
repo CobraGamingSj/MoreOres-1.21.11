@@ -1,7 +1,5 @@
 package org.cobra.moreores.client.recipe;
 
-import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.recipe.GemPurifierRecipe;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementRequirements;
@@ -14,6 +12,8 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.recipe.GemPurifierRecipe;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

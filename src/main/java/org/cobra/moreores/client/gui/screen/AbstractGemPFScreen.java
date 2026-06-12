@@ -1,7 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import org.cobra.moreores.networking.block.data.PolishingStateDataPayload;
-import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
@@ -12,6 +10,8 @@ import net.minecraft.client.input.KeyInput;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
+import org.cobra.moreores.networking.block.data.PolishingStateDataPayload;
 import org.lwjgl.glfw.GLFW;
 
 public abstract class AbstractGemPFScreen<S extends AbstractGemPFScreenHandler> extends HandledScreen<S> {

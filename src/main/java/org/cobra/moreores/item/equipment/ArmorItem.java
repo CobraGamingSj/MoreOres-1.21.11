@@ -12,10 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.server.world.ServerWorld;
-import org.cobra.moreores.MoreOresModInitializer;
 import org.jspecify.annotations.Nullable;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 

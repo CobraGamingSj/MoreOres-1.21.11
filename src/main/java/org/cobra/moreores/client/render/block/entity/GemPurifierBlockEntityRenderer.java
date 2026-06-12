@@ -1,7 +1,5 @@
 package org.cobra.moreores.client.render.block.entity;
 
-import org.cobra.moreores.block.GemPurifierBlock;
-import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import net.minecraft.client.item.ItemModelManager;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
@@ -18,6 +16,8 @@ import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import org.cobra.moreores.block.GemPurifierBlock;
+import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;

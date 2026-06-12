@@ -5,7 +5,6 @@ import net.minecraft.data.tag.TagProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.PointOfInterestTypeTags;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.poi.PointOfInterestType;
 import org.cobra.moreores.MoreOresModInitializer;
 
