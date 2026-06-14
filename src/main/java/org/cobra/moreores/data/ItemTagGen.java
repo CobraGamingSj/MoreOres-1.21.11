@@ -37,9 +37,15 @@ public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PERIDOT)
                 .add(ModItems.JADE)
                 .add(ModItems.PYROPE)
-                .add(ModItems.CRIMSON_GARNET, ModItems.CRYSTALLITE, ModItems.ALEXANDRITE, ModItems.ORANGE_ZIRCON,
-                        ModItems.OPAL, ModItems.QUARTSIDIAN, ModItems.KASHMIR_SAPPHIRE, ModItems.RADIANT_AMETHYST,
-                        ModItems.LIMESTONE, ModItems.MOONSTONE, ModItems.RED_BERYL, ModItems.GRANDIDIERITE);
+                .add(ModItems.CRIMSON_GARNET)
+                .add(ModItems.CRYSTALLITE)
+                .add(ModItems.ALEXANDRITE)
+                .add(ModItems.OPAL)
+                .add(ModItems.QUARTSIDIAN)
+                .add(ModItems.RADIANT_AMETHYST)
+                .add(ModItems.LIMESTONE)
+                .add(ModItems.MOONSTONE)
+                .add(ModItems.RED_BERYL);
 
         valueLookupBuilder(ItemTags.SWORDS)
                 .add(ModItems.RUBY_SWORD)

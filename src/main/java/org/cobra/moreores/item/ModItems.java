@@ -59,11 +59,11 @@ public class ModItems {
     public static final Item LIMESTONE = register("limestone", s -> new GemItem(s, "limestone"));
     public static final Item QUARTSIDIAN = register("quartsidian", s -> new GemItem(s, "quartsidian"));
     public static final Item ALEXANDRITE = register("alexandrite", s -> new GemItem(s, "alexandrite"));
-    public static final Item ORANGE_ZIRCON = register("orange_zircon", s -> new GemItem(s, "orange_zircon"));
+    public static final Item ORANGE_ZIRCON = register("orange_zircon", Item::new);
     public static final Item OPAL = register("opal", s -> new GemItem(s, "opal"));
-    public static final Item GRANDIDIERITE = register("grandidierite", s -> new GemItem(s, "grandidierite"));
-    public static final Item RED_BERYL = register("red_beryl", s -> new GemItem(s, "beryl"));
-    public static final Item KASHMIR_SAPPHIRE = register("kashmir_sapphire", s -> new GemItem(s, "kashmir_sapphire"));
+    public static final Item GRANDIDIERITE = register("grandidierite", Item::new);
+    public static final Item RED_BERYL = register("red_beryl", s -> new GemItem(s, "red_beryl"));
+    public static final Item KASHMIR_SAPPHIRE = register("kashmir_sapphire", Item::new);
 
     public static final Item ENERGY_INGOT = register("energy_ingot", settings ->  new EnergyIngotItem(settings.fireproof().rarity(Rarity.RARE)));
 

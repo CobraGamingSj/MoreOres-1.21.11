@@ -11,8 +11,5 @@
   },
   "overwrites": {
     "requireAnnotations": true
-  },
-  "client": [
-    "ItemModelGeneratorMixin"
-  ]
+  }
 }
