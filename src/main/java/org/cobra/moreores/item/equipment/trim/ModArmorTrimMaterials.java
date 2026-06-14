@@ -26,6 +26,15 @@ public class ModArmorTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> PERIDOT = of("peridot");
     public static final RegistryKey<ArmorTrimMaterial> JADE = of("jade");
     public static final RegistryKey<ArmorTrimMaterial> PYROPE = of("pyrope");
+    public static final RegistryKey<ArmorTrimMaterial> CRIMSON_GARNET = of("crimson_garnet");
+    public static final RegistryKey<ArmorTrimMaterial> CRYSTALLITE = of("crystallite");
+    public static final RegistryKey<ArmorTrimMaterial> RADIANT_AMETHYST = of("radiant_amethyst");
+    public static final RegistryKey<ArmorTrimMaterial> ALEXANDRITE = of("alexandrite");
+    public static final RegistryKey<ArmorTrimMaterial> LIMESTONE = of("limestone");
+    public static final RegistryKey<ArmorTrimMaterial> MOONSTONE = of("moonstone");
+    public static final RegistryKey<ArmorTrimMaterial> QUARTSIDIAN = of("quartsidian");
+    public static final RegistryKey<ArmorTrimMaterial> OPAL = of("opal");
+    public static final RegistryKey<ArmorTrimMaterial> RED_BERYL = of("red_beryl");
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registerable) {
         register(registerable, RUBY, Style.EMPTY.withColor(16711680), ModArmorTrimAssets.RUBY);
@@ -41,6 +50,16 @@ public class ModArmorTrimMaterials {
         register(registerable, PERIDOT, Style.EMPTY.withColor(52238), ModArmorTrimAssets.PERIDOT);
         register(registerable, JADE, Style.EMPTY.withColor(11140783), ModArmorTrimAssets.JADE);
         register(registerable, PYROPE, Style.EMPTY.withColor(12717839), ModArmorTrimAssets.PYROPE);
+        
+        register(registerable, CRIMSON_GARNET, Style.EMPTY.withColor(12058624), ModArmorTrimAssets.CRIMSON_GARNET);
+        register(registerable, CRYSTALLITE, Style.EMPTY.withColor(2086544), ModArmorTrimAssets.CRYSTALLITE);
+        register(registerable, RADIANT_AMETHYST, Style.EMPTY.withColor(8733893), ModArmorTrimAssets.RADIANT_AMETHYST);
+        register(registerable, LIMESTONE, Style.EMPTY.withColor(65459), ModArmorTrimAssets.LIMESTONE);
+        register(registerable, MOONSTONE, Style.EMPTY.withColor(14935011), ModArmorTrimAssets.MOONSTONE);
+        register(registerable, ALEXANDRITE, Style.EMPTY.withColor(12009953), ModArmorTrimAssets.ALEXANDRITE);
+        register(registerable, QUARTSIDIAN, Style.EMPTY.withColor(5197647), ModArmorTrimAssets.QUARTSIDIAN);
+        register(registerable, OPAL, Style.EMPTY.withColor(5085951), ModArmorTrimAssets.OPAL);
+        register(registerable, RED_BERYL, Style.EMPTY.withColor(15073280), ModArmorTrimAssets.RED_BERYL);
     }
 
     private static void register(Registerable<ArmorTrimMaterial> registry, RegistryKey<ArmorTrimMaterial> key, Style style, ArmorTrimAssets assets) {
@@ -49,7 +68,7 @@ public class ModArmorTrimMaterials {
     }
 
     private static RegistryKey<ArmorTrimMaterial> of(String id) {
-        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
+        Identifier ID = MoreOresModInitializer.id(id);
         return RegistryKey.of(RegistryKeys.TRIM_MATERIAL, ID);
     }
 }

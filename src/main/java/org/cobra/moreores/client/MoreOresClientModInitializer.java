@@ -4,11 +4,15 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.EntityRendererFactories;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
+import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreen;
@@ -23,17 +27,19 @@ import org.cobra.moreores.networking.ModS2CNetworks;
 import org.lwjgl.glfw.GLFW;
 
 public class MoreOresClientModInitializer implements ClientModInitializer {
-    public static final KeyBinding altKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "alt",
-            GLFW.GLFW_KEY_LEFT_ALT,
-            KeyBinding.Category.INVENTORY
-    ));
-
     @Override
     public void onInitializeClient() {
 
         ModS2CNetworks.registerClientS2C();
 
+//        for(Block block : Registries.BLOCK) {
+//            Identifier identifier = Registries.BLOCK.getId(block);
+//            if(identifier.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
+//                BlockRenderLayerMap.putBlock(block, BlockRenderLayer.CUTOUT);
+//                continue;
+//            }
+//        }
+        
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_CRYSTALLIZER_BLOCK, BlockRenderLayer.TRANSLUCENT);
 

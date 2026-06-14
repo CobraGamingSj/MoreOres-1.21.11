@@ -78,6 +78,160 @@
           "model": "moreores:item/ruby_boots_resin_trim"
         },
         "when": "minecraft:resin"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_ruby_trim"
+        },
+        "when": "moreores:ruby"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_radiant_trim"
+        },
+        "when": "moreores:radiant"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_sapphire_trim"
+        },
+        "when": "moreores:sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_green_sapphire_trim"
+        },
+        "when": "moreores:green_sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_blue_garnet_trim"
+        },
+        "when": "moreores:blue_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_pink_garnet_trim"
+        },
+        "when": "moreores:pink_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_green_garnet_trim"
+        },
+        "when": "moreores:green_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_kyawthuite_trim"
+        },
+        "when": "moreores:kyawthuite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_topaz_trim"
+        },
+        "when": "moreores:topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_white_topaz_trim"
+        },
+        "when": "moreores:white_topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_peridot_trim"
+        },
+        "when": "moreores:peridot"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_jade_trim"
+        },
+        "when": "moreores:jade"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_pyrope_trim"
+        },
+        "when": "moreores:pyrope"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_crimson_garnet_trim"
+        },
+        "when": "moreores:crimson_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_crystallite_trim"
+        },
+        "when": "moreores:crystallite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_radiant_amethyst_trim"
+        },
+        "when": "moreores:radiant_amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_limestone_trim"
+        },
+        "when": "moreores:limestone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_moonstone_trim"
+        },
+        "when": "moreores:moonstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_alexandrite_trim"
+        },
+        "when": "moreores:alexandrite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_quartsidian_trim"
+        },
+        "when": "moreores:quartsidian"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_opal_trim"
+        },
+        "when": "moreores:opal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_boots_red_beryl_trim"
+        },
+        "when": "moreores:red_beryl"
       }
     ],
     "fallback": {

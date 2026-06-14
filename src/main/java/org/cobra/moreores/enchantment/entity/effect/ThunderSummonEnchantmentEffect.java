@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public record ThunderSummonEnchantmentEffect() implements EnchantmentEntityEffect {
@@ -26,6 +27,18 @@ public record ThunderSummonEnchantmentEffect() implements EnchantmentEntityEffec
             EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
             EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
             EntityType.TNT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED).setFuse(0);
+        }
+        if(level == 4) {
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.TNT.spawn(world, new BlockPos(user.getBlockX(), user.getBlockY(), user.getBlockZ()), SpawnReason.TRIGGERED).setFuse(0);
+            EntityType.TNT.spawn(world, new BlockPos(user.getBlockX() + 2, user.getBlockY(), user.getBlockZ()), SpawnReason.TRIGGERED).setFuse(10);
+            EntityType.TNT.spawn(world, new BlockPos(user.getBlockX() - 2, user.getBlockY(), user.getBlockZ()), SpawnReason.TRIGGERED).setFuse(10);
+            EntityType.TNT.spawn(world, new BlockPos(user.getBlockX(), user.getBlockY() + 2, user.getBlockZ()), SpawnReason.TRIGGERED).setFuse(10);
+            EntityType.TNT.spawn(world, new BlockPos(user.getBlockX(), user.getBlockY(), user.getBlockZ() + 2), SpawnReason.TRIGGERED).setFuse(10);
+            EntityType.TNT.spawn(world, new BlockPos(user.getBlockX(), user.getBlockY(), user.getBlockZ() - 2), SpawnReason.TRIGGERED).setFuse(10);
         }
     }
 

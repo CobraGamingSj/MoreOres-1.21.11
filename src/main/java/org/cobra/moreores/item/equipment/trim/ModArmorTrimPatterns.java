@@ -26,7 +26,7 @@ public class ModArmorTrimPatterns {
     }
 
     private static RegistryKey<ArmorTrimPattern> of(String id) {
-        Identifier ID = Identifier.of(MoreOresModInitializer.MOD_ID, id);
+        Identifier ID = MoreOresModInitializer.id(id);
         return RegistryKey.of(RegistryKeys.TRIM_PATTERN, ID);
     }
 }

@@ -39,7 +39,7 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
         titleY = 1000;
         playerInventoryTitleY = 1000;
 
-        addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).build());
+        addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).create());
 
         ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 112, y + 8, START_BUTTON, Text.literal("Start Polishing"));
 

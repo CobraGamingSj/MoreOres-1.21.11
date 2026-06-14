@@ -17,7 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import org.cobra.moreores.client.gui.util.ScreenUtils;
+import org.cobra.moreores.client.gui.util.FluidUtils;
 import org.cobra.moreores.util.FluidStack;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class FluidWidget implements Drawable, Widget {
         float red = (tintColor >> 16 & 0xFF) /255F;
         float green = (tintColor >> 8 & 0xFF) /255F;
         float blue = (tintColor & 0xFF) /255F;
-        ScreenUtils.renderTiledSprite(context, sprite, this.x, this.y + this.height - fluidHeight, this.width, fluidHeight, 1F, red, green, blue);
+        FluidUtils.renderTiledFluidSprite(context, sprite, this.x, this.y + this.height - fluidHeight, this.width, fluidHeight, 1F, red, green, blue);
 
         if(isPointWithinBounds(this.x, this.y, this.width, this.height, mouseX, mouseY)) {
             drawTooltip(context, mouseX, mouseY);
@@ -177,7 +177,7 @@ public class FluidWidget implements Drawable, Widget {
             return this;
         }
 
-        public FluidWidget build() {
+        public FluidWidget create() {
             return new FluidWidget(this.fluidStorage, this.x, this.y, this.width, this.height, this.posSupplier);
         }
     }

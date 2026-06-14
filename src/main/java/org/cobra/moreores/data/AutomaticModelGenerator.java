@@ -18,6 +18,11 @@ import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.RubyLampBlock;
 import org.cobra.moreores.item.RadiantBowItem;
 import org.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
+import org.cobra.moreores.item.equipment.trim.ModArmorTrimAssets;
+import org.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
+
+import java.util.Collections;
+import java.util.List;
 
 public class AutomaticModelGenerator extends FabricModelProvider {
     public AutomaticModelGenerator(FabricDataOutput output) {
@@ -60,7 +65,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
             String path = id.getPath();
 
             boolean handheld = false;
-
+            
             if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
 
                 if(path.endsWith("_sword") || path.endsWith("_shovel") ||

@@ -7,8 +7,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 
-public class ScreenUtils {
-    public static void renderTiledSprite(DrawContext context, Sprite sprite, int x, int y, int width, int height, float a, float r, float g, float b) {
+public class FluidUtils {
+    public static void renderTiledFluidSprite(DrawContext context, Sprite sprite, int x, int y, int width, int height, float a, float r, float g, float b) {
         int spriteWidth = sprite.getContents().getWidth();
         int spriteHeight = sprite.getContents().getHeight();
 
