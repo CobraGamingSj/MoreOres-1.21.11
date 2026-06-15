@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "prefix": "item/",
+      "source": "item"
+    },
+    {
+      "type": "minecraft:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "ruby": "moreores:trims/color_palettes/ruby",
+        "radiant": "moreores:trims/color_palettes/radiant",
+        "sapphire": "moreores:trims/color_palettes/sapphire",
+        "green_sapphire": "moreores:trims/color_palettes/green_sapphire",
+        "blue_garnet": "moreores:trims/color_palettes/blue_garnet",
+        "pink_garnet": "moreores:trims/color_palettes/pink_garnet",
+        "green_garnet": "moreores:trims/color_palettes/green_garnet",
+        "kyawthuite": "moreores:trims/color_palettes/kyawthuite",
+        "topaz": "moreores:trims/color_palettes/topaz",
+        "white_topaz": "moreores:trims/color_palettes/white_topaz",
+        "peridot": "moreores:trims/color_palettes/peridot",
+        "jade": "moreores:trims/color_palettes/jade",
+        "pyrope": "moreores:trims/color_palettes/pyrope",
+        "crimson_garnet": "moreores:trims/color_palettes/crimson_garnet",
+        "crystallite": "moreores:trims/color_palettes/crystallite",
+        "radiant_amethyst": "moreores:trims/color_palettes/radiant_amethyst",
+        "alexandrite": "moreores:trims/color_palettes/alexandrite",
+        "limestone": "moreores:trims/color_palettes/limestone",
+        "moonstone": "moreores:trims/color_palettes/moonstone",
+        "quartsidian": "moreores:trims/color_palettes/quartsidian",
+        "opal": "moreores:trims/color_palettes/opal",
+        "red_beryl": "moreores:trims/color_palettes/red_beryl"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}

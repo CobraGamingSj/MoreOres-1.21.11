@@ -5,6 +5,160 @@
       {
         "model": {
           "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_ruby_trim"
+        },
+        "when": "moreores:ruby"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_radiant_trim"
+        },
+        "when": "moreores:radiant"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_sapphire_trim"
+        },
+        "when": "moreores:sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_green_sapphire_trim"
+        },
+        "when": "moreores:green_sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_blue_garnet_trim"
+        },
+        "when": "moreores:blue_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_pink_garnet_trim"
+        },
+        "when": "moreores:pink_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_green_garnet_trim"
+        },
+        "when": "moreores:green_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_kyawthuite_trim"
+        },
+        "when": "moreores:kyawthuite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_topaz_trim"
+        },
+        "when": "moreores:topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_white_topaz_trim"
+        },
+        "when": "moreores:white_topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_peridot_trim"
+        },
+        "when": "moreores:peridot"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_jade_trim"
+        },
+        "when": "moreores:jade"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_pyrope_trim"
+        },
+        "when": "moreores:pyrope"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_crimson_garnet_trim"
+        },
+        "when": "moreores:crimson_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_crystallite_trim"
+        },
+        "when": "moreores:crystallite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_radiant_amethyst_trim"
+        },
+        "when": "moreores:radiant_amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_limestone_trim"
+        },
+        "when": "moreores:limestone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_moonstone_trim"
+        },
+        "when": "moreores:moonstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_alexandrite_trim"
+        },
+        "when": "moreores:alexandrite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_quartsidian_trim"
+        },
+        "when": "moreores:quartsidian"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_opal_trim"
+        },
+        "when": "moreores:opal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/radiant_helmet_red_beryl_trim"
+        },
+        "when": "moreores:red_beryl"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
           "model": "moreores:item/radiant_helmet_quartz_trim"
         },
         "when": "minecraft:quartz"

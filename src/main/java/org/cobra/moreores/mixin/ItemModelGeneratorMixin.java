@@ -16,7 +16,7 @@
 //    @Shadow
 //    @Final
 //    public static List<ItemModelGenerator.TrimMaterial> TRIM_MATERIALS;
-//    
+//
 //    static {
 //        List<ItemModelGenerator.TrimMaterial> materials = new ArrayList<>(TRIM_MATERIALS);
 //        materials.add(new ItemModelGenerator.TrimMaterial(ModArmorTrimAssets.RUBY, ModArmorTrimMaterials.RUBY));
@@ -41,8 +41,8 @@
 //        materials.add(new ItemModelGenerator.TrimMaterial(ModArmorTrimAssets.QUARTSIDIAN, ModArmorTrimMaterials.QUARTSIDIAN));
 //        materials.add(new ItemModelGenerator.TrimMaterial(ModArmorTrimAssets.OPAL, ModArmorTrimMaterials.OPAL));
 //        materials.add(new ItemModelGenerator.TrimMaterial(ModArmorTrimAssets.RED_BERYL, ModArmorTrimMaterials.RED_BERYL));
-//        
+//
 //        TRIM_MATERIALS = List.copyOf(materials);
 //    }
-//    
+//
 //}

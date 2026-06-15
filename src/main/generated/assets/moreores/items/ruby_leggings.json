@@ -5,6 +5,160 @@
       {
         "model": {
           "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_ruby_trim"
+        },
+        "when": "moreores:ruby"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_radiant_trim"
+        },
+        "when": "moreores:radiant"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_sapphire_trim"
+        },
+        "when": "moreores:sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_green_sapphire_trim"
+        },
+        "when": "moreores:green_sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_blue_garnet_trim"
+        },
+        "when": "moreores:blue_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_pink_garnet_trim"
+        },
+        "when": "moreores:pink_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_green_garnet_trim"
+        },
+        "when": "moreores:green_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_kyawthuite_trim"
+        },
+        "when": "moreores:kyawthuite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_topaz_trim"
+        },
+        "when": "moreores:topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_white_topaz_trim"
+        },
+        "when": "moreores:white_topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_peridot_trim"
+        },
+        "when": "moreores:peridot"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_jade_trim"
+        },
+        "when": "moreores:jade"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_pyrope_trim"
+        },
+        "when": "moreores:pyrope"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_crimson_garnet_trim"
+        },
+        "when": "moreores:crimson_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_crystallite_trim"
+        },
+        "when": "moreores:crystallite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_radiant_amethyst_trim"
+        },
+        "when": "moreores:radiant_amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_limestone_trim"
+        },
+        "when": "moreores:limestone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_moonstone_trim"
+        },
+        "when": "moreores:moonstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_alexandrite_trim"
+        },
+        "when": "moreores:alexandrite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_quartsidian_trim"
+        },
+        "when": "moreores:quartsidian"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_opal_trim"
+        },
+        "when": "moreores:opal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "moreores:item/ruby_leggings_red_beryl_trim"
+        },
+        "when": "moreores:red_beryl"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
           "model": "moreores:item/ruby_leggings_quartz_trim"
         },
         "when": "minecraft:quartz"
