@@ -19,7 +19,7 @@ public class MoreOresDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(DynamicRegistry::new);
 		pack.addProvider(ItemTagGen::new);
 		pack.addProvider(BlockTagGen::new);
-		pack.addProvider(AutomaticModelGenerator::new);
+		pack.addProvider(AutomaticModelCreator::new);
 		pack.addProvider(AdvancementGen::new);
 		pack.addProvider(AutomaticLootTableCreator::new);
 		pack.addProvider(PointOfInterestTypeTagGen::new);

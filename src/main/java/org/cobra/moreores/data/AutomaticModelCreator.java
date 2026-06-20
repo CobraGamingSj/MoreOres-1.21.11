@@ -31,7 +31,7 @@ import org.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutomaticModelGenerator extends FabricModelProvider {
+public class AutomaticModelCreator extends FabricModelProvider {
     private static final List<ItemModelGenerator.TrimMaterial> TRIM_MATERIALS = List.of(
             new ItemModelGenerator.TrimMaterial(ModArmorTrimAssets.RUBY, ModArmorTrimMaterials.RUBY),
             new ItemModelGenerator.TrimMaterial(ModArmorTrimAssets.RADIANT, ModArmorTrimMaterials.RADIANT),
@@ -77,7 +77,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
     public static final Identifier BOOTS_TRIM_ID_PREFIX =
             MoreOresModInitializer.id("trims/items/boots_trim");
     
-    public AutomaticModelGenerator(FabricDataOutput output) {
+    public AutomaticModelCreator(FabricDataOutput output) {
         super(output);
     }
 
@@ -140,7 +140,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                         registerArmor(
                                 item,
                                 assetKey,
-                                HELMET_TRIM_ID_PREFIX,
+                                ItemModelGenerator.HELMET_TRIM_ID_PREFIX,
                                 false,
                                 itemModelGenerator
                         );
@@ -149,7 +149,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                         registerArmor(
                                 item,
                                 assetKey,
-                                CHESTPLATE_TRIM_ID_PREFIX,
+                                ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX,
                                 false,
                                 itemModelGenerator
                         );
@@ -158,7 +158,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                         registerArmor(
                                 item,
                                 assetKey,
-                                LEGGINGS_TRIM_ID_PREFIX,
+                                ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX,
                                 false,
                                 itemModelGenerator
                         );
@@ -167,7 +167,7 @@ public class AutomaticModelGenerator extends FabricModelProvider {
                         registerArmor(
                                 item,
                                 assetKey,
-                                BOOTS_TRIM_ID_PREFIX,
+                                ItemModelGenerator.BOOTS_TRIM_ID_PREFIX,
                                 false,
                                 itemModelGenerator
                         );

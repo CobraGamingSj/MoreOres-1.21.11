@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "moreores:item/radiant_helmet",
-    "layer1": "moreores:trims/items/helmet_trim_topaz"
+    "layer1": "minecraft:trims/items/helmet_trim_topaz"
   }
 }
