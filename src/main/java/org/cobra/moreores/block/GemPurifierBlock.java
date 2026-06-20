@@ -9,6 +9,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.Window;
+import net.minecraft.datafixer.fix.ChunkPalettedStorageFix;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -39,7 +40,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
-    public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = Properties.FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
     public static final EnumProperty<PurifyingGems> IS_POLISHING = EnumProperty.of("is_polishing", PurifyingGems.class);
     public static final MapCodec<GemPurifierBlock> CODEC = GemPurifierBlock.createCodec(GemPurifierBlock::new);

@@ -32,5 +32,4 @@ public class ModArmorTrimAssets {
     public static ArmorTrimAssets of(String suffix) {
         return new ArmorTrimAssets(new ArmorTrimAssets.AssetId(suffix), Map.of());
     }
-
 }
