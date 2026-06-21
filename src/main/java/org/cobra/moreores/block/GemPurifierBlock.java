@@ -9,7 +9,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.Window;
-import net.minecraft.datafixer.fix.ChunkPalettedStorageFix;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -33,16 +32,16 @@ import net.minecraft.world.block.WireOrientation;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
-import org.cobra.moreores.item.util.impl.PurifyingGems;
+import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemPurifierBlockData;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
 public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
-    public static final EnumProperty<Direction> FACING = Properties.FACING;
+    public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
-    public static final EnumProperty<PurifyingGems> IS_POLISHING = EnumProperty.of("is_polishing", PurifyingGems.class);
+    public static final EnumProperty<PurificationGemstones> IS_POLISHING = EnumProperty.of("is_polishing", PurificationGemstones.class);
     public static final MapCodec<GemPurifierBlock> CODEC = GemPurifierBlock.createCodec(GemPurifierBlock::new);
 
     @Override
@@ -53,13 +52,13 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
     protected GemPurifierBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
-                .with(IS_POLISHING, PurifyingGems.EMPTY));
+                .with(IS_POLISHING, PurificationGemstones.EMPTY));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(IS_POLISHING, PurifyingGems.EMPTY);
+                .with(IS_POLISHING, PurificationGemstones.EMPTY);
     }
 
     @Override

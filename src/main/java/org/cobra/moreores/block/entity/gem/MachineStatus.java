@@ -3,18 +3,18 @@ package org.cobra.moreores.block.entity.gem;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.StringIdentifiable;
 
-public enum PolishingInfusionState implements StringIdentifiable {
+public enum MachineStatus implements StringIdentifiable {
     IDLE("idle"),
     RUNNING("running"),
     PAUSED("paused");
 
     private final String name;
 
-    PolishingInfusionState(String name) {
+    MachineStatus(String name) {
         this.name = name;
     }
 
-    public static final Codec<PolishingInfusionState> CODEC = StringIdentifiable.createCodec(PolishingInfusionState::values);
+    public static final Codec<MachineStatus> CODEC = StringIdentifiable.createCodec(MachineStatus::values);
 
     public boolean isIdle() {
         return this == IDLE;

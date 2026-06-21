@@ -14,7 +14,7 @@ import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 
 public class ModScreenHandlerType {
 
-    public static final ScreenHandlerType<GemPurifierScreenHandler> GEM_PURIFYING_SCREEN_HANDLER =
+    public static final ScreenHandlerType<GemPurifierScreenHandler> GEM_PURIFIER_SCREEN_HANDLER =
             register("gem_purifier_block", GemPurifierScreenHandler::new, GemPurifierDataSynchronizer.PACKET_CODEC
             );
 

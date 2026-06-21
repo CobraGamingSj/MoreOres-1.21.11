@@ -23,21 +23,21 @@ import org.cobra.moreores.block.entity.ImplementedInventory;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
-import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.item.util.impl.IGem;
-import org.cobra.moreores.item.util.impl.PurifyingGems;
+import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<P>, ImplementedInventory, TickableBlockEntity {
+public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<P>, ImplementedInventory, TickableBlockEntity {
     protected final DefaultedList<ItemStack> main;
-    protected PolishingInfusionState polishingInfusionState = PolishingInfusionState.IDLE;
-    protected EnergyState energyState = EnergyState.IDLE;
+    protected MachineStatus machineStatus = MachineStatus.IDLE;
+    protected MachineEnergyState machineEnergyState = MachineEnergyState.IDLE;
     protected IGem gemType = IGem.EMPTY;
 
     public int initialProgress = 0;
 
-    public AbstractGemPCBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public AbstractGemMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.main = DefaultedList.ofSize(mainStackSize(), ItemStack.EMPTY);
     }
@@ -68,8 +68,8 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
         Inventories.writeData(view, main);
         view.putInt("Progress", initialProgress);
         view.putLong("Energy", energyStorage.amount);
-        view.putNullable("PolishingState", PolishingInfusionState.CODEC, polishingInfusionState);
-        view.putNullable("EnergyState", EnergyState.CODEC, energyState);
+        view.putNullable("PolishingState", MachineStatus.CODEC, machineStatus);
+        view.putNullable("EnergyState", MachineEnergyState.CODEC, machineEnergyState);
     }
 
     @Override
@@ -78,26 +78,32 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
         Inventories.readData(view, main);
         initialProgress = view.getInt("Progress", 0);
         energyStorage.amount = view.getLong("Energy", 0);
-        polishingInfusionState = view.read("PolishingState", PolishingInfusionState.CODEC).orElse(PolishingInfusionState.IDLE);
-        energyState = view.read("EnergyState", EnergyState.CODEC).orElse(EnergyState.IDLE);
+        machineStatus = view.read("PolishingState", MachineStatus.CODEC).orElse(MachineStatus.IDLE);
+        machineEnergyState = view.read("EnergyState", MachineEnergyState.CODEC).orElse(MachineEnergyState.IDLE);
     }
 
     public IGem detectGem(ItemStack stack) {
         Item item = stack.getItem();
-        for (PurifyingGems gems : PurifyingGems.values()) {
-            for (Item item1 : gems.items()) {
-                if(item1 == item) {
-                    return gems;
+        if(category() == GemCategory.PURIFYING) {
+            for (PurificationGemstones gems : PurificationGemstones.values()) {
+                for (Item item1 : gems.items()) {
+                    if (item1 == item) {
+                        return gems;
+                    }
                 }
             }
+            return PurificationGemstones.EMPTY;
         }
-        for (CrystallizationGems gems : CrystallizationGems.values()) {
-            for(Item item1 : gems.items()) {
-                if(item1 == item) {
-                    return gems;
+        if(category() == GemCategory.CRYSTALLIZATION) {
+            for (CrystallizationGemstones gems : CrystallizationGemstones.values()) {
+                for (Item item1 : gems.items()) {
+                    if (item1 == item) {
+                        return gems;
+                    }
                 }
             }
-        }
+            return CrystallizationGemstones.EMPTY;
+        } 
         return IGem.EMPTY;
     }
 
@@ -133,7 +139,7 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
 
     protected void insertEnergy() {
         if(!hasEnergySourceProviderItem() || energyStorage.amount >= 1_000_000) {
-            energyState = EnergyState.IDLE;
+            machineEnergyState = MachineEnergyState.IDLE;
             return;
         }
         long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 102 : 154;
@@ -141,8 +147,8 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = energyStorage.insert(amount, transaction);
             transaction.commit();
-            if(inserted > 0) energyState = EnergyState.INSERTING;
-            else energyState = EnergyState.IDLE;
+            if(inserted > 0) machineEnergyState = MachineEnergyState.INSERTING;
+            else machineEnergyState = MachineEnergyState.IDLE;
         }
     }
 
@@ -152,7 +158,7 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
             energyStorage.extract(amount, transaction);
             transaction.commit();
         }
-        energyState = EnergyState.EXTRACTING;
+        machineEnergyState = MachineEnergyState.EXTRACTING;
     }
 
     protected abstract boolean hasRecipe();
@@ -162,26 +168,26 @@ public abstract class AbstractGemPCBlockEntity<P extends CustomPayload> extends 
     }
 
     public void start() {
-        if(polishingInfusionState.isIdle() && hasRecipe() && hasEnoughEnergy()) {
-            polishingInfusionState = PolishingInfusionState.RUNNING;
+        if(machineStatus.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+            machineStatus = MachineStatus.RUNNING;
         }
     }
 
     public void pause() {
-        if(polishingInfusionState.isRunning()) {
-            polishingInfusionState = PolishingInfusionState.PAUSED;
+        if(machineStatus.isRunning()) {
+            machineStatus = MachineStatus.PAUSED;
         }
     }
 
     public void resume() {
-        if(polishingInfusionState.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
-            polishingInfusionState = PolishingInfusionState.RUNNING;
+        if(machineStatus.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
+            machineStatus = MachineStatus.RUNNING;
         }
     }
 
     public void stop() {
-        if(!polishingInfusionState.isIdle()) {
-            polishingInfusionState = PolishingInfusionState.IDLE;
+        if(!machineStatus.isIdle()) {
+            machineStatus = MachineStatus.IDLE;
             resetProgress();
         }
     }

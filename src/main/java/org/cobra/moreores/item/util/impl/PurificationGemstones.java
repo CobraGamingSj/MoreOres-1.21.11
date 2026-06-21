@@ -8,7 +8,7 @@ import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
 
-public enum PurifyingGems implements IGem, StringIdentifiable {
+public enum PurificationGemstones implements IGem, StringIdentifiable {
     EMPTY("empty", Items.AIR),
     RUBY("ruby", ModItems.RUBY, ModBlocks.RUBY_BLOCK.asItem()),
     SAPPHIRE("sapphire", ModItems.SAPPHIRE, ModBlocks.SAPPHIRE_BLOCK.asItem()),
@@ -26,9 +26,9 @@ public enum PurifyingGems implements IGem, StringIdentifiable {
     private final String name;
     private final Item[] items;
 
-    public static final Codec<PurifyingGems> CODEC = StringIdentifiable.createCodec(PurifyingGems::values);
+    public static final Codec<PurificationGemstones> CODEC = StringIdentifiable.createCodec(PurificationGemstones::values);
     
-    PurifyingGems(String name, Item... items) {
+    PurificationGemstones(String name, Item... items) {
         this.name = name;
         this.items = items;
     }

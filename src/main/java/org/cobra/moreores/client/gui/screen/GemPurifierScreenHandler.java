@@ -21,7 +21,7 @@ import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemPurifierScreenHandler extends AbstractGemPFScreenHandler implements ScreenHandlerInventoryHelper {
+public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler implements ScreenUtilHelper {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
@@ -35,7 +35,7 @@ public class GemPurifierScreenHandler extends AbstractGemPFScreenHandler impleme
 
     // Main Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_PURIFYING_SCREEN_HANDLER, syncId, blockEntity.getPos());
+        super(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, syncId, blockEntity.getPos());
         checkSize((Inventory) blockEntity, 16);
 
         this.inventory = ((Inventory) blockEntity);

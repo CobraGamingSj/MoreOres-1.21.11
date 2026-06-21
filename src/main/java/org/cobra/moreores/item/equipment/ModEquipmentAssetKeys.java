@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import org.cobra.moreores.MoreOresModInitializer;
 
 public interface ModEquipmentAssetKeys {
-    RegistryKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = RegistryKey.ofRegistry(MoreOresModInitializer.id("equipment_asset"));
+    RegistryKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
 
     RegistryKey<EquipmentAsset> RUBY = register("ruby");
     RegistryKey<EquipmentAsset> SAPPHIRE = register("sapphire");

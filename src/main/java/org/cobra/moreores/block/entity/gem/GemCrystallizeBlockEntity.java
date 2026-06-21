@@ -30,7 +30,7 @@ import org.cobra.moreores.block.entity.ModBlockEntityType;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
-import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.item.util.impl.IGem;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.recipe.GemCrystallizerRecipe;
@@ -40,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCrystallizerDataSynchronizer> {
+public class GemCrystallizeBlockEntity extends AbstractGemMachineBlockEntity<GemCrystallizerDataSynchronizer> {
 
     public static final int INGREDIENT_BEFORE_SLOT = 0;
     public static final int INGREDIENT_AFTER_SLOT = 1;
@@ -116,7 +116,7 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
         super.writeData(view);
         view.putInt("DustCount", dustParticleCount);
         view.putInt("DustTick", dustTick);
-        view.putNullable("GemType", CrystallizationGems.CODEC, getGem());
+        view.putNullable("GemType", CrystallizationGemstones.CODEC, getGem());
     }
 
     @Override
@@ -124,7 +124,7 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
         super.readData(view);
         dustParticleCount = view.getInt("DustCount", 0);
         dustTick = view.getInt("DustTick", 0);
-        gemType = view.read("GemType", CrystallizationGems.CODEC).orElse(CrystallizationGems.EMPTY);
+        gemType = view.read("GemType", CrystallizationGemstones.CODEC).orElse(CrystallizationGemstones.EMPTY);
     }
 
     @Override
@@ -268,8 +268,8 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
         changeState();
         markDirty(world, pos, state);
 
-        if(polishingInfusionState == PolishingInfusionState.RUNNING) {
-            energyState = EnergyState.EXTRACTING;
+        if(machineStatus == MachineStatus.RUNNING) {
+            machineEnergyState = MachineEnergyState.EXTRACTING;
             markDirty(world, pos, state);
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && dustParticleCount >= 15) {
                 this.increaseProgress();
@@ -288,20 +288,20 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
                 markDirty(world, pos, state);
             } else {
                 this.resetProgress();
-                this.polishingInfusionState = PolishingInfusionState.IDLE;
+                this.machineStatus = MachineStatus.IDLE;
                 markDirty(world, pos, state);
             }
-        } else if (polishingInfusionState.isPaused()) {
-            energyState = EnergyState.INSERTING;
+        } else if (machineStatus.isPaused()) {
+            machineEnergyState = MachineEnergyState.INSERTING;
             insertEnergy();
             markDirty(world, pos, state);
         } else {
             if((energyAmount() < 1_000_000 && hasEnergySourceProviderItem())) {
-                energyState = EnergyState.INSERTING;
+                machineEnergyState = MachineEnergyState.INSERTING;
                 insertEnergy();
                 markDirty(world, pos, state);
             } else {
-                energyState = EnergyState.IDLE;
+                machineEnergyState = MachineEnergyState.IDLE;
                 markDirty(world, pos, state);
             }
         }
@@ -311,12 +311,12 @@ public class GemCrystallizeBlockEntity extends AbstractGemPCBlockEntity<GemCryst
     }
 
     @Override
-    public CrystallizationGems getGem() {
+    public CrystallizationGemstones getGem() {
         IGem gem = super.getGem();
-        if(gem instanceof CrystallizationGems c) {
+        if(gem instanceof CrystallizationGemstones c) {
             return c;
         }
-        return CrystallizationGems.EMPTY;
+        return CrystallizationGemstones.EMPTY;
     }
     
     

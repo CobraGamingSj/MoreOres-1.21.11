@@ -21,7 +21,7 @@ import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemCrystallizerScreenHandler extends AbstractGemPFScreenHandler {
+public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandler {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;

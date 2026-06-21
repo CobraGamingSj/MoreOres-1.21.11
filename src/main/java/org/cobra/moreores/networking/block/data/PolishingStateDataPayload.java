@@ -7,7 +7,7 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
+import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
 
 public record PolishingStateDataPayload(BlockPos blockPos, String action) implements CustomPayload {
     public static final Id<PolishingStateDataPayload> ID = new Id<>(Identifier.of(MoreOresModInitializer.MOD_ID, "polishing_state"));
@@ -20,7 +20,7 @@ public record PolishingStateDataPayload(BlockPos blockPos, String action) implem
     public void handle(ServerPlayNetworking.Context context) {
 
         context.server().execute(() -> {
-            if(context.player().getEntityWorld().getBlockEntity(blockPos) instanceof AbstractGemPCBlockEntity<?> be) {
+            if(context.player().getEntityWorld().getBlockEntity(blockPos) instanceof AbstractGemMachineBlockEntity<?> be) {
                 switch(action) {
                     case "start" -> be.start();
                     case "pause" -> be.pause();

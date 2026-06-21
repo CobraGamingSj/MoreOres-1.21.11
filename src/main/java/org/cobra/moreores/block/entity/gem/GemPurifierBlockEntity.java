@@ -39,7 +39,7 @@ import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
 import org.cobra.moreores.item.util.impl.IGem;
-import org.cobra.moreores.item.util.impl.PurifyingGems;
+import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import org.cobra.moreores.networking.block.data.GemPurifierFluidDataPayload;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
@@ -50,9 +50,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifierDataSynchronizer> {
+public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPurifierDataSynchronizer> {
 
-    private WaterFluidState waterState = WaterFluidState.IDLE;
+    private FluidState waterState = FluidState.IDLE;
 
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
         @Override
@@ -172,8 +172,8 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
         super.writeData(view);
         view.putLong("gem_purifier.water", fluidStorage.amount);
         view.putNullable("gem_purifier.fluid.variant", FluidVariant.CODEC, fluidStorage.variant);
-        view.putNullable("WaterState", WaterFluidState.CODEC, waterState);
-        view.putNullable("GemType", PurifyingGems.CODEC, getGem());
+        view.putNullable("WaterState", FluidState.CODEC, waterState);
+        view.putNullable("GemType", PurificationGemstones.CODEC, getGem());
     }
 
     @Override
@@ -181,8 +181,8 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
         super.readData(view);
         fluidStorage.amount = view.getLong("gem_purifier.water", 0);
         fluidStorage.variant = view.read("gem_purifier.fluid.variant", FluidVariant.CODEC).orElse(FluidVariant.blank());
-        waterState = view.read("WaterState", WaterFluidState.CODEC).orElse(WaterFluidState.IDLE);
-        gemType = view.read("GemType", PurifyingGems.CODEC).orElse(PurifyingGems.EMPTY);
+        waterState = view.read("WaterState", FluidState.CODEC).orElse(FluidState.IDLE);
+        gemType = view.read("GemType", PurificationGemstones.CODEC).orElse(PurificationGemstones.EMPTY);
     }
 
     @Override
@@ -271,8 +271,8 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
 
         changeState();
 
-        if(polishingInfusionState == PolishingInfusionState.RUNNING) {
-            energyState = EnergyState.EXTRACTING;
+        if(machineStatus == MachineStatus.RUNNING) {
+            machineEnergyState = MachineEnergyState.EXTRACTING;
             if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && hasEnoughWater()) {
                 this.increaseProgress();
                 this.extractEnergy();
@@ -284,23 +284,23 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
                 markDirty(world, pos, state);
             } else {
                 this.resetProgress();
-                this.polishingInfusionState = PolishingInfusionState.IDLE;
+                this.machineStatus = MachineStatus.IDLE;
                 markDirty(world, pos, state);
             }
-        } else if (polishingInfusionState.isPaused()) {
-            energyState = EnergyState.INSERTING;
-            waterState = WaterFluidState.FILLING;
+        } else if (machineStatus.isPaused()) {
+            machineEnergyState = MachineEnergyState.INSERTING;
+            waterState = FluidState.FILLING;
             insertEnergy();
             fillWater();
         } else {
             if((energyAmount() < 10_000_000 && hasEnergySourceProviderItem()) || (waterAmount() < 810000 && hasWaterBucket())) {
-                energyState = EnergyState.INSERTING;
+                machineEnergyState = MachineEnergyState.INSERTING;
                 insertEnergy();
-                waterState = WaterFluidState.FILLING;
+                waterState = FluidState.FILLING;
                 fillWater();
             } else {
-                energyState = EnergyState.IDLE;
-                waterState= WaterFluidState.IDLE;
+                machineEnergyState = MachineEnergyState.IDLE;
+                waterState= FluidState.IDLE;
             }
         }
 
@@ -310,12 +310,12 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
     }
 
     @Override
-    public PurifyingGems getGem() {
+    public PurificationGemstones getGem() {
         IGem gem = super.getGem();
-        if(gem instanceof PurifyingGems p) {
+        if(gem instanceof PurificationGemstones p) {
             return p;
         }
-        return PurifyingGems.EMPTY;
+        return PurificationGemstones.EMPTY;
     }
 
     private void changeState() {
@@ -331,15 +331,15 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
 
     private void fillWater() {
         if(!hasWaterBucket() || waterAmount() >= 810000) {
-            waterState = WaterFluidState.IDLE;
+            waterState = FluidState.IDLE;
             return;
         }
         long amount = 1620;
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = fluidStorage.insert(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();
-            if(inserted > 0) waterState = WaterFluidState.FILLING;
-            else waterState = WaterFluidState.IDLE;
+            if(inserted > 0) waterState = FluidState.FILLING;
+            else waterState = FluidState.IDLE;
         }
     }
 
@@ -349,7 +349,7 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
             fluidStorage.extract(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
             transaction.commit();
         }
-        waterState = WaterFluidState.EMPTYING;
+        waterState = FluidState.EMPTYING;
     }
 
     private void checkForEnoughEnergyAndRemoveItem() {
@@ -448,7 +448,7 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
     @Override
     protected void insertEnergy() {
         if(!hasEnergySourceProviderItem() || energyStorage.amount >= 10_000_000) {
-            energyState = EnergyState.IDLE;
+            machineEnergyState = MachineEnergyState.IDLE;
             return;
         }
         long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 1024 : 1536;
@@ -456,8 +456,8 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = energyStorage.insert(amount, transaction);
             transaction.commit();
-            if(inserted > 0) energyState = EnergyState.INSERTING;
-            else energyState = EnergyState.IDLE;
+            if(inserted > 0) machineEnergyState = MachineEnergyState.INSERTING;
+            else machineEnergyState = MachineEnergyState.IDLE;
         }
     }
 
@@ -468,6 +468,6 @@ public class GemPurifierBlockEntity extends AbstractGemPCBlockEntity<GemPurifier
             energyStorage.extract(amount, transaction);
             transaction.commit();
         }
-        energyState = EnergyState.EXTRACTING;
+        machineEnergyState = MachineEnergyState.EXTRACTING;
     }
 }

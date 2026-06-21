@@ -8,7 +8,7 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
+import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
@@ -25,7 +25,7 @@ public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implemen
     public void handle(ServerPlayNetworking.Context context) {
         ServerWorld world = context.server().getOverworld();
 
-        if(world.getBlockEntity(pos) instanceof AbstractGemPCBlockEntity<?> blockEntity) {
+        if(world.getBlockEntity(pos) instanceof AbstractGemMachineBlockEntity<?> blockEntity) {
             switch (buttonID) {
                 case 0 -> blockEntity.start();
                 case 1 -> blockEntity.pause();

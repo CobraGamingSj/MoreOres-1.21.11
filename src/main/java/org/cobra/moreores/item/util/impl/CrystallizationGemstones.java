@@ -8,7 +8,7 @@ import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
 
-public enum CrystallizationGems implements IGem, StringIdentifiable {
+public enum CrystallizationGemstones implements IGem, StringIdentifiable {
     EMPTY("empty", Items.AIR),
     CRIMSON_GARNET("crimson_garnet", ModItems.CRIMSON_GARNET, ModBlocks.CRIMSON_GARNET_BLOCK.asItem()),
     RADIANT_AMETHYST("radiant_amethyst", ModItems.RADIANT_AMETHYST, ModBlocks.RADIANT_AMETHYST_BLOCK.asItem()),
@@ -26,9 +26,9 @@ public enum CrystallizationGems implements IGem, StringIdentifiable {
     private final String name;
     private final Item[] items;
 
-    public static final Codec<CrystallizationGems> CODEC = StringIdentifiable.createCodec(CrystallizationGems::values);
+    public static final Codec<CrystallizationGemstones> CODEC = StringIdentifiable.createCodec(CrystallizationGemstones::values);
     
-    CrystallizationGems(String name, Item... items) {
+    CrystallizationGemstones(String name, Item... items) {
         this.name = name;
         this.items = items;
     }

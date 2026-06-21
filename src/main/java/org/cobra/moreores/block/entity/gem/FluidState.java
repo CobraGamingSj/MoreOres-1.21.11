@@ -3,18 +3,18 @@ package org.cobra.moreores.block.entity.gem;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.StringIdentifiable;
 
-public enum EnergyState implements StringIdentifiable {
+public enum FluidState implements StringIdentifiable {
     IDLE("idle"),
-    INSERTING("inserting"),
-    EXTRACTING("extracting");
+    FILLING("filling"),
+    EMPTYING("emptying");
 
     private final String name;
 
-    EnergyState(String name) {
+    FluidState(String name) {
         this.name = name;
     }
 
-    public static final Codec<EnergyState> CODEC = StringIdentifiable.createCodec(EnergyState::values);
+    public static final Codec<FluidState> CODEC = StringIdentifiable.createCodec(FluidState::values);
 
     @Override
     public String asString() {

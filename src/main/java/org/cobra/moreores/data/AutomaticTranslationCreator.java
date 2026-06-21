@@ -5,9 +5,11 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
+import org.cobra.moreores.item.GemItem;
 import org.cobra.moreores.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -43,14 +45,6 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
         translationBuilder.add("enchantment.moreores.thunder_striker",  "Thunder Striker");
         translationBuilder.add("entity.minecraft.villager.jeweller",  "Jeweller");
         translationBuilder.add("trim_pattern.moreores.guardian",  "Guardian Armor Trim");
-        translationBuilder.add("trim_material.moreores.blue_garnet",  "Blue Garnet Material");
-        translationBuilder.add("trim_material.moreores.green_garnet",  "Green Garnet Material");
-        translationBuilder.add("trim_material.moreores.green_sapphire",  "Green Sapphire Material");
-        translationBuilder.add("trim_material.moreores.sapphire",  "Sapphire Material");
-        translationBuilder.add("trim_material.moreores.ruby",  "Ruby Material");
-        translationBuilder.add("trim_material.moreores.radiant",  "Radiant Material");
-        translationBuilder.add("trim_material.moreores.pyrope",  "Pyrope Material");
-        translationBuilder.add("trim_material.moreores.jade",  "Jade Material");
         translationBuilder.add("entity.moreores.gem_arrow",  "Gem Arrow");
 
         for (Item item :  Registries.ITEM) {
@@ -63,6 +57,13 @@ public class AutomaticTranslationCreator extends FabricLanguageProvider {
                     continue;
                 }
 
+                if(item instanceof GemItem gemItem) {
+                    String gemIdentifiedPath = Registries.ITEM.getId(gemItem).getPath();
+                    translationBuilder.add(gemItem, MoreOresModInitializer.formatName(gemIdentifiedPath));
+                    translationBuilder.add("trim_material." + MoreOresModInitializer.MOD_ID + "." + gemIdentifiedPath, MoreOresModInitializer.formatName(gemIdentifiedPath) + " Material");
+                    continue;
+                }
+                
                 String path = id.getPath();
 
                 String translatedName = MoreOresModInitializer.formatName(path);

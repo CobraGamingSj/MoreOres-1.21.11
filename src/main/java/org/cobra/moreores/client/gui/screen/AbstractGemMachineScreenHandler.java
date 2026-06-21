@@ -8,11 +8,11 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import org.jspecify.annotations.Nullable;
 
-public abstract class AbstractGemPFScreenHandler extends ScreenHandler implements ScreenHandlerInventoryHelper {
+public abstract class AbstractGemMachineScreenHandler extends ScreenHandler implements ScreenUtilHelper {
 
     protected final BlockPos pos;
 
-    public AbstractGemPFScreenHandler(@Nullable ScreenHandlerType<?> type, int syncId, BlockPos pos) {
+    public AbstractGemMachineScreenHandler(@Nullable ScreenHandlerType<?> type, int syncId, BlockPos pos) {
         super(type, syncId);
         this.pos = pos;
     }

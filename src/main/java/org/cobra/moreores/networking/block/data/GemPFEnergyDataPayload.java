@@ -8,8 +8,8 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemPCBlockEntity;
-import org.cobra.moreores.client.gui.screen.AbstractGemPFScreenHandler;
+import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
+import org.cobra.moreores.client.gui.screen.AbstractGemMachineScreenHandler;
 
 public record GemPFEnergyDataPayload(long energy, BlockPos blockPos) implements CustomPayload {
     public static final Id<GemPFEnergyDataPayload> ID = new Id<>(MoreOresModInitializer.id("pos_energy"));
@@ -18,10 +18,10 @@ public record GemPFEnergyDataPayload(long energy, BlockPos blockPos) implements 
         ClientWorld world = context.client().world;
         if (world == null) return;
 
-        if (world.getBlockEntity(this.blockPos) instanceof AbstractGemPCBlockEntity<?> blockEntity) {
+        if (world.getBlockEntity(this.blockPos) instanceof AbstractGemMachineBlockEntity<?> blockEntity) {
             blockEntity.setEnergyLevel(this.energy);
 
-            if (context.player().currentScreenHandler instanceof AbstractGemPFScreenHandler screenHandler && screenHandler.getPos().equals(this.blockPos)) {
+            if (context.player().currentScreenHandler instanceof AbstractGemMachineScreenHandler screenHandler && screenHandler.getPos().equals(this.blockPos)) {
                 blockEntity.setEnergyLevel(this.energy);
             }
         }

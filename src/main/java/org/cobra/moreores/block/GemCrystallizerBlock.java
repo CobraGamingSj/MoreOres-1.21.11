@@ -32,7 +32,7 @@ import net.minecraft.world.block.WireOrientation;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
-import org.cobra.moreores.item.util.impl.CrystallizationGems;
+import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
@@ -41,7 +41,7 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
-    public static final EnumProperty<CrystallizationGems> IS_POLISHING = EnumProperty.of("is_crystallizing", CrystallizationGems.class);
+    public static final EnumProperty<CrystallizationGemstones> IS_POLISHING = EnumProperty.of("is_crystallizing", CrystallizationGemstones.class);
     public static final MapCodec<GemCrystallizerBlock> CODEC = GemCrystallizerBlock.createCodec(GemCrystallizerBlock::new);
 
     @Override
@@ -52,13 +52,13 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     protected GemCrystallizerBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
-                .with(IS_POLISHING, CrystallizationGems.EMPTY));
+                .with(IS_POLISHING, CrystallizationGemstones.EMPTY));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(IS_POLISHING, CrystallizationGems.EMPTY);
+                .with(IS_POLISHING, CrystallizationGemstones.EMPTY);
     }
 
     @Override

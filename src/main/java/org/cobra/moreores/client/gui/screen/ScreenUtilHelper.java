@@ -6,7 +6,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public interface ScreenHandlerInventoryHelper {
+public interface ScreenUtilHelper {
 
     void addPlayerGenericInventory(PlayerInventory playerInventory);
 
