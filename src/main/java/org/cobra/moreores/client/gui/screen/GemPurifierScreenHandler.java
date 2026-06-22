@@ -64,7 +64,7 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
         this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source
 
         addFirstAdditionalInventory(inventory);
-        addSecondAdditionalInventory(inventory);
+//        addSecondAdditionalInventory(inventory);
 
         addPlayerGenericInventory(playerInventory);
         addPlayerHotbarInventory(playerInventory);
@@ -144,16 +144,32 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
         return canUse(this.context, player, ModBlocks.GEM_PURIFIER_BLOCK);
     }
 
-    public void addFirstAdditionalInventory(Inventory playerInventory) {
-        for (int i = 0; i < 8; ++i) {
-            this.addSlot(new Slot(playerInventory, 4 + i, 26 + i * 18, 95));
+    @Override
+    public void addPlayerGenericInventory(PlayerInventory playerInventory) {
+        for (int i = 0; i < 9; ++i) {
+            for (int l = 0; l < 3; ++l) {
+                this.addSlot(new Slot(playerInventory, i * 3 + l + 9, 142 + l * 18, 11 + i * 18));
+            }
         }
     }
 
-    public void addSecondAdditionalInventory(Inventory playerInventory) {
-        for (int i = 0; i < 4; ++i) {
-            this.addSlot(new Slot(playerInventory, 12 +  i, 179, 115 + i * 18));
+    @Override
+    public void addPlayerHotbarInventory(PlayerInventory playerInventory) {
+        for (int i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 201, 11 + i * 18));
         }
+    }
+
+    @Override
+    public void addFirstAdditionalInventory(Inventory playerInventory) {
+        for (int i = 0; i < 12; ++i) {
+            this.addSlot(new Slot(playerInventory, 4 + i, 6 + i * 18, 178));
+        }
+    }
+
+    @Override
+    public void addSecondAdditionalInventory(Inventory playerInventory) {
+        return;
     }
 
     @Override

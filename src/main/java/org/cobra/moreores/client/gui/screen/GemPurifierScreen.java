@@ -21,7 +21,7 @@ import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
-    private static final Identifier TEXTURE = MoreOresModInitializer.id("textures/gui/container/gem_purifier/gem_purifier_gui.png");
+    private static final Identifier TEXTURE = MoreOresModInitializer.id("textures/gui/container/gem_purifier/gem_purifier_gui_test.png");
     private static final Identifier START_BUTTON = MoreOresModInitializer.id("textures/gui/container/button/start.png");
     private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.id("textures/gui/container/button/pause.png");
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.id("textures/gui/container/button/resume.png");
@@ -29,8 +29,8 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
 
     public GemPurifierScreen(GemPurifierScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-        this.backgroundHeight = 196;
-        this.backgroundWidth = 207;
+        this.backgroundHeight = 201;
+        this.backgroundWidth = 226;
     }
 
     @Override
@@ -41,13 +41,10 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
 
         addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).create());
 
-        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 112, y + 8, START_BUTTON, Text.literal("Start Polishing"));
-
-        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + 160, y + 8, PAUSE_BUTTON, Text.literal("Pause Polishing"));
-
-        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + 112, this.y + 56, RESUME_BUTTON, Text.literal("Resume Polishing"));
-
-        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + 160, y + 56, STOP_BUTTON, Text.literal("Stop Polishing"));
+        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 32, y + 92, START_BUTTON, Text.literal("Start Polishing"));
+        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + 80, y + 92, PAUSE_BUTTON, Text.literal("Pause Polishing"));
+        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + 32, this.y + 140, RESUME_BUTTON, Text.literal("Resume Polishing"));
+        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + 80, y + 140, STOP_BUTTON, Text.literal("Stop Polishing"));
 
         start.visible = true;
         pause.visible = true;

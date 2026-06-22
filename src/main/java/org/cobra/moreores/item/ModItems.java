@@ -1,17 +1,21 @@
 package org.cobra.moreores.item;
 
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.SmithingTemplateItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.item.equipment.ArmorItem;
 import org.cobra.moreores.item.equipment.ModArmorMaterials;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.Function;
 
@@ -214,7 +218,6 @@ public class ModItems {
     
     
     // Eclipse Gem
-    public static final Item ECLIPSE_GEM_CRYSTALS = register("eclipse_gem_crystals", s -> new Item(s.rarity(Rarity.UNCOMMON).fireproof()));
     public static final Item CRYSTAL_OF_ECLIPSE = register("crystal_of_eclipse", settings -> new Item(settings.rarity(Rarity.RARE).fireproof()));
     public static final Item ECLIPSE_GEM = register("eclipse_gem", settings -> new Item(settings.rarity(Rarity.EPIC).fireproof()));
     

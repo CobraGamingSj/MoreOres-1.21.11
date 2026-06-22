@@ -1,19 +1,16 @@
 package org.cobra.moreores.item.equipment;
 
 import net.minecraft.item.equipment.EquipmentAsset;
-import net.minecraft.registry.Registry;
+import net.minecraft.item.equipment.EquipmentAssetKeys;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.Identifier;
 import org.cobra.moreores.MoreOresModInitializer;
 
 public interface ModEquipmentAssetKeys {
-    RegistryKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
-
     RegistryKey<EquipmentAsset> RUBY = register("ruby");
     RegistryKey<EquipmentAsset> SAPPHIRE = register("sapphire");
     RegistryKey<EquipmentAsset> RADIANT = register("radiant");
 
     static RegistryKey<EquipmentAsset> register(String id) {
-        return RegistryKey.of(REGISTRY_KEY, MoreOresModInitializer.id(id));
+        return RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, MoreOresModInitializer.id(id));
     }
 }
