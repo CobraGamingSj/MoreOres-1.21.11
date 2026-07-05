@@ -309,6 +309,15 @@ public class AutomaticRecipeCreator extends FabricRecipeProvider {
                         .criterion(hasItem(Blocks.IRON_BARS), conditionsFromItem(Blocks.IRON_BARS))
                         .offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(getRecipeName(ModBlocks.GEM_PURIFIER_BLOCK))));
 
+                createShaped(RecipeCategory.MISC, ModItems.RADIANT)
+                        .pattern("aaa")
+                        .pattern("aba")
+                        .pattern("aaa")
+                                .input('a', ModItems.RUBY)
+                                .input('b', Items.DIAMOND)
+                                        .criterion(hasItem(ModItems.RUBY), conditionsFromItem(ModItems.RUBY))
+                                                .offerTo(exporter, getRecipeName(ModItems.RADIANT_DUST) + "_from_ruby");
+                
                 createShaped(RecipeCategory.REDSTONE, ModBlocks.RUBY_LAMP, 1)
                         .pattern("aba")
                         .pattern("bcb")

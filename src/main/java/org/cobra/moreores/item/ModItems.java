@@ -2,6 +2,7 @@ package org.cobra.moreores.item;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -178,7 +179,7 @@ public class ModItems {
     //    Radiant Tools & Weapons
     public static final Item RADIANT_SWORD = registerSword(
             "radiant_sword",
-            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
+            s -> new RadiantSwordItem(s.rarity(Rarity.EPIC).fireproof().attributeModifiers(RadiantSwordItem.create())),
             32, -1f, ModToolMaterials.RADIANT
     );
     public static final Item RADIANT_PICKAXE = registerPickaxe(

@@ -1,6 +1,11 @@
 package org.cobra.moreores;
 
+import com.mojang.datafixers.DSL;
+import com.mojang.datafixers.DataFix;
+import com.mojang.datafixers.TypeRewriteRule;
+import com.mojang.datafixers.types.Type;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
@@ -26,6 +31,7 @@ import net.minecraft.util.Identifier;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
 import org.cobra.moreores.client.gui.screen.ModScreenHandlerType;
+import org.cobra.moreores.component.ModDataComponentType;
 import org.cobra.moreores.enchantment.entity.effect.EnchantmentEffects;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.ModC2SNetworks;
@@ -79,8 +85,7 @@ public class MoreOresModInitializer implements ModInitializer {
 	public static RegistryKey<Recipe<?>> recipeKey(String id) {
 		return RegistryKey.of(RegistryKeys.RECIPE, id(id));
 	}
-
-
+	
 	// Gemstones Item Group
 	public static final ItemGroup GEMSTONES = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(ModItems.RADIANT))
@@ -144,7 +149,7 @@ public class MoreOresModInitializer implements ModInitializer {
 
     @Override
 	public void onInitialize() {
-
+		
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
 			ServerPlayerEntity player = handler.getPlayer();
@@ -404,6 +409,8 @@ public class MoreOresModInitializer implements ModInitializer {
 
 		//EnchantmentEffects Registry
 		EnchantmentEffects.register();
+
+		ModDataComponentType.register();
 	}
 
 

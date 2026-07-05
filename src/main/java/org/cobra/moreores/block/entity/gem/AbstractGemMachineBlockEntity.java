@@ -37,6 +37,13 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
 
     public int initialProgress = 0;
 
+    protected int redstone = 0;
+    protected int maxRedstone = 10000;
+    protected int redstoneTick;
+
+    protected long lastRemovedEnergyMilestone = 0;
+    protected long lastRemovedRedstoneMilestone = 0;
+    
     public AbstractGemMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         this.main = DefaultedList.ofSize(mainStackSize(), ItemStack.EMPTY);
@@ -49,17 +56,22 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
 
             markDirty();
 
-            for(ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+            for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
                 ServerPlayNetworking.send(user, new GemPFEnergyDataPayload(this.amount, getPos()));
             }
         }
     };
 
     public abstract int mainStackSize();
+
     public abstract long getEnergyCapacity();
+
     public abstract long getMaxEnergyInsert();
+
     public abstract long getMaxEnergyExtract();
+
     public abstract ServerRecipeManager.MatchGetter<?, ?> getMatchGetter();
+
     public abstract int getInitialProgress();
 
     @Override
@@ -67,6 +79,8 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         super.writeData(view);
         Inventories.writeData(view, main);
         view.putInt("Progress", initialProgress);
+        view.putInt("Redstone", redstone);
+        view.putInt("RedstoneTick", redstoneTick);
         view.putLong("Energy", energyStorage.amount);
         view.putNullable("PolishingState", MachineStatus.CODEC, machineStatus);
         view.putNullable("EnergyState", MachineEnergyState.CODEC, machineEnergyState);
@@ -77,14 +91,24 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         super.readData(view);
         Inventories.readData(view, main);
         initialProgress = view.getInt("Progress", 0);
+        redstone = view.getInt("Redstone", 0);
+        redstoneTick = view.getInt("RedstoneTick", 0);
         energyStorage.amount = view.getLong("Energy", 0);
         machineStatus = view.read("PolishingState", MachineStatus.CODEC).orElse(MachineStatus.IDLE);
         machineEnergyState = view.read("EnergyState", MachineEnergyState.CODEC).orElse(MachineEnergyState.IDLE);
     }
 
+    public int getRedstone() {
+        return this.redstone;
+    }
+
+    public void setRedstone(int redstone) {
+        this.redstone = redstone;
+    }
+    
     public IGem detectGem(ItemStack stack) {
         Item item = stack.getItem();
-        if(category() == GemCategory.PURIFYING) {
+        if (category() == GemCategory.PURIFYING) {
             for (PurificationGemstones gems : PurificationGemstones.values()) {
                 for (Item item1 : gems.items()) {
                     if (item1 == item) {
@@ -94,7 +118,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
             }
             return PurificationGemstones.EMPTY;
         }
-        if(category() == GemCategory.CRYSTALLIZATION) {
+        if (category() == GemCategory.CRYSTALLIZATION) {
             for (CrystallizationGemstones gems : CrystallizationGemstones.values()) {
                 for (Item item1 : gems.items()) {
                     if (item1 == item) {
@@ -103,12 +127,16 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
                 }
             }
             return CrystallizationGemstones.EMPTY;
-        } 
+        }
         return IGem.EMPTY;
     }
 
-    public abstract GemCategory category();
+    public long energyAmount() {
+        return this.energyStorage.amount;
+    }
     
+    public abstract GemCategory category();
+
     public IGem getGem() {
         return detectGem(resultStack());
     }
@@ -117,7 +145,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         gemType = gem;
     }
 
-    public void setEnergyLevel(long energy) {
+    public void setEnergyAmount(long energy) {
         this.energyStorage.amount = Math.min(energy, getEnergyCapacity());
     }
 
@@ -126,35 +154,71 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
     }
 
     protected void increaseProgress() {
-        if(this.world.isReceivingRedstonePower(this.pos)) {
+        if(this.world.isReceivingRedstonePower(this.pos) || redstone > 0) {
             initialProgress += (int) 2.5;
         } else {
             initialProgress++;
         }
     }
 
+    protected void checkForEnoughEnergyAndRemoveItem(int energySlot) {
+        if(energyAmount() > 10000000) {
+            energyStorage.amount = 10000000;
+        }
+
+        long energy = this.energyAmount();
+
+        long [] milestones = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000};
+
+        for(long milestone : milestones) {
+            if(energy == milestone && lastRemovedEnergyMilestone < milestone) {
+                this.removeStack(energySlot, 1);
+                lastRemovedEnergyMilestone = milestone;
+                break;
+            }
+        }
+    }
+
+    protected void checkForEnoughRedstoneAndRemoveItem(int slot) {
+        if(redstone > 10000) {
+            redstone = 10000;
+        }
+
+        int amount = redstone;
+
+        int [] milestones = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
+
+        for(long milestone : milestones) {
+            if(amount == milestone && lastRemovedRedstoneMilestone < milestone) {
+                this.removeStack(slot, 1);
+                lastRemovedRedstoneMilestone = milestone;
+                break;
+            }
+        }
+    }
+    
     protected boolean hasEnoughEnergy() {
         return this.energyStorage.amount >= 13;
     }
 
     protected void insertEnergy() {
-        if(!hasEnergySourceProviderItem() || energyStorage.amount >= 1_000_000) {
+        if (!hasEnergySourceProviderItem() || energyStorage.amount >= 1_000_000) {
             machineEnergyState = MachineEnergyState.IDLE;
             return;
         }
         long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 102 : 154;
-        if(world.isReceivingRedstonePower(pos)) amount *= (int) 2.5;
-        try(Transaction transaction = Transaction.openOuter()) {
+        if (world.isReceivingRedstonePower(pos)) amount *= (int) 2.5;
+        try (Transaction transaction = Transaction.openOuter()) {
             long inserted = energyStorage.insert(amount, transaction);
             transaction.commit();
-            if(inserted > 0) machineEnergyState = MachineEnergyState.INSERTING;
+            if (inserted > 0) machineEnergyState = MachineEnergyState.INSERTING;
             else machineEnergyState = MachineEnergyState.IDLE;
         }
     }
 
     protected void extractEnergy() {
         long amount = world.isReceivingRedstonePower(pos) ? 64 : 13;
-        try(Transaction transaction = Transaction.openOuter()) {
+        try (Transaction transaction = Transaction.openOuter()) {
             energyStorage.extract(amount, transaction);
             transaction.commit();
         }
@@ -168,25 +232,25 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
     }
 
     public void start() {
-        if(machineStatus.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+        if (machineStatus.isIdle() && hasRecipe() && hasEnoughEnergy()) {
             machineStatus = MachineStatus.RUNNING;
         }
     }
 
     public void pause() {
-        if(machineStatus.isRunning()) {
+        if (machineStatus.isRunning()) {
             machineStatus = MachineStatus.PAUSED;
         }
     }
 
     public void resume() {
-        if(machineStatus.isPaused()&& hasRecipe() && hasEnoughEnergy()) {
+        if (machineStatus.isPaused() && hasRecipe() && hasEnoughEnergy()) {
             machineStatus = MachineStatus.RUNNING;
         }
     }
 
     public void stop() {
-        if(!machineStatus.isIdle()) {
+        if (!machineStatus.isIdle()) {
             machineStatus = MachineStatus.IDLE;
             resetProgress();
         }

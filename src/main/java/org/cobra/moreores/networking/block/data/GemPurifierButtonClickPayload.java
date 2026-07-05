@@ -12,12 +12,12 @@ import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
-public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implements CustomPayload {
+public record GemPurifierButtonClickPayload(int buttonIndex, BlockPos pos) implements CustomPayload {
     public static final Id<GemPurifierButtonClickPayload> ID = new Id<>(MoreOresModInitializer.id("button_click"));
 
     public static final PacketCodec<RegistryByteBuf, GemPurifierButtonClickPayload> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.VAR_INT, GemPurifierButtonClickPayload::buttonID,
+                    PacketCodecs.VAR_INT, GemPurifierButtonClickPayload::buttonIndex,
                     BlockPos.PACKET_CODEC, GemPurifierButtonClickPayload::pos,
                     GemPurifierButtonClickPayload::new
             );
@@ -26,7 +26,7 @@ public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implemen
         ServerWorld world = context.server().getOverworld();
 
         if(world.getBlockEntity(pos) instanceof AbstractGemMachineBlockEntity<?> blockEntity) {
-            switch (buttonID) {
+            switch (buttonIndex) {
                 case 0 -> blockEntity.start();
                 case 1 -> blockEntity.pause();
                 case 2 -> blockEntity.resume();
@@ -35,7 +35,7 @@ public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implemen
 
                 if((context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(pos)) ||
                 context.player().currentScreenHandler instanceof GemCrystallizerScreenHandler screenHandlerL && screenHandlerL.blockEntity.getPos().equals(pos)) {
-                    switch (buttonID) {
+                    switch (buttonIndex) {
                         case 0 -> blockEntity.start();
                         case 1 -> blockEntity.pause();
                         case 2 -> blockEntity.resume();
@@ -44,7 +44,7 @@ public record GemPurifierButtonClickPayload(int buttonID, BlockPos pos) implemen
                 }
             }
 
-        MoreOresModInitializer.LOGGER.info("Received button click with ID: {} at {}", buttonID, "[" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + "]");
+        MoreOresModInitializer.LOGGER.info("Received button click with ID: {} at {}", buttonIndex, "[" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + "]");
 
         }
 

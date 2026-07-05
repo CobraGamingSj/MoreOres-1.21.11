@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;
@@ -25,44 +25,44 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
-    public final GemCrystallizeBlockEntity blockEntity;
+    public final GemCrystallizerBlockEntity blockEntity;
 
     public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, GemCrystallizerDataSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
-                new ArrayPropertyDelegate(3));
+                new ArrayPropertyDelegate(4));
     }
 
     public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
         super(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, syncId, entity.getPos());
-        checkSize((Inventory) entity, 10);
+        checkSize((Inventory) entity, 11);
 
         this.inventory = (Inventory) entity;
         this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
         this.propertyDelegate = delegate;
-        this.blockEntity = (GemCrystallizeBlockEntity) entity;
+        this.blockEntity = (GemCrystallizerBlockEntity) entity;
 
         this.addSlot(new Slot(inventory, 0, 47, 22) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
-                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE);
+                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.GEMSTONE);
             }
         }); // Input Before
 
         this.addSlot(new Slot(inventory, 1, 87, 22) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS) ||
-                        stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE) || stack.isOf(Blocks.OBSIDIAN.asItem());
+                return stack.isIn(ModItemTags.GEMSTONE_BLOCKS) 
+                        || stack.isIn(ModItemTags.GEMSTONE) || stack.isOf(Blocks.OBSIDIAN.asItem());
             }
         }); // Input After
 
         this.addSlot(new Slot(inventory, 2, 67, 72) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE_BLOCKS);
+                return stack.isIn(ModItemTags.CRYSTALLIZED);
             }
         }); // Result
+        
         this.addSlot(new Slot(inventory, 3, 13, 21) {
             @Override
             public boolean canInsert(ItemStack stack) {
@@ -77,6 +77,8 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
             }
         }); // Radiant Slot
 
+        this.addSlot(new Slot(inventory, 5, 92, 59)); // Redstone Slot
+        
         addSecondAdditionalInventory(inventory);
 
         addPlayerGenericInventory(playerInventory);
@@ -88,7 +90,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
     @Override
     public void addSecondAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 5; ++i) {
-            this.addSlot(new Slot(playerInventory, 5 + i, 179, 97 + i * 18));
+            this.addSlot(new Slot(playerInventory, 6 + i, 179, 97 + i * 18));
         }
     }
 
@@ -96,6 +98,10 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
         return propertyDelegate.get(0) > 0;
     }
 
+    public int getRedstoneDust() {
+        return this.propertyDelegate.get(3);
+    }
+    
     public int getDustCount() {
         return propertyDelegate.get(2);
     }

@@ -63,11 +63,6 @@ public class VillagerTrades {
                     6, 5, 0.15f
             ));
             factories.add((world, entity, random) -> new TradeOffer(
-                    new TradedItem(ModItems.RADIANT, 13),
-                    new ItemStack(ModItems.WHITE_TOPAZ, 1),
-                    6, 5, 0.5f
-            ));
-            factories.add((world, entity, random) -> new TradeOffer(
                     new TradedItem(ModItems.SAPPHIRE, 10),
                     new ItemStack(ModItems.TOPAZ, 1),
                     6, 5, 0.5f
@@ -93,11 +88,6 @@ public class VillagerTrades {
                     new TradedItem(ModItems.GREEN_SAPPHIRE, 3),
                     new ItemStack(ModItems.PYROPE, 1),
                     6, 5, 0.15f
-            ));
-            factories.add((world, entity, random) -> new TradeOffer(
-                    new TradedItem(ModItems.RADIANT, 15),
-                    new ItemStack(ModItems.PERIDOT, 1),
-                    6, 5, 0.5f
             ));
             factories.add((world, entity, random) -> new TradeOffer(
                     new TradedItem(ModItems.RUBY, 6),
@@ -127,7 +117,7 @@ public class VillagerTrades {
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.JEWELLER, 4, factories -> {
             factories.add((world, entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 14),
+                    new TradedItem(Items.EMERALD, 26),
                     new ItemStack(ModItems.RADIANT, 1),
                     6, 5, 0.5f
             ));
@@ -180,6 +170,6 @@ public class VillagerTrades {
             ));
         });
 
-        MoreOresModInitializer.LOGGER.info("Loading CustomTrades for " + MoreOresModInitializer.MOD_ID + " mod.");
+        MoreOresModInitializer.LOGGER.info("Loading VillagerTrades for " + MoreOresModInitializer.MOD_ID + " mod.");
     }
 }

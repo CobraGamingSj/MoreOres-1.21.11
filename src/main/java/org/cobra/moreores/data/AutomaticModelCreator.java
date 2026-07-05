@@ -30,6 +30,7 @@ import org.cobra.moreores.item.equipment.trim.ModArmorTrimMaterials;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AutomaticModelCreator extends FabricModelProvider {
     private static final List<ItemModelGenerator.TrimMaterial> TRIM_MATERIALS = List.of(
@@ -68,15 +69,6 @@ public class AutomaticModelCreator extends FabricModelProvider {
             new ItemModelGenerator.TrimMaterial(ArmorTrimAssets.RESIN, ArmorTrimMaterials.RESIN)
     );
 
-    public static final Identifier HELMET_TRIM_ID_PREFIX =
-            MoreOresModInitializer.id("trims/items/helmet_trim");
-    public static final Identifier CHESTPLATE_TRIM_ID_PREFIX =
-            MoreOresModInitializer.id("trims/items/chestplate_trim");
-    public static final Identifier LEGGINGS_TRIM_ID_PREFIX =
-            MoreOresModInitializer.id("trims/items/leggings_trim");
-    public static final Identifier BOOTS_TRIM_ID_PREFIX =
-            MoreOresModInitializer.id("trims/items/boots_trim");
-    
     public AutomaticModelCreator(FabricDataOutput output) {
         super(output);
     }
@@ -106,6 +98,13 @@ public class AutomaticModelCreator extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+        Map<String, Identifier> trimPrefixes = Map.of(
+                "_helmet", ItemModelGenerator.HELMET_TRIM_ID_PREFIX,
+                "_chestplate", ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX,
+                "_leggings", ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX,
+                "_boots", ItemModelGenerator.BOOTS_TRIM_ID_PREFIX
+        );  
+        
         for (Item item : Registries.ITEM) {
 
             if(item instanceof BlockItem) {
@@ -136,41 +135,16 @@ public class AutomaticModelCreator extends FabricModelProvider {
                 }
 
                 if (assetKey != null) {
-                    if(path.endsWith("_helmet")) {
-                        registerArmor(
-                                item,
-                                assetKey,
-                                ItemModelGenerator.HELMET_TRIM_ID_PREFIX,
-                                false,
-                                itemModelGenerator
-                        );
-                        continue;
-                    } else if (path.endsWith("_chestplate")) {
-                        registerArmor(
-                                item,
-                                assetKey,
-                                ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX,
-                                false,
-                                itemModelGenerator
-                        );
-                        continue;
-                    } else if (path.endsWith("_leggings")) {
-                        registerArmor(
-                                item,
-                                assetKey,
-                                ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX,
-                                false,
-                                itemModelGenerator
-                        );
-                        continue;
-                    } else if (path.endsWith("_boots")) {
-                        registerArmor(
-                                item,
-                                assetKey,
-                                ItemModelGenerator.BOOTS_TRIM_ID_PREFIX,
-                                false,
-                                itemModelGenerator
-                        );
+                    boolean generated = false;
+                    for (Map.Entry<String, Identifier> entry : trimPrefixes.entrySet()) {
+                        String suffix = entry.getKey();
+                        Identifier prefix = entry.getValue();
+                        if(path.endsWith(suffix)) {
+                            itemModelGenerator.registerArmor(item, assetKey, prefix, false);
+                            generated = true;
+                        }
+                    }
+                    if(generated) {
                         continue;
                     }
                 }

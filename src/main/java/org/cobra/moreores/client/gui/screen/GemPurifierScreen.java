@@ -18,7 +18,7 @@ import org.cobra.moreores.client.gui.widget.FluidWidget;
 import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 
 @Environment(EnvType.CLIENT)
-public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
+public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
     private static final Identifier TEXTURE = MoreOresModInitializer.id("textures/gui/container/gem_purifier/gem_purifier_gui_test.png");
@@ -36,35 +36,96 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
     @Override
     public void init() {
         super.init();
-        titleY = 1000;
-        playerInventoryTitleY = 1000;
 
         addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).create());
-
-        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 32, y + 92, START_BUTTON, Text.literal("Start Polishing"));
-        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + 80, y + 92, PAUSE_BUTTON, Text.literal("Pause Polishing"));
-        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + 32, this.y + 140, RESUME_BUTTON, Text.literal("Resume Polishing"));
-        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + 80, y + 140, STOP_BUTTON, Text.literal("Stop Polishing"));
-
-        start.visible = true;
-        pause.visible = true;
-        resume.visible = true;
-        stop.visible = true;
+    }
+    
+    @Override
+    protected Identifier getBackgroundTexture() {
+        return TEXTURE;
     }
 
-    private ButtonWidget addButton(String translation, int buttonId, int x, int y, Identifier texture, Text tooltip) {
-        ButtonWidget button = new TextureButtonWidget(x, y, Text.translatable(translation), texture, buttonId, handler.blockEntity.getPos());
-        button.setTooltip(Tooltip.of(tooltip));
-        return this.addDrawableChild(button);
+    @Override
+    protected Identifier getStartButtonTexture() {
+        return START_BUTTON;
     }
 
-    private void renderProgressArrow(DrawContext context, int x, int y) {
+    @Override
+    protected Identifier getPauseButtonTexture() {
+        return PAUSE_BUTTON;
+    }
+
+    @Override
+    protected Identifier getResumeButtonTexture() {
+        return RESUME_BUTTON;
+    }
+
+    @Override
+    protected Identifier getStopButtonTexture() {
+        return STOP_BUTTON;
+    }
+
+    @Override
+    protected int getStartButtonPosX() {
+        return 32;
+    }
+
+    @Override
+    protected int getStartButtonPosY() {
+        return 92;
+    }
+
+    @Override
+    protected int getPauseButtonPosX() {
+        return 80;
+    }
+
+    @Override
+    protected int getPauseButtonPosY() {
+        return 92;
+    }
+
+    @Override
+    protected int getResumeButtonPosX() {
+        return 32;
+    }
+
+    @Override
+    protected int getResumeButtonPosY() {
+        return 140;
+    }
+
+    @Override
+    protected int getStopButtonPosX() {
+        return 80;
+    }
+
+    @Override
+    protected int getStopButtonPosY() {
+        return 140;
+    }
+    
+    @Override
+    protected void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
             context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 83, y + 31, 207, 0, 10, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
     }
 
-    private void renderEnergyStorageHandler(DrawContext context, int x, int y) {
+    @Override
+    protected void renderRedstoneDust(DrawContext context, int x, int y) {
+        int k = handler.getRedstoneDust();
+        int l = MathHelper.clamp((k * 16 + 10000 - 1) / 10000, 0, 16);
+
+        int startX = x + 109;
+        int startY = y + 53;
+        int endY = y + 57;
+
+        context.fillGradient(startX, startY, startX + l, endY, Colors.RED, Colors.LIGHT_RED);
+    }
+
+    @Override
+    protected void renderEnergyHandler(DrawContext context, int x, int y) {
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
         int gradientStart = Colors.BLUE;
         int gradientEnd = Colors.GREEN;
@@ -81,24 +142,17 @@ public class GemPurifierScreen extends HandledScreen<GemPurifierScreenHandler> {
     }
 
     @Override
-    public void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        int i = this.x;
-        int j = this.y;
-        context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, i, j, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
-
-        renderProgressArrow(context, i, j);
-        renderEnergyStorageHandler(context, i, j);
-
-    }
-
-    @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
+        int l = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
         if (isPointWithinBounds(40, 42 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
+        }
+        if (isPointWithinBounds(109, 53, l, 4, mouseX, mouseY)) {
+            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getRedstoneDust() + " Particles").formatted(Formatting.RED), mouseX, mouseY);
         }
     }
 }

@@ -17,6 +17,7 @@ public class MoreOresDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(DynamicRegistry::new);
+		pack.addProvider(EquipmentAssetsProvider::new);
 		pack.addProvider(ItemTagGen::new);
 		pack.addProvider(BlockTagGen::new);
 		pack.addProvider(AutomaticModelCreator::new);

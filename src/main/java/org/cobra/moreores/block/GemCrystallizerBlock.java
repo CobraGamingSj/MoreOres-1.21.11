@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
-import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
 import org.jetbrains.annotations.Nullable;
@@ -69,15 +69,15 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new GemCrystallizeBlockEntity(pos, state);
+        return new GemCrystallizerBlockEntity(pos, state);
     }
 
     @Override
     protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
         if (state.getBlock() != state.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof GemCrystallizeBlockEntity) {
-                ItemScatterer.spawn(world, pos, (GemCrystallizeBlockEntity) blockEntity);
+            if (blockEntity instanceof GemCrystallizerBlockEntity) {
+                ItemScatterer.spawn(world, pos, (GemCrystallizerBlockEntity) blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, moved);
@@ -107,7 +107,7 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
             newState = newState.with(REDSTONE_POWERED, false);
         }
 
-        if(world.getBlockEntity(pos) instanceof GemCrystallizeBlockEntity be) {
+        if(world.getBlockEntity(pos) instanceof GemCrystallizerBlockEntity be) {
             newState = newState.with(IS_POLISHING, be.getGem());
         }
 
@@ -126,7 +126,7 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
             }
         }
 
-        NamedScreenHandlerFactory screenHandlerFactory = ((GemCrystallizeBlockEntity) world.getBlockEntity(pos));
+        NamedScreenHandlerFactory screenHandlerFactory = ((GemCrystallizerBlockEntity) world.getBlockEntity(pos));
         if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
         }

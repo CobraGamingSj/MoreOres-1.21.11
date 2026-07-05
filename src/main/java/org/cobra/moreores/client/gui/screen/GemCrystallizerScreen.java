@@ -54,10 +54,62 @@ public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystalli
     }
 
     @Override
+    protected int getStartButtonPosX() {
+        return 112;
+    }
+
+    @Override
+    protected int getStartButtonPosY() {
+        return 8;
+    }
+
+    @Override
+    protected int getPauseButtonPosX() {
+        return 160;
+    }
+
+    @Override
+    protected int getPauseButtonPosY() {
+        return 8;
+    }
+
+    @Override
+    protected int getResumeButtonPosX() {
+        return 112;
+    }
+
+    @Override
+    protected int getResumeButtonPosY() {
+        return 56;
+    }
+
+    @Override
+    protected int getStopButtonPosX() {
+        return 160;
+    }
+
+    @Override
+    protected int getStopButtonPosY() {
+        return 56;
+    }
+    
+    @Override
     protected void renderProgressArrow(DrawContext context, int x, int y) {
         if(this.handler.isPolishing()) {
             context.drawTexture(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 70, y + 41, 207, 0, 11, this.handler.progressGetter(), TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
+    }
+
+    @Override
+    protected void renderRedstoneDust(DrawContext context, int x, int y) {
+        int k = handler.getRedstoneDust();
+        int l = MathHelper.clamp((k * 16 + 10000 - 1) / 10000, 0, 16);
+
+        int startX = x + 92;
+        int startY = y + 79;
+        int endY = y + 83;
+
+        context.fillGradient(startX, startY, startX + l, endY, Colors.RED, -7667712);
     }
 
     @Override
@@ -101,11 +153,15 @@ public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystalli
         super.render(context, mouseX, mouseY, delta);
         int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
         int k = MathHelper.clamp((18 * handler.getDustCount() + 10000 - 1) / 10000, 0, 18);
+        int l = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
         if (isPointWithinBounds(13, 43 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
         }
-        if (isPointWithinBounds(38 + 18 - k, 97, k, 4, mouseX, mouseY)) {
+        if (isPointWithinBounds(38, 97, k, 4, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getDustCount() + " Particles").formatted(Formatting.RED),  mouseX, mouseY);
+        }
+        if (isPointWithinBounds(92, 79, l, 4, mouseX, mouseY)) {
+            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getRedstoneDust() + " Particles").formatted(Formatting.RED), mouseX, mouseY);
         }
     }
 }

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#minecraft:ruby_tool_materials"
+            "items": "#moreores:ruby_tool_materials"
           }
         ]
       },

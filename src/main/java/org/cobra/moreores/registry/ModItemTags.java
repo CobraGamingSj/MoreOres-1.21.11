@@ -9,25 +9,22 @@ import org.cobra.moreores.MoreOresModInitializer;
 public class ModItemTags {
 
     public static final TagKey<Item> GEMSTONE = of("rare/gemstone");
+    public static final TagKey<Item> CRYSTALLIZED_GEMSTONES = of("rare/crystallized_gemstone");
+    public static final TagKey<Item> CRYSTALLIZED = of("rare/crystallized");
     public static final TagKey<Item> GEMSTONE_BLOCKS = of("rare/gemstone_blocks");
+    public static final TagKey<Item> CRYSTALLIZED_GEMSTONE_BLOCKS = of("rare/crystallized_gemstone_blocks");
     public static final TagKey<Item> RAW_GEMSTONE = of("rare/raw_gemstone");
     public static final TagKey<Item> RAW_GEMSTONE_BLOCKS = of("rare/raw_gemstone_blocks");
-    public static final TagKey<Item> METAL = ofVanilla("is_metal");
-    public static final TagKey<Item> RARE = ofVanilla("rare/rare");
-    public static final TagKey<Item> JUKEBOX_PLAYABLE_DISCS = ofVanilla("jukebox_playable_discs");
-    public static final TagKey<Item> REPAIRS_RUBY_ARMOR = ofVanilla("repairs_ruby_armor");
-    public static final TagKey<Item> REPAIRS_SAPPHIRE_ARMOR = ofVanilla("repairs_sapphire_armor");
-    public static final TagKey<Item> REPAIRS_RADIANT_ARMOR = ofVanilla("repairs_radiant_armor");
-    public static final TagKey<Item> RUBY_TOOL_MATERIALS = ofVanilla("ruby_tool_materials");
-    public static final TagKey<Item> SAPPHIRE_TOOL_MATERIALS = ofVanilla("sapphire_tool_materials");
-    public static final TagKey<Item> RADIANT_TOOL_MATERIALS = ofVanilla("radiant_tool_materials");
-
-    public static final TagKey<Item> ARCSHAPERS = ofVanilla("arcshapers");
+    public static final TagKey<Item> METAL = of("is_metal");
+    public static final TagKey<Item> RARE = of("rare/rare");
+    public static final TagKey<Item> REPAIRS_RUBY_ARMOR = of("repairs_ruby_armor");
+    public static final TagKey<Item> REPAIRS_SAPPHIRE_ARMOR = of("repairs_sapphire_armor");
+    public static final TagKey<Item> REPAIRS_RADIANT_ARMOR = of("repairs_radiant_armor");
+    public static final TagKey<Item> RUBY_TOOL_MATERIALS = of("ruby_tool_materials");
+    public static final TagKey<Item> SAPPHIRE_TOOL_MATERIALS = of("sapphire_tool_materials");
+    public static final TagKey<Item> RADIANT_TOOL_MATERIALS = of("radiant_tool_materials");
 
     private static TagKey<Item> of(String id) {
         return TagKey.of(RegistryKeys.ITEM, Identifier.of(MoreOresModInitializer.MOD_ID, id));
-    }
-    private static TagKey<Item> ofVanilla(String id) {
-        return TagKey.of(RegistryKeys.ITEM, Identifier.ofVanilla(id));
     }
 }

@@ -30,13 +30,13 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
     // Client Side Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierDataSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
-                new ArrayPropertyDelegate(2));
+                new ArrayPropertyDelegate(3));
     }
 
     // Main Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, syncId, blockEntity.getPos());
-        checkSize((Inventory) blockEntity, 16);
+        checkSize((Inventory) blockEntity, 17);
 
         this.inventory = ((Inventory) blockEntity);
         this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
@@ -63,8 +63,9 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
         }); // Energy Input
         this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source
 
+        this.addSlot(new Slot(inventory, 4, 109, 33)); // Redstone Source
+        
         addFirstAdditionalInventory(inventory);
-//        addSecondAdditionalInventory(inventory);
 
         addPlayerGenericInventory(playerInventory);
         addPlayerHotbarInventory(playerInventory);
@@ -76,6 +77,10 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
         return propertyDelegate.get(0) > 0;
     }
 
+    public int getRedstoneDust() {
+        return propertyDelegate.get(2);
+    }
+    
     public int progressGetter() {
         int progress = this.propertyDelegate.get(0); //Progress
         int maxProgress = this.propertyDelegate.get(1); //Max Progress
@@ -163,7 +168,7 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
     @Override
     public void addFirstAdditionalInventory(Inventory playerInventory) {
         for (int i = 0; i < 12; ++i) {
-            this.addSlot(new Slot(playerInventory, 4 + i, 6 + i * 18, 178));
+            this.addSlot(new Slot(playerInventory, 5 + i, 6 + i * 18, 178));
         }
     }
 
