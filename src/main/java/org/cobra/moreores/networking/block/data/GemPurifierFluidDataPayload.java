@@ -12,7 +12,7 @@ import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
-public record GemPurifierFluidDataPayload(FluidVariant var, long fluid, BlockPos blockPos) implements CustomPayload {
+public record GemPurifierFluidDataPayload(FluidVariant fluidVariant, long fluidAmount, BlockPos blockPos) implements CustomPayload {
     public static final Id<GemPurifierFluidDataPayload> ID = new Id<>(MoreOresModInitializer.id("pos_fluid"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
@@ -20,18 +20,18 @@ public record GemPurifierFluidDataPayload(FluidVariant var, long fluid, BlockPos
         if (world == null) return;
 
         if (world.getBlockEntity(this.blockPos) instanceof GemPurifierBlockEntity blockEntity) {
-            blockEntity.setWaterLevel(this.var, this.fluid);
+            blockEntity.setFluid(this.fluidVariant, this.fluidAmount);
 
             if (context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(this.blockPos)) {
-                blockEntity.setWaterLevel(this.var, this.fluid);
+                blockEntity.setFluid(this.fluidVariant, this.fluidAmount);
             }
         }
     }
 
     public static final PacketCodec<RegistryByteBuf, GemPurifierFluidDataPayload> PACKET_CODEC =
             PacketCodec.tuple(
-                    FluidVariant.PACKET_CODEC, GemPurifierFluidDataPayload::var,
-                    PacketCodecs.LONG, GemPurifierFluidDataPayload::fluid,
+                    FluidVariant.PACKET_CODEC, GemPurifierFluidDataPayload::fluidVariant,
+                    PacketCodecs.LONG, GemPurifierFluidDataPayload::fluidAmount,
                     BlockPos.PACKET_CODEC, GemPurifierFluidDataPayload::blockPos,
                     GemPurifierFluidDataPayload::new
             );

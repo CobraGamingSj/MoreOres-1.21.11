@@ -5,11 +5,15 @@ import net.minecraft.item.equipment.EquipmentAssetKeys;
 import net.minecraft.registry.RegistryKey;
 import org.cobra.moreores.MoreOresModInitializer;
 
+import java.util.List;
+
 public interface ModEquipmentAssetKeys {
     RegistryKey<EquipmentAsset> RUBY = register("ruby");
     RegistryKey<EquipmentAsset> SAPPHIRE = register("sapphire");
     RegistryKey<EquipmentAsset> RADIANT = register("radiant");
 
+    List<RegistryKey<EquipmentAsset>> EQUIPMENT_ASSETS = List.of(RUBY, SAPPHIRE, RADIANT);
+    
     static RegistryKey<EquipmentAsset> register(String id) {
         return RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, MoreOresModInitializer.id(id));
     }

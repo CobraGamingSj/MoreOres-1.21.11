@@ -12,7 +12,7 @@ import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
-public record GemPurifierDataSynchronizer(long energy, FluidVariant fluidVariant, long fluid, BlockPos blockPos) implements CustomPayload {
+public record GemPurifierDataSynchronizer(long energyAmount, int redstone, FluidVariant fluidVariant, long fluid, BlockPos blockPos) implements CustomPayload {
 
     public static final Id<GemPurifierDataSynchronizer> ID = new Id<>(MoreOresModInitializer.id("pos_sync"));
 
@@ -21,19 +21,22 @@ public record GemPurifierDataSynchronizer(long energy, FluidVariant fluidVariant
         if (world == null) return;
 
         if (world.getBlockEntity(this.blockPos) instanceof GemPurifierBlockEntity blockEntity) {
-            blockEntity.setEnergyLevel(this.energy);
-            blockEntity.setWaterLevel(this.fluidVariant, this.fluid);
+            blockEntity.setEnergyAmount(this.energyAmount);
+            blockEntity.setRedstone(this.redstone);
+            blockEntity.setFluid(this.fluidVariant, this.fluid);
 
             if (context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(this.blockPos)) {
-                blockEntity.setEnergyLevel(this.energy);
-                blockEntity.setWaterLevel(this.fluidVariant, this.fluid);
+                blockEntity.setEnergyAmount(this.energyAmount);
+                blockEntity.setRedstone(this.redstone);
+                blockEntity.setFluid(this.fluidVariant, this.fluid);
             }
         }
     }
 
     public static final PacketCodec<RegistryByteBuf, GemPurifierDataSynchronizer> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.LONG, GemPurifierDataSynchronizer::energy,
+                    PacketCodecs.LONG, GemPurifierDataSynchronizer::energyAmount,
+                    PacketCodecs.INTEGER, GemPurifierDataSynchronizer::redstone,
                     FluidVariant.PACKET_CODEC, GemPurifierDataSynchronizer::fluidVariant,
                     PacketCodecs.LONG, GemPurifierDataSynchronizer::fluid,
                     BlockPos.PACKET_CODEC, GemPurifierDataSynchronizer::blockPos,

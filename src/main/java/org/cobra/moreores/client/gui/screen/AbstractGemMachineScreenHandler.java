@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import org.jspecify.annotations.Nullable;
 
 public abstract class AbstractGemMachineScreenHandler extends ScreenHandler implements ScreenUtilHelper {
-
     protected final BlockPos pos;
 
     public AbstractGemMachineScreenHandler(@Nullable ScreenHandlerType<?> type, int syncId, BlockPos pos) {

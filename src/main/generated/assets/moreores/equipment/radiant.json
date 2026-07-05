@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "moreores:radiant"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "moreores:radiant"
+      }
+    ],
+    "nautilus_body": [
+      {
+        "texture": "moreores:radiant"
+      }
+    ]
+  }
+}

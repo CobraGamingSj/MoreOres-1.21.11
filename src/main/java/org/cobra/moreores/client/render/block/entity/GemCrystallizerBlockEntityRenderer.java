@@ -17,10 +17,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.cobra.moreores.block.GemPurifierBlock;
-import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-public final class GemCrystallizerBlockEntityRenderer implements BlockEntityRenderer<GemCrystallizeBlockEntity, GemCrystallizerBlockEntityRenderState> {
+public final class GemCrystallizerBlockEntityRenderer implements BlockEntityRenderer<GemCrystallizerBlockEntity, GemCrystallizerBlockEntityRenderState> {
     private final BlockEntityRendererFactory.Context context;
     private final ItemModelManager itemModelManager;
 
@@ -84,7 +84,7 @@ public final class GemCrystallizerBlockEntityRenderer implements BlockEntityRend
         matrices.pop();
     }
 
-    private float getRotationAngle(GemCrystallizeBlockEntity entity) {
+    private float getRotationAngle(GemCrystallizerBlockEntity entity) {
         if (entity.getWorld() != null) {
             return switch (entity.getCachedState().get(GemPurifierBlock.FACING)) {
                 case NORTH -> 180f;
@@ -97,7 +97,7 @@ public final class GemCrystallizerBlockEntityRenderer implements BlockEntityRend
     }
 
     @Override
-    public void updateRenderState(GemCrystallizeBlockEntity blockEntity, GemCrystallizerBlockEntityRenderState state, float tickProgress, Vec3d cameraPos, @Nullable ModelCommandRenderer.CrumblingOverlayCommand crumblingOverlay) {
+    public void updateRenderState(GemCrystallizerBlockEntity blockEntity, GemCrystallizerBlockEntityRenderState state, float tickProgress, Vec3d cameraPos, @Nullable ModelCommandRenderer.CrumblingOverlayCommand crumblingOverlay) {
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
         state.setEntity(blockEntity);
         state.entityWorld = blockEntity.getWorld();
@@ -126,7 +126,7 @@ public final class GemCrystallizerBlockEntityRenderer implements BlockEntityRend
 
     @Override
     public void render(GemCrystallizerBlockEntityRenderState state, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
-        GemCrystallizeBlockEntity entity = state.entity;
+        GemCrystallizerBlockEntity entity = state.entity;
         if (entity == null || entity.getWorld() == null) return;
 
         int light = getLightLevel(state.entityWorld, state.lightPos);

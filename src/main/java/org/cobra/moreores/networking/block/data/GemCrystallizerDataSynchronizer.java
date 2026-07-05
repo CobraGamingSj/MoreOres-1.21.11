@@ -8,10 +8,10 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.GemCrystallizeBlockEntity;
+import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
-public record GemCrystallizerDataSynchronizer(long energy, int dustCount, BlockPos blockPos) implements CustomPayload {
+public record GemCrystallizerDataSynchronizer(long energyAmount, int redstone, int radiantDust, BlockPos blockPos) implements CustomPayload {
 
     public static final Id<GemCrystallizerDataSynchronizer> ID = new Id<>(MoreOresModInitializer.id("data_pos_sync"));
 
@@ -19,21 +19,24 @@ public record GemCrystallizerDataSynchronizer(long energy, int dustCount, BlockP
         ClientWorld world = context.client().world;
         if (world == null) return;
 
-        if (world.getBlockEntity(this.blockPos) instanceof GemCrystallizeBlockEntity blockEntity) {
-            blockEntity.setEnergyLevel(this.energy);
-            blockEntity.setDustCount(this.dustCount);
+        if (world.getBlockEntity(this.blockPos) instanceof GemCrystallizerBlockEntity blockEntity) {
+            blockEntity.setEnergyAmount(this.energyAmount);
+            blockEntity.setRedstone(this.redstone);
+            blockEntity.setDustCount(this.radiantDust);
 
             if (context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(this.blockPos)) {
-                blockEntity.setEnergyLevel(this.energy);
-                blockEntity.setDustCount(this.dustCount);
+                blockEntity.setEnergyAmount(this.energyAmount);
+                blockEntity.setRedstone(this.redstone);
+                blockEntity.setDustCount(this.radiantDust);
             }
         }
     }
 
     public static final PacketCodec<RegistryByteBuf, GemCrystallizerDataSynchronizer> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.LONG, GemCrystallizerDataSynchronizer::energy,
-                    PacketCodecs.INTEGER, GemCrystallizerDataSynchronizer::dustCount,
+                    PacketCodecs.LONG, GemCrystallizerDataSynchronizer::energyAmount,
+                    PacketCodecs.INTEGER, GemCrystallizerDataSynchronizer::redstone,
+                    PacketCodecs.INTEGER, GemCrystallizerDataSynchronizer::radiantDust,
                     BlockPos.PACKET_CODEC, GemCrystallizerDataSynchronizer::blockPos,
                     GemCrystallizerDataSynchronizer::new
             );

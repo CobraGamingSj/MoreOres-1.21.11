@@ -12,21 +12,21 @@ import org.cobra.moreores.networking.block.data.GemPurifierButtonClickPayload;
 
 public class TextureButtonWidget extends ButtonWidget {
     private final Identifier texture;
-    private final int buttonId;
+    private final int buttonIndex;
     private final BlockPos pos;
 
-    public TextureButtonWidget(int x, int y, net.minecraft.text.Text message, Identifier texture, int buttonId, BlockPos pos) {
+    public TextureButtonWidget(int x, int y, net.minecraft.text.Text message, Identifier texture, int buttonIndex, BlockPos pos) {
         super(x, y, 32, 32, message, btn -> {
 
         }, DEFAULT_NARRATION_SUPPLIER);
         this.texture = texture;
-        this.buttonId = buttonId;
+        this.buttonIndex = buttonIndex;
         this.pos = pos;
     }
 
     @Override
     public void onPress(AbstractInput input) {
-        ClientPlayNetworking.send(new GemPurifierButtonClickPayload(buttonId, pos));
+        ClientPlayNetworking.send(new GemPurifierButtonClickPayload(buttonIndex, pos));
     }
 
     @Override

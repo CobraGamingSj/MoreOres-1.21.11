@@ -11,14 +11,14 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
-import org.cobra.moreores.networking.block.data.PolishingStateDataPayload;
+import org.cobra.moreores.networking.block.data.MachineStatusDataPayload;
 import org.lwjgl.glfw.GLFW;
 
-public abstract class AbstractGemMachineScreen<S extends AbstractGemMachineScreenHandler> extends HandledScreen<S> {
+public abstract class AbstractGemMachineScreen<ScreenHandler extends AbstractGemMachineScreenHandler> extends HandledScreen<ScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
 
-    public AbstractGemMachineScreen(S handler, PlayerInventory inventory, Text title) {
+    public AbstractGemMachineScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundHeight = 196;
         this.backgroundWidth = 207;
@@ -30,13 +30,10 @@ public abstract class AbstractGemMachineScreen<S extends AbstractGemMachineScree
         titleY = 1000;
         playerInventoryTitleY = 1000;
 
-        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + 112, y + 8, getStartButtonTexture(), Text.literal("Start Polishing"));
-
-        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + 160, y + 8, getPauseButtonTexture(), Text.literal("Pause Polishing"));
-
-        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + 112, this.y + 56, getResumeButtonTexture(), Text.literal("Resume Polishing"));
-
-        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + 160, y + 56, getStopButtonTexture(), Text.literal("Stop Polishing"));
+        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + getStartButtonPosX(), y + getStartButtonPosY(), getStartButtonTexture(), Text.literal("Start Polishing"));
+        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + getPauseButtonPosX(), y + getPauseButtonPosY(), getPauseButtonTexture(), Text.literal("Pause Polishing"));
+        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + getResumeButtonPosX(), this.y + getResumeButtonPosY(), getResumeButtonTexture(), Text.literal("Resume Polishing"));
+        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + getStopButtonPosX(), y + getStopButtonPosY(), getStopButtonTexture(), Text.literal("Stop Polishing"));
 
         start.visible = true;
         pause.visible = true;
@@ -44,8 +41,8 @@ public abstract class AbstractGemMachineScreen<S extends AbstractGemMachineScree
         stop.visible = true;
     }
 
-    protected ButtonWidget addButton(String translation, int buttonId, int x, int y, Identifier texture, Text tooltip) {
-        ButtonWidget button = new TextureButtonWidget(x, y, Text.translatable(translation), texture, buttonId, handler.getPos());
+    protected ButtonWidget addButton(String translation, int buttonIndex, int x, int y, Identifier texture, Text tooltip) {
+        ButtonWidget button = new TextureButtonWidget(x, y, Text.translatable(translation), texture, buttonIndex, handler.getPos());
         button.setTooltip(Tooltip.of(tooltip));
         return this.addDrawableChild(button);
     }
@@ -56,6 +53,18 @@ public abstract class AbstractGemMachineScreen<S extends AbstractGemMachineScree
     protected abstract Identifier getResumeButtonTexture();
     protected abstract Identifier getStopButtonTexture();
 
+    protected abstract int getStartButtonPosX();
+    protected abstract int getStartButtonPosY();
+
+    protected abstract int getPauseButtonPosX();
+    protected abstract int getPauseButtonPosY();
+
+    protected abstract int getResumeButtonPosX();
+    protected abstract int getResumeButtonPosY();
+
+    protected abstract int getStopButtonPosX();
+    protected abstract int getStopButtonPosY();
+    
     @Override
     public boolean keyPressed(KeyInput input) {
         if(input.getKeycode() == GLFW.GLFW_KEY_S) {
@@ -78,11 +87,12 @@ public abstract class AbstractGemMachineScreen<S extends AbstractGemMachineScree
     }
 
     private void sendPolishControlPacket(String action) {
-        ClientPlayNetworking.send(new PolishingStateDataPayload(handler.getPos(), action));
+        ClientPlayNetworking.send(new MachineStatusDataPayload(handler.getPos(), action));
     }
 
     protected abstract void renderEnergyHandler(DrawContext context, int x, int y);
     protected abstract void renderProgressArrow(DrawContext context, int x, int y);
+    protected abstract void renderRedstoneDust(DrawContext context, int x, int y);
 
     @Override
     protected void drawBackground(DrawContext context, float deltaTicks, int mouseX, int mouseY) {
@@ -92,6 +102,7 @@ public abstract class AbstractGemMachineScreen<S extends AbstractGemMachineScree
         context.drawTexture(RenderPipelines.GUI_TEXTURED, getBackgroundTexture(), i, j, 0f, 0f, this.backgroundWidth, this.backgroundHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         renderEnergyHandler(context, i, j);
         renderProgressArrow(context, i, j);
+        renderRedstoneDust(context, i, j);
     }
 
     @Override

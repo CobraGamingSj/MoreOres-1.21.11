@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#minecraft:radiant_tool_materials"
+            "items": "#moreores:radiant_tool_materials"
           }
         ]
       },
