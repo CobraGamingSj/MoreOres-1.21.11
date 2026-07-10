@@ -11,6 +11,7 @@ import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
+import org.cobra.moreores.block.entity.gem.TestGemBlockEntity;
 import team.reborn.energy.api.EnergyStorage;
 
 public class ModBlockEntityType {
@@ -21,6 +22,9 @@ public class ModBlockEntityType {
     public static final BlockEntityType<GemCrystallizerBlockEntity> GEM_CRYSTALLIZER =
             register("gem_crystallizer_block", FabricBlockEntityTypeBuilder.create(GemCrystallizerBlockEntity::new, ModBlocks.GEM_CRYSTALLIZER_BLOCK));
 
+    public static final BlockEntityType<TestGemBlockEntity> TEST = 
+            register("test", FabricBlockEntityTypeBuilder.create(TestGemBlockEntity::new, ModBlocks.TEST_BLOCK));
+    
     private static <BE extends BlockEntity> BlockEntityType<BE> register(String id, FabricBlockEntityTypeBuilder<BE> factory) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(MoreOresModInitializer.MOD_ID, id), factory.build());
     }

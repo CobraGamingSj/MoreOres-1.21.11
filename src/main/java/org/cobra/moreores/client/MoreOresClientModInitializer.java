@@ -9,9 +9,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.EntityRendererFactories;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ModBlockEntityType;
-import org.cobra.moreores.client.gui.screen.GemCrystallizerScreen;
-import org.cobra.moreores.client.gui.screen.GemPurifierScreen;
-import org.cobra.moreores.client.gui.screen.ModScreenHandlerType;
+import org.cobra.moreores.client.gui.screen.*;
 import org.cobra.moreores.client.render.block.entity.GemCrystallizerBlockEntityRenderer;
 import org.cobra.moreores.client.render.block.entity.GemPurifierBlockEntityRenderer;
 import org.cobra.moreores.client.render.item.entity.GemArrowEntityRenderer;
@@ -25,19 +23,12 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
 
         ModS2CNetworks.registerClientS2C();
 
-//        for(Block block : Registries.BLOCK) {
-//            Identifier identifier = Registries.BLOCK.getId(block);
-//            if(identifier.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
-//                BlockRenderLayerMap.putBlock(block, BlockRenderLayer.CUTOUT);
-//                continue;
-//            }
-//        }
-        
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_CRYSTALLIZER_BLOCK, BlockRenderLayer.TRANSLUCENT);
 
         HandledScreens.register(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, GemPurifierScreen::new);
         HandledScreens.register(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, GemCrystallizerScreen::new);
+        HandledScreens.register(ModScreenHandlerType.TEST, TestScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER, GemPurifierBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_CRYSTALLIZER, GemCrystallizerBlockEntityRenderer::new);
