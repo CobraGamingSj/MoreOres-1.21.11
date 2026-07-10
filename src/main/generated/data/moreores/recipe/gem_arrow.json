@@ -2,23 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "a": "moreores:radiant_amethyst",
-    "b": "moreores:moonstone",
-    "c": "moreores:limestone",
-    "d": "moreores:quartsidian",
-    "e": "minecraft:arrow",
-    "f": "moreores:alexandrite",
-    "g": "moreores:orange_zircon",
-    "h": "moreores:opal",
-    "i": "moreores:grandidierite"
+    "#": "#moreores:rare/crystallized",
+    "a": "minecraft:arrow"
   },
   "pattern": [
-    "abc",
-    "def",
-    "ghi"
+    "###",
+    "#a#",
+    "###"
   ],
   "result": {
-    "count": 32,
+    "count": 1,
     "id": "moreores:gem_arrow"
   }
 }

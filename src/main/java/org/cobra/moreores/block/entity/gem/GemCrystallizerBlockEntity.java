@@ -90,7 +90,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
             }
         };
     }
-
+    
     public void setDustCount(int dustCount) {
         this.dustParticleCount = dustCount;
     }

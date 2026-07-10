@@ -22,7 +22,7 @@ import static org.cobra.moreores.MoreOresModInitializer.id;
 
 public class ModBlocks {
 
-    public static final Block ENERGY_BLOCK = register("energy_block", new EnergyBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "energy_block"))).mapColor(MapColor.BLUE).requiresTool().strength(256.0f, 512.0f).strength(512.0f).sounds(ModBlockSoundGroup.ENERGY_BLOCK).luminance((state) -> {
+    public static final Block ENERGY_BLOCK = register("energy_block", new EnergyBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "energy_block"))).mapColor(MapColor.BLUE).requiresTool().strength(256.0f, 512.0f).sounds(ModBlockSoundGroup.ENERGY_BLOCK).luminance((state) -> {
         return 30;
     })));
     public static final Block RUBY_LAMP = register("ruby_lamp", new RubyLampBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "ruby_lamp"))).hardness(0.1f).sounds(BlockSoundGroup.GLASS).luminance(state -> state.get(RubyLampBlock.LIT) ? 15:0)));
@@ -59,12 +59,14 @@ public class ModBlocks {
     public static final Block KASHMIR_SAPPHIRE_BLOCK = register("kashmir_sapphire_block", Block::new);
 
     public static final Block GEM_PURIFIER_BLOCK = register("gem_purifier_block", new GemPurifierBlock(AbstractBlock.Settings.create()
-            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_purifier_block"))).strength(5f).strength(2.75f, 3f)
+            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_purifier_block"))).strength(5f).strength(5f, 30f)
             .luminance(state -> state.get(GemPurifierBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
     public static final Block GEM_CRYSTALLIZER_BLOCK = register("gem_crystallizer_block", new GemCrystallizerBlock(AbstractBlock.Settings.create()
-            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_crystallizer_block"))).strength(5f).strength(2.75f, 3f)
+            .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_crystallizer_block"))).strength(5f).strength(5f, 30f)
             .luminance(state -> state.get(GemCrystallizerBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
 
+    public static final Block TEST_BLOCK = register("test_gem_block", TestGemBlock::new, AbstractBlock.Settings.create().nonOpaque());
+    
     public static final Block RAW_RUBY_BLOCK = register("raw_ruby_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_ruby_block"))).mapColor(MapColor.DARK_RED).requiresTool().strength(6.0f, 6.0f).strength(6.0f)));
     public static final Block RAW_SAPPHIRE_BLOCK = register("raw_sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_sapphire_block"))).mapColor(MapColor.BLUE).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
     public static final Block RAW_GREEN_SAPPHIRE_BLOCK = register("raw_green_sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_green_sapphire_block"))).mapColor(MapColor.GREEN).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
@@ -110,6 +112,10 @@ public class ModBlocks {
         return Registry.register(Registries.BLOCK, id(id), block);
     }
 
+    public static Block register(String id, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
+        return register(id, factory.apply(settings.registryKey(MoreOresModInitializer.blockKey(id))));
+    }
+    
     public static Block register(String id, Function<AbstractBlock.Settings, Block> blockFactory) {
        return registerSolidBlock(id, blockFactory, 7f, 7f);
     }
