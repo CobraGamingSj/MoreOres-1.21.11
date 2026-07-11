@@ -6,6 +6,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -22,10 +23,36 @@ import org.jspecify.annotations.Nullable;
 public class TestGemBlockEntity extends BlockEntity implements TickableBlockEntity, ImplementedInventory, ExtendedScreenHandlerFactory {
     public final DefaultedList<ItemStack> main = DefaultedList.ofSize(1, ItemStack.EMPTY);
     
+    public static final int GEM_SLOT = 0;
+    
+    private int level;
+    
+    protected final PropertyDelegate propertyDelegate;
+    
     public TestGemBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.TEST, pos, state);
+        this.propertyDelegate = new PropertyDelegate() {
+            @Override
+            public int get(int index) {
+                return TestGemBlockEntity.this.level;
+            }
+
+            @Override
+            public void set(int index, int value) {
+                TestGemBlockEntity.this.level = value;
+            }
+
+            @Override
+            public int size() {
+                return 1;
+            }
+        };
     }
 
+    public ItemStack gemStack() {
+        return this.getStack(GEM_SLOT);
+    }
+    
     @Override
     public Object getScreenOpeningData(ServerPlayerEntity player) {
         return null;
@@ -38,7 +65,8 @@ public class TestGemBlockEntity extends BlockEntity implements TickableBlockEnti
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new TestScreenHandler(null, syncId);
+        return null;
+//        return new TestScreenHandler(null, syncId);
     }
 
     @Override
@@ -48,6 +76,8 @@ public class TestGemBlockEntity extends BlockEntity implements TickableBlockEnti
 
     @Override
     public void tick(World world, BlockPos pos, BlockState state) {
-        
+        if(world.isClient()) {
+            return;
+        }
     }
 }
