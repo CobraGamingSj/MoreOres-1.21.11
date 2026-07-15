@@ -1,6 +1,7 @@
 package org.cobra.moreores.client.gui.screen;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -14,7 +15,7 @@ import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import org.cobra.moreores.networking.block.data.MachineStatusDataPayload;
 import org.lwjgl.glfw.GLFW;
 
-public abstract class AbstractGemMachineScreen<ScreenHandler extends AbstractGemMachineScreenHandler> extends HandledScreen<ScreenHandler> {
+public abstract class AbstractGemMachineScreen<T extends BlockEntity, ScreenHandler extends AbstractGemMachineScreenHandler<T>> extends HandledScreen<ScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
 

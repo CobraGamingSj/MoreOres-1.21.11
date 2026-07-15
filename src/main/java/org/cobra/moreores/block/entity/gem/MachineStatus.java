@@ -32,4 +32,23 @@ public enum MachineStatus implements StringIdentifiable {
     public String asString() {
         return this.name;
     }
+
+    public enum EnergyState implements StringIdentifiable {
+        IDLE("idle"),
+        INSERTING("inserting"),
+        EXTRACTING("extracting");
+    
+        private final String name;
+    
+        EnergyState(String name) {
+            this.name = name;
+        }
+    
+        public static final Codec<EnergyState> CODEC = StringIdentifiable.createCodec(EnergyState::values);
+    
+        @Override
+        public String asString() {
+            return this.name;
+        }
+    }
 }

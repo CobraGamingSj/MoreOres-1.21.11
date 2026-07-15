@@ -24,16 +24,16 @@ import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
 import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
-import org.cobra.moreores.item.util.impl.IGem;
+import org.cobra.moreores.item.util.impl.Gemstone;
 import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<P>, ImplementedInventory, TickableBlockEntity {
+public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<Payload>, ImplementedInventory, TickableBlockEntity {
     protected final DefaultedList<ItemStack> main;
     protected MachineStatus machineStatus = MachineStatus.IDLE;
-    protected MachineEnergyState machineEnergyState = MachineEnergyState.IDLE;
-    protected IGem gemType = IGem.EMPTY;
+    protected MachineStatus.EnergyState energyState = MachineStatus.EnergyState.IDLE;
+    protected Gemstone gemstone = Gemstone.NONE;
 
     public int initialProgress = 0;
 
@@ -49,7 +49,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         this.main = DefaultedList.ofSize(mainStackSize(), ItemStack.EMPTY);
     }
 
-    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(getEnergyCapacity(), getMaxEnergyInsert(), getMaxEnergyExtract()) {
+    protected final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(getEnergyCapacity(), getMaxEnergyInsert(), getMaxEnergyExtract()) {
         @Override
         public void onFinalCommit() {
             super.onFinalCommit();
@@ -62,6 +62,10 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         }
     };
 
+    public SimpleEnergyStorage getEnergyStorage() {
+        return energyStorage;
+    }
+    
     public abstract int mainStackSize();
 
     public abstract long getEnergyCapacity();
@@ -83,7 +87,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         view.putInt("RedstoneTick", redstoneTick);
         view.putLong("Energy", energyStorage.amount);
         view.putNullable("PolishingState", MachineStatus.CODEC, machineStatus);
-        view.putNullable("EnergyState", MachineEnergyState.CODEC, machineEnergyState);
+        view.putNullable("EnergyState", MachineStatus.EnergyState.CODEC, energyState);
     }
 
     @Override
@@ -95,7 +99,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         redstoneTick = view.getInt("RedstoneTick", 0);
         energyStorage.amount = view.getLong("Energy", 0);
         machineStatus = view.read("PolishingState", MachineStatus.CODEC).orElse(MachineStatus.IDLE);
-        machineEnergyState = view.read("EnergyState", MachineEnergyState.CODEC).orElse(MachineEnergyState.IDLE);
+        energyState = view.read("EnergyState", MachineStatus.EnergyState.CODEC).orElse(MachineStatus.EnergyState.IDLE);
     }
 
     public int getRedstone() {
@@ -106,7 +110,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         this.redstone = redstone;
     }
     
-    public IGem detectGem(ItemStack stack) {
+    public Gemstone detectGem(ItemStack stack) {
         Item item = stack.getItem();
         if (category() == GemCategory.PURIFYING) {
             for (PurificationGemstones gems : PurificationGemstones.values()) {
@@ -116,7 +120,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
                     }
                 }
             }
-            return PurificationGemstones.EMPTY;
+            return PurificationGemstones.NONE;
         }
         if (category() == GemCategory.CRYSTALLIZATION) {
             for (CrystallizationGemstones gems : CrystallizationGemstones.values()) {
@@ -126,9 +130,9 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
                     }
                 }
             }
-            return CrystallizationGemstones.EMPTY;
+            return CrystallizationGemstones.NONE;
         }
-        return IGem.EMPTY;
+        return Gemstone.NONE;
     }
 
     public long energyAmount() {
@@ -137,12 +141,12 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
     
     public abstract GemCategory category();
 
-    public IGem getGem() {
+    public Gemstone getGem() {
         return detectGem(resultStack());
     }
 
-    public void setGem(IGem gem) {
-        gemType = gem;
+    public void setGem(Gemstone gem) {
+        gemstone = gem;
     }
 
     public void setEnergyAmount(long energy) {
@@ -161,17 +165,17 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         }
     }
 
-    protected void checkForEnoughEnergyAndRemoveItem(int energySlot) {
+    protected void validateEnergyAmount(int energySlot) {
         if(energyAmount() > 10000000) {
             energyStorage.amount = 10000000;
         }
 
-        long energy = this.energyAmount();
+        long energy = this.energyStorage.amount;
 
-        long [] milestones = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000};
+        long[] milestones = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000};
 
         for(long milestone : milestones) {
-            if(energy == milestone && lastRemovedEnergyMilestone < milestone) {
+            if(energy >= milestone && lastRemovedEnergyMilestone < milestone) {
                 this.removeStack(energySlot, 1);
                 lastRemovedEnergyMilestone = milestone;
                 break;
@@ -179,7 +183,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         }
     }
 
-    protected void checkForEnoughRedstoneAndRemoveItem(int slot) {
+    protected void validateRedstoneDust(int slot) {
         if(redstone > 10000) {
             redstone = 10000;
         }
@@ -189,7 +193,7 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         int [] milestones = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
 
         for(long milestone : milestones) {
-            if(amount == milestone && lastRemovedRedstoneMilestone < milestone) {
+            if(amount >= milestone && lastRemovedRedstoneMilestone < milestone) {
                 this.removeStack(slot, 1);
                 lastRemovedRedstoneMilestone = milestone;
                 break;
@@ -201,9 +205,9 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         return this.energyStorage.amount >= 13;
     }
 
-    protected void insertEnergy() {
+    protected void giveEnergy() {
         if (!hasEnergySourceProviderItem() || energyStorage.amount >= 1_000_000) {
-            machineEnergyState = MachineEnergyState.IDLE;
+            energyState = MachineStatus.EnergyState.IDLE;
             return;
         }
         long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 102 : 154;
@@ -211,18 +215,18 @@ public abstract class AbstractGemMachineBlockEntity<P extends CustomPayload> ext
         try (Transaction transaction = Transaction.openOuter()) {
             long inserted = energyStorage.insert(amount, transaction);
             transaction.commit();
-            if (inserted > 0) machineEnergyState = MachineEnergyState.INSERTING;
-            else machineEnergyState = MachineEnergyState.IDLE;
+            if (inserted > 0) energyState = MachineStatus.EnergyState.INSERTING;
+            else energyState = MachineStatus.EnergyState.IDLE;
         }
     }
 
-    protected void extractEnergy() {
+    protected void eatEnergy() {
         long amount = world.isReceivingRedstonePower(pos) ? 64 : 13;
         try (Transaction transaction = Transaction.openOuter()) {
             energyStorage.extract(amount, transaction);
             transaction.commit();
         }
-        machineEnergyState = MachineEnergyState.EXTRACTING;
+        energyState = MachineStatus.EnergyState.EXTRACTING;
     }
 
     protected abstract boolean hasRecipe();

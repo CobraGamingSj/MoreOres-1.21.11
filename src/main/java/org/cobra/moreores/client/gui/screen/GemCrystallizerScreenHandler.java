@@ -1,6 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,9 +10,7 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.item.ModItems;
@@ -21,11 +18,11 @@ import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandler {
+public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandler<GemCrystallizerBlockEntity> {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
-    public final GemCrystallizerBlockEntity blockEntity;
+    private final GemCrystallizerBlockEntity blockEntity;
 
     public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, GemCrystallizerDataSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
@@ -181,7 +178,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
     }
 
     @Override
-    public BlockEntity getBlockEntity(BlockPos pos, BlockState state, World world) {
+    public GemCrystallizerBlockEntity getBlockEntity() {
         return this.blockEntity;
     }
 
@@ -190,11 +187,11 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
     }
 
     public long getEnergyCap() {
-        return this.blockEntity.energyStorage.getCapacity();
+        return this.blockEntity.getEnergyStorage().getCapacity();
     }
 
     public float getEnergyPercent() {
-        SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage;
+        SimpleEnergyStorage energyStorage = this.blockEntity.getEnergyStorage();
         long energy = energyStorage.getAmount();
         long maxEnergy = energyStorage.getCapacity();
         if (maxEnergy == 0 || energy == 0)

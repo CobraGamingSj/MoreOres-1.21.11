@@ -1,17 +1,19 @@
 package org.cobra.moreores.client.gui.screen;
 
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
-public abstract class AbstractGemMachineScreenHandler extends ScreenHandler implements ScreenUtilHelper {
+public abstract class AbstractGemMachineScreenHandler<T extends BlockEntity> extends ScreenHandler implements ScreenUtilHelper<T> {
     protected final BlockPos pos;
 
-    public AbstractGemMachineScreenHandler(@Nullable ScreenHandlerType<?> type, int syncId, BlockPos pos) {
+    public AbstractGemMachineScreenHandler(@NotNull ScreenHandlerType<?> type, int syncId, BlockPos pos) {
         super(type, syncId);
         this.pos = pos;
     }

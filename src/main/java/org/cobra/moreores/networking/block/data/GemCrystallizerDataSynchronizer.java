@@ -24,7 +24,7 @@ public record GemCrystallizerDataSynchronizer(long energyAmount, int redstone, i
             blockEntity.setRedstone(this.redstone);
             blockEntity.setDustCount(this.radiantDust);
 
-            if (context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(this.blockPos)) {
+            if (context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.getBlockEntity().getPos().equals(this.blockPos)) {
                 blockEntity.setEnergyAmount(this.energyAmount);
                 blockEntity.setRedstone(this.redstone);
                 blockEntity.setDustCount(this.radiantDust);

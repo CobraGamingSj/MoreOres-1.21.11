@@ -8,8 +8,8 @@ import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.item.util.GemCategory;
 
-public enum CrystallizationGemstones implements IGem, StringIdentifiable {
-    EMPTY("empty", Items.AIR),
+public enum CrystallizationGemstones implements Gemstone, StringIdentifiable {
+    NONE("empty", Items.AIR),
     CRIMSON_GARNET("crimson_garnet", ModItems.CRIMSON_GARNET, ModBlocks.CRIMSON_GARNET_BLOCK.asItem()),
     RADIANT_AMETHYST("radiant_amethyst", ModItems.RADIANT_AMETHYST, ModBlocks.RADIANT_AMETHYST_BLOCK.asItem()),
     CRYSTALLITE("crystallite", ModItems.CRYSTALLITE, ModBlocks.CRYSTALLITE_BLOCK.asItem()),

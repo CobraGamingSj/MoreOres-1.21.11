@@ -21,7 +21,7 @@ public record GemPFEnergyDataPayload(long energyAmount, BlockPos blockPos) imple
         if (world.getBlockEntity(this.blockPos) instanceof AbstractGemMachineBlockEntity<?> blockEntity) {
             blockEntity.setEnergyAmount(this.energyAmount);
 
-            if (context.player().currentScreenHandler instanceof AbstractGemMachineScreenHandler screenHandler && screenHandler.getPos().equals(this.blockPos)) {
+            if (context.player().currentScreenHandler instanceof AbstractGemMachineScreenHandler<?> screenHandler && screenHandler.getPos().equals(this.blockPos)) {
                 blockEntity.setEnergyAmount(this.energyAmount);
             }
         }

@@ -9,6 +9,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
+import org.cobra.moreores.client.gui.screen.AbstractGemMachineScreenHandler;
 import org.cobra.moreores.client.gui.screen.GemCrystallizerScreenHandler;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
@@ -33,8 +34,7 @@ public record GemPurifierButtonClickPayload(int buttonIndex, BlockPos pos) imple
                 case 3 -> blockEntity.stop();
                 }
 
-                if((context.player().currentScreenHandler instanceof GemPurifierScreenHandler screenHandler && screenHandler.blockEntity.getPos().equals(pos)) ||
-                context.player().currentScreenHandler instanceof GemCrystallizerScreenHandler screenHandlerL && screenHandlerL.blockEntity.getPos().equals(pos)) {
+                if((context.player().currentScreenHandler instanceof AbstractGemMachineScreenHandler<?> handler && handler.getPos().equals(pos))) {
                     switch (buttonIndex) {
                         case 0 -> blockEntity.start();
                         case 1 -> blockEntity.pause();
