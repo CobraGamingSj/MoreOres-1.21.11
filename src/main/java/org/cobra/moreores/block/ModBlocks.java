@@ -65,7 +65,7 @@ public class ModBlocks {
             .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "gem_crystallizer_block"))).strength(5f).strength(5f, 30f)
             .luminance(state -> state.get(GemCrystallizerBlock.REDSTONE_POWERED) ? 5 : 0).requiresTool().nonOpaque().sounds(BlockSoundGroup.HEAVY_CORE)));
 
-    public static final Block TEST_BLOCK = register("test_gem_block", TestGemBlock::new, AbstractBlock.Settings.create().nonOpaque());
+//    public static final Block TEST_BLOCK = register("test_gem_block", TestGemBlock::new, AbstractBlock.Settings.create().nonOpaque());
     
     public static final Block RAW_RUBY_BLOCK = register("raw_ruby_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_ruby_block"))).mapColor(MapColor.DARK_RED).requiresTool().strength(6.0f, 6.0f).strength(6.0f)));
     public static final Block RAW_SAPPHIRE_BLOCK = register("raw_sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "raw_sapphire_block"))).mapColor(MapColor.BLUE).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));

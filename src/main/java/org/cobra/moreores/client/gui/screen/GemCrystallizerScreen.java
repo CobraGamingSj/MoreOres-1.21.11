@@ -11,9 +11,10 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 
 @Environment(EnvType.CLIENT)
-public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystallizerScreenHandler> {
+public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystallizerBlockEntity, GemCrystallizerScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
     private static final Identifier TEXTURE = MoreOresModInitializer.id("textures/gui/container/gem_crystallizer/gem_crystallizer_gui.png");
@@ -128,7 +129,7 @@ public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystalli
 
     @Override
     protected void renderEnergyHandler(DrawContext context, int x, int y) {
-        int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
+        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmount() * 44);
 
         int startY = y + 43 + 44 - energyBarSize;
         int endY = y + 43 + 44;
@@ -142,7 +143,7 @@ public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystalli
     @Override
     public void drawForeground(DrawContext context, int mouseX, int mouseY) {
         super.drawForeground(context, mouseX, mouseY);
-        String name = this.handler.blockEntity.getDisplayName().getString();
+        String name = this.handler.getBlockEntity().getDisplayName().getString();
         int x = 8;
         int y = 8;
         context.drawText(this.textRenderer, name, x, y, Colors.BLACK, false);
@@ -151,16 +152,16 @@ public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystalli
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
-        int k = MathHelper.clamp((18 * handler.getDustCount() + 10000 - 1) / 10000, 0, 18);
-        int l = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
+        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmount() * 44);
+        int radiantBarWidth = MathHelper.clamp((18 * handler.getDustCount() + 10000 - 1) / 10000, 0, 18);
+        int redstoneBarWidth = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
         if (isPointWithinBounds(13, 43 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
-            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
+            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergyAmount() + " / " + this.handler.getEnergyCapacity() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
         }
-        if (isPointWithinBounds(38, 97, k, 4, mouseX, mouseY)) {
+        if (isPointWithinBounds(38, 97, radiantBarWidth, 4, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getDustCount() + " Particles").formatted(Formatting.RED),  mouseX, mouseY);
         }
-        if (isPointWithinBounds(92, 79, l, 4, mouseX, mouseY)) {
+        if (isPointWithinBounds(92, 79, redstoneBarWidth, 4, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getRedstoneDust() + " Particles").formatted(Formatting.RED), mouseX, mouseY);
         }
     }

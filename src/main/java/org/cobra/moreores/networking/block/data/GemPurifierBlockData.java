@@ -53,7 +53,7 @@ public record GemPurifierBlockData(int keyCode, BlockPos pos) implements CustomP
 
                     if(heldStack.isOf(Items.WATER_BUCKET)) {
                         if(fluidStack.isEmpty()) {
-                            be.setStack(GemPurifierBlockEntity.WATER_SOURCE_SLOT, heldStack.copy());
+                            be.setStack(GemPurifierBlockEntity.FLUID_SOURCE_SLOT, heldStack.copy());
                             heldStack.decrement(1);
                         } else if (ItemStack.areItemsEqual(fluidStack, heldStack)) {
                             fluidStack.increment(heldStack.getCount());

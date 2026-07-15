@@ -32,6 +32,7 @@ import net.minecraft.world.block.WireOrientation;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
+import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.networking.block.data.GemCrystallizerBlockData;
 import org.jetbrains.annotations.Nullable;
@@ -41,7 +42,7 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 14, 16);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty REDSTONE_POWERED = BooleanProperty.of("redstone_powered");
-    public static final EnumProperty<CrystallizationGemstones> IS_POLISHING = EnumProperty.of("is_crystallizing", CrystallizationGemstones.class);
+    public static final EnumProperty<CrystallizationGemstones> IS_CRYSTALLIZING = EnumProperty.of("is_crystallizing", CrystallizationGemstones.class);
     public static final MapCodec<GemCrystallizerBlock> CODEC = GemCrystallizerBlock.createCodec(GemCrystallizerBlock::new);
 
     @Override
@@ -52,13 +53,13 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     protected GemCrystallizerBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
-                .with(IS_POLISHING, CrystallizationGemstones.EMPTY));
+                .with(IS_CRYSTALLIZING, CrystallizationGemstones.NONE));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(IS_POLISHING, CrystallizationGemstones.EMPTY);
+                .with(IS_CRYSTALLIZING, CrystallizationGemstones.NONE);
     }
 
     @Override
@@ -87,13 +88,17 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     @Override
     protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
         if (!world.isClient()) {
-            boolean bl = state.get(REDSTONE_POWERED);
-            if (bl != world.isReceivingRedstonePower(pos)) {
-                if (bl) {
+            boolean powered = world.isReceivingRedstonePower(pos);
+            if(world.getBlockEntity(pos) instanceof GemCrystallizerBlockEntity blockEntity) {
+                if(powered || blockEntity.getRedstone() > 0) {
+                    if(!state.get(REDSTONE_POWERED)) {
+                        world.setBlockState(pos, state.with(REDSTONE_POWERED, true), Block.NOTIFY_LISTENERS);
+                    }
                     world.scheduleBlockTick(pos, this, 4);
                 } else {
-                    world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
-                    MoreOresModInitializer.LOGGER.info("Receiving Redstone Signal at BlockPos: '{}'", pos);
+                    if(state.get(REDSTONE_POWERED)) {
+                        world.setBlockState(pos, state.with(REDSTONE_POWERED, false), Block.NOTIFY_LISTENERS);
+                    }
                 }
             }
         }
@@ -108,7 +113,7 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
         }
 
         if(world.getBlockEntity(pos) instanceof GemCrystallizerBlockEntity be) {
-            newState = newState.with(IS_POLISHING, be.getGem());
+            newState = newState.with(IS_CRYSTALLIZING, be.getGem());
         }
 
         world.setBlockState(pos, newState, Block.NOTIFY_ALL);
@@ -153,6 +158,6 @@ public class GemCrystallizerBlock extends BlockWithEntity implements BlockEntity
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
         builder.add(REDSTONE_POWERED);
-        builder.add(IS_POLISHING);
+        builder.add(IS_CRYSTALLIZING);
     }
 }

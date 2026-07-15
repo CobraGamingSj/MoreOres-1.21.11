@@ -10,11 +10,12 @@ import net.minecraft.client.input.KeyInput;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
 import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 import org.cobra.moreores.networking.block.data.MachineStatusDataPayload;
 import org.lwjgl.glfw.GLFW;
 
-public abstract class AbstractGemMachineScreen<ScreenHandler extends AbstractGemMachineScreenHandler> extends HandledScreen<ScreenHandler> {
+public abstract class AbstractGemMachineScreen<T extends AbstractGemMachineBlockEntity<?>, ScreenHandler extends AbstractGemMachineScreenHandler<T>> extends HandledScreen<ScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
 
@@ -42,7 +43,7 @@ public abstract class AbstractGemMachineScreen<ScreenHandler extends AbstractGem
     }
 
     protected ButtonWidget addButton(String translation, int buttonIndex, int x, int y, Identifier texture, Text tooltip) {
-        ButtonWidget button = new TextureButtonWidget(x, y, Text.translatable(translation), texture, buttonIndex, handler.getPos());
+        ButtonWidget button = new TextureButtonWidget(x, y, Text.translatable(translation), texture, buttonIndex, handler.getBlockPos());
         button.setTooltip(Tooltip.of(tooltip));
         return this.addDrawableChild(button);
     }
@@ -87,7 +88,7 @@ public abstract class AbstractGemMachineScreen<ScreenHandler extends AbstractGem
     }
 
     private void sendPolishControlPacket(String action) {
-        ClientPlayNetworking.send(new MachineStatusDataPayload(handler.getPos(), action));
+        ClientPlayNetworking.send(new MachineStatusDataPayload(handler.getBlockPos(), action));
     }
 
     protected abstract void renderEnergyHandler(DrawContext context, int x, int y);

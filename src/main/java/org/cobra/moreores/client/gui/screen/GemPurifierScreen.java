@@ -4,9 +4,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.tooltip.Tooltip;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
@@ -14,11 +11,11 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.cobra.moreores.MoreOresModInitializer;
+import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.client.gui.widget.FluidWidget;
-import org.cobra.moreores.client.gui.widget.TextureButtonWidget;
 
 @Environment(EnvType.CLIENT)
-public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierScreenHandler> {
+public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlockEntity, GemPurifierScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
     private static final Identifier TEXTURE = MoreOresModInitializer.id("textures/gui/container/gem_purifier/gem_purifier_gui_test.png");
@@ -37,7 +34,7 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierScree
     public void init() {
         super.init();
 
-        addDrawable(FluidWidget.builder(handler.blockEntity.fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.blockEntity::getPos).create());
+        addDrawable(FluidWidget.builder(handler.getBlockEntity().fluidStorage).bounds(this.x + 10, this.y + 42, 20, 44).posSupplier(handler.getBlockEntity()::getPos).create());
     }
     
     @Override
@@ -126,7 +123,7 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierScree
 
     @Override
     protected void renderEnergyHandler(DrawContext context, int x, int y) {
-        int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
+        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmount() * 44);
         int gradientStart = Colors.BLUE;
         int gradientEnd = Colors.GREEN;
         context.fillGradient(x + 40, y + 42 + 44 - energyBarSize, x + 40 + 16, y + 42 + 44, gradientStart, gradientEnd);
@@ -135,7 +132,7 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierScree
     @Override
     public void drawForeground(DrawContext context, int mouseX, int mouseY) {
         super.drawForeground(context, mouseX, mouseY);
-        String name = this.handler.blockEntity.getDisplayName().getString();
+        String name = this.handler.getBlockEntity().getDisplayName().getString();
         int x = 8;
         int y = 8;
         context.drawText(this.textRenderer, name, x, y, Colors.BLACK, false);
@@ -143,15 +140,13 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierScree
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
-        drawMouseoverTooltip(context, mouseX, mouseY);
-        int energyBarSize = MathHelper.ceil(this.handler.getEnergyPercent() * 44);
-        int l = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
+        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmount() * 44);
+        int redstoneBarWidth = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
         if (isPointWithinBounds(40, 42 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
-            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergy() + " / " + this.handler.getEnergyCap() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
+            context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergyAmount() + " / " + this.handler.getEnergyCapacity() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);
         }
-        if (isPointWithinBounds(109, 53, l, 4, mouseX, mouseY)) {
+        if (isPointWithinBounds(109, 53, redstoneBarWidth, 4, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getRedstoneDust() + " Particles").formatted(Formatting.RED), mouseX, mouseY);
         }
     }

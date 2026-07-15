@@ -1,16 +1,13 @@
 package org.cobra.moreores.client.gui.screen;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
 
-public interface ScreenUtilHelper {
+public interface ScreenUtilHelper<T extends AbstractGemMachineBlockEntity<?>> {
 
     void addPlayerGenericInventory(PlayerInventory playerInventory);
 
     void addPlayerHotbarInventory(PlayerInventory playerInventory);
 
-    BlockEntity getBlockEntity(BlockPos pos, BlockState state, World world);
+    T getBlockEntity();
 }

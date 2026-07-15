@@ -1,6 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,35 +10,29 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;
-import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandler {
+public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandler<GemCrystallizerBlockEntity> {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
-    public final GemCrystallizerBlockEntity blockEntity;
 
     public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, GemCrystallizerDataSynchronizer data) {
         this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(data.blockPos()),
                 new ArrayPropertyDelegate(4));
     }
 
-    public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
-        super(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, syncId, entity.getPos());
-        checkSize((Inventory) entity, 11);
+    public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate delegate) {
+        super(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, syncId, blockEntity.getPos(), (GemCrystallizerBlockEntity) blockEntity);
+        checkSize((Inventory) blockEntity, 11);
 
-        this.inventory = (Inventory) entity;
-        this.context = ScreenHandlerContext.create(entity.getWorld(), entity.getPos());
+        this.inventory = (Inventory) blockEntity;
+        this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
         this.propertyDelegate = delegate;
-        this.blockEntity = (GemCrystallizerBlockEntity) entity;
 
         this.addSlot(new Slot(inventory, 0, 47, 22) {
             @Override
@@ -178,28 +171,5 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
     @Override
     public boolean canUse(PlayerEntity player) {
         return canUse(this.context, player, ModBlocks.GEM_CRYSTALLIZER_BLOCK);
-    }
-
-    @Override
-    public BlockEntity getBlockEntity(BlockPos pos, BlockState state, World world) {
-        return this.blockEntity;
-    }
-
-    public long getEnergy() {
-        return this.blockEntity.energyAmount();
-    }
-
-    public long getEnergyCap() {
-        return this.blockEntity.energyStorage.getCapacity();
-    }
-
-    public float getEnergyPercent() {
-        SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage;
-        long energy = energyStorage.getAmount();
-        long maxEnergy = energyStorage.getCapacity();
-        if (maxEnergy == 0 || energy == 0)
-            return 0.0F;
-
-        return MathHelper.clamp((float) energy / (float) maxEnergy, 0.0F, 1.0F);
     }
 }

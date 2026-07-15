@@ -31,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
+import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemPurifierBlockData;
@@ -52,13 +53,13 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
     protected GemPurifierBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(REDSTONE_POWERED, false)
-                .with(IS_POLISHING, PurificationGemstones.EMPTY));
+                .with(IS_POLISHING, PurificationGemstones.NONE));
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().rotateYClockwise()).with(REDSTONE_POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()))
-                .with(IS_POLISHING, PurificationGemstones.EMPTY);
+                .with(IS_POLISHING, PurificationGemstones.NONE);
     }
 
     @Override
@@ -87,13 +88,17 @@ public class GemPurifierBlock extends BlockWithEntity implements BlockEntityProv
     @Override
     protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
         if (!world.isClient()) {
-            boolean bl = state.get(REDSTONE_POWERED);
-            if (bl != world.isReceivingRedstonePower(pos)) {
-                if (bl) {
+            boolean powered = world.isReceivingRedstonePower(pos);
+            if(world.getBlockEntity(pos) instanceof GemPurifierBlockEntity blockEntity) {
+                if (powered || blockEntity.getRedstone() > 0) {
+                    if (!state.get(REDSTONE_POWERED)) {
+                        world.setBlockState(pos, state.with(REDSTONE_POWERED, true), Block.NOTIFY_LISTENERS);
+                    }
                     world.scheduleBlockTick(pos, this, 4);
                 } else {
-                    world.setBlockState(pos, state.cycle(REDSTONE_POWERED), Block.NOTIFY_LISTENERS);
-                    MoreOresModInitializer.LOGGER.info("Receiving Redstone Signal at [{}, {}, {}]", pos.getX(), pos.getY(), pos.getZ());
+                    if (state.get(REDSTONE_POWERED)) {
+                        world.setBlockState(pos, state.with(REDSTONE_POWERED, false), Block.NOTIFY_LISTENERS);
+                    }
                 }
             }
         }

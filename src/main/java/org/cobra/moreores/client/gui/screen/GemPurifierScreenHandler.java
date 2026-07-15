@@ -1,6 +1,5 @@
 package org.cobra.moreores.client.gui.screen;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,21 +10,16 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;
-import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler implements ScreenUtilHelper {
+public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler<GemPurifierBlockEntity> {
     private final Inventory inventory;
     private final ScreenHandlerContext context;
     private final PropertyDelegate propertyDelegate;
-    public final GemPurifierBlockEntity blockEntity;
 
     // Client Side Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, GemPurifierDataSynchronizer data) {
@@ -35,13 +29,12 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
 
     // Main Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, syncId, blockEntity.getPos());
+        super(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, syncId, blockEntity.getPos(), (GemPurifierBlockEntity) blockEntity);
         checkSize((Inventory) blockEntity, 17);
 
         this.inventory = ((Inventory) blockEntity);
         this.context = ScreenHandlerContext.create(blockEntity.getWorld(), blockEntity.getPos());
         this.propertyDelegate = propertyDelegate;
-        this.blockEntity = (GemPurifierBlockEntity) blockEntity;
 
         this.addSlot(new Slot(inventory, 0, 79, 11) {
             @Override
@@ -170,33 +163,5 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler im
         for (int i = 0; i < 12; ++i) {
             this.addSlot(new Slot(playerInventory, 5 + i, 6 + i * 18, 178));
         }
-    }
-
-    @Override
-    public void addSecondAdditionalInventory(Inventory playerInventory) {
-        return;
-    }
-
-    @Override
-    public BlockEntity getBlockEntity(BlockPos pos, BlockState state, World world) {
-        return this.blockEntity;
-    }
-
-    public long getEnergy() {
-        return this.blockEntity.energyAmount();
-    }
-
-    public long getEnergyCap() {
-        return this.blockEntity.energyStorage.getCapacity();
-    }
-
-    public float getEnergyPercent() {
-        SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage;
-        long energy = energyStorage.getAmount();
-        long maxEnergy = energyStorage.getCapacity();
-        if (maxEnergy == 0 || energy == 0)
-            return 0.0F;
-
-        return MathHelper.clamp((float) energy / (float) maxEnergy, 0.0F, 1.0F);
     }
 }

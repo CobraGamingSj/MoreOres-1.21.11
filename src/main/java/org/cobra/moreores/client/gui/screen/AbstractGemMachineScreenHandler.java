@@ -6,19 +6,24 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
-import org.jspecify.annotations.Nullable;
+import net.minecraft.util.math.MathHelper;
+import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
+import org.jetbrains.annotations.NotNull;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public abstract class AbstractGemMachineScreenHandler extends ScreenHandler implements ScreenUtilHelper {
-    protected final BlockPos pos;
+public abstract class AbstractGemMachineScreenHandler<T extends AbstractGemMachineBlockEntity<?>> extends ScreenHandler implements ScreenUtilHelper<T> {
+    protected final BlockPos blockPos;
+    final T blockEntity;
 
-    public AbstractGemMachineScreenHandler(@Nullable ScreenHandlerType<?> type, int syncId, BlockPos pos) {
+    public AbstractGemMachineScreenHandler(@NotNull ScreenHandlerType<?> type, int syncId, BlockPos blockPos, T blockEntity) {
         super(type, syncId);
-        this.pos = pos;
+        this.blockPos = blockPos;
+        this.blockEntity = blockEntity;
     }
 
-    public BlockPos getPos() {
-        return pos;
-    };
+    public BlockPos getBlockPos() {
+        return blockPos;
+    }
 
     @Override
     public void addPlayerGenericInventory(PlayerInventory playerInventory) {
@@ -46,5 +51,27 @@ public abstract class AbstractGemMachineScreenHandler extends ScreenHandler impl
         for (int i = 0; i < 4; ++i) {
             this.addSlot(new Slot(playerInventory, 13 + i, 179, 115 + i * 18));
         }
+    }
+
+    public long getEnergyAmount() {
+        return this.blockEntity.energyAmount();
+    }
+
+    public long getEnergyCapacity() {
+        return this.blockEntity.energyStorage().getCapacity();
+    }
+
+    public float calculateEnergyAmount() {
+        SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage();
+        long energy = energyStorage.getAmount();
+        long maxEnergy = energyStorage.getCapacity();
+        if (maxEnergy == 0 || energy == 0) return 0.0F;
+
+        return MathHelper.clamp((float) energy / (float) maxEnergy, 0.0F, 1.0F);
+    }
+
+    @Override
+    public T getBlockEntity() {
+        return this.blockEntity;
     }
 }
