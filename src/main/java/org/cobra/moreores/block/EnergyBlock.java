@@ -16,7 +16,6 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class EnergyBlock extends Block {
-
     public EnergyBlock(Settings settings) {
         super(settings);
     }

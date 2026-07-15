@@ -55,7 +55,7 @@ import java.util.Optional;
 public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPurifierDataSynchronizer> {
 
     private FluidState fluidState = FluidState.IDLE;
-
+    
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
         @Override
         protected FluidVariant getBlankVariant() {
@@ -273,9 +273,9 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         changeState();
         if(machineStatus == MachineStatus.RUNNING) {
             energyState = MachineStatus.EnergyState.EXTRACTING;
-            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && hasEnoughWater()) {
+            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasRequiredEnergyAmount() && hasEnoughWater()) {
                 this.increaseProgress();
-                if((!world.isReceivingRedstonePower(pos) || redstone > 0) && redstoneTick >= 20) {
+                if((!world.isReceivingRedstonePower(pos) || redstone > 0) && redstoneTick >= 10) {
                     redstone--;
                     redstoneTick = 0;
                 }
@@ -377,7 +377,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
     }
 
     @Override
-    protected boolean hasEnoughEnergy() {
+    protected boolean hasRequiredEnergyAmount() {
         return this.energyStorage.amount >= 128;
     }
 
@@ -414,7 +414,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
     protected boolean hasRecipe() {
         Optional<RecipeEntry<GemPurifierRecipe>> recipe = currentRecipe();
 
-        return recipe.isPresent() && hasEnoughEnergy() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
+        return recipe.isPresent() && hasRequiredEnergyAmount() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
                 && canInsertItemIntoResultSlot(recipe.get().value().getResult().getItem());
     }
 

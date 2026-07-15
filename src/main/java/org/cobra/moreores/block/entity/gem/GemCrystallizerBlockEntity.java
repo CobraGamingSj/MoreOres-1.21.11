@@ -267,14 +267,14 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
         if(machineStatus == MachineStatus.RUNNING) {
             energyState = MachineStatus.EnergyState.EXTRACTING;
             markDirty(world, pos, state);
-            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasEnoughEnergy() && dustParticleCount >= 15) {
+            if (isResultSlotEmptyOrReceivable() && hasRecipe() && hasRequiredEnergyAmount() && dustParticleCount >= 15) {
                 this.increaseProgress();
-                if((!world.isReceivingRedstonePower(pos) || redstone > 0) && redstoneTick >= 20) {
+                if((!world.isReceivingRedstonePower(pos) || redstone > 0) && redstoneTick >= 10) {
                     redstone--;
                     redstoneTick = 0;
                 }
                 this.eatEnergy();
-                if(dustTick >= 20 && dustParticleCount > 0) {
+                if(dustTick >= 10 && dustParticleCount > 0) {
                     this.dustParticleCount--;
                     this.dustTick = 0;
                     markDirty(world, pos, state);
@@ -389,7 +389,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
     protected boolean hasRecipe() {
         Optional<RecipeEntry<GemCrystallizerRecipe>> recipe = currentRecipe();
 
-        return recipe.isPresent() && hasEnoughEnergy() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
+        return recipe.isPresent() && hasRequiredEnergyAmount() && canInsertCountIntoResultSlot(recipe.get().value().getResult())
                 && canInsertItemIntoResultSlot(recipe.get().value().getResult().getItem());
     }
 

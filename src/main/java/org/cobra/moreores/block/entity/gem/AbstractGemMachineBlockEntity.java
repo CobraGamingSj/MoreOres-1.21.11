@@ -198,7 +198,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         }
     }
     
-    protected boolean hasEnoughEnergy() {
+    protected boolean hasRequiredEnergyAmount() {
         return this.energyStorage.amount >= 13;
     }
 
@@ -233,7 +233,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     }
 
     public void start() {
-        if (machineStatus.isIdle() && hasRecipe() && hasEnoughEnergy()) {
+        if (machineStatus.isIdle() && hasRecipe() && hasRequiredEnergyAmount()) {
             machineStatus = MachineStatus.RUNNING;
         }
     }
@@ -245,7 +245,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     }
 
     public void resume() {
-        if (machineStatus.isPaused() && hasRecipe() && hasEnoughEnergy()) {
+        if (machineStatus.isPaused() && hasRecipe() && hasRequiredEnergyAmount()) {
             machineStatus = MachineStatus.RUNNING;
         }
     }

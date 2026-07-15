@@ -31,10 +31,10 @@ public abstract class AbstractGemMachineScreen<T extends AbstractGemMachineBlock
         titleY = 1000;
         playerInventoryTitleY = 1000;
 
-        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + getStartButtonPosX(), y + getStartButtonPosY(), getStartButtonTexture(), Text.literal("Start Polishing"));
-        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + getPauseButtonPosX(), y + getPauseButtonPosY(), getPauseButtonTexture(), Text.literal("Pause Polishing"));
-        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + getResumeButtonPosX(), this.y + getResumeButtonPosY(), getResumeButtonTexture(), Text.literal("Resume Polishing"));
-        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + getStopButtonPosX(), y + getStopButtonPosY(), getStopButtonTexture(), Text.literal("Stop Polishing"));
+        ButtonWidget start = this.addButton("gui.button.gp.start", 0, this.x + getStartButtonPosX(), y + getStartButtonPosY(), getStartButtonTexture(), handler instanceof GemPurifierScreenHandler ? Text.literal("Start Purification") : Text.literal("Start Crystallization"));
+        ButtonWidget pause = this.addButton("gui.button.gp.pause", 1, x + getPauseButtonPosX(), y + getPauseButtonPosY(), getPauseButtonTexture(), handler instanceof GemPurifierScreenHandler ? Text.literal("Pause Purification") : Text.literal("Pause Crystallization"));
+        ButtonWidget resume = this.addButton("gui.button.gp.resume", 2, this.x + getResumeButtonPosX(), this.y + getResumeButtonPosY(), getResumeButtonTexture(), handler instanceof GemPurifierScreenHandler ? Text.literal("Resume Purification") : Text.literal("Resume Crystallization"));
+        ButtonWidget stop = this.addButton("gui.button.gp.stop", 3, x + getStopButtonPosX(), y + getStopButtonPosY(), getStopButtonTexture(), handler instanceof GemPurifierScreenHandler ? Text.literal("Stop Purification") : Text.literal("Stop Crystallization"));
 
         start.visible = true;
         pause.visible = true;
@@ -42,7 +42,7 @@ public abstract class AbstractGemMachineScreen<T extends AbstractGemMachineBlock
         stop.visible = true;
     }
 
-    protected ButtonWidget addButton(String translation, int buttonIndex, int x, int y, Identifier texture, Text tooltip) {
+    private ButtonWidget addButton(String translation, int buttonIndex, int x, int y, Identifier texture, Text tooltip) {
         ButtonWidget button = new TextureButtonWidget(x, y, Text.translatable(translation), texture, buttonIndex, handler.getBlockPos());
         button.setTooltip(Tooltip.of(tooltip));
         return this.addDrawableChild(button);
