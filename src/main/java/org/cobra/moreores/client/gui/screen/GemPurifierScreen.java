@@ -4,6 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.ingame.CyclingSlotIcon;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
@@ -14,6 +15,8 @@ import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
 import org.cobra.moreores.client.gui.widget.FluidWidget;
 
+import java.util.List;
+
 @Environment(EnvType.CLIENT)
 public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlockEntity, GemPurifierScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
@@ -23,7 +26,8 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlock
     private static final Identifier PAUSE_BUTTON = MoreOresModInitializer.id("textures/gui/container/button/pause.png");
     private static final Identifier RESUME_BUTTON = MoreOresModInitializer.id("textures/gui/container/button/resume.png");
     private static final Identifier STOP_BUTTON = MoreOresModInitializer.id("textures/gui/container/button/stop.png");
-
+    private final CyclingSlotIcon energyIngotSlotIcon = new CyclingSlotIcon(2);
+    
     public GemPurifierScreen(GemPurifierScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundHeight = 201;
@@ -101,6 +105,16 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlock
     protected int getStopButtonPosY() {
         return 140;
     }
+
+    @Override
+    protected void handledScreenTick() {
+        super.handledScreenTick();
+        this.energyIngotSlotIcon.updateTexture(getEnergyIngotSlotTexture());
+    }
+
+    private List<Identifier> getEnergyIngotSlotTexture() {
+        return List.of(MoreOresModInitializer.id("container/slot/empty_ingot"), MoreOresModInitializer.id("container/slot/energy_ingot_faded"));
+    }
     
     @Override
     protected void renderProgressArrow(DrawContext context, int x, int y) {
@@ -122,8 +136,16 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlock
     }
 
     @Override
+    protected void drawBackground(DrawContext context, float deltaTicks, int mouseX, int mouseY) {
+        super.drawBackground(context, deltaTicks, mouseX, mouseY);
+        if(this.handler.getBlockEntity().energyStack().isEmpty()) {
+            this.energyIngotSlotIcon.render(this.handler, context, deltaTicks, this.x, this.y);
+        }
+    }
+
+    @Override
     protected void renderEnergyHandler(DrawContext context, int x, int y) {
-        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmount() * 44);
+        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmountPercentage() * 44);
         int gradientStart = Colors.BLUE;
         int gradientEnd = Colors.GREEN;
         context.fillGradient(x + 40, y + 42 + 44 - energyBarSize, x + 40 + 16, y + 42 + 44, gradientStart, gradientEnd);
@@ -141,7 +163,7 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlock
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmount() * 44);
+        int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmountPercentage() * 44);
         int redstoneBarWidth = MathHelper.clamp((handler.getRedstoneDust() * 16 + 10000 - 1) / 10000, 0, 16);
         if (isPointWithinBounds(40, 42 + 44 - energyBarSize, 16, energyBarSize, mouseX, mouseY)) {
             context.drawTooltip(this.textRenderer, Text.literal(this.handler.getEnergyAmount() + " / " + this.handler.getEnergyCapacity() + " J").formatted(Formatting.DARK_AQUA, Formatting.BOLD), mouseX, mouseY);

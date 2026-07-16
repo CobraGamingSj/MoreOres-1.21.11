@@ -3,6 +3,7 @@ package org.cobra.moreores.client.gui.screen;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.ingame.CyclingSlotIcon;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -18,11 +19,13 @@ import org.lwjgl.glfw.GLFW;
 public abstract class AbstractGemMachineScreen<T extends AbstractGemMachineBlockEntity<?>, ScreenHandler extends AbstractGemMachineScreenHandler<T>> extends HandledScreen<ScreenHandler> {
     private static final int TEXTURE_WIDTH = 256;
     private static final int TEXTURE_HEIGHT = 256;
+//    private final CyclingSlotIcon energy;
 
     public AbstractGemMachineScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundHeight = 196;
         this.backgroundWidth = 207;
+//        this.energy = new CyclingSlotIcon(slotId);
     }
 
     @Override

@@ -87,7 +87,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
         }
     }
 
-    public boolean isPolishing() {
+    public boolean isCrystallizing() {
         return propertyDelegate.get(0) > 0;
     }
 
