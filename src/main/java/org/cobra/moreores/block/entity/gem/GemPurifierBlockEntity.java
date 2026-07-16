@@ -324,6 +324,10 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
     }
 
     private void changeState() {
+        if(world == null) {
+            return;
+        }
+        
         BlockState state = getCachedState();
 
         state = state.with(GemPurifierBlock.IS_POLISHING, getGem());
@@ -403,6 +407,9 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
 
     @Override
     public void increaseProgress() {
+        if(world == null) {
+            return;
+        }
         if(this.world.isReceivingRedstonePower(this.pos) || redstone > 0) {
             initialProgress += 5;
         } else {
@@ -442,6 +449,9 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
 
     @Override
     protected void giveEnergy() {
+        if(world == null) {
+            return;
+        }
         if(!hasEnergySourceProviderItem() || energyStorage.amount >= 10_000_000) {
             energyState = MachineStatus.EnergyState.IDLE;
             return;
@@ -458,6 +468,9 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
 
     @Override
     protected void eatEnergy() {
+        if(world == null) {
+            return;
+        }
         long amount = world.isReceivingRedstonePower(pos) ? 640 : 128;
         try(Transaction transaction = Transaction.openOuter()) {
             energyStorage.extract(amount, transaction);

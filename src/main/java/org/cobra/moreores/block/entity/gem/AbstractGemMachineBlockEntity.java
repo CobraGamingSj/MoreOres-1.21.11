@@ -16,6 +16,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
+import net.minecraft.text.Text;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +37,8 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     protected MachineStatus.EnergyState energyState = MachineStatus.EnergyState.IDLE;
     protected Gemstone gemstone = Gemstone.NONE;
 
+    private long energyExtracted = 0;
+    
     public int initialProgress = 0;
 
     protected int redstone = 0;
@@ -85,6 +88,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         view.putLong("Energy", this.energyStorage.amount);
         view.putNullable("PolishingState", MachineStatus.CODEC, this.machineStatus);
         view.putNullable("EnergyState", MachineStatus.EnergyState.CODEC, this.energyState);
+        view.putLong("EnergyExtracted", this.energyExtracted);
     }
 
     @Override
@@ -95,6 +99,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         this.redstone = view.getInt("Redstone", 0);
         this.redstoneTick = view.getInt("RedstoneTick", 0);
         this.energyStorage.amount = view.getLong("Energy", 0);
+        this.energyExtracted = view.getLong("EnergyExtracted", 0);
         this.machineStatus = view.read("PolishingState", MachineStatus.CODEC).orElse(MachineStatus.IDLE);
         this.energyState = view.read("EnergyState", MachineStatus.EnergyState.CODEC).orElse(MachineStatus.EnergyState.IDLE);
     }
@@ -203,6 +208,9 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     }
 
     protected void giveEnergy() {
+        if(world == null) {
+            return;
+        }
         if (!hasEnergySourceProviderItem() || energyStorage.amount >= 1_000_000) {
             energyState = MachineStatus.EnergyState.IDLE;
             return;
@@ -218,10 +226,15 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     }
 
     protected void eatEnergy() {
+        if(world == null) {
+            return;
+        }
         long amount = world.isReceivingRedstonePower(pos) ? 64 : 13;
         try (Transaction transaction = Transaction.openOuter()) {
-            energyStorage.extract(amount, transaction);
+            long extracted = energyStorage.extract(amount, transaction);
+            energyExtracted += extracted;
             transaction.commit();
+            System.out.println("-----Amount extracted: " + extracted + " (total tracked: " + energyExtracted + ")-----");
         }
         energyState = MachineStatus.EnergyState.EXTRACTING;
     }
@@ -254,6 +267,14 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         if (!machineStatus.isIdle()) {
             machineStatus = MachineStatus.IDLE;
             resetProgress();
+            try(Transaction transaction = Transaction.openOuter()) {
+                System.out.println("-----Reinserting energy-----");
+                long refunded = this.energyStorage().insert(energyExtracted, transaction);
+                System.out.println("Amount inserted: " + refunded);
+                transaction.commit();
+                System.out.println("-----Done!-----");
+            }
+            this.energyExtracted = 0;
         }
     }
 
