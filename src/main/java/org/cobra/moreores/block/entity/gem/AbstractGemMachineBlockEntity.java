@@ -37,7 +37,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     protected MachineStatus.EnergyState energyState = MachineStatus.EnergyState.IDLE;
     protected Gemstone gemstone = Gemstone.NONE;
 
-    private long energyExtracted = 0;
+    long energyExtracted = 0;
     
     public int initialProgress = 0;
 
@@ -234,7 +234,6 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
             long extracted = energyStorage.extract(amount, transaction);
             energyExtracted += extracted;
             transaction.commit();
-            System.out.println("-----Amount extracted: " + extracted + " (total tracked: " + energyExtracted + ")-----");
         }
         energyState = MachineStatus.EnergyState.EXTRACTING;
     }
@@ -268,11 +267,8 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
             machineStatus = MachineStatus.IDLE;
             resetProgress();
             try(Transaction transaction = Transaction.openOuter()) {
-                System.out.println("-----Reinserting energy-----");
-                long refunded = this.energyStorage().insert(energyExtracted, transaction);
-                System.out.println("Amount inserted: " + refunded);
+                this.energyStorage().insert(energyExtracted, transaction);
                 transaction.commit();
-                System.out.println("-----Done!-----");
             }
             this.energyExtracted = 0;
         }

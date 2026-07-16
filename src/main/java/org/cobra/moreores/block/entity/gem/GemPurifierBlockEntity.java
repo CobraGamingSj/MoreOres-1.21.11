@@ -473,7 +473,8 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         }
         long amount = world.isReceivingRedstonePower(pos) ? 640 : 128;
         try(Transaction transaction = Transaction.openOuter()) {
-            energyStorage.extract(amount, transaction);
+            long extracted = energyStorage.extract(amount, transaction);
+            energyExtracted += extracted;
             transaction.commit();
         }
         energyState = MachineStatus.EnergyState.EXTRACTING;
