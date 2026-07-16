@@ -16,10 +16,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.networking.item.EnergyIngotC2SPayload;
+
+import java.util.List;
 
 public class EnergyIngotItem extends Item {
 

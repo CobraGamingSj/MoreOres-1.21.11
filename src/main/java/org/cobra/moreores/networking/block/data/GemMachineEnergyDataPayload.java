@@ -11,8 +11,8 @@ import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
 import org.cobra.moreores.client.gui.screen.AbstractGemMachineScreenHandler;
 
-public record GemPFEnergyDataPayload(long energyAmount, BlockPos blockPos) implements CustomPayload {
-    public static final Id<GemPFEnergyDataPayload> ID = new Id<>(MoreOresModInitializer.id("pos_energy"));
+public record GemMachineEnergyDataPayload(long energyAmount, BlockPos blockPos) implements CustomPayload {
+    public static final Id<GemMachineEnergyDataPayload> ID = new Id<>(MoreOresModInitializer.id("pos_energy"));
 
     public void handlePacket(ClientPlayNetworking.Context context) {
         ClientWorld world = context.client().world;
@@ -27,11 +27,11 @@ public record GemPFEnergyDataPayload(long energyAmount, BlockPos blockPos) imple
         }
     }
 
-    public static final PacketCodec<RegistryByteBuf, GemPFEnergyDataPayload> PACKET_CODEC =
+    public static final PacketCodec<RegistryByteBuf, GemMachineEnergyDataPayload> PACKET_CODEC =
             PacketCodec.tuple(
-                    PacketCodecs.LONG, GemPFEnergyDataPayload::energyAmount,
-                    BlockPos.PACKET_CODEC, GemPFEnergyDataPayload::blockPos,
-                    GemPFEnergyDataPayload::new
+                    PacketCodecs.LONG, GemMachineEnergyDataPayload::energyAmount,
+                    BlockPos.PACKET_CODEC, GemMachineEnergyDataPayload::blockPos,
+                    GemMachineEnergyDataPayload::new
             );
 
     @Override

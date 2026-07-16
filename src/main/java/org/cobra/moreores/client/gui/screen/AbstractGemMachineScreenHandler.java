@@ -61,7 +61,7 @@ public abstract class AbstractGemMachineScreenHandler<T extends AbstractGemMachi
         return this.blockEntity.energyStorage().getCapacity();
     }
 
-    public float calculateEnergyAmount() {
+    public float calculateEnergyAmountPercentage() {
         SimpleEnergyStorage energyStorage = this.blockEntity.energyStorage();
         long energy = energyStorage.getAmount();
         long maxEnergy = energyStorage.getCapacity();

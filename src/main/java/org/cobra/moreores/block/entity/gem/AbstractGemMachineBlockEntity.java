@@ -27,7 +27,7 @@ import org.cobra.moreores.item.util.GemCategory;
 import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.item.util.impl.Gemstone;
 import org.cobra.moreores.item.util.impl.PurificationGemstones;
-import org.cobra.moreores.networking.block.data.GemPFEnergyDataPayload;
+import org.cobra.moreores.networking.block.data.GemMachineEnergyDataPayload;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<Payload>, ImplementedInventory, TickableBlockEntity {
@@ -58,7 +58,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
             markDirty();
 
             for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-                ServerPlayNetworking.send(user, new GemPFEnergyDataPayload(this.amount, getPos()));
+                ServerPlayNetworking.send(user, new GemMachineEnergyDataPayload(this.amount, getPos()));
             }
         }
     };
@@ -156,7 +156,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
 
     protected void increaseProgress() {
         if(this.world.isReceivingRedstonePower(this.pos) || redstone > 0) {
-            initialProgress += (int) 2.5;
+            initialProgress += 3;
         } else {
             initialProgress++;
         }
@@ -257,7 +257,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         }
     }
 
-    enum MachineStatus implements StringIdentifiable {
+    public enum MachineStatus implements StringIdentifiable {
         IDLE("idle"),
         RUNNING("running"),
         PAUSED("paused");
@@ -287,7 +287,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
             return this.name;
         }
     
-        enum EnergyState implements StringIdentifiable {
+        public enum EnergyState implements StringIdentifiable {
             IDLE("idle"),
             INSERTING("inserting"),
             EXTRACTING("extracting");

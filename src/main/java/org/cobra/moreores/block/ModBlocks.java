@@ -22,12 +22,12 @@ import static org.cobra.moreores.MoreOresModInitializer.id;
 
 public class ModBlocks {
 
-    public static final Block ENERGY_BLOCK = registerSolidBlock("energy_block", s -> new EnergyBlock(AbstractBlock.Settings.create().mapColor(MapColor.BLUE).requiresTool().sounds(ModBlockSoundGroup.ENERGY_BLOCK).luminance((state) -> {
+    public static final Block ENERGY_BLOCK = register("energy_block", new EnergyBlock(AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.blockKey("energy_block")).strength(256.0f, 512.0f).mapColor(MapColor.BLUE).requiresTool().sounds(ModBlockSoundGroup.ENERGY_BLOCK).luminance((state) -> {
         return 30;
-    })), 256.0f, 512.0f);
-    public static final Block RUBY_LAMP = register("ruby_lamp", s -> new RubyLampBlock(AbstractBlock.Settings.create().hardness(0.1f).sounds(BlockSoundGroup.GLASS).luminance(state -> state.get(RubyLampBlock.LIT) ? 15:0)));
+    })));
+    public static final Block RUBY_LAMP = register("ruby_lamp", new RubyLampBlock(AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.blockKey("ruby_lamp")).hardness(0.1f).sounds(BlockSoundGroup.GLASS).luminance(state -> state.get(RubyLampBlock.LIT) ? 15:0)));
 
-    public static final Block RUBY_BLOCK = register("ruby_block", s -> new Block(AbstractBlock.Settings.create().mapColor(MapColor.DARK_RED).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
+    public static final Block RUBY_BLOCK = register("ruby_block", new Block(AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.blockKey("ruby_block")).mapColor(MapColor.DARK_RED).requiresTool().strength(5.0f, 5.0f).strength(5.0f)));
 
     public static final Block RADIANT_BLOCK = registerSolidBlock(
             "radiant_block", s -> new Block(
@@ -35,8 +35,8 @@ public class ModBlocks {
 
     public static final Block SAPPHIRE_BLOCK = register("sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "sapphire_block"))).mapColor(MapColor.BLUE).requiresTool().strength(4.0f, 4.0f).strength(4.0f)));
     public static final Block GREEN_SAPPHIRE_BLOCK = register("green_sapphire_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "green_sapphire_block"))).mapColor(MapColor.GREEN).requiresTool().strength(4.0f, 4.0f).strength(4.0f)));
-    public static final Block BLUE_GARNET_BLOCK = register("blue_garnet_block", s -> new Block(AbstractBlock.Settings.create().mapColor(MapColor.BLUE).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
-    public static final Block PINK_GARNET_BLOCK = register("pink_garnet_block", s -> new Block(AbstractBlock.Settings.create().mapColor(MapColor.PINK).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
+    public static final Block BLUE_GARNET_BLOCK = register("blue_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.blockKey("blue_garnet_block")).mapColor(MapColor.BLUE).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
+    public static final Block PINK_GARNET_BLOCK = register("pink_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(MoreOresModInitializer.blockKey("pink_garnet_block")).mapColor(MapColor.PINK).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
     public static final Block GREEN_GARNET_BLOCK = register("green_garnet_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "green_garnet_block"))).mapColor(MapColor.PINK).requiresTool().strength(6.0f, 6.5f).strength(7.0f).sounds(BlockSoundGroup.AMETHYST_CLUSTER)));
     public static final Block KYAWTHUITE_BLOCK = registerSolidBlock("kyawthuite_block", s -> new Block(s.requiresTool().mapColor(MapColor.ORANGE)), 5.5f, 6f);
     public static final Block TOPAZ_BLOCK = register("topaz_block", new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, "topaz_block"))).mapColor(MapColor.ORANGE).requiresTool().strength(8.0f, 8.0f).strength(9.0f)));
