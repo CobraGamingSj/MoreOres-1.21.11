@@ -2,7 +2,6 @@ package org.cobra.moreores.item.equipment;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.component.type.TooltipDisplayComponent;
@@ -25,7 +24,6 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class ArmorItem extends Item {
-
     private boolean isFalling = false;
     
     private static final Map<ArmorMaterial, List<StatusEffectInstance>> ARMOR_EFFECTS = new ImmutableMap.Builder<ArmorMaterial, List<StatusEffectInstance>>()
@@ -37,8 +35,6 @@ public class ArmorItem extends Item {
     public ArmorItem(Settings settings) {
         super(settings);
     }
-
-    
     
     @Override
     public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
@@ -47,7 +43,7 @@ public class ArmorItem extends Item {
         }
         
         if(entity instanceof PlayerEntity player) {
-            if(hasFullSuitOfArmorOn(player)) {
+            if(hasEquippedArmorSet(player)) {
                 if(player.fallDistance >= 5) {
                     if(!isFalling) {
                         int duration = (int) player.fallDistance;
@@ -80,7 +76,7 @@ public class ArmorItem extends Item {
             ArmorMaterial mapArmorMaterial = entry.getKey();
             List<StatusEffectInstance> mapStatusEffects = entry.getValue();
 
-            if(hasCorrectArmorOn(mapArmorMaterial, player)) {
+            if(hasEquippedCorrectArmor(mapArmorMaterial, player)) {
                 addStatusEffectForMaterial(player, mapArmorMaterial, mapStatusEffects);
             }
         }
@@ -97,7 +93,7 @@ public class ArmorItem extends Item {
         }
     }
 
-    private boolean hasFullSuitOfArmorOn(PlayerEntity player) {
+    private boolean hasEquippedArmorSet(PlayerEntity player) {
         ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
         ItemStack leggings = player.getEquippedStack(EquipmentSlot.LEGS);
         ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);
@@ -107,7 +103,7 @@ public class ArmorItem extends Item {
                 && !leggings.isEmpty() && !boots.isEmpty();
     }
 
-    private boolean hasCorrectArmorOn(ArmorMaterial material, PlayerEntity player) {
+    private boolean hasEquippedCorrectArmor(ArmorMaterial material, PlayerEntity player) {
         ItemStack boots = player.getEquippedStack(EquipmentSlot.FEET);
         ItemStack leggings = player.getEquippedStack(EquipmentSlot.LEGS);
         ItemStack chestplate = player.getEquippedStack(EquipmentSlot.CHEST);
@@ -129,13 +125,13 @@ public class ArmorItem extends Item {
         super.appendTooltip(stack, context, displayComponent, textConsumer, type);
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.player;
-        if (player != null && hasFullSuitOfArmorOn(player)) {
+        if (player != null && hasEquippedArmorSet(player)) {
             textConsumer.accept(Text.literal("Applied Effects: ")
                     .formatted(Formatting.YELLOW));
             List<StatusEffectInstance> effects = ARMOR_EFFECTS.get(ModArmorMaterials.RADIANT);
             if(effects != null) {
                 for (StatusEffectInstance effect : effects) {
-                    textConsumer.accept(Text.translatable(effect.getTranslationKey()).append(" " + (effect.getAmplifier() + 1)).formatted(Formatting.GRAY));
+                    textConsumer.accept(Text.translatable(effect.getTranslationKey()).append(" " + (effect.getAmplifier() + 1)).formatted(Formatting.RED));
                 }
             }
             EquippableComponent self = stack.getComponents().get(DataComponentTypes.EQUIPPABLE);

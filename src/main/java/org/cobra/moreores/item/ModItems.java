@@ -179,7 +179,7 @@ public class ModItems {
     //    Radiant Tools & Weapons
     public static final Item RADIANT_SWORD = registerSword(
             "radiant_sword",
-            s -> new RadiantSwordItem(s.rarity(Rarity.EPIC).fireproof().attributeModifiers(RadiantSwordItem.create())),
+            s -> new Item(s.rarity(Rarity.EPIC).fireproof()),
             32, -1f, ModToolMaterials.RADIANT
     );
     public static final Item RADIANT_PICKAXE = registerPickaxe(

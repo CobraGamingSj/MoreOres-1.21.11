@@ -1,4 +1,4 @@
-package org.cobra.moreores.block.entity.gem;
+package org.cobra.moreores.block.entity.gem.machine;
 
 import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -46,9 +46,10 @@ import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import org.cobra.moreores.networking.block.data.GemPurifierFluidDataPayload;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
 import org.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
+import org.cobra.moreores.registry.ModBlockTags;
 import org.cobra.moreores.registry.ModItemTags;
 import org.cobra.moreores.util.FluidStack;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -178,7 +179,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         this.fluidState = view.read("WaterState", FluidState.CODEC).orElse(FluidState.IDLE);
         this.gemstone = view.read("GemType", PurificationGemstones.CODEC).orElse(PurificationGemstones.NONE);
     }
-
+    
     @Override
     public Text getDisplayName() {
         return ModBlocks.GEM_PURIFIER_BLOCK.getName();
@@ -201,7 +202,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         }
 
         if (slot == ENERGY_SOURCE_SLOT) {
-            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem()));  //
+            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem()));
         }
 
         if(slot == FLUID_SOURCE_SLOT) {
@@ -220,22 +221,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
     public GemPurifierDataSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return new GemPurifierDataSynchronizer(energyAmount(), this.getRedstone(), fluidStorage.variant, fluidStorage.amount, this.pos);
     }
-
-    @Override
-    public boolean isValid(int slot, ItemStack stack) {
-        return switch (slot) {
-            case INGREDIENT_SLOT->
-                    stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE);
-            case ENERGY_SOURCE_SLOT ->
-                    stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
-            case FLUID_SOURCE_SLOT ->
-                    stack.isOf(Items.WATER_BUCKET);
-            case RESULT_SLOT->
-                    stack.isIn(ModItemTags.GEMSTONE);
-            default -> false;
-        };
-    }
-
+    
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction side) {
         return side == Direction.DOWN && (slot == RESULT_SLOT);
@@ -400,15 +386,25 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
 
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));
+        
+        energyExtracted = 0;
     }
     private boolean hasPolishingFinished() {
         return initialProgress >= maxProgressTick;
     }
 
+    private boolean hasProgressiveStructure() {
+        return world.getBlockState(pos.north().north()).isIn(ModBlockTags.CRYSTALLIZED_GEMSTONE_BLOCKS)
+                && world.getBlockState(pos.south().south()).isIn(ModBlockTags.CRYSTALLIZED_GEMSTONE_BLOCKS)
+                && world.getBlockState(pos.east().east()).isIn(ModBlockTags.CRYSTALLIZED_GEMSTONE_BLOCKS)
+                && world.getBlockState(pos.west().west()).isIn(ModBlockTags.CRYSTALLIZED_GEMSTONE_BLOCKS);
+    }
+    
     @Override
     public void increaseProgress() {
-        if(world == null) {
-            return;
+        if(world == null) return;
+        if(hasProgressiveStructure()) {
+            initialProgress += 10;
         }
         if(this.world.isReceivingRedstonePower(this.pos) || redstone > 0) {
             initialProgress += 5;
@@ -457,7 +453,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
             return;
         }
         long amount = energyStack().isOf(ModItems.ENERGY_INGOT) ? 1024 : 1536;
-        if(world.isReceivingRedstonePower(pos)) amount *= 5;
+        if(world.isReceivingRedstonePower(pos) || redstone > 0) amount *= 5;
         try(Transaction transaction = Transaction.openOuter()) {
             long inserted = energyStorage.insert(amount, transaction);
             transaction.commit();
@@ -471,7 +467,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         if(world == null) {
             return;
         }
-        long amount = world.isReceivingRedstonePower(pos) ? 640 : 128;
+        long amount = (world.isReceivingRedstonePower(pos)  || redstone > 0) ? 640 : 128;
         try(Transaction transaction = Transaction.openOuter()) {
             long extracted = energyStorage.extract(amount, transaction);
             energyExtracted += extracted;

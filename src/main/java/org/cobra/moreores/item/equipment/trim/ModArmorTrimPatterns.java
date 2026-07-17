@@ -17,11 +17,11 @@ public class ModArmorTrimPatterns {
     }
 
     public static void register(Registerable<ArmorTrimPattern> registry, RegistryKey<ArmorTrimPattern> key) {
-        ArmorTrimPattern armorTrimPattern = new ArmorTrimPattern(getId(key), Text.translatable(Util.createTranslationKey("trim_pattern", key.getValue())), false);
+        ArmorTrimPattern armorTrimPattern = new ArmorTrimPattern(id(key), Text.translatable(Util.createTranslationKey("trim_pattern", key.getValue())), false);
         registry.register(key, armorTrimPattern);
     }
 
-    public static Identifier getId(RegistryKey<ArmorTrimPattern> key) {
+    public static Identifier id(RegistryKey<ArmorTrimPattern> key) {
         return key.getValue();
     }
 

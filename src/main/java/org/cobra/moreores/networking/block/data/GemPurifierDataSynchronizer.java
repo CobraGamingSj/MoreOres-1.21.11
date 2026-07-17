@@ -9,7 +9,7 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemPurifierBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
 public record GemPurifierDataSynchronizer(long energyAmount, int redstone, FluidVariant fluidVariant, long fluid, BlockPos blockPos) implements CustomPayload {

@@ -17,7 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.cobra.moreores.block.GemPurifierBlock;
-import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemPurifierBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;

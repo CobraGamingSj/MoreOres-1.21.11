@@ -7,7 +7,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.AbstractGemMachineBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 

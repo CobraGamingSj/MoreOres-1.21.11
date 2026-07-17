@@ -14,13 +14,13 @@ import net.minecraft.world.World;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.recipe.book.ModRecipeBookCategories;
 import org.cobra.moreores.recipe.display.GemCrystallizingRecipeDisplay;
-import org.cobra.moreores.recipe.input.GemInfusionRecipeInput;
+import org.cobra.moreores.recipe.input.GemCrystallizerRecipeInput;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
 
-public class GemCrystallizerRecipe implements Recipe<GemInfusionRecipeInput> {
+public class GemCrystallizerRecipe implements Recipe<GemCrystallizerRecipeInput> {
     public final Ingredient ingredientBefore;
     public final Ingredient ingredientAfter;
     public final ItemStack output;
@@ -35,7 +35,7 @@ public class GemCrystallizerRecipe implements Recipe<GemInfusionRecipeInput> {
     }
 
     @Override
-    public ItemStack craft(GemInfusionRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+    public ItemStack craft(GemCrystallizerRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return this.output.copy();
     }
 
@@ -52,19 +52,19 @@ public class GemCrystallizerRecipe implements Recipe<GemInfusionRecipeInput> {
     }
 
     @Override
-    public boolean matches(GemInfusionRecipeInput input, World world) {
+    public boolean matches(GemCrystallizerRecipeInput input, World world) {
         if (world.isClient()) return false;
         return this.ingredientBefore.test(input.inputBefore()) && this.ingredientAfter.test(input.inputAfter()) ||
                 this.ingredientAfter.test(input.inputBefore()) && this.ingredientBefore.test(input.inputAfter());
     }
 
     @Override
-    public RecipeSerializer<? extends Recipe<GemInfusionRecipeInput>> getSerializer() {
+    public RecipeSerializer<? extends Recipe<GemCrystallizerRecipeInput>> getSerializer() {
         return Serializer.INSTANCE;
     }
 
     @Override
-    public RecipeType<? extends Recipe<GemInfusionRecipeInput>> getType() {
+    public RecipeType<? extends Recipe<GemCrystallizerRecipeInput>> getType() {
         return Type.INSTANCE;
     }
 

@@ -1,4 +1,4 @@
-package org.cobra.moreores.block.entity.gem;
+package org.cobra.moreores.block.entity.gem.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -35,7 +35,7 @@ import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.item.util.impl.Gemstone;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.recipe.GemCrystallizerRecipe;
-import org.cobra.moreores.recipe.input.GemInfusionRecipeInput;
+import org.cobra.moreores.recipe.input.GemCrystallizerRecipeInput;
 import org.cobra.moreores.registry.ModItemTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -58,7 +58,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
 
     protected final PropertyDelegate propertyDelegate;
     private int maxProgressTicks = 300;
-    private final ServerRecipeManager.MatchGetter<GemInfusionRecipeInput, GemCrystallizerRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemCrystallizerRecipe.Type.INSTANCE);
+    private final ServerRecipeManager.MatchGetter<GemCrystallizerRecipeInput, GemCrystallizerRecipe> matchGetter = ServerRecipeManager.createCachedMatchGetter(GemCrystallizerRecipe.Type.INSTANCE);
 
     public GemCrystallizerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityType.GEM_CRYSTALLIZER, pos, state);
@@ -193,8 +193,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
 
         return false;
     }
-
-
+    
     @Override
     public GemCrystallizerDataSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return new GemCrystallizerDataSynchronizer(energyAmount(), this.getRedstone(), this.dustParticleCount, this.pos);
@@ -280,8 +279,8 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
                     markDirty(world, pos, state);
                 }
                 markDirty(world, pos, state);
-                if (hasInfusionFinished()) {
-                    this.getInfusedGem();
+                if (hasCrystallizationFinished()) {
+                    this.getCrystallizedGem();
                     this.resetProgress();
                     markDirty(world, pos, state);
                 }
@@ -373,7 +372,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
         this.initialProgress = 0;
     }
 
-    private void getInfusedGem() {
+    private void getCrystallizedGem() {
         RecipeEntry<GemCrystallizerRecipe> recipe = currentRecipe().orElseThrow();
 
         this.removeStack(INGREDIENT_BEFORE_SLOT, 1);
@@ -381,8 +380,10 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
 
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));
+        
+        energyExtracted = 0;
     }
-    private boolean hasInfusionFinished() {
+    private boolean hasCrystallizationFinished() {
         return initialProgress >= maxProgressTicks;
     }
 
@@ -395,7 +396,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
 
     private Optional<RecipeEntry<GemCrystallizerRecipe>> currentRecipe() {
         ServerWorld serverWorld = (ServerWorld) world;
-        return this.matchGetter.getFirstMatch(new GemInfusionRecipeInput(this.ingredientStack(), this.ingredientAfterStack()), serverWorld);
+        return this.matchGetter.getFirstMatch(new GemCrystallizerRecipeInput(this.ingredientStack(), this.ingredientAfterStack()), serverWorld);
     }
 
     private boolean canInsertItemIntoResultSlot(Item item) {

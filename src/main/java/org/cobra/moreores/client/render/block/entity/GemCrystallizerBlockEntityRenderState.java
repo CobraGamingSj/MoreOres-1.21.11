@@ -4,7 +4,7 @@ import net.minecraft.client.render.block.entity.state.BlockEntityRenderState;
 import net.minecraft.client.render.item.ItemRenderState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemCrystallizerBlockEntity;
 
 public class GemCrystallizerBlockEntityRenderState extends BlockEntityRenderState {
 

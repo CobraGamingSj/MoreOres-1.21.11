@@ -6,6 +6,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.registry.ModBlockTags;
+import org.cobra.moreores.registry.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -412,6 +413,20 @@ public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.GRANDIDIERITE_BLOCK)
                 .add(ModBlocks.ECLIPSE_GEM_ORE);
 
+        valueLookupBuilder(ModBlockTags.CRYSTALLIZED_GEMSTONE_BLOCKS)
+                .add(ModBlocks.CRIMSON_GARNET_BLOCK)
+                .add(ModBlocks.ALEXANDRITE_BLOCK)
+                .add(ModBlocks.CRYSTALLITE_BLOCK)
+                .add(ModBlocks.MOONSTONE_BLOCK)
+                .add(ModBlocks.LIMESTONE_BLOCK)
+                .add(ModBlocks.QUARTSIDIAN_BLOCK)
+                .add(ModBlocks.RED_BERYL_BLOCK)
+                .add(ModBlocks.ORANGE_ZIRCON_BLOCK)
+                .add(ModBlocks.OPAL_BLOCK)
+                .add(ModBlocks.KASHMIR_SAPPHIRE_BLOCK)
+                .add(ModBlocks.RADIANT_AMETHYST_BLOCK)
+                .add(ModBlocks.GRANDIDIERITE_BLOCK);
+        
         valueLookupBuilder(ModBlockTags.NEEDS_RUBY_TOOL)
         ;
 

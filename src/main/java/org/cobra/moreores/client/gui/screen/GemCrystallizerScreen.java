@@ -12,7 +12,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemCrystallizerBlockEntity;
 
 import java.util.List;
 
