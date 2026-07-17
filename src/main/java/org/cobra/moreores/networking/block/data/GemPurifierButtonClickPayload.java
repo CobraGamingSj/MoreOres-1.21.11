@@ -8,7 +8,7 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.AbstractGemMachineBlockEntity;
 import org.cobra.moreores.client.gui.screen.AbstractGemMachineScreenHandler;
 
 public record GemPurifierButtonClickPayload(int buttonIndex, BlockPos pos) implements CustomPayload {

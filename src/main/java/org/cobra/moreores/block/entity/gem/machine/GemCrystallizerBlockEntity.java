@@ -1,4 +1,4 @@
-package org.cobra.moreores.block.entity.gem;
+package org.cobra.moreores.block.entity.gem.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -193,8 +193,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
 
         return false;
     }
-
-
+    
     @Override
     public GemCrystallizerDataSynchronizer getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return new GemCrystallizerDataSynchronizer(energyAmount(), this.getRedstone(), this.dustParticleCount, this.pos);
@@ -280,8 +279,8 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
                     markDirty(world, pos, state);
                 }
                 markDirty(world, pos, state);
-                if (hasInfusionFinished()) {
-                    this.getInfusedGem();
+                if (hasCrystallizationFinished()) {
+                    this.getCrystallizedGem();
                     this.resetProgress();
                     markDirty(world, pos, state);
                 }
@@ -373,7 +372,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
         this.initialProgress = 0;
     }
 
-    private void getInfusedGem() {
+    private void getCrystallizedGem() {
         RecipeEntry<GemCrystallizerRecipe> recipe = currentRecipe().orElseThrow();
 
         this.removeStack(INGREDIENT_BEFORE_SLOT, 1);
@@ -381,8 +380,10 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
 
         this.setStack(RESULT_SLOT, new ItemStack(recipe.value().getResult().getItem(),
                 this.resultStack().getCount() + recipe.value().getResult().getCount()));
+        
+        energyExtracted = 0;
     }
-    private boolean hasInfusionFinished() {
+    private boolean hasCrystallizationFinished() {
         return initialProgress >= maxProgressTicks;
     }
 

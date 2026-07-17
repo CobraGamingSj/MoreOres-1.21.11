@@ -11,7 +11,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemCrystallizerBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
 import org.cobra.moreores.registry.ModItemTags;

@@ -8,7 +8,7 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemCrystallizerBlockEntity;
 import org.cobra.moreores.client.gui.screen.GemPurifierScreenHandler;
 
 public record GemCrystallizerDataSynchronizer(long energyAmount, int redstone, int radiantDust, BlockPos blockPos) implements CustomPayload {

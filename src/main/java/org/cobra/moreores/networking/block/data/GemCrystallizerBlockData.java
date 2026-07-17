@@ -11,7 +11,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.GemCrystallizerBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemCrystallizerBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.registry.ModItemTags;
 import org.lwjgl.glfw.GLFW;

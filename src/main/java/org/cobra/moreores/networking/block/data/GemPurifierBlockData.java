@@ -12,7 +12,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.block.ModBlocks;
-import org.cobra.moreores.block.entity.gem.GemPurifierBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.GemPurifierBlockEntity;
 import org.cobra.moreores.item.ModItems;
 import org.cobra.moreores.registry.ModItemTags;
 import org.lwjgl.glfw.GLFW;

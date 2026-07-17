@@ -7,7 +7,7 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.cobra.moreores.MoreOresModInitializer;
-import org.cobra.moreores.block.entity.gem.AbstractGemMachineBlockEntity;
+import org.cobra.moreores.block.entity.gem.machine.AbstractGemMachineBlockEntity;
 
 public record MachineStatusDataPayload(BlockPos blockPos, String action) implements CustomPayload {
     public static final Id<MachineStatusDataPayload> ID = new Id<>(Identifier.of(MoreOresModInitializer.MOD_ID, "polishing_state"));
