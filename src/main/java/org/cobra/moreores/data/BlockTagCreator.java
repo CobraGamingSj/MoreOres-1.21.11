@@ -6,12 +6,11 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.registry.ModBlockTags;
-import org.cobra.moreores.registry.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BlockTagGen extends FabricTagProvider.BlockTagProvider {
-    public BlockTagGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+public class BlockTagCreator extends FabricTagProvider.BlockTagProvider {
+    public BlockTagCreator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 

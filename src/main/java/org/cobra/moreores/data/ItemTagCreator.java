@@ -11,8 +11,8 @@ import org.cobra.moreores.registry.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ItemTagGen extends FabricTagProvider.ItemTagProvider {
-    public ItemTagGen(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+public class ItemTagCreator extends FabricTagProvider.ItemTagProvider {
+    public ItemTagCreator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
         super(output, completableFuture);
     }
 

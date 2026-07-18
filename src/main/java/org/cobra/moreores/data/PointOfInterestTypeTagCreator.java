@@ -10,10 +10,10 @@ import org.cobra.moreores.MoreOresModInitializer;
 
 import java.util.concurrent.CompletableFuture;
 
-public class PointOfInterestTypeTagGen extends TagProvider<PointOfInterestType> {
+public class PointOfInterestTypeTagCreator extends TagProvider<PointOfInterestType> {
     private static final String JEWEL_KEY = "jewel_poi";
 
-    public PointOfInterestTypeTagGen(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture) {
+    public PointOfInterestTypeTagCreator(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookupFuture) {
         super(output, RegistryKeys.POINT_OF_INTEREST_TYPE, registryLookupFuture);
     }
 
