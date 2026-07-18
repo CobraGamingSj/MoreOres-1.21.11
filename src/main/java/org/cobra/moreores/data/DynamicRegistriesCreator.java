@@ -7,8 +7,8 @@ import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
-public class DynamicRegistry extends FabricDynamicRegistryProvider {
-    public DynamicRegistry(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+public class DynamicRegistriesCreator extends FabricDynamicRegistryProvider {
+    public DynamicRegistriesCreator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 

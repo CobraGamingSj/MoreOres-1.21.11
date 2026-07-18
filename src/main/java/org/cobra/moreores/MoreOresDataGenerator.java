@@ -16,14 +16,14 @@ public class MoreOresDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-		pack.addProvider(DynamicRegistry::new);
+		pack.addProvider(DynamicRegistriesCreator::new);
 		pack.addProvider(EquipmentAssetsProvider::new);
-		pack.addProvider(ItemTagGen::new);
-		pack.addProvider(BlockTagGen::new);
+		pack.addProvider(ItemTagCreator::new);
+		pack.addProvider(BlockTagCreator::new);
 		pack.addProvider(AutomaticModelCreator::new);
-		pack.addProvider(AdvancementGen::new);
+		pack.addProvider(AdvancementsCreator::new);
 		pack.addProvider(AutomaticLootTableCreator::new);
-		pack.addProvider(PointOfInterestTypeTagGen::new);
+		pack.addProvider(PointOfInterestTypeTagCreator::new);
 		pack.addProvider(AutomaticRecipeCreator::new);
 		pack.addProvider(AutomaticTranslationCreator::new);
 	}
