@@ -1,0 +1,243 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_quartz_trim"
+        },
+        "when": "minecraft:quartz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_iron_trim"
+        },
+        "when": "minecraft:iron"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_netherite_trim"
+        },
+        "when": "minecraft:netherite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_redstone_trim"
+        },
+        "when": "minecraft:redstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_copper_trim"
+        },
+        "when": "minecraft:copper"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_gold_trim"
+        },
+        "when": "minecraft:gold"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_emerald_trim"
+        },
+        "when": "minecraft:emerald"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_diamond_trim"
+        },
+        "when": "minecraft:diamond"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_lapis_trim"
+        },
+        "when": "minecraft:lapis"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_amethyst_trim"
+        },
+        "when": "minecraft:amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_resin_trim"
+        },
+        "when": "minecraft:resin"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_ruby_trim"
+        },
+        "when": "moreores:ruby"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_radiant_trim"
+        },
+        "when": "moreores:radiant"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_sapphire_trim"
+        },
+        "when": "moreores:sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_green_sapphire_trim"
+        },
+        "when": "moreores:green_sapphire"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_blue_garnet_trim"
+        },
+        "when": "moreores:blue_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_pink_garnet_trim"
+        },
+        "when": "moreores:pink_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_green_garnet_trim"
+        },
+        "when": "moreores:green_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_kyawthuite_trim"
+        },
+        "when": "moreores:kyawthuite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_topaz_trim"
+        },
+        "when": "moreores:topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_white_topaz_trim"
+        },
+        "when": "moreores:white_topaz"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_peridot_trim"
+        },
+        "when": "moreores:peridot"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_jade_trim"
+        },
+        "when": "moreores:jade"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_pyrope_trim"
+        },
+        "when": "moreores:pyrope"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_crimson_garnet_trim"
+        },
+        "when": "moreores:crimson_garnet"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_crystallite_trim"
+        },
+        "when": "moreores:crystallite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_radiant_amethyst_trim"
+        },
+        "when": "moreores:radiant_amethyst"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_limestone_trim"
+        },
+        "when": "moreores:limestone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_moonstone_trim"
+        },
+        "when": "moreores:moonstone"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_alexandrite_trim"
+        },
+        "when": "moreores:alexandrite"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_quartsidian_trim"
+        },
+        "when": "moreores:quartsidian"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_opal_trim"
+        },
+        "when": "moreores:opal"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/diamond_leggings_red_beryl_trim"
+        },
+        "when": "moreores:red_beryl"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/diamond_leggings"
+    },
+    "property": "minecraft:trim_material"
+  }
+}
