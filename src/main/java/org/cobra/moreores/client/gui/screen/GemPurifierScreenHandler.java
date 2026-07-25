@@ -51,7 +51,7 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler<Ge
         this.addSlot(new Slot(inventory, 2, 40, 20) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+                return stack.isIn(ModItemTags.HAS_ENERGY);
             }
         }); // Energy Input
         this.addSlot(new Slot(inventory, 3, 12, 20)); // Water Source

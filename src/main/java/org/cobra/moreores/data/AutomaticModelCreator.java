@@ -116,7 +116,7 @@ public class AutomaticModelCreator extends FabricModelProvider {
             if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
 
                 if(path.endsWith("_sword") || path.endsWith("_shovel") ||
-                        path.endsWith("_axe") || path.endsWith("_hoe") ||  path.endsWith("_pickaxe")) {
+                        path.endsWith("_axe") || path.endsWith("_hoe") || path.endsWith("_pickaxe") || path.endsWith("-arcshaper")) {
                     itemModelGenerator.register(item, Models.HANDHELD);
                     handheld = true;
                 } else if (path.endsWith("_spear")) {

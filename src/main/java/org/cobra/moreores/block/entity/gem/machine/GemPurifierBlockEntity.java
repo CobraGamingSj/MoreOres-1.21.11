@@ -202,7 +202,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         }
 
         if (slot == ENERGY_SOURCE_SLOT) {
-            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem()));
+            return side == Direction.UP && (this.energyStack().isIn(ModItemTags.HAS_ENERGY));
         }
 
         if(slot == FLUID_SOURCE_SLOT) {

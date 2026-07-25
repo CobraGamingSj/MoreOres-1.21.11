@@ -28,6 +28,7 @@ import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.item.util.impl.Gemstone;
 import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemMachineEnergyDataPayload;
+import org.cobra.moreores.registry.ModItemTags;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayload> extends BlockEntity implements ExtendedScreenHandlerFactory<Payload>, ImplementedInventory, TickableBlockEntity {
@@ -155,7 +156,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     }
 
     protected boolean hasEnergySourceProviderItem() {
-        return this.energyStack().isOf(ModItems.ENERGY_INGOT) || this.energyStack().isOf(ModBlocks.ENERGY_BLOCK.asItem());
+        return this.energyStack().isIn(ModItemTags.HAS_ENERGY);
     }
 
     protected void increaseProgress() {

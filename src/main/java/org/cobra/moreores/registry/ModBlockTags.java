@@ -28,6 +28,7 @@ public class ModBlockTags {
     public static final TagKey<Block> JADE_ORES = of("jade_ores");
     public static final TagKey<Block> PYROPE_ORES = of("pyrope_ores");
     public static final TagKey<Block> CRYSTALLIZED_GEMSTONE_BLOCKS = of("crystallized_gemstone_ores");
+    public static final TagKey<Block> ARCSHAPER_MINEABLE = of("mineable/arcshaper");
 
     private static TagKey<Block> of(String id) {
         return TagKey.of(RegistryKeys.BLOCK, Identifier.of(MoreOresModInitializer.MOD_ID, id));

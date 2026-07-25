@@ -59,7 +59,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
         this.addSlot(new Slot(inventory, 3, 13, 21) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+                return stack.isIn(ModItemTags.HAS_ENERGY);
             }
         }); // Energy Input
 

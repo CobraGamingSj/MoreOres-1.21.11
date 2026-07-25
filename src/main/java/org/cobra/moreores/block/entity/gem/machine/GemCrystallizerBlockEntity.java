@@ -186,7 +186,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
         }
 
         if (slot == ENERGY_SOURCE_SLOT) {
-            return side == Direction.UP && (this.energyStack().isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem()));  //
+            return side == Direction.UP && (this.energyStack().isIn(ModItemTags.HAS_ENERGY));
         } else if (slot == RADIANT_DUST_SLOT) {
             return side == Direction.UP && this.getStack(RADIANT_DUST_SLOT).isOf(ModItems.RADIANT_DUST);
         }
@@ -205,7 +205,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
             case INGREDIENT_BEFORE_SLOT, INGREDIENT_AFTER_SLOT ->
                     stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE);
             case ENERGY_SOURCE_SLOT ->
-                    stack.isOf(ModItems.ENERGY_INGOT) || stack.isOf(ModBlocks.ENERGY_BLOCK.asItem());
+                    stack.isIn(ModItemTags.HAS_ENERGY);
             case RESULT_SLOT->
                     stack.isIn(ModItemTags.GEMSTONE);
             case RADIANT_DUST_SLOT ->

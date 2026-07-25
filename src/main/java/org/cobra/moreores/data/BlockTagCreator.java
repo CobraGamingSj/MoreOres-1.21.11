@@ -83,6 +83,13 @@ public class BlockTagCreator extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.GRANDIDIERITE_BLOCK)
                 .add(ModBlocks.ECLIPSE_GEM_ORE);
 
+        valueLookupBuilder(ModBlockTags.ARCSHAPER_MINEABLE)
+                .forceAddTag(BlockTags.PICKAXE_MINEABLE)
+                .forceAddTag(BlockTags.AXE_MINEABLE)
+                .forceAddTag(BlockTags.HOE_MINEABLE)
+                .forceAddTag(BlockTags.SHOVEL_MINEABLE)
+                .forceAddTag(BlockTags.SWORD_INSTANTLY_MINES);
+        
         valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .add(ModBlocks.GEM_PURIFIER_BLOCK)
                 .add(ModBlocks.GEM_CRYSTALLIZER_BLOCK)

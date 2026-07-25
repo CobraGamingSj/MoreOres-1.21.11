@@ -1,22 +1,17 @@
 package org.cobra.moreores.item;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.SmithingTemplateItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import org.cobra.moreores.MoreOresModInitializer;
 import org.cobra.moreores.item.equipment.ArmorItem;
 import org.cobra.moreores.item.equipment.ModArmorMaterials;
-import org.jspecify.annotations.Nullable;
 
 import java.util.function.Function;
 
@@ -25,9 +20,13 @@ import static org.cobra.moreores.MoreOresModInitializer.*;
 public class ModItems {
 
 
-    public static final Item GEM_DETECTOR = register("gem_detector", GemDetector::new);
+//    public static final Item GEM_DETECTOR = register("gem_detector", GemDetector::new);
+    
+//    public static final Item IRON_ARCSHAPER = register("iron_arcshaper", s -> new ArcShaperItem(s, ToolMaterial.IRON, 3f, -2.4F, true));
+//    public static final Item STONE_ARCSHAPER = register("stone_arcshaper", s -> new ArcShaperItem(s, ToolMaterial.STONE, 3f, -2.4F, true));
+//    public static final Item RADIANT_ARCSHAPER = register("radiant_arcshaper", s -> new ArcShaperItem(s, ModToolMaterials.RADIANT, 35f, -2F, true));
 
-    //Gemstones & Ingots
+//    Gemstones
     public static final Item RUBY = register("ruby", s -> new GemItem(s, "ruby"));
     public static final Item RAW_RUBY = register("raw_ruby", s -> new Item(s.fireproof()));
     public static final Item RADIANT = register("radiant", s -> new GemItem(s, "radiant"));
@@ -259,6 +258,22 @@ public class ModItems {
                 .registryKey(MoreOresModInitializer.itemKey(name))));
     }
 
+//    private static Item createItemAlongWithBlock(String id, Function<Block.Settings, Block> blockFunction, AbstractBlock.Settings blockSettings, Item.Settings settings) {
+//        Identifier identifier = MoreOresModInitializer.id(id);
+//        Identifier identifier2 = MoreOresModInitializer.id(id + "_block");
+//        
+//        Block block = blockFunction.apply(blockSettings.registryKey(MoreOresModInitializer.blockKey(id)));
+//        Registry.register(Registries.BLOCK, identifier2, block);
+//        
+//        BlockItem blockItem = new BlockItem(block, settings.registryKey(MoreOresModInitializer.itemKey(id)).useBlockPrefixedTranslationKey());
+//        Registry.register(Registries.ITEM, identifier2, blockItem);
+//
+//        Item item = new Item(settings.registryKey(MoreOresModInitializer.itemKey(id)));
+//        Registry.register(Registries.ITEM, identifier, item);
+//        
+//        return item;
+//    }
+    
     public static void register() {
         MoreOresModInitializer.LOGGER.info("Loading ModItems for " + MoreOresModInitializer.MOD_ID + " mod");
         int itemCount = 0;
@@ -269,9 +284,9 @@ public class ModItems {
             }
             if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
                 String name = MoreOresModInitializer.formatName(id.getPath());
-                if(item == GEM_DETECTOR) {
-                    continue;
-                }
+//                if(item == GEM_DETECTOR) {
+//                    continue;
+//                }
                 itemCount++;
                 LOGGER.info("Registering Item: {}, for {} mod", name, MoreOresModInitializer.MOD_ID);
             }
