@@ -126,19 +126,22 @@ public class ArmorItem extends Item {
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.player;
         if (player != null && hasEquippedArmorSet(player)) {
-            textConsumer.accept(Text.literal("Applied Effects: ")
-                    .formatted(Formatting.YELLOW));
-            List<StatusEffectInstance> effects = ARMOR_EFFECTS.get(ModArmorMaterials.RADIANT);
-            if(effects != null) {
-                for (StatusEffectInstance effect : effects) {
-                    textConsumer.accept(Text.translatable(effect.getTranslationKey()).append(" " + (effect.getAmplifier() + 1)).formatted(Formatting.RED));
+            EquipmentSlot slot = player.getPreferredEquipmentSlot(stack);
+            if(player.getEquippedStack(slot).equals(stack)) {
+                textConsumer.accept(Text.literal("Applied Effects: ")
+                        .formatted(Formatting.YELLOW));
+                List<StatusEffectInstance> effects = ARMOR_EFFECTS.get(ModArmorMaterials.RADIANT);
+                if(effects != null) {
+                    for (StatusEffectInstance effect : effects) {
+                        textConsumer.accept(Text.translatable(effect.getTranslationKey()).append(" " + (effect.getAmplifier() + 1)).formatted(Formatting.RED));
+                    }
                 }
-            }
-            EquippableComponent self = stack.getComponents().get(DataComponentTypes.EQUIPPABLE);
-            if (self != null && self.assetId().isPresent()
-                    && self.assetId().get().equals(ModArmorMaterials.RADIANT.assetId())
-                    && self.slot() == EquipmentSlot.FEET) {
-                textConsumer.accept(Text.literal("Fall Protection Activated").formatted(Formatting.BLUE));
+                EquippableComponent self = stack.getComponents().get(DataComponentTypes.EQUIPPABLE);
+                if (self != null && self.assetId().isPresent()
+                        && self.assetId().get().equals(ModArmorMaterials.RADIANT.assetId())
+                        && self.slot() == EquipmentSlot.FEET) {
+                    textConsumer.accept(Text.literal("Fall Protection Activated").formatted(Formatting.BLUE));
+                }
             }
         }
     }
