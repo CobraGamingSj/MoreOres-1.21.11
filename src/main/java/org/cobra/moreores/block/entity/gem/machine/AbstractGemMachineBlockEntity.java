@@ -19,7 +19,6 @@ import net.minecraft.storage.WriteView;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import org.cobra.moreores.block.ModBlocks;
 import org.cobra.moreores.block.entity.ImplementedInventory;
 import org.cobra.moreores.block.entity.TickableBlockEntity;
 import org.cobra.moreores.item.ModItems;
@@ -75,7 +74,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     public abstract long getEnergyCapacity();
 
     public abstract long getMaxEnergyInsert();
-
+    
     public abstract long getMaxEnergyExtract();
 
     @Override

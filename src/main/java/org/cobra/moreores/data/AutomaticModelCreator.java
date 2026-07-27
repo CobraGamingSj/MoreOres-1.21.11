@@ -20,6 +20,7 @@ import org.cobra.moreores.block.RubyLampBlock;
 import org.cobra.moreores.item.RadiantBowItem;
 import org.cobra.moreores.item.equipment.ModEquipmentAssetKeys;
 
+import java.util.List;
 import java.util.Map;
 
 public class AutomaticModelCreator extends FabricModelProvider {
@@ -59,6 +60,24 @@ public class AutomaticModelCreator extends FabricModelProvider {
                 "_boots", ItemModelGenerator.BOOTS_TRIM_ID_PREFIX
         );
 
+        List<String> armorSuffixes = List.of("_chestplate", "_helmet", "_leggings", "_boots");
+        
+        Map<String, RegistryKey<EquipmentAsset>> vanillaAssets = Map.of(
+                "iron_", EquipmentAssetKeys.IRON,
+                "gold_", EquipmentAssetKeys.GOLD,
+                "diamond_", EquipmentAssetKeys.DIAMOND,
+                "netherite_", EquipmentAssetKeys.NETHERITE,
+                "copper_", EquipmentAssetKeys.COPPER,
+                "leather_", EquipmentAssetKeys.LEATHER,
+                "chainmail_", EquipmentAssetKeys.CHAINMAIL
+        );
+        
+        Map<String, RegistryKey<EquipmentAsset>> modAssets = Map.of(
+                "ruby_", ModEquipmentAssetKeys.RUBY,
+                "sapphire_", ModEquipmentAssetKeys.SAPPHIRE,
+                "radiant_", ModEquipmentAssetKeys.RADIANT
+                );
+        
         for (ItemModelGenerator.TrimMaterial trimMaterial : ItemModelGenerator.TRIM_MATERIALS) {
             System.out.println(
                     trimMaterial.materialKey().getValue() + " -> " +
@@ -76,60 +95,53 @@ public class AutomaticModelCreator extends FabricModelProvider {
             RegistryKey<EquipmentAsset> assetKey = null;
             String path = id.getPath();
             boolean handheld = false;
-
+            
             if (id.getNamespace().equals("minecraft")) {
-
-                if (path.startsWith("iron_")) {
-                    assetKey = EquipmentAssetKeys.IRON;
-                } else if (path.startsWith("gold_")) {
-                    assetKey = EquipmentAssetKeys.GOLD;
-                } else if (path.startsWith("diamond_")) {
-                    assetKey = EquipmentAssetKeys.DIAMOND;
-                } else if (path.startsWith("netherite_")) {
-                    assetKey = EquipmentAssetKeys.NETHERITE;
-                } else if (path.startsWith("copper_")) {
-                    assetKey = EquipmentAssetKeys.COPPER;
-                } else if (path.startsWith("leather_")) {
-                    assetKey = EquipmentAssetKeys.LEATHER;
-                } else if (path.startsWith("chainmail_")) {
-                    assetKey = EquipmentAssetKeys.CHAINMAIL;
+                for (Map.Entry<String, RegistryKey<EquipmentAsset>> entry : vanillaAssets.entrySet()) {
+                    for (String armorSuffix : armorSuffixes) {
+                        if (path.startsWith(entry.getKey()) && path.endsWith(armorSuffix)) {
+                            assetKey = entry.getValue();
+                            break;
+                        }
+                    }
                 }
-                
                 if (assetKey != null) {
                     boolean generated = false;
                     for (Map.Entry<String, Identifier> entry : trimPrefixes.entrySet()) {
                         String suffix = entry.getKey();
                         Identifier prefix = entry.getValue();
-                        if(path.endsWith(suffix)) {
+                        if (path.endsWith(suffix)) {
                             itemModelGenerator.registerArmor(item, assetKey, prefix, false);
                             generated = true;
                         }
                     }
-                    if(generated) {
+                    if (generated) {
                         continue;
                     }
                 }
-                
                 continue;
             }
             
             if(id.getNamespace().equals(MoreOresModInitializer.MOD_ID)) {
 
                 if(path.endsWith("_sword") || path.endsWith("_shovel") ||
-                        path.endsWith("_axe") || path.endsWith("_hoe") || path.endsWith("_pickaxe") || path.endsWith("-arcshaper")) {
+                        path.endsWith("_axe") || path.endsWith("_hoe") || path.endsWith("_pickaxe")) {
                     itemModelGenerator.register(item, Models.HANDHELD);
                     handheld = true;
                 } else if (path.endsWith("_spear")) {
                     itemModelGenerator.registerSpear(item);
                     handheld = true;
-                } else if (path.startsWith("ruby_")) {
-                    assetKey = ModEquipmentAssetKeys.RUBY;
-                } else if (path.startsWith("sapphire_")) {
-                    assetKey = ModEquipmentAssetKeys.SAPPHIRE;
-                } else if (path.startsWith("radiant_")) {
-                    assetKey = ModEquipmentAssetKeys.RADIANT;
                 }
 
+                for (Map.Entry<String, RegistryKey<EquipmentAsset>> entry : modAssets.entrySet()) {
+                    for (String armorSuffix : armorSuffixes) {
+                        if (path.startsWith(entry.getKey()) && path.endsWith(armorSuffix)) {
+                            assetKey = entry.getValue();
+                            break;
+                        }
+                    }
+                }
+                
                 if (assetKey != null) {
                     boolean generated = false;
                     for (Map.Entry<String, Identifier> entry : trimPrefixes.entrySet()) {

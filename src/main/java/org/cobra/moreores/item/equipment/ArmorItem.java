@@ -133,7 +133,7 @@ public class ArmorItem extends Item {
                 List<StatusEffectInstance> effects = ARMOR_EFFECTS.get(ModArmorMaterials.RADIANT);
                 if(effects != null) {
                     for (StatusEffectInstance effect : effects) {
-                        textConsumer.accept(Text.translatable(effect.getTranslationKey()).append(" " + (effect.getAmplifier() + 1)).formatted(Formatting.RED));
+                        textConsumer.accept(Text.literal(" ").append(Text.translatable(effect.getTranslationKey())).append(" " + (effect.getAmplifier() + 1)).formatted(Formatting.RED));
                     }
                 }
                 EquippableComponent self = stack.getComponents().get(DataComponentTypes.EQUIPPABLE);

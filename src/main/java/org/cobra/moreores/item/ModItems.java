@@ -225,37 +225,41 @@ public class ModItems {
         return Registry.register(Registries.ITEM, id(id), item);
     }
 
-    public static Item register(String name, Function<Item.Settings, Item> item) {
-        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name))));
+    public static Item register(String id, Function<Item.Settings, Item> item) {
+        return register(id, item.apply(new Item.Settings().registryKey(itemKey(id))));
     }
 
-    public static Item registerSword(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).sword(material, attackDamage, attackSpeed)));
+    public static Item register(String id, Function<Item.Settings, Item> item, Item.Settings settings) {
+        return register(id, item.apply(settings.registryKey(itemKey(id))));
     }
 
-    public static Item registerPickaxe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).pickaxe(material, attackDamage, attackSpeed)));
+    public static Item registerSword(String id, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(id, item.apply(new Item.Settings().registryKey(itemKey(id)).sword(material, attackDamage, attackSpeed)));
     }
 
-    public static Item registerAxe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).axe(material, attackDamage, attackSpeed)));
+    public static Item registerPickaxe(String id, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(id, item.apply(new Item.Settings().registryKey(itemKey(id)).pickaxe(material, attackDamage, attackSpeed)));
     }
 
-    public static Item registerHoe(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).hoe(material, attackDamage, attackSpeed)));
+    public static Item registerAxe(String id, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(id, item.apply(new Item.Settings().registryKey(itemKey(id)).axe(material, attackDamage, attackSpeed)));
     }
 
-    public static Item registerShovel(String name, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
-        return register(name, item.apply(new Item.Settings().registryKey(itemKey(name)).shovel(material, attackDamage, attackSpeed)));
+    public static Item registerHoe(String id, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(id, item.apply(new Item.Settings().registryKey(itemKey(id)).hoe(material, attackDamage, attackSpeed)));
     }
 
-    public static Item registerSpear(String name, Function<Item.Settings, Item> item, ToolMaterial material, float swingAnimationSeconds, float chargeDamageMultiplier, float chargeDelaySeconds, 
+    public static Item registerShovel(String id, Function<Item.Settings, Item> item, float attackDamage, float attackSpeed, ToolMaterial material) {
+        return register(id, item.apply(new Item.Settings().registryKey(itemKey(id)).shovel(material, attackDamage, attackSpeed)));
+    }
+
+    public static Item registerSpear(String id, Function<Item.Settings, Item> item, ToolMaterial material, float swingAnimationSeconds, float chargeDamageMultiplier, float chargeDelaySeconds, 
                                      float maxDurationForDismountSeconds, float minSpeedForDismount, float maxDurationForChargeKnockbackInSeconds, 
                                      float minSpeedForChargeKnockback, float maxDurationForChargeDamageInSeconds, 
                                      float minRelativeSpeedForChargeDamage) {
-        return register(name, item.apply(new Item.Settings().spear(material, swingAnimationSeconds, chargeDamageMultiplier, chargeDelaySeconds, maxDurationForDismountSeconds,
+        return register(id, item.apply(new Item.Settings().spear(material, swingAnimationSeconds, chargeDamageMultiplier, chargeDelaySeconds, maxDurationForDismountSeconds,
                         minSpeedForDismount, maxDurationForChargeKnockbackInSeconds, minSpeedForChargeKnockback, maxDurationForChargeDamageInSeconds, minRelativeSpeedForChargeDamage)
-                .registryKey(MoreOresModInitializer.itemKey(name))));
+                .registryKey(MoreOresModInitializer.itemKey(id))));
     }
 
 //    private static Item createItemAlongWithBlock(String id, Function<Block.Settings, Block> blockFunction, AbstractBlock.Settings blockSettings, Item.Settings settings) {
