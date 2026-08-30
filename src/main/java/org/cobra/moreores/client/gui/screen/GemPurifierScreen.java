@@ -156,18 +156,11 @@ public class GemPurifierScreen extends AbstractGemMachineScreen<GemPurifierBlock
     protected void renderEnergyHandler(DrawContext context, int x, int y) {
         int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmountPercentage() * 44);
         int gradientStart = Colors.BLUE;
-        int gradientEnd = Colors.GREEN;
+        int gradientEnd = Colors.CYAN;
         context.fillGradient(x + 40, y + 42 + 44 - energyBarSize, x + 40 + 16, y + 42 + 44, gradientStart, gradientEnd);
     }
 
-    @Override
-    public void drawForeground(DrawContext context, int mouseX, int mouseY) {
-        super.drawForeground(context, mouseX, mouseY);
-        String name = this.handler.getBlockEntity().getDisplayName().getString();
-        int x = 8;
-        int y = 8;
-        context.drawText(this.textRenderer, name, x, y, Colors.BLACK, false);
-    }
+
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {

@@ -16,7 +16,6 @@ import org.cobra.moreores.client.render.item.entity.GemArrowEntityRenderer;
 import org.cobra.moreores.client.render.item.model.GemArrowEntityModel;
 import org.cobra.moreores.entity.ModEntityTypes;
 import org.cobra.moreores.networking.ModS2CNetworks;
-import org.cobra.moreores.networking.ModS2CPayloadRegistry;
 
 public class MoreOresClientModInitializer implements ClientModInitializer {
     @Override
@@ -26,11 +25,9 @@ public class MoreOresClientModInitializer implements ClientModInitializer {
 
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_PURIFIER_BLOCK, BlockRenderLayer.TRANSLUCENT);
         BlockRenderLayerMap.putBlock(ModBlocks.GEM_CRYSTALLIZER_BLOCK, BlockRenderLayer.TRANSLUCENT);
-//        BlockRenderLayerMap.putBlock(ModBlocks.TEST_BLOCK, BlockRenderLayer.CUTOUT);
 
-        HandledScreens.register(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, GemPurifierScreen::new);
-        HandledScreens.register(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, GemCrystallizerScreen::new);
-//        HandledScreens.register(ModScreenHandlerType.TEST, TestScreen::new);
+        HandledScreens.register(ModScreenHandlerType.GEM_PURIFIER, GemPurifierScreen::new);
+        HandledScreens.register(ModScreenHandlerType.GEM_CRYSTALLIZER, GemCrystallizerScreen::new);
 
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_PURIFIER, GemPurifierBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntityType.GEM_CRYSTALLIZER, GemCrystallizerBlockEntityRenderer::new);

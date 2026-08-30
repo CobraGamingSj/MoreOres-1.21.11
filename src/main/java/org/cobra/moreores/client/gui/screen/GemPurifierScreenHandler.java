@@ -29,7 +29,7 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler<Ge
 
     // Main Constructor
     public GemPurifierScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate propertyDelegate) {
-        super(ModScreenHandlerType.GEM_PURIFIER_SCREEN_HANDLER, syncId, blockEntity.getPos(), (GemPurifierBlockEntity) blockEntity);
+        super(ModScreenHandlerType.GEM_PURIFIER, syncId, blockEntity.getPos(), (GemPurifierBlockEntity) blockEntity);
         checkSize((Inventory) blockEntity, 17);
 
         this.inventory = ((Inventory) blockEntity);
@@ -42,7 +42,7 @@ public class GemPurifierScreenHandler extends AbstractGemMachineScreenHandler<Ge
                 return stack.isIn(ModItemTags.RAW_GEMSTONE) || stack.isIn(ModItemTags.RAW_GEMSTONE_BLOCKS);
             }
         }); // Input
-        this.addSlot(new Slot(inventory, 1, 79, 61) {
+        this.addSlot(new Slot(inventory, 1, 75, 61) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModItemTags.GEMSTONE) || stack.isIn(ModItemTags.GEMSTONE_BLOCKS);

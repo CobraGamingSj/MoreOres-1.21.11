@@ -1,5 +1,7 @@
 package org.cobra.moreores.block.entity.gem.machine;
 
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,6 +36,7 @@ import org.cobra.moreores.item.util.GemCategory;
 import org.cobra.moreores.item.util.impl.CrystallizationGemstones;
 import org.cobra.moreores.item.util.impl.Gemstone;
 import org.cobra.moreores.networking.block.data.GemCrystallizerDataSynchronizer;
+import org.cobra.moreores.networking.block.data.ScreenGhostRenderingS2CPacket;
 import org.cobra.moreores.recipe.GemCrystallizerRecipe;
 import org.cobra.moreores.recipe.input.GemCrystallizerRecipeInput;
 import org.cobra.moreores.registry.ModItemTags;
@@ -239,6 +242,8 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
             return;
         }
 
+        syncPreviewResult();
+
         dustTick++;
         redstoneTick++;
 
@@ -272,7 +277,7 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
                     redstone--;
                     redstoneTick = 0;
                 }
-                this.eatEnergy();
+                this.consumeEnergy();
                 if(dustTick >= 10 && dustParticleCount > 0) {
                     this.dustParticleCount--;
                     this.dustTick = 0;
@@ -292,12 +297,12 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
             }
         } else if (machineStatus.isPaused()) {
             energyState = MachineStatus.EnergyState.INSERTING;
-            giveEnergy();
+            addEnergy();
             markDirty(world, pos, state);
         } else {
             if((energyAmount() < 1_000_000 && hasEnergySourceProviderItem())) {
                 energyState = MachineStatus.EnergyState.INSERTING;
-                giveEnergy();
+                addEnergy();
                 markDirty(world, pos, state);
             } else {
                 energyState = MachineStatus.EnergyState.IDLE;
@@ -309,6 +314,23 @@ public class GemCrystallizerBlockEntity extends AbstractGemMachineBlockEntity<Ge
         validateRedstoneDust(REDSTONE_SLOT);
         validateRadiantDust();
         markDirty(world, pos, state);
+    }
+
+    private void syncPreviewResult() {
+        Optional<RecipeEntry<GemCrystallizerRecipe>> recipe = currentRecipe();
+        ItemStack result = recipe.map(holder -> holder.value().getResult().copy())
+                .orElse(ItemStack.EMPTY);
+
+        if (ItemStack.areItemsEqual(lastPreviewResult, result)) {
+            return;
+        }
+        lastPreviewResult = result.copy();
+        if (!(world instanceof ServerWorld serverLevel)) {
+            return;
+        }
+        for (ServerPlayerEntity player : PlayerLookup.tracking(serverLevel, pos)) {
+            ServerPlayNetworking.send(player, new ScreenGhostRenderingS2CPacket(result));
+        }
     }
 
     @Override

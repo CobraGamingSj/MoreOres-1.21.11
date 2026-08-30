@@ -76,7 +76,7 @@ public class AutomaticModelCreator extends FabricModelProvider {
                 "ruby_", ModEquipmentAssetKeys.RUBY,
                 "sapphire_", ModEquipmentAssetKeys.SAPPHIRE,
                 "radiant_", ModEquipmentAssetKeys.RADIANT
-                );
+        );
         
         for (ItemModelGenerator.TrimMaterial trimMaterial : ItemModelGenerator.TRIM_MATERIALS) {
             System.out.println(

@@ -37,7 +37,9 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     protected Gemstone gemstone = Gemstone.NONE;
 
     long energyExtracted = 0;
-    
+
+    protected ItemStack lastPreviewResult = ItemStack.EMPTY;
+
     public int initialProgress = 0;
 
     protected int redstone = 0;
@@ -111,7 +113,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         this.redstone = redstone;
     }
     
-    public Gemstone detectGem(ItemStack stack) {
+    public Gemstone identify(ItemStack stack) {
         Item item = stack.getItem();
         if (category() == GemCategory.PURIFYING) {
             for (PurificationGemstones gems : PurificationGemstones.values()) {
@@ -143,7 +145,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
     public abstract GemCategory category();
 
     public Gemstone getGem() {
-        return detectGem(resultStack());
+        return identify(resultStack());
     }
 
     public void setGem(Gemstone gem) {
@@ -206,7 +208,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         return this.energyStorage.amount >= 13;
     }
 
-    protected void giveEnergy() {
+    protected void addEnergy() {
         if(world == null) {
             return;
         }
@@ -224,7 +226,7 @@ public abstract class AbstractGemMachineBlockEntity<Payload extends CustomPayloa
         }
     }
 
-    protected void eatEnergy() {
+    protected void consumeEnergy() {
         if(world == null) {
             return;
         }

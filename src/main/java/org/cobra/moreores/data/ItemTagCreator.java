@@ -110,39 +110,6 @@ public class ItemTagCreator extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.SAPPHIRE_SWORD)
                 .add(ModItems.RADIANT_SWORD);
 
-//        valueLookupBuilder(ModItemTags.ARCSHAPERS)
-//                .add(ModItems.IRON_ARCSHAPER)
-//                .add(ModItems.STONE_ARCSHAPER)
-//                .add(ModItems.RADIANT_ARCSHAPER);
-        
-//        valueLookupBuilder(ItemTags.MELEE_WEAPON_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.SWEEPING_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.FIRE_ASPECT_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.SHARP_WEAPON_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.WEAPON_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.MINING_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
-//                .addTag(ModItemTags.ARCSHAPERS);
-//        
-//        valueLookupBuilder(ItemTags.VANISHING_ENCHANTABLE)
-//                    .addTag(ModItemTags.ARCSHAPERS);
-            
-
         valueLookupBuilder(ItemTags.PICKAXES)
                 .add(ModItems.RUBY_PICKAXE)
                 .add(ModItems.SAPPHIRE_PICKAXE)

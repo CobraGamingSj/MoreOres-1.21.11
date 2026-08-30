@@ -13,7 +13,7 @@ public class ModS2CNetworks {
         ClientPlayNetworking.registerGlobalReceiver(GemPurifierFluidDataPayload.ID, GemPurifierFluidDataPayload::handlePacket);
         ClientPlayNetworking.registerGlobalReceiver(GemPurifierDataSynchronizer.ID, GemPurifierDataSynchronizer::handlePacket);
         ClientPlayNetworking.registerGlobalReceiver(GemCrystallizerDataSynchronizer.ID, GemCrystallizerDataSynchronizer::handlePacket);
-//        ClientPlayNetworking.registerGlobalReceiver(TestBlockDataSynchronizer.ID, TestBlockDataSynchronizer::handlePacket);
+        ClientPlayNetworking.registerGlobalReceiver(ScreenGhostRenderingS2CPacket.ID, ScreenGhostRenderingS2CPacket::handlePacket);
     }
 
     public static void register() {

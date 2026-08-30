@@ -27,7 +27,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
     }
 
     public GemCrystallizerScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate delegate) {
-        super(ModScreenHandlerType.GEM_CRYSTALLIZER_SCREEN_HANDLER, syncId, blockEntity.getPos(), (GemCrystallizerBlockEntity) blockEntity);
+        super(ModScreenHandlerType.GEM_CRYSTALLIZER, syncId, blockEntity.getPos(), (GemCrystallizerBlockEntity) blockEntity);
         checkSize((Inventory) blockEntity, 11);
 
         this.inventory = (Inventory) blockEntity;
@@ -49,7 +49,7 @@ public class GemCrystallizerScreenHandler extends AbstractGemMachineScreenHandle
             }
         }); // Input After
 
-        this.addSlot(new Slot(inventory, 2, 67, 72) {
+        this.addSlot(new Slot(inventory, 2, 64, 72) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isIn(ModItemTags.CRYSTALLIZED);

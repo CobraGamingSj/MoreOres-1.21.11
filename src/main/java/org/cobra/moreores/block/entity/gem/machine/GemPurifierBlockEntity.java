@@ -44,6 +44,7 @@ import org.cobra.moreores.item.util.impl.Gemstone;
 import org.cobra.moreores.item.util.impl.PurificationGemstones;
 import org.cobra.moreores.networking.block.data.GemPurifierDataSynchronizer;
 import org.cobra.moreores.networking.block.data.GemPurifierFluidDataPayload;
+import org.cobra.moreores.networking.block.data.ScreenGhostRenderingS2CPacket;
 import org.cobra.moreores.recipe.GemPurifierRecipe;
 import org.cobra.moreores.recipe.input.GemPurifyingRecipeInput;
 import org.cobra.moreores.registry.ModBlockTags;
@@ -240,6 +241,8 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
             return;
         }
 
+        syncPreviewResult();
+
         redstoneTick++;
         
         Gemstone newGem = getGem();
@@ -265,8 +268,8 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
                     redstone--;
                     redstoneTick = 0;
                 }
-                this.eatEnergy();
-                this.drinkWater();
+                this.consumeEnergy();
+                this.consumeWater();
                 if (hasPolishingFinished()) {
                     this.getPolishedGemstone();
                     this.resetProgress();
@@ -280,12 +283,12 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         } else if (machineStatus.isPaused()) {
             energyState = MachineStatus.EnergyState.INSERTING;
             fluidState = FluidState.FILLING;
-            giveEnergy();
+            addEnergy();
             fillWater();
         } else {
             if((energyAmount() < 10_000_000 && hasEnergySourceProviderItem()) || (waterAmount() < 810000 && hasWaterBucket())) {
                 energyState = MachineStatus.EnergyState.INSERTING;
-                giveEnergy();
+                addEnergy();
                 fluidState = FluidState.FILLING;
                 fillWater();
             } else {
@@ -298,6 +301,23 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         validateFluidAmount();
         validateRedstoneDust(REDSTONE_SLOT);
         markDirty(world, pos, state);
+    }
+
+    private void syncPreviewResult() {
+        Optional<RecipeEntry<GemPurifierRecipe>> recipe = currentRecipe();
+        ItemStack result = recipe.map(holder -> holder.value().getResult().copy())
+                .orElse(ItemStack.EMPTY);
+
+        if (ItemStack.areItemsEqual(lastPreviewResult, result)) {
+            return;
+        }
+        lastPreviewResult = result.copy();
+        if (!(world instanceof ServerWorld serverLevel)) {
+            return;
+        }
+        for (ServerPlayerEntity player : PlayerLookup.tracking(serverLevel, pos)) {
+            ServerPlayNetworking.send(player, new ScreenGhostRenderingS2CPacket(result));
+        }
     }
 
     @Override
@@ -338,7 +358,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
         }
     }
 
-    private void drinkWater() {
+    private void consumeWater() {
         long amount = 810;
         try(Transaction transaction = Transaction.openOuter()) {
             fluidStorage.extract(FluidVariant.of(Fluids.WATER), FluidStack.convertDropletsToMb(amount), transaction);
@@ -444,7 +464,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
     }
 
     @Override
-    protected void giveEnergy() {
+    protected void addEnergy() {
         if(world == null) {
             return;
         }
@@ -463,7 +483,7 @@ public class GemPurifierBlockEntity extends AbstractGemMachineBlockEntity<GemPur
     }
 
     @Override
-    protected void eatEnergy() {
+    protected void consumeEnergy() {
         if(world == null) {
             return;
         }

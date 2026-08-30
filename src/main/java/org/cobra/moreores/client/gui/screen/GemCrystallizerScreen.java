@@ -183,15 +183,6 @@ public class GemCrystallizerScreen extends AbstractGemMachineScreen<GemCrystalli
     }
 
     @Override
-    public void drawForeground(DrawContext context, int mouseX, int mouseY) {
-        super.drawForeground(context, mouseX, mouseY);
-        String name = this.handler.getBlockEntity().getDisplayName().getString();
-        int x = 8;
-        int y = 8;
-        context.drawText(this.textRenderer, name, x, y, Colors.BLACK, false);
-    }
-
-    @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         int energyBarSize = MathHelper.ceil(this.handler.calculateEnergyAmountPercentage() * 44);

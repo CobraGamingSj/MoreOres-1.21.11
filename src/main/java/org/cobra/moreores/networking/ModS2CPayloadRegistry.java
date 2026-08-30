@@ -17,7 +17,7 @@ public class ModS2CPayloadRegistry {
        registerS2C(GemPurifierDataSynchronizer.ID, GemPurifierDataSynchronizer.PACKET_CODEC);
        registerS2C(GemCrystallizerDataSynchronizer.ID, GemCrystallizerDataSynchronizer.PACKET_CODEC);
        registerS2C(MachineStatusDataPayload.ID, MachineStatusDataPayload.PACKET_CODEC);
-//       registerS2C(TestBlockDataSynchronizer.ID, TestBlockDataSynchronizer.PACKET_CODEC);
+       registerS2C(ScreenGhostRenderingS2CPacket.ID, ScreenGhostRenderingS2CPacket.PACKET_CODEC);
     }
 
     public static<T extends CustomPayload> void registerS2C(CustomPayload.Id<T> id, PacketCodec<RegistryByteBuf, T> packetCodec) {
